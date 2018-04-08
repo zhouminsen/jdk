@@ -1,4 +1,4 @@
-package com.zjw.jdk;
+package com.zjw.jdk.thread;
 
 /**
  * Created by zhoum on 2018/1/26.

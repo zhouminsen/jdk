@@ -1,4 +1,4 @@
-package com.zjw.jdk;
+package com.zjw.jdk.thread;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -31,7 +31,7 @@ public class CountDownLatchTest {
                     } catch (InterruptedException e) {  
                     } finally {  
                         // 每个选手到达终点时，end就减一
-//                        end.countDown();
+                        end.countDown();
                     }
                 }
             };  
@@ -41,7 +41,7 @@ public class CountDownLatchTest {
         // begin减一，开始游戏
 //        begin.countDown();
         // 等待end变为0，即所有选手到达终点
-//        end.await();
+        end.await();
         System.out.println("Game Over");  
         exec.shutdown();  
     }
