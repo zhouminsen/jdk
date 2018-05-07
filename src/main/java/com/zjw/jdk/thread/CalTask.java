@@ -57,7 +57,7 @@ public class CalTask extends RecursiveTask<Integer> {
             total += arr[i] = tmp;
         }
         System.out.println(total);
-        ForkJoinPool pool = ForkJoinPool.commonPool();
+        ForkJoinPool pool = null;//ForkJoinPool.commonPool();
         //提交可分解的任务
         Future<Integer> future = pool.submit(new CalTask(arr, 0, arr.length));
         System.out.println(future.get());
