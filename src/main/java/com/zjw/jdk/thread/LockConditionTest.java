@@ -19,100 +19,106 @@ public class LockConditionTest {
         new DepositThread3("存款乙", account3, 800).start();
         new DepositThread3("存款丙", account3, 800).start();
     }
-}
 
-@Data
-class Account3 {
-    private String accountNo;
-    private double balance;
+    @Data
+    static class Account3 {
+        private String accountNo;
+        private double balance;
 
-    private boolean flag = false;
+        private boolean flag = false;
 
-    public Account3(String accountNo, double balance) {
-        this.accountNo = accountNo;
-        this.balance = balance;
-    }
+        public Account3(String accountNo, double balance) {
+            this.accountNo = accountNo;
+            this.balance = balance;
+        }
 
-    private Lock lock = new ReentrantLock();
+        private Lock lock = new ReentrantLock();
 
-    private Condition condition = lock.newCondition();
+        private Condition condition = lock.newCondition();
 
-    public  void draw(double drawAmount) {
-        try {
-            lock.lock();
-            if (!flag) {
-                condition.await();
-            } else {
-                System.out.println(Thread.currentThread().getName() + " 取钱:" + drawAmount);
-                balance -= drawAmount;
-                System.out.println("账户余额为:" + balance);
-                flag = false;
-                condition.signalAll();
+        public  void draw(double drawAmount) {
+            try {
+                lock.lock();
+                if (!flag) {
+                    condition.await();
+                } else {
+                    System.out.println(Thread.currentThread().getName() + " 取钱:" + drawAmount);
+                    balance -= drawAmount;
+                    System.out.println("账户余额为:" + balance);
+                    flag = false;
+                    condition.signalAll();
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }finally {
+                lock.unlock();
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }finally {
-            lock.unlock();
         }
-    }
 
-    public synchronized void deposit(double depositAmount) {
-        try {
-            lock.lock();
-            if (flag) {
-                condition.await();
-            } else {
-                System.out.println(Thread.currentThread().getName() + " 存款:" + depositAmount);
-                balance += depositAmount;
-                System.out.println("账户余额为:" + balance);
-                flag = true;
-                condition.signalAll();
+        public synchronized void deposit(double depositAmount) {
+            try {
+                lock.lock();
+                if (flag) {
+                    condition.await();
+                } else {
+                    System.out.println(Thread.currentThread().getName() + " 存款:" + depositAmount);
+                    balance += depositAmount;
+                    System.out.println("账户余额为:" + balance);
+                    flag = true;
+                    condition.signalAll();
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }finally {
+                lock.unlock();
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }finally {
-            lock.unlock();
+        }
+
+    }
+
+    static class DrawThread3 extends Thread {
+        private Account3 account;
+
+        private double drawAmount;
+
+        public DrawThread3(String name, Account3 account, double drawAmount) {
+            this.account = account;
+            this.drawAmount = drawAmount;
+            super.setName(name);
+        }
+
+
+        @Override
+        public void run() {
+            for (int i = 0; i < 100; i++) {
+                account.draw(drawAmount);
+            }
         }
     }
 
-}
+    static class DepositThread3 extends Thread {
+        private Account3 account;
 
-class DrawThread3 extends Thread {
-    private Account3 account;
+        private double depositAmount;
 
-    private double drawAmount;
-
-    public DrawThread3(String name, Account3 account, double drawAmount) {
-        this.account = account;
-        this.drawAmount = drawAmount;
-        super.setName(name);
-    }
+        public DepositThread3(String name, Account3 account, double depositAmount) {
+            this.account = account;
+            this.depositAmount = depositAmount;
+            super.setName(name);
+        }
 
 
-    @Override
-    public void run() {
-        for (int i = 0; i < 100; i++) {
-            account.draw(drawAmount);
+        @Override
+        public void run() {
+            for (int i = 0; i < 100; i++) {
+                account.deposit(depositAmount);
+            }
         }
     }
 }
 
-class DepositThread3 extends Thread {
-    private Account3 account;
-
-    private double depositAmount;
-
-    public DepositThread3(String name, Account3 account, double depositAmount) {
-        this.account = account;
-        this.depositAmount = depositAmount;
-        super.setName(name);
-    }
 
 
-    @Override
-    public void run() {
-        for (int i = 0; i < 100; i++) {
-            account.deposit(depositAmount);
-        }
-    }
-}
+
+
+

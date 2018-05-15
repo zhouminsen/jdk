@@ -1,9 +1,6 @@
 package com.zjw.jdk.colloection;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by zhoum on 2018/5/3.
@@ -32,6 +29,20 @@ public class HashMapTest {
             System.out.println(next.getKey()+","+next.getValue());
         }
 
+        System.out.println(Integer.parseInt("0001111", 2) & 15);
+        System.out.println(Integer.parseInt("0011111", 2) & 15);
+        System.out.println(Integer.parseInt("0111111", 2) & 15);
+        System.out.println(Integer.parseInt("1111111", 2) & 15);
+        System.out.println();
+        System.out.println("0111111".hashCode());
+        System.out.println("0011111".hashCode());
+        System.out.println("0001111".hashCode());
+        System.out.println("1111111".hashCode());
 
+        HashMap<Integer, Integer> hashMap = new HashMap<>();
+        hashMap.put(1, 2);
+        hashMap.put(3, 2);
+        hashMap.put(2, 2);
+        System.out.println(hashMap);
     }
 }

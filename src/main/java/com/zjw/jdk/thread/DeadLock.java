@@ -3,60 +3,68 @@ package com.zjw.jdk.thread;
 /**
  * Created by zhoum on 2018/4/3.
  */
-public class DeadLock implements Runnable {
-    A a = new A();
-    B b = new B();
+public class DeadLock {
+    private final Object left = new Object();
+    private final Object right = new Object();
 
-    public void init() {
-        Thread.currentThread().setName("主线程");
-        a.foo(b);
-        System.out.println("进入主线程之后");
-    }
-
-    @Override
-    public void run() {
-        Thread.currentThread().setName("主线程");
-        b.foo(a);
-        System.out.println("进入主线程之后");
-    }
-
-    public static void main(String[] args) {
-        DeadLock deadLock = new DeadLock();
-        new Thread(deadLock).start();
-        deadLock.run();
-    }
-}
-
-class A {
-    public synchronized void foo(B b) {
-        System.out.println("当前线程名:" + Thread.currentThread().getName() + "进入a实列foo()");
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    public void leftRight() throws Exception {
+        synchronized (left) {
+            Thread.sleep(2000);
+            synchronized (right) {
+                System.out.println("leftRight end!");
+            }
         }
-        System.out.println("当前线程名:" + Thread.currentThread().getName() + "进入b实列last()");
-        b.last();
     }
 
-    public synchronized void last() {
-        System.out.println("进入a类last()");
-    }
-}
-
-class B {
-    public synchronized void foo(A a) {
-        System.out.println("当前线程名:" + Thread.currentThread().getName() + "进入b实列foo()");
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    public void rightLeft() throws Exception {
+        synchronized (right) {
+            Thread.sleep(2000);
+            synchronized (left) {
+                System.out.println("rightLeft end!");
+            }
         }
-        System.out.println("当前线程名:" + Thread.currentThread().getName() + "进入a实列last()");
-        a.last();
     }
 
-    public synchronized void last() {
-        System.out.println("进入b类last()");
+    public static void main(String[] args)
+    {
+        DeadLock dl = new DeadLock();
+        Thread0 t0 = dl.new Thread0(dl);
+        Thread1 t1 = dl.new Thread1(dl);
+        t0.start();
+        t1.start();
+
+        while(true);
+    }
+
+    class Thread0 extends Thread {
+        private DeadLock dl;
+
+        public Thread0(DeadLock dl) {
+            this.dl = dl;
+        }
+
+        public void run() {
+            try {
+                dl.leftRight();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    class Thread1 extends Thread {
+        private DeadLock dl;
+
+        public Thread1(DeadLock dl) {
+            this.dl = dl;
+        }
+
+        public void run() {
+            try {
+                dl.rightLeft();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

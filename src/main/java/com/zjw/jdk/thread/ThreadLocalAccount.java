@@ -19,31 +19,34 @@ public class ThreadLocalAccount {
     public void setName(String name) {
         this.name.set(name);
     }
-}
 
 
-class ThreadLocalAccountThread extends Thread {
+    static class ThreadLocalAccountThread extends Thread {
 
-    private ThreadLocalAccount account;
+        private ThreadLocalAccount account;
 
-    public ThreadLocalAccountThread(ThreadLocalAccount account, String name) {
-        super(name);
-        this.account = account;
-    }
+        public ThreadLocalAccountThread(ThreadLocalAccount account, String name) {
+            super(name);
+            this.account = account;
+        }
 
-    @Override
-    public void run() {
-        for (int i = 0; i < 10; i++) {
-            if (i == 6) {
-                account.setName(getName());
+        @Override
+        public void run() {
+            for (int i = 0; i < 10; i++) {
+                if (i == 6) {
+                    account.setName(getName());
+                }
+                System.out.println(account.getName() + " 账户的i值: " + i);
             }
-            System.out.println(account.getName() + " 账户的i值: " + i);
+        }
+
+        public static void main(String[] args) {
+            ThreadLocalAccount at = new ThreadLocalAccount("初始名");
+            new ThreadLocalAccountThread(at, "线程甲").start();
+            new ThreadLocalAccountThread(at, "线程乙").start();
         }
     }
-
-    public static void main(String[] args) {
-        ThreadLocalAccount at = new ThreadLocalAccount("初始名");
-        new ThreadLocalAccountThread(at, "线程甲").start();
-        new ThreadLocalAccountThread(at, "线程乙").start();
-    }
 }
+
+
+
