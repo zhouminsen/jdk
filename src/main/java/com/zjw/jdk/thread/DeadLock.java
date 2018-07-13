@@ -33,7 +33,7 @@ public class DeadLock {
         t0.start();
         t1.start();
 
-        while(true);
+//        while(true);
     }
 
     class Thread0 extends Thread {
