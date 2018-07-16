@@ -19,6 +19,7 @@ public class LinkedListTest {
         aa.add(3);
         aa.add(4);
         linkedList.addAll(aa);
+        linkedList.contains(null);
         Iterator<Integer> iterator = linkedList.iterator();
         while (iterator.hasNext()) {
             iterator.next();
