@@ -8,5 +8,7 @@ public class OtherTest {
     public void test() {
         Double a = 1.0, b = 0.0;
         System.out.println(a / b);
+
+        System.out.println(5 %3);
     }
 }

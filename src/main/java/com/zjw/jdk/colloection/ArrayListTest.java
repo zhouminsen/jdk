@@ -11,5 +11,6 @@ public class ArrayListTest {
         for (int i = 0; i < 15; i++) {
             list.add(i);
         }
+
     }
 }

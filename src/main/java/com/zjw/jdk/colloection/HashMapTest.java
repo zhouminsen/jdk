@@ -7,7 +7,7 @@ import java.util.*;
  */
 public class HashMapTest {
     public static void main(String[] args) {
-        Map<String, String> map = new HashMap();
+        Map<String, String> map = new HashMap(19);
         map.put("Aa", "c");
         map.put("BB", "c");
         map.put("俗话说", "c");

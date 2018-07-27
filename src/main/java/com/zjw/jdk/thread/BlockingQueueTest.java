@@ -12,14 +12,15 @@ public class BlockingQueueTest {
     public static void main(String[] args) throws InterruptedException {
         BlockingQueue<String> bq = new ArrayBlockingQueue<String>(1);
         bq.put("java");
-//        bq.put("java");
-//        bq.add("java");
-//        System.out.println(bq.offer("java"));
-        new producer(bq).start();
+        bq.put("java");
+        bq.add("java");
+        System.out.println(bq.offer("java"));
+
+     /*   new producer(bq).start();
         new producer(bq).start();
         new producer(bq).start();
 
-        new Consumer(bq).start();
+        new Consumer(bq).start();*/
 
 
     }

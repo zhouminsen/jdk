@@ -26,13 +26,15 @@ public class LinkedListTest {
             iterator.remove();
         }
         System.out.println(linkedList);
-      /*  linkedList.add(1);
+
+        linkedList.add(1);
         linkedList.add(2);
         linkedList.add(3);
-        linkedList.add(4);*/
-        /*linkedList.remove();
+        linkedList.add(4);
+        linkedList.remove();
         System.out.println(linkedList.get(1));
-        System.out.println(linkedList.getLast());*/
+        System.out.println(linkedList.getLast());
+
 
     }
 }

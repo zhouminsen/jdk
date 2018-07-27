@@ -25,6 +25,8 @@ public class IntegerTest {
         for (int i = 0; i < 100000000; i++) {
 //            System.out.println(1);
         }
+
+        System.out.println(Integer.MAX_VALUE);
     }
 
    /* static  String bb(List<Integer> age) {
