@@ -1,6 +1,6 @@
-package com.zjw.jdk.thread.zk;
+package com.zjw.jdk.thread;
 
-public class VolatileTest {
+public class VolatileTest2 {
     public static volatile int a = 0;
     public static final int THREAD_COUNT = 20;
 

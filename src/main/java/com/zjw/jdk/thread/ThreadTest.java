@@ -1,4 +1,4 @@
-package com.zjw.jdk.thread.zk;
+package com.zjw.jdk.thread;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
