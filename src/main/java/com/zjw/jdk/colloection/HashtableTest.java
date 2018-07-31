@@ -1,12 +1,15 @@
 package com.zjw.jdk.colloection;
 
+import org.junit.Test;
+
 import java.util.Hashtable;
 
 /**
  * Created by zhoum on 2018/5/14.
  */
 public class HashtableTest {
-    public static void main(String[] args) {
+    @Test
+    public void test() {
         Hashtable<Integer, Integer> hashtable = new Hashtable<>();
         hashtable.put(1, 2);
         hashtable.put(3, 2);

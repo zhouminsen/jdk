@@ -1,3 +1,5 @@
+package com.zjw.jdk.thread.zk;
+
 public class VolatileTest {
     public static volatile int a = 0;
     public static final int THREAD_COUNT = 20;

@@ -1,5 +1,7 @@
 package com.zjw.jdk.colloection;
 
+import org.junit.Test;
+
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -9,8 +11,9 @@ import java.util.Map;
  */
 public class LinkedHashMapTest {
 
-    public static void main(String[] args) {
-        LinkedHashMap<String,String> linkedHashMap = new LinkedHashMap();
+    @Test
+    public void test() {
+        LinkedHashMap<String, String> linkedHashMap = new LinkedHashMap();
         linkedHashMap.put("zjw1", "1");
         linkedHashMap.put("zjw2", "2");
         linkedHashMap.put("zjw3", "3");

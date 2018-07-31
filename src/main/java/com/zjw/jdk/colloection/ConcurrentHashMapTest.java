@@ -1,5 +1,7 @@
 package com.zjw.jdk.colloection;
 
+import org.junit.Test;
+
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -7,7 +9,8 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class ConcurrentHashMapTest {
 
-    public static void main(String[] args) {
+    @Test
+    public void test() {
         ConcurrentHashMap<String, String> concurrentHashMap = new ConcurrentHashMap();
         concurrentHashMap.put("zjw", "zjw");
         System.out.println(concurrentHashMap);
