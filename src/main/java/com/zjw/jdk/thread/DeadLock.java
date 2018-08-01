@@ -25,8 +25,8 @@ public class DeadLock {
         }
     }
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
+        //new 内部类
         DeadLock dl = new DeadLock();
         Thread0 t0 = dl.new Thread0(dl);
         Thread1 t1 = dl.new Thread1(dl);

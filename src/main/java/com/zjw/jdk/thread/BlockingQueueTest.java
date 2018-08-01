@@ -16,11 +16,11 @@ public class BlockingQueueTest {
         bq.add("java");
         System.out.println(bq.offer("java"));
 
-     /*   new producer(bq).start();
+        new producer(bq).start();
         new producer(bq).start();
         new producer(bq).start();
 
-        new Consumer(bq).start();*/
+        new Consumer(bq).start();
 
 
     }
