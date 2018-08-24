@@ -56,8 +56,9 @@ public class ReduceTest {
 
 
     @Data
-    private class Big {
+    private  class Big {
         private BigDecimal money;
         private String name;
+
     }
 }

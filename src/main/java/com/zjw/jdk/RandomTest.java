@@ -10,6 +10,7 @@ public class RandomTest {
         Random random = new Random();
         for (int i = 0; i < 10; i++) {
             System.out.println(random.nextInt(1000000));
+
         }
     }
 }

@@ -15,6 +15,8 @@ public class BinarySearch {
 
         System.out.println(binFind2(arr, 0, arr.length, 4));
 
+//        Collections.binarySearch();
+
     }
 
     private static int findFirstEqualLarger(int[] arr, int target) {
