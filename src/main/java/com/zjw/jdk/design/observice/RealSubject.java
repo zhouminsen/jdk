@@ -5,9 +5,11 @@ import java.util.List;
 
 /**
  * Created by Administrator on 2018/8/24.
+ * 被监控者实现
  */
 public class RealSubject implements Subject {
 
+    //持有对监控者的引用
     private List<Observer> observerList = new ArrayList<>();
 
     private String message;

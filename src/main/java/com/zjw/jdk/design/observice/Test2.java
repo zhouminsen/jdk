@@ -1,13 +1,11 @@
 package com.zjw.jdk.design.observice;
 
-import org.junit.Test;
-
 /**
  * Created by Administrator on 2018/8/24.
  */
-public class ObTest {
+public class Test2 {
 
-    @Test
+    @org.junit.Test
     public void test() {
         //观察者
         Observer observer1=new RealObserver("ob1");
