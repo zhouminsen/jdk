@@ -11,7 +11,9 @@ public class LeakyDemo {
 
     public static boolean grant() {
         long now = System.currentTimeMillis();
+        //计算出水的数量
         int out = (int) ((now - time) / 700 * rate);
+        //漏水后剩余
         water = Math.max(0, water - out);
         time = now;
         if ((water + 1) < size) {
@@ -24,16 +26,16 @@ public class LeakyDemo {
 
     public static void main(String[] args) {
         for (int i = 0; i < 500; i++) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
+//            new Thread(new Runnable() {
+//                @Override
+//                public void run() {
                     if (grant()) {
                         System.out.println("执行业务逻辑");
                     } else {
                         System.out.println("限流啦!");
                     }
                 }
-            }).start();
-        }
+//            }).start();
+//        }
     }
 }

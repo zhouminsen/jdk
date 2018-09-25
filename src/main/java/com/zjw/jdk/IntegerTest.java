@@ -5,6 +5,7 @@ package com.zjw.jdk;
  */
 public class IntegerTest {
 
+    final String aa = "dsdsa";
 
     public static void main(String[] args) {
 
@@ -27,6 +28,12 @@ public class IntegerTest {
         }
 
         System.out.println(Integer.MAX_VALUE);
+
+        final String aaa = "abc";
+        System.out.println(aaa);
+
+        System.out.println(new IntegerTest().aa);
+
     }
 
    /* static  String bb(List<Integer> age) {
