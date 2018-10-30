@@ -2,6 +2,7 @@ package com.zjw.jdk;
 
 import org.junit.Test;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -24,5 +25,11 @@ public class DataTest {
             System.out.println(System.currentTimeMillis());
         }
 
+    }
+
+    @Test
+    public void test3() {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
+        System.out.println(format.format(new Date(1538356851380L)));
     }
 }
