@@ -725,7 +725,7 @@ public class UtilFuns {
             } else if (strvalue.length() == 0) {
                 return "";
             } else {
-                strvalue = new String(strvalue.getBytes("ISO8859_1"), "GB2312");
+                strvalue = new String(strvalue.getBytes("iso8859-1"), "utf-8");
                 return strvalue;
             }
         } catch (Exception e) {
@@ -739,7 +739,7 @@ public class UtilFuns {
             if (strvalue.equals("")) {
                 return "";
             } else {
-                strvalue = new String(strvalue.getBytes("ISO8859_1"), "GB2312");
+                strvalue = new String(strvalue.getBytes("iso8859-1"), "utf-8");
                 return strvalue;
             }
         } catch (Exception e) {
@@ -755,7 +755,7 @@ public class UtilFuns {
             if (strvalue.equals("")) {
                 return "";
             } else {
-                strvalue = new String(strvalue.getBytes("ISO8859_1"), "GB2312");
+                strvalue = new String(strvalue.getBytes("iso8859-1"), "utf-8");
                 return strvalue;
             }
         } catch (Exception e) {

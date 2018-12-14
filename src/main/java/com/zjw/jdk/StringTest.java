@@ -1,6 +1,7 @@
 package com.zjw.jdk;
 
 import com.alibaba.fastjson.JSON;
+import com.zjw.jdk.util.UtilFuns;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
@@ -24,6 +25,7 @@ public class StringTest {
         System.out.println(strings.length);
         System.out.println(Arrays.toString(strings));
         System.out.println(77 / 2);
+        System.out.println(System.currentTimeMillis());
     }
 
 
@@ -67,6 +69,11 @@ public class StringTest {
                 System.out.println(resultModel);
             }
         }
+    }
+
+    @Test
+    public void test4() {
+        System.out.println(UtilFuns.ConvertCH("å\u008D\u0097ç¿\u0094å\u0086·é\u0093¾06"));
     }
 
     public class PayResultModel implements Serializable {
