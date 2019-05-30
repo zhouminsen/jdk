@@ -14,7 +14,7 @@ public class BigDecimalTest {
     public void test() {
         BigDecimal poundage = new BigDecimal(1.34);
         BigDecimal poundage2 = new BigDecimal(1.12);
-        System.out.println(poundage.setScale(2, BigDecimal.ROUND_HALF_UP ));
+        System.out.println(poundage.setScale(2, BigDecimal.ROUND_HALF_UP));
         int precision = poundage.precision();
         System.out.println(poundage);
         System.out.println(poundage2);
@@ -32,4 +32,25 @@ public class BigDecimalTest {
         String s = UtilFuns.numberFormatPercent(bigDecimal, 2);
         System.out.println("得到的百分比:" + s);
     }
+
+    @Test
+    public void test3() {
+        BigDecimal max = new BigDecimal("100");
+        BigDecimal up = new BigDecimal("120");
+        BigDecimal min = new BigDecimal("10");
+        BigDecimal down = new BigDecimal("1");
+        if (max.compareTo(up) < 0) {
+            max = up;
+        }
+        if (min.compareTo(down) > 0) {
+            min = down;
+        }
+
+        max = max.add(new BigDecimal("30"));
+        min = min.subtract(new BigDecimal("30"));
+        System.out.println("max:" + max);
+        System.out.println("min:" + min);
+    }
+
+
 }

@@ -8,6 +8,8 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 /**
@@ -627,6 +629,7 @@ public class UtilFuns {
      *     格式化后  ---->67.89%
      * </pre>
      * 格式化百分比
+     *
      * @param num 数字
      * @return
      */
@@ -635,15 +638,14 @@ public class UtilFuns {
     }
 
 
-
-
     /**
      * <pre>
      *     num="0.67888" fraction=2
      *     格式化后  ---->67.89%
      * </pre>
      * 格式化百分比
-     * @param num 数字
+     *
+     * @param num      数字
      * @param fraction 格式化格式
      * @return
      */
@@ -1634,7 +1636,7 @@ public class UtilFuns {
      * @return
      */
     public static Long isNullOfDefault(Long num) {
-        return  isNullOfDefault(num, 0L);
+        return isNullOfDefault(num, 0L);
     }
 
     /**
@@ -1644,16 +1646,17 @@ public class UtilFuns {
      * @return
      */
     public static Object isNullOfDefault(Object num) {
-       try {
-           Long num2 = isNullOfDefault(Long.parseLong(num.toString()), 0L);
-           return num2;
-       }catch (Exception e){
-           return 0L;
-       }
+        try {
+            Long num2 = isNullOfDefault(Long.parseLong(num.toString()), 0L);
+            return num2;
+        } catch (Exception e) {
+            return 0L;
+        }
     }
 
     /**
      * 如果传入的num为null则给默认值0,则默认给defaultNum的值
+     *
      * @param num
      * @param defaultNum
      * @return
@@ -1683,6 +1686,7 @@ public class UtilFuns {
      * <pre>
      *     percentNum=100
      * </pre>
+     *
      * @param percentNum
      * @return
      */
@@ -1694,6 +1698,56 @@ public class UtilFuns {
             return 0.00;
         }
         return percent;
+    }
+
+    /**
+     * 判断字符串是否是乱码
+     *
+     * @param strName 字符串
+     * @return 是否是乱码
+     */
+    public static boolean isMessyCode(String strName) {
+        Pattern p = Pattern.compile("\\s*|t*|r*|n*");
+        Matcher m = p.matcher(strName);
+        String after = m.replaceAll("");//去重为空的情况
+        String temp = after.replaceAll("\\p{P}", "");
+        char[] ch = temp.trim().toCharArray();
+        float chLength = ch.length;
+        float count = 0;
+        for (int i = 0; i < ch.length; i++) {
+            char c = ch[i];
+            if (!Character.isLetterOrDigit(c)) {
+                if (!isChinese(c)) {
+                    count = count + 1;
+                }
+            }
+        }
+        float result = count / chLength;
+        if (result > 0.4) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    /**
+     * 判断字符是否是中文
+     *
+     * @param c 字符
+     * @return 是否是中文
+     */
+    public static boolean isChinese(char c) {
+        Character.UnicodeBlock ub = Character.UnicodeBlock.of(c);
+        if (ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS
+                || ub == Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS
+                || ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A
+                || ub == Character.UnicodeBlock.GENERAL_PUNCTUATION
+                || ub == Character.UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION
+                || ub == Character.UnicodeBlock.HALFWIDTH_AND_FULLWIDTH_FORMS) {
+            return true;
+        }
+        return false;
     }
 
     public static void main(String[] args) throws Exception {
@@ -1742,7 +1796,7 @@ public class UtilFuns {
         //System.out.println(ConvertTD(""));
     
 		/* process the stat data Start 
-		Statement stmt1 = conn.createStatement(); 
+        Statement stmt1 = conn.createStatement();
 		String sTableName = find_Type;
 		String sUserName = findName;
 		StringBuffer sBuffer = new StringBuffer();

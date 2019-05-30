@@ -1,11 +1,13 @@
 package com.zjw.jdk.arithmetic;
 
+import java.util.Arrays;
+
 /**
  * Created by zhoum on 2018/7/16.
  */
 public class BinarySearch {
     public static void main(String[] args) {
-        int[] arr = {1, 2, 3, 4, 4, 4, 5, 6, 7, 8, 9, 10, 11};
+        int[] arr = {1, 17, 3, 4, 4, 4, 5, 6, 7, 8, 9, 10, 11};
         System.out.println(binarySearch(arr, 4));
 
         System.out.println(findFirstEqual(arr, 4));
@@ -106,19 +108,20 @@ public class BinarySearch {
     }
 
     private static int binarySearch(int[] arr, int target) {
-        //下标初始
+        Arrays.sort(arr);
+
         int left = 0;
-        //下标末处
+
         int right = arr.length - 1;
 
         while (left <= right) {
-            //取模得到中间下标
+
             int index = (left + right) / 2;
             int v = arr[index];
             if (v == target) {
                 return index;
             } else if (v > target) {
-                //如果得到的值大于target
+
                 right = index - 1;
             } else {
                 left = index + 1;

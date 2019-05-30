@@ -2,6 +2,7 @@ package com.zjw.jdk.colloection;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -51,6 +52,37 @@ public class LinkedListTest {
         while (!queue.isEmpty()) {
             System.out.println("第" + (++i) + "个出来的是:" + queue.removeFirst());
         }
+    }
+
+
+    @Test
+    public void test3() {
+        int count = 1000000;
+
+        LinkedList linkedList = new LinkedList();
+        long l = System.currentTimeMillis();
+        for (int i = 0; i < count; i++) {
+            linkedList.add(i);
+        }
+        long l1 = System.currentTimeMillis();
+        System.out.println("linkedlist:" + (l1 - l));
+
+
+
+
+    }
+
+    @Test
+    public void test4() {
+        int count = 1000000;
+
+        ArrayList arrayList = new ArrayList();
+        long c = System.currentTimeMillis();
+        for (int i = 0; i < count; i++) {
+            arrayList.add(i);
+        }
+        long c1 = System.currentTimeMillis();
+        System.out.println("arraylist:" + (c1 - c));
 
     }
 }

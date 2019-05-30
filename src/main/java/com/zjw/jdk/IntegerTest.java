@@ -1,5 +1,8 @@
 package com.zjw.jdk;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by zhoum on 2018/5/14.
  */
@@ -34,6 +37,10 @@ public class IntegerTest {
 
         System.out.println(new IntegerTest().aa);
 
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        List<Integer> list2 = new ArrayList<>();
+        list = list2;
     }
 
    /* static  String bb(List<Integer> age) {

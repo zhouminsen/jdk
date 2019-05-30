@@ -76,6 +76,16 @@ public class StringTest {
         System.out.println(UtilFuns.ConvertCH("å\u008D\u0097ç¿\u0094å\u0086·é\u0093¾06"));
     }
 
+    @Test
+    public void test5() {
+        System.out.println(UtilFuns.isMessyCode("\"æ\u00AD¦æ±\u0089"));
+    }
+
+    @Test
+    public void test6() {
+        System.out.println("9999999999999999999".length());
+    }
+
     public class PayResultModel implements Serializable {
 
         /**

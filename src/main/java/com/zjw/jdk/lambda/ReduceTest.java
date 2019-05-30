@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by zhoum on 2018/3/14.
@@ -46,7 +47,7 @@ public class ReduceTest {
             big.setName("zjw");
             aa.add(big);
         }
-
+        aa.stream().collect(Collectors.toList());
         System.out.println(aa.stream().map(e -> e.getMoney()).reduce(BigDecimal::add).get());
         System.out.println(aa.stream().map(e -> e.getMoney()).reduce((e, e2) -> e.add(e2)).get());
         System.out.println(aa.stream().map(e -> e.getMoney()).reduce(BigDecimal.ZERO, BigDecimal::add));
