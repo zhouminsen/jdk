@@ -58,4 +58,15 @@ public class HashMapTest {
         map2.put("柳山왡", "柳山왡");
         System.out.println("柳志崇".hashCode() + "," + "柳山왡".hashCode());
     }
+
+    /**
+     *
+     */
+    @Test
+    public void test4() {
+        Map<String, String> map2 = new HashMap<>();
+        map2.put("1", "1");
+        map2.put("1", "2");
+        System.out.println(map2);
+    }
 }
