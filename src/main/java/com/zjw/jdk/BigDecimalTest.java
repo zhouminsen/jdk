@@ -52,5 +52,13 @@ public class BigDecimalTest {
         System.out.println("min:" + min);
     }
 
+    @Test
+    public void test4() {
+        BigDecimal amount=new BigDecimal("13");
+        BigDecimal pre = amount;
+        amount = new BigDecimal("14");
+        System.out.println(pre);
+    }
+
 
 }
