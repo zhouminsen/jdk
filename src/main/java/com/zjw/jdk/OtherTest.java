@@ -1,11 +1,9 @@
 package com.zjw.jdk;
 
+import com.zjw.jdk.annotation.Student;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * Created by zhoum on 2018/6/27.
@@ -83,6 +81,72 @@ public class OtherTest {
         if (!Objects.equals(i, 3) && !Objects.equals(i, 4)) {
             System.out.println("haah");
         }
+    }
+
+    @Test
+    public void test6() {
+        List<Student> list = new ArrayList<>();
+        Student student = new Student();
+        student.setName("伟哥");
+        student.setAge("1");
+        Student student2 = new Student();
+        student2.setName("伟哥2");
+        student2.setAge("1");
+        student2.setAge("1");
+        Student student3 = new Student();
+        student3.setName("伟哥");
+        student3.setAge("1");
+        Student student4 = new Student();
+        student4.setName("伟哥2");
+        student4.setAge("1");
+        Student student5 = new Student();
+        student5.setName("伟哥");
+        student5.setAge("1");
+        Student student6 = new Student();
+        student6.setName("伟哥2");
+        student6.setAge("1");
+        Student student7 = new Student();
+        student7.setName("伟哥");
+        student7.setAge("1");
+        Student student8 = new Student();
+        student8.setName("伟哥2");
+        student8.setAge("1");
+        Student student9 = new Student();
+        student9.setName("伟哥2");
+        student9.setAge("1");
+        list.add(student);
+        list.add(student2);
+        list.add(student3);
+        list.add(student4);
+        list.add(student9);
+        list.add(student5);
+        list.add(student6);
+        list.add(student7);
+        list.add(student8);
+        /*for (int i = 0; i < list.size(); i++) {
+            Student item = list.get(i);
+            for (int i1 = 0; i1 < list.size(); i1++) {
+                Student e = list.get(i1);
+                if (item != e && item.getName().equals(e.getName())) {
+                    item.setAge(item.getAge() + "," + e.getAge());
+                    list.remove(i1);
+                    i1--;
+                }
+            }
+        }*/
+        for (int i = 0; i < list.size(); i++) {
+            Student item = list.get(i);
+            for (int i1 = list.size() - 1; i1 >= 0; i1--) {
+                Student e = list.get(i1);
+                if (item != e && item.getName().equals(e.getName())) {
+                    item.setAge(item.getAge() + "," + e.getAge());
+                    list.remove(i1);
+                }
+            }
+        }
+
+        System.out.println(list);
+
     }
 
 
