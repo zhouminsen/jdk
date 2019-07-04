@@ -7,7 +7,7 @@ import lombok.Data;
  */
 @Data
 public class VolatileTest extends Thread {
-    volatile boolean isRunning = true;
+     boolean isRunning = true;
 
     @Override
     public void run() {

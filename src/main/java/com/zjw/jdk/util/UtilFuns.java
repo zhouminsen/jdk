@@ -1,5 +1,6 @@
 package com.zjw.jdk.util;
 
+import java.io.*;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.sql.Timestamp;
@@ -1926,5 +1927,20 @@ public class UtilFuns {
 
     public String getClassRootPath() {
         return this.getClass().getResource("/").getPath();
+    }
+
+    public static <T> List<T> deepCopy(List<T> src) throws IOException, ClassNotFoundException {
+        ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
+        ObjectOutputStream out = new ObjectOutputStream(byteOut);
+        out.writeObject(src);
+        ByteArrayInputStream byteIn = new ByteArrayInputStream(byteOut.toByteArray());
+        ObjectInputStream in = new ObjectInputStream(byteIn);
+        @SuppressWarnings("unchecked")
+        List<T> dest = (List<T>) in.readObject();
+        out.close();
+        byteOut.close();
+        in.close();
+        byteIn.close();
+        return dest;
     }
 }
