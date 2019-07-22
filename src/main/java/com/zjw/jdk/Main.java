@@ -5,6 +5,12 @@ package com.zjw.jdk;
  */
 public class Main {
     public static void main(String[] args) {
-        Long[] arr = new Long[1000000000];
+        Long[] arr = new Long[10000000];
+
+        Integer i = 10000;
+
+        Double d = 10D;
+        Double d2 = 10D;
+        System.out.println(d == d2);
     }
 }
