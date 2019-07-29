@@ -4,10 +4,7 @@ import lombok.Data;
 import org.junit.Test;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.IntSummaryStatistics;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -32,6 +29,7 @@ public class ReduceTest {
     public void test2() {
         IntSummaryStatistics intSummaryStatistics = Arrays.asList(1, 2, 3, 4).stream().mapToInt(e -> e).summaryStatistics();
         System.out.println(intSummaryStatistics.getSum());
+        System.out.println(intSummaryStatistics.getMax());
     }
 
     /**
@@ -41,10 +39,7 @@ public class ReduceTest {
     public void test3() {
         List<Big> aa = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
-            Big big = new Big();
-            BigDecimal b = new BigDecimal("0.1");
-            big.setMoney(b);
-            big.setName("zjw");
+            Big big = new Big(new BigDecimal("0.1"), "zjw");
             aa.add(big);
         }
         aa.stream().collect(Collectors.toList());
@@ -55,11 +50,49 @@ public class ReduceTest {
 
     }
 
+    /**
+     * 分组
+     */
+    @Test
+    public void group() {
+        List<Big> bigList = new ArrayList<>();
+        bigList.add(new Big(BigDecimal.ONE, "周家伟"));
+        bigList.add(new Big(BigDecimal.ONE, "周家伟"));
+        bigList.add(new Big(BigDecimal.ZERO, "家伟"));
+        bigList.add(new Big(BigDecimal.ONE, "周家伟"));
+        bigList.add(new Big(BigDecimal.TEN, "周伟"));
+        bigList.add(new Big(new BigDecimal("110"), "周家伟"));
+        bigList.add(new Big(BigDecimal.ONE, "周家伟"));
+        Map<String, List<Big>> collect = bigList.stream().collect(Collectors.groupingBy(Big::getName));
+        System.out.println(collect);
+    }
+
 
     @Data
-    private  class Big {
+    private class Big {
+
+        public Big(BigDecimal money, String name) {
+            this.money = money;
+            this.name = name;
+        }
+
         private BigDecimal money;
         private String name;
 
+        public BigDecimal getMoney() {
+            return money;
+        }
+
+        public void setMoney(BigDecimal money) {
+            this.money = money;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
     }
 }
