@@ -21,7 +21,7 @@ public class LockConditionTest {
     }
 
     @Data
-    static class Account3 {
+    public static class Account3 {
         private String accountNo;
         private double balance;
 
