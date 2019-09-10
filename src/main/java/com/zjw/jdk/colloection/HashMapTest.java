@@ -14,7 +14,7 @@ public class HashMapTest {
      */
     @Test
     public void test() {
-        Map<String, String> map = new HashMap();
+        HashMap<String, String> map = new HashMap(20);
         map.put("Aa", "c");
         map.put("BB", "c");
         map.put("俗话说", "c");

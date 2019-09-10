@@ -9,6 +9,7 @@ import java.util.*;
  * Created by zhoum on 2018/6/27.
  */
 public class OtherTest {
+
     @Test
     public void test() {
         Double a = 1.0, b = 0.0;
