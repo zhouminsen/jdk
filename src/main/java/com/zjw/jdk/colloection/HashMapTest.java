@@ -69,4 +69,19 @@ public class HashMapTest {
         map2.put("1", "2");
         System.out.println(map2);
     }
+
+    /**
+     *
+     */
+    @Test
+    public void test5() {
+        Map<String, String> map2 = new HashMap<>();
+        map2.put("5", "5");
+        map2.put("1", "1");
+        map2.put("2", "2");
+        map2.put("4", "10");
+        map2.put("3", "3");
+        System.out.println(map2.keySet());
+        System.out.println(map2.values());
+    }
 }

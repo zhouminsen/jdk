@@ -59,4 +59,15 @@ public class IntegerTest {
         System.out.println(num);
 
     }
+
+
+
+    @org.junit.Test
+    public void test2() throws ParseException {
+        System.out.println(112 % 13);
+        System.out.println(Math.round(-11.5));
+
+    }
+
+
 }

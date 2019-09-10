@@ -1,6 +1,7 @@
 package com.zjw.jdk;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.zjw.jdk.util.UtilFuns;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
@@ -15,8 +16,8 @@ public class StringTest {
 
     @Test
     public void split() {
-        String s = "a,b,n,d ";
-        String[] split = s.split(",");
+        String s = "a";
+        String[] split = s.split("\\.");
         System.out.println(split.length);
         System.out.println(Arrays.toString(split));
         String[] strings = StringUtils.splitPreserveAllTokens(s, ",");
@@ -24,6 +25,28 @@ public class StringTest {
         System.out.println(Arrays.toString(strings));
         System.out.println(77 / 2);
         System.out.println(System.currentTimeMillis());
+        String a = "12345";
+        String a2 = "81654";
+        String cross = "";
+        for (int i = 0; i < a.length(); i++) {
+            for (int j = 0; j < a2.length(); j++) {
+                if (a.charAt(i) == a2.charAt(j)) {
+                    cross += a.charAt(i);
+                }
+            }
+        }
+        System.out.println(cross);
+    }
+
+    @Test
+    public void substring() {
+        String s = "湖北省武汉市";
+        System.out.println(s.substring(s.indexOf("省") + 1, s.indexOf("市") + 1));
+    }
+
+    @Test
+    public void toJsonString() {
+        System.out.println(JSONObject.toJSONString("请求参数数据过长不与显示"));
     }
 
 
@@ -86,6 +109,7 @@ public class StringTest {
 
     @Test
     public void test7() {
+
         String routeStr = "";
         Map<String, String> map = new HashMap<>();
         map.put("firstSiteCode", "9");
