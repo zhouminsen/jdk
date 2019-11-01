@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by zhoum on 2018/7/9.
@@ -55,6 +57,7 @@ public class ArrayListTest {
         System.out.println(Arrays.toString(arr));
     }
 
+
     @Test
     public void test5() {
         int answer = 0;
@@ -78,5 +81,19 @@ public class ArrayListTest {
 
         }
         System.out.println(answer);
+    }
+
+    @Test
+    public void test6() {
+        List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
+        List<Integer> list2 = new ArrayList<>(list);
+        System.out.println("前：" + list);
+        Iterator<Integer> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            iterator.next();
+            iterator.remove();
+        }
+        System.out.println("后：" + list);
+        System.out.println(list2);
     }
 }

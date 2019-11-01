@@ -27,6 +27,5 @@ public class Test {
 		User user2 = XMLUtil.convertXmlFileToObject(User.class, path);
 		System.out.println(user2);
 		System.out.println("---将File类型的xml转换成对象 End---");
- 
 	}
 }
