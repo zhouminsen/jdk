@@ -1,9 +1,6 @@
 package com.zjw.jdk;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.TypeReference;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.zjw.jdk.util.UtilFuns;
 import lombok.Data;
@@ -24,7 +21,7 @@ import java.util.stream.Collectors;
  * 加入matchtype
  * Created by Administrator on 2019-10-12.
  */
-public class TreeToData {
+public class XmlToData {
 
     String xmlStr = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
             "<request>" +
@@ -176,8 +173,7 @@ public class TreeToData {
 //        并集无外键
         sources.add(new IfmPlatformTemplateDetailDTO(23, 5, "orderLine", 1, "t8", "id", 0));
         sources.add(new IfmPlatformTemplateDetailDTO(25, 23, "produceCode", 9, "t8", "produceCode", 0));
-        sources = JSON.parseObject(xmlStr, new TypeReference<List<IfmPlatformTemplateDetailDTO>>() {
-        });
+
         List<TemplateNode> sources2 = getTemplateNodes(sources);
         List<TemplateNode> templateNodes = getNT(sources2, -1);
         System.out.println(JSON.toJSONString(templateNodes, SerializerFeature.WriteMapNullValue));
@@ -192,142 +188,7 @@ public class TreeToData {
 //        System.out.println(JSON.toJSONString(fullTable));
     }
 
-    String jsonStr = "{\n" +
-            "  \"entryOrder\": {\n" +
-            "    \"totalOrderLines\": \"单据总行数，int，当单据需要分多个请求发送时，发送方需要将totalOrderLines填入，接收方收到后，根据实际接收到的条数和totalOrderLines进行比对，如果小于，则继续等待接收请求。如果等于，则表示该单据的所有请求发送完成。\\n        \",\n" +
-            "    \"entryOrderCode\": \"入库单编码, string (50) , 必填\",\n" +
-            "    \"ownerCode\": \"货主编码, string (50)\",\n" +
-            "    \"warehouseCode\": \"仓库编码, string (50)，必填\",\n" +
-            "    \"entryOrderId\": \"仓储系统入库单ID, string (50) , 条件必填\",\n" +
-            "    \"entryOrderType\": \"入库单类型 ，SCRK=生产入库，LYRK=领用入1库，CCRK=残次品入库，CGRK=采购入库, DBRK=调拨入库, QTRK=其他入库，B2BRK=B2B入库\\n        \",\n" +
-            "    \"outBizCode\": \"外部业务编码, 消息ID, 用于去重, ISV对于同一请求，分配一个唯一性的编码。用来保证因为网络等原因导致重复传输，请求不会被重复处理, ,必填\",\n" +
-            "    \"confirmType\": \"支持出入库单多次收货, int，\\n            多次收货后确认时\\n            0 表示入库单最终状态确认；\\n            1 表示入库单中间状态确认；\\n            每次入库传入的数量为增量，特殊情况，同一入库单，如果先收到0，后又收到1，允许修改收货的数量。\\n        \",\n" +
-            "    \"status\": \"入库单状态, string (50) , 必填 (NEW-未开始处理, ACCEPT-仓库接单 , PARTFULFILLED-部分收货完成, FULFILLED-收货完成, EXCEPTION-异常,\\n            CANCELED-取消, CLOSED-关闭, REJECT-拒单, CANCELEDFAIL-取消失败) , (只传英文编码)\\n        \",\n" +
-            "    \"freight\": \"快递费用 (元) , double (18, 2)\",\n" +
-            "    \"operateTime\": \"操作时间, string (19) , YYYY-MM-DD HH:MM:SS，(当status=FULFILLED, operateTime为入库时间)\",\n" +
-            "    \"remark\": \"备注, string (500)\"\n" +
-            "  },\n" +
-            "  \"orderLines\": [\n" +
-            "    {\n" +
-            "      \"outBizCode\": \"外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用\",\n" +
-            "      \"orderLineNo\": \"单据行号，string（50）\",\n" +
-            "      \"ownerCode\": \"货主编码, string (50)\",\n" +
-            "      \"itemCode\": \"商品编码, string (50) , 必填\",\n" +
-            "      \"itemId\": \"仓储系统商品ID, string (50) , 条件必填\",\n" +
-            "      \"snList\": [\n" +
-            "        \"商品序列号, string(50)\",\n" +
-            "        \"商品序列号, string(50)\"\n" +
-            "      ],\n" +
-            "      \"itemName\": \"商品名称, string (200)\",\n" +
-            "      \"inventoryType\": \"库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\",\n" +
-            "      \"planQty\": \"应收数量, int\",\n" +
-            "      \"actualQty\": \"实收数量, int，必填\",\n" +
-            "      \"batchCode\": \"批次编码, string (50)\",\n" +
-            "      \"productDate\": \"商品生产日期，string（10）， YYYY-MM-DD\",\n" +
-            "      \"expireDate\": \"商品过期日期，string（10），YYYY-MM-DD\",\n" +
-            "      \"produceCode\": \"生产批号, string (50)\",\n" +
-            "      \"batchs\": [\n" +
-            "        {\n" +
-            "          \"batchCode\": \"批次编号，string(50)\",\n" +
-            "          \"productDate\": \"生产日期，string(10)，YYYY-MM-DD\",\n" +
-            "          \"expireDate\": \"过期日期，string(10)，YYYY-MM-DD\",\n" +
-            "          \"produceCode\": \"生产批号，string(50)，\",\n" +
-            "          \"inventoryType\": \"库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\\n                    \",\n" +
-            "          \"actualQty\": \"实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量\"\n" +
-            "        }\n" +
-            "      ],\n" +
-            "      \"remark\": \"备注, string (500)\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "      \"outBizCode\": \"外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用\",\n" +
-            "      \"orderLineNo\": \"单据行号，string（50）\",\n" +
-            "      \"ownerCode\": \"货主编码, string (50)\",\n" +
-            "      \"itemCode\": \"商品编码, string (50) , 必填\",\n" +
-            "      \"itemId\": \"仓储系统商品ID, string (50) , 条件必填\",\n" +
-            "      \"snList\": [\n" +
-            "        \"商品序列号, string(50)\"\n" +
-            "      ],\n" +
-            "      \"itemName\": \"商品名称, string (200)\",\n" +
-            "      \"inventoryType\": \"库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\",\n" +
-            "      \"planQty\": \"应收数量, int\",\n" +
-            "      \"actualQty\": \"实收数量, int，必填\",\n" +
-            "      \"batchCode\": \"批次编码, string (50)\",\n" +
-            "      \"productDate\": \"商品生产日期，string（10）， YYYY-MM-DD\",\n" +
-            "      \"expireDate\": \"商品过期日期，string（10），YYYY-MM-DD\",\n" +
-            "      \"produceCode\": \"生产批号, string (50)\",\n" +
-            "      \"batchs\": [\n" +
-            "        {\n" +
-            "          \"batchCode\": \"批次编号，string(50)\",\n" +
-            "          \"productDate\": \"生产日期，string(10)，YYYY-MM-DD\",\n" +
-            "          \"expireDate\": \"过期日期，string(10)，YYYY-MM-DD\",\n" +
-            "          \"produceCode\": \"生产批号，string(50)，\",\n" +
-            "          \"inventoryType\": \"库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\\n                    \",\n" +
-            "          \"actualQty\": \"实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量\"\n" +
-            "        }\n" +
-            "      ],\n" +
-            "      \"remark\": \"备注, string (500)\"\n" +
-            "    }\n" +
-            "  ]\n" +
-            "}";
-
-    @Test
-    public void json() {
-        List<IfmPlatformTemplateDetailDTO> sources = new ArrayList<>();
-
-        sources.add(new IfmPlatformTemplateDetailDTO(2, -1, "entryOrder", 1, "t", "id", 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(3, 2, "totalOrderLines", 9, "t", "totalOrderLines", 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(4, 2, "entryOrderCode", 9, "t", "entryOrderCode", 0));
-
-        sources.add(new IfmPlatformTemplateDetailDTO(5, -1, "orderLines", 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(6, 5, "orderLine", 1, "t2", "id", 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(7, 6, 2, "orderLine", 3, "t2", "order_id", 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(8, 6, "outBizCode", 9, "t2", "outBizCode", 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(8, 6, "remark", 9, "t2", "remark", 0));
-
-        sources.add(new IfmPlatformTemplateDetailDTO(9, 6, "snList", 1, "t3", "id", 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(10, 9, "snList", 2, "t3", "sub_id", "id", 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(11, 9, "sn", 9, "t3", "sn2", 0));
-
-        sources.add(new IfmPlatformTemplateDetailDTO(12, 6, "batchs", 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(13, 12, "batch", 1, "t4", "id", 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(14, 13, "batch", 2, "t4", "order_id", "id", 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(15, 13, "batchCode", 9, "t4", "batchCode", 0));
-//            sources.add(new IfmPlatformTemplateDetailDTO(102, 13, "productDate", 9, "t4", "batchCode2", 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(16, 13, "productDate", 9, "t4", "productDate_text", 1, 0, "0", "2"));
-        sources.add(new IfmPlatformTemplateDetailDTO(101, 13, "productDate", 9, "t4", "productDate_text2", 1, 0, "2", "4"));
-
-        //并集无外键
-        sources.add(new IfmPlatformTemplateDetailDTO(17, -1, "entryOrder", 1, "t5", "id", 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(18, 17, "confirmType", 9, "t5", "confirmType", 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(19, 17, "status", 9, "t5", "status", 0));
-
-        //并集有外键
-        sources.add(new IfmPlatformTemplateDetailDTO(20, 12, "batch", 1, "t7", "id", 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(21, 20, "batch", 2, "t7", "order_id", "id", 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(22, 20, "inventoryType", 9, "t7", "confirmType", 0));
-
-//        并集无外键
-        sources.add(new IfmPlatformTemplateDetailDTO(23, 5, "orderLine", 1, "t8", "id", 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(25, 23, "produceCode", 9, "t8", "produceCode", 0));
-
-        List<TemplateNode> sources2 = getTemplateNodes(sources);
-        List<TemplateNode> templateNodes = getNT(sources2, -1);
-        System.out.println(JSON.toJSONString(templateNodes));
-        TemplateNode templateNode = templateNodes.get(0);
-        JSONArray jsonArray = new JSONArray();
-        Object read = JSON.parse(jsonStr);
-        jsonArray.add(read);
-        List<Table> params = new ArrayList<>();
-        FullTable fullTable = new FullTable();
-        for (Object item : jsonArray) {
-            JSONObject jsonObject = (JSONObject) item;
-            jsonToData(templateNode, params, fullTable, jsonObject);
-        }
-        System.out.println(JSON.toJSONString(fullTable));
-    }
-
-
-    private static List<TemplateNode> getTemplateNodes(List<IfmPlatformTemplateDetailDTO> sources) {
+    private List<TemplateNode> getTemplateNodes(List<IfmPlatformTemplateDetailDTO> sources) {
         List<TemplateNode> sources2 = new ArrayList<>();
         for (int i = 0; i < sources.size(); i++) {
             IfmPlatformTemplateDetailDTO item = sources.get(i);
@@ -361,7 +222,7 @@ public class TreeToData {
         return sources2;
     }
 
-    private static void xmlToData(TemplateNode nt, List<Table> params, FullTable fullTable, Node node) {
+    private void xmlToData(TemplateNode nt, List<Table> params, FullTable fullTable, Node node) {
         Table table = new Table();
         BeanUtils.copyProperties(nt, table);
         //主键
@@ -377,7 +238,7 @@ public class TreeToData {
             } else {
                 //子集节点
                 FullTable full = new FullTable();
-                full.setTableName(table.getTableName());
+                full.setTableName(table.getTargetTable());
                 full.getList().add(table);
                 full.setParent(fullTable);
                 fullTable.getChildren().add(full);
@@ -418,7 +279,7 @@ public class TreeToData {
             for (Object e : list) {
                 Element element = (Element) e;
                 //同一个父节点发现相同的子节点，并且为普通节点（fieldType=9），在当前父节点下创建同级对象
-                boolean b = fullTable.getList().stream().anyMatch(sub -> Objects.equals(sub.getFieldName(), item.getTargetName()));
+                boolean b = fullTable.getList().stream().anyMatch(sub -> Objects.equals(sub.getTargetName(), item.getTargetName()));
                 if (b && item.getFieldType() == 9) {
                     FullTable fullTable2 = new FullTable();
                     fullTable2.setParent(fullTable.getParent());
@@ -427,7 +288,7 @@ public class TreeToData {
                     for (Table sub : fullTable.getList()) {
                         Table t = new Table();
                         BeanUtils.copyProperties(sub, t);
-                        if (Objects.equals(sub.getFieldName(), item.getTargetName())) {
+                        if (Objects.equals(sub.getTargetName(), item.getTargetName())) {
                             t.setValue(element.getText());
                         }
                         fullTable2.getList().add(t);
@@ -439,84 +300,6 @@ public class TreeToData {
         }
     }
 
-    private static void jsonToData(TemplateNode nt, List<Table> params, FullTable fullTable, JSONObject node) {
-        Table table = new Table();
-        BeanUtils.copyProperties(nt, table);
-        //主键
-        if (nt.getFieldType() == 1) {
-            params.add(table);
-            Object v = UtilFuns.getRandomOfScope(1, 1000) + "";
-            nt.setValue(v);
-            table.setValue(v);
-            //初始化或者并集节点
-            if (fullTable.getTableName() == null) {
-                fullTable.setTableName(nt.getTargetTable());
-                fullTable.getList().add(table);
-            } else {
-                //子集节点
-                FullTable full = new FullTable();
-                full.setTableName(table.getTableName());
-                full.getList().add(table);
-                full.setParent(fullTable);
-                fullTable.getChildren().add(full);
-                fullTable = full;
-//                xmlToData(templateNode, params, full, node);
-//                return;
-            }
-        } else if (nt.getFieldType() == 2) {
-            //子集外键
-            TemplateNode parentNode = getUp(nt, nt.getTargetTable(), nt.getForeignField());
-            table.setValue(parentNode.getValue());
-            fullTable.getList().add(table);
-        } else if (nt.getFieldType() == 3) {
-            //并集外键
-            Table t = params.stream().filter(item -> item.getInnerId() == nt.getForeignId()).findFirst().get();
-            table.setValue(t.getValue());
-            fullTable.getList().add(table);
-        } else if (nt.getFieldType() == 9) {
-            //普通节点
-            Object o = node.get(nt.getNodeName());
-            String value = o == null ? null : o.toString();
-            if (nt.getMatchType() == 2) {
-                value = getSplit(value, nt.getSelectType(), nt.getSelectStart(), nt.getSelectEnd());
-            }
-            table.setValue(value);
-            fullTable.getList().add(table);
-        }
-        if (CollectionUtils.isEmpty(nt.getChildren())) {
-            return;
-        }
-        for (TemplateNode item : nt.getChildren()) {
-            List list = null;
-            //如果当前节点是外键，需要套上主键的节点
-            if (item.getFieldType() == 2 || item.getFieldType() == 3) {
-                list = (Arrays.asList(node));
-            } else {
-                list = (List) node.get(item.getNodeName());
-            }
-            for (Object e : list) {
-                Element element = (Element) e;
-                //同一个父节点发现相同的子节点，并且为普通节点（fieldType=9），在当前父节点下创建同级对象
-                boolean b = fullTable.getList().stream().anyMatch(sub -> Objects.equals(sub.getFieldName(), item.getTargetName()));
-                if (b && item.getFieldType() == 9) {
-                    FullTable fullTable2 = new FullTable();
-                    fullTable2.setParent(fullTable.getParent());
-                    fullTable2.setTableName(fullTable.getTableName());
-                    fullTable.getParent().getChildren().add(fullTable2);
-                    for (Table sub : fullTable.getList()) {
-                        Table t = new Table();
-                        BeanUtils.copyProperties(sub, t);
-                        if (Objects.equals(sub.getFieldName(), item.getTargetName())) {
-                            t.setValue(element.getText());
-                        }
-                        fullTable2.getList().add(t);
-                    }
-                    return;
-                }
-                xmlToData(item, params, fullTable, element);
-            }
-        }
-    }
 
     public static List<TemplateNode> getNT(List<TemplateNode> sources, Integer innerId) {
         Set<String> nodeSet = new HashSet<>();
@@ -627,6 +410,8 @@ public class TreeToData {
             this.matchType = matchType;
         }
 
+
+
         public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName, Integer fieldType, String targetTable,
                                             String targetName, String foreignField, Integer matchType) {
             this.innerId = innerId;
@@ -649,6 +434,8 @@ public class TreeToData {
             this.targetName = targetName;
             this.matchType = matchType;
         }
+
+
 
         public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName, Integer fieldType, String targetTable,
                                             String targetName, Integer matchType, Integer selectType, String selectStart, String selectEnd) {
@@ -733,6 +520,7 @@ public class TreeToData {
         private String fieldTypeStr;
         private Integer foreignId;
         private String foreignField;
+
     }
 
     @Data
@@ -751,8 +539,8 @@ public class TreeToData {
 
         public String id;
         public Integer innerId;
-        public String tableName;
-        public String fieldName;
+        public String targetTable;
+        public String targetName;
         public String nodeName;
         public Integer fieldType;
         public Object value;

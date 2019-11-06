@@ -1,686 +1,86 @@
-[
-  {
-    "children": [
-      {
-        "children": null,
-        "fieldType": 9,
-        "fieldTypeStr": null,
-        "foreignField": null,
-        "foreignId": null,
-        "fullNodeName": null,
-        "innerId": 3,
-        "matchType": 0,
-        "matchTypeStr": null,
-        "nodeName": "totalOrderLines",
-        "parentId": 2,
-        "parentNode": {
-          "$ref": "$[0]"
-        },
-        "remark": null,
-        "selectEnd": null,
-        "selectStart": null,
-        "selectType": null,
-        "selectTypeStr": null,
-        "targetId": null,
-        "targetName": "totalOrderLines",
-        "targetTable": "t",
-        "tempId": null,
-        "value": null
-      },
-      {
-        "children": null,
-        "fieldType": 9,
-        "fieldTypeStr": null,
-        "foreignField": null,
-        "foreignId": null,
-        "fullNodeName": null,
-        "innerId": 4,
-        "matchType": 0,
-        "matchTypeStr": null,
-        "nodeName": "entryOrderCode",
-        "parentId": 2,
-        "parentNode": {
-          "$ref": "$[0]"
-        },
-        "remark": null,
-        "selectEnd": null,
-        "selectStart": null,
-        "selectType": null,
-        "selectTypeStr": null,
-        "targetId": null,
-        "targetName": "entryOrderCode",
-        "targetTable": "t",
-        "tempId": null,
-        "value": null
-      }
-    ],
-    "fieldType": 1,
-    "fieldTypeStr": null,
-    "foreignField": null,
-    "foreignId": null,
-    "fullNodeName": null,
-    "innerId": 2,
-    "matchType": 0,
-    "matchTypeStr": null,
-    "nodeName": "entryOrder",
-    "parentId": 1,
-    "parentNode": {
-      "children": [
+{
+  "entryOrder": {
+    "totalOrderLines": "\n            单据总行数，int，当单据需要分多个请求发送时，发送方需要将totalOrderLines填入，接收方收到后，根据实际接收到的条数和totalOrderLines进行比对，如果小于，则继续等待接收请求。如果等于，则表示该单据的所有请求发送完成。\n        ",
+    "entryOrderCode": "入库单编码, string (50) , 必填",
+    "ownerCode": "货主编码, string (50)",
+    "warehouseCode": "仓库编码, string (50)，必填",
+    "entryOrderId": "仓储系统入库单ID, string (50) , 条件必填",
+    "entryOrderType": "入库单类型 ，SCRK=生产入库，LYRK=领用入1库，CCRK=残次品入库，CGRK=采购入库, DBRK=调拨入库, QTRK=其他入库，B2BRK=B2B入库\n        ",
+    "outBizCode": "外部业务编码, 消息ID, 用于去重, ISV对于同一请求，分配一个唯一性的编码。用来保证因为网络等原因导致重复传输，请求不会被重复处理, ,必填",
+    "confirmType": "支持出入库单多次收货, int，\n            多次收货后确认时\n            0 表示入库单最终状态确认；\n            1 表示入库单中间状态确认；\n            每次入库传入的数量为增量，特殊情况，同一入库单，如果先收到0，后又收到1，允许修改收货的数量。\n        ",
+    "status": "入库单状态, string (50) , 必填 (NEW-未开始处理, ACCEPT-仓库接单 , PARTFULFILLED-部分收货完成, FULFILLED-收货完成, EXCEPTION-异常,\n            CANCELED-取消, CLOSED-关闭, REJECT-拒单, CANCELEDFAIL-取消失败) , (只传英文编码)\n        ",
+    "freight": "快递费用 (元) , double (18, 2)",
+    "operateTime": "操作时间, string (19) , YYYY-MM-DD HH:MM:SS，(当status=FULFILLED, operateTime为入库时间)",
+    "remark": "备注, string (500)"
+  },
+  "orderLines": [
+    {
+      "outBizCode": "外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用",
+      "orderLineNo": "单据行号，string（50）",
+      "ownerCode": "货主编码, string (50)",
+      "itemCode": "商品编码, string (50) , 必填",
+      "itemId": "仓储系统商品ID, string (50) , 条件必填",
+      "snList": [
         {
-          "$ref": "$[0]"
+          "sn": "商品序列号, string(40)"
         },
         {
-          "children": [
-            {
-              "children": [
-                {
-                  "children": null,
-                  "fieldType": 3,
-                  "fieldTypeStr": null,
-                  "foreignField": null,
-                  "foreignId": 2,
-                  "fullNodeName": null,
-                  "innerId": 7,
-                  "matchType": 0,
-                  "matchTypeStr": null,
-                  "nodeName": "orderLine",
-                  "parentId": 6,
-                  "parentNode": {
-                    "$ref": "$[0].parentNode.children[1].children[0]"
-                  },
-                  "remark": null,
-                  "selectEnd": null,
-                  "selectStart": null,
-                  "selectType": null,
-                  "selectTypeStr": null,
-                  "targetId": null,
-                  "targetName": "order_id",
-                  "targetTable": "t2",
-                  "tempId": null,
-                  "value": null
-                },
-                {
-                  "children": null,
-                  "fieldType": 9,
-                  "fieldTypeStr": null,
-                  "foreignField": null,
-                  "foreignId": null,
-                  "fullNodeName": null,
-                  "innerId": 8,
-                  "matchType": 0,
-                  "matchTypeStr": null,
-                  "nodeName": "outBizCode",
-                  "parentId": 6,
-                  "parentNode": {
-                    "$ref": "$[0].parentNode.children[1].children[0]"
-                  },
-                  "remark": null,
-                  "selectEnd": null,
-                  "selectStart": null,
-                  "selectType": null,
-                  "selectTypeStr": null,
-                  "targetId": null,
-                  "targetName": "outBizCode",
-                  "targetTable": "t2",
-                  "tempId": null,
-                  "value": null
-                },
-                {
-                  "children": null,
-                  "fieldType": 9,
-                  "fieldTypeStr": null,
-                  "foreignField": null,
-                  "foreignId": null,
-                  "fullNodeName": null,
-                  "innerId": 8,
-                  "matchType": 0,
-                  "matchTypeStr": null,
-                  "nodeName": "remark",
-                  "parentId": 6,
-                  "parentNode": {
-                    "$ref": "$[0].parentNode.children[1].children[0]"
-                  },
-                  "remark": null,
-                  "selectEnd": null,
-                  "selectStart": null,
-                  "selectType": null,
-                  "selectTypeStr": null,
-                  "targetId": null,
-                  "targetName": "remark",
-                  "targetTable": "t2",
-                  "tempId": null,
-                  "value": null
-                },
-                {
-                  "children": [
-                    {
-                      "children": null,
-                      "fieldType": 2,
-                      "fieldTypeStr": null,
-                      "foreignField": "id",
-                      "foreignId": null,
-                      "fullNodeName": null,
-                      "innerId": 10,
-                      "matchType": 0,
-                      "matchTypeStr": null,
-                      "nodeName": "snList",
-                      "parentId": 9,
-                      "parentNode": {
-                        "$ref": "$[0].parentNode.children[1].children[0].children[3]"
-                      },
-                      "remark": null,
-                      "selectEnd": null,
-                      "selectStart": null,
-                      "selectType": null,
-                      "selectTypeStr": null,
-                      "targetId": null,
-                      "targetName": "sub_id",
-                      "targetTable": "t3",
-                      "tempId": null,
-                      "value": null
-                    },
-                    {
-                      "children": null,
-                      "fieldType": 9,
-                      "fieldTypeStr": null,
-                      "foreignField": null,
-                      "foreignId": null,
-                      "fullNodeName": null,
-                      "innerId": 11,
-                      "matchType": 0,
-                      "matchTypeStr": null,
-                      "nodeName": "sn",
-                      "parentId": 9,
-                      "parentNode": {
-                        "$ref": "$[0].parentNode.children[1].children[0].children[3]"
-                      },
-                      "remark": null,
-                      "selectEnd": null,
-                      "selectStart": null,
-                      "selectType": null,
-                      "selectTypeStr": null,
-                      "targetId": null,
-                      "targetName": "sn2",
-                      "targetTable": "t3",
-                      "tempId": null,
-                      "value": null
-                    }
-                  ],
-                  "fieldType": 1,
-                  "fieldTypeStr": null,
-                  "foreignField": null,
-                  "foreignId": null,
-                  "fullNodeName": null,
-                  "innerId": 9,
-                  "matchType": 0,
-                  "matchTypeStr": null,
-                  "nodeName": "snList",
-                  "parentId": 6,
-                  "parentNode": {
-                    "$ref": "$[0].parentNode.children[1].children[0]"
-                  },
-                  "remark": null,
-                  "selectEnd": null,
-                  "selectStart": null,
-                  "selectType": null,
-                  "selectTypeStr": null,
-                  "targetId": null,
-                  "targetName": "id",
-                  "targetTable": "t3",
-                  "tempId": null,
-                  "value": null
-                },
-                {
-                  "children": [
-                    {
-                      "children": [
-                        {
-                          "children": null,
-                          "fieldType": 2,
-                          "fieldTypeStr": null,
-                          "foreignField": "id",
-                          "foreignId": null,
-                          "fullNodeName": null,
-                          "innerId": 14,
-                          "matchType": 0,
-                          "matchTypeStr": null,
-                          "nodeName": "batch",
-                          "parentId": 13,
-                          "parentNode": {
-                            "$ref": "$[0].parentNode.children[1].children[0].children[4].children[0]"
-                          },
-                          "remark": null,
-                          "selectEnd": null,
-                          "selectStart": null,
-                          "selectType": null,
-                          "selectTypeStr": null,
-                          "targetId": null,
-                          "targetName": "order_id",
-                          "targetTable": "t4",
-                          "tempId": null,
-                          "value": null
-                        },
-                        {
-                          "children": null,
-                          "fieldType": 9,
-                          "fieldTypeStr": null,
-                          "foreignField": null,
-                          "foreignId": null,
-                          "fullNodeName": null,
-                          "innerId": 15,
-                          "matchType": 0,
-                          "matchTypeStr": null,
-                          "nodeName": "batchCode",
-                          "parentId": 13,
-                          "parentNode": {
-                            "$ref": "$[0].parentNode.children[1].children[0].children[4].children[0]"
-                          },
-                          "remark": null,
-                          "selectEnd": null,
-                          "selectStart": null,
-                          "selectType": null,
-                          "selectTypeStr": null,
-                          "targetId": null,
-                          "targetName": "batchCode",
-                          "targetTable": "t4",
-                          "tempId": null,
-                          "value": null
-                        },
-                        {
-                          "children": null,
-                          "fieldType": 9,
-                          "fieldTypeStr": null,
-                          "foreignField": null,
-                          "foreignId": null,
-                          "fullNodeName": null,
-                          "innerId": 16,
-                          "matchType": 1,
-                          "matchTypeStr": null,
-                          "nodeName": "productDate",
-                          "parentId": 13,
-                          "parentNode": {
-                            "$ref": "$[0].parentNode.children[1].children[0].children[4].children[0]"
-                          },
-                          "remark": null,
-                          "selectEnd": "2",
-                          "selectStart": "0",
-                          "selectType": 0,
-                          "selectTypeStr": null,
-                          "targetId": null,
-                          "targetName": "productDate_text",
-                          "targetTable": "t4",
-                          "tempId": null,
-                          "value": null
-                        },
-                        {
-                          "children": null,
-                          "fieldType": 9,
-                          "fieldTypeStr": null,
-                          "foreignField": null,
-                          "foreignId": null,
-                          "fullNodeName": null,
-                          "innerId": 101,
-                          "matchType": 1,
-                          "matchTypeStr": null,
-                          "nodeName": "productDate",
-                          "parentId": 13,
-                          "parentNode": {
-                            "$ref": "$[0].parentNode.children[1].children[0].children[4].children[0]"
-                          },
-                          "remark": null,
-                          "selectEnd": "4",
-                          "selectStart": "2",
-                          "selectType": 0,
-                          "selectTypeStr": null,
-                          "targetId": null,
-                          "targetName": "productDate_text2",
-                          "targetTable": "t4",
-                          "tempId": null,
-                          "value": null
-                        }
-                      ],
-                      "fieldType": 1,
-                      "fieldTypeStr": null,
-                      "foreignField": null,
-                      "foreignId": null,
-                      "fullNodeName": null,
-                      "innerId": 13,
-                      "matchType": 0,
-                      "matchTypeStr": null,
-                      "nodeName": "batch",
-                      "parentId": 12,
-                      "parentNode": {
-                        "$ref": "$[0].parentNode.children[1].children[0].children[4]"
-                      },
-                      "remark": null,
-                      "selectEnd": null,
-                      "selectStart": null,
-                      "selectType": null,
-                      "selectTypeStr": null,
-                      "targetId": null,
-                      "targetName": "id",
-                      "targetTable": "t4",
-                      "tempId": null,
-                      "value": null
-                    },
-                    {
-                      "children": [
-                        {
-                          "children": null,
-                          "fieldType": 2,
-                          "fieldTypeStr": null,
-                          "foreignField": "id",
-                          "foreignId": null,
-                          "fullNodeName": null,
-                          "innerId": 21,
-                          "matchType": 0,
-                          "matchTypeStr": null,
-                          "nodeName": "batch",
-                          "parentId": 20,
-                          "parentNode": {
-                            "$ref": "$[0].parentNode.children[1].children[0].children[4].children[1]"
-                          },
-                          "remark": null,
-                          "selectEnd": null,
-                          "selectStart": null,
-                          "selectType": null,
-                          "selectTypeStr": null,
-                          "targetId": null,
-                          "targetName": "order_id",
-                          "targetTable": "t7",
-                          "tempId": null,
-                          "value": null
-                        },
-                        {
-                          "children": null,
-                          "fieldType": 9,
-                          "fieldTypeStr": null,
-                          "foreignField": null,
-                          "foreignId": null,
-                          "fullNodeName": null,
-                          "innerId": 22,
-                          "matchType": 0,
-                          "matchTypeStr": null,
-                          "nodeName": "inventoryType",
-                          "parentId": 20,
-                          "parentNode": {
-                            "$ref": "$[0].parentNode.children[1].children[0].children[4].children[1]"
-                          },
-                          "remark": null,
-                          "selectEnd": null,
-                          "selectStart": null,
-                          "selectType": null,
-                          "selectTypeStr": null,
-                          "targetId": null,
-                          "targetName": "confirmType",
-                          "targetTable": "t7",
-                          "tempId": null,
-                          "value": null
-                        }
-                      ],
-                      "fieldType": 1,
-                      "fieldTypeStr": null,
-                      "foreignField": null,
-                      "foreignId": null,
-                      "fullNodeName": null,
-                      "innerId": 20,
-                      "matchType": 0,
-                      "matchTypeStr": null,
-                      "nodeName": "batch",
-                      "parentId": 12,
-                      "parentNode": {
-                        "$ref": "$[0].parentNode.children[1].children[0].children[4]"
-                      },
-                      "remark": null,
-                      "selectEnd": null,
-                      "selectStart": null,
-                      "selectType": null,
-                      "selectTypeStr": null,
-                      "targetId": null,
-                      "targetName": "id",
-                      "targetTable": "t7",
-                      "tempId": null,
-                      "value": null
-                    }
-                  ],
-                  "fieldType": 0,
-                  "fieldTypeStr": null,
-                  "foreignField": null,
-                  "foreignId": null,
-                  "fullNodeName": null,
-                  "innerId": 12,
-                  "matchType": 0,
-                  "matchTypeStr": null,
-                  "nodeName": "batchs",
-                  "parentId": 6,
-                  "parentNode": {
-                    "$ref": "$[0].parentNode.children[1].children[0]"
-                  },
-                  "remark": null,
-                  "selectEnd": null,
-                  "selectStart": null,
-                  "selectType": null,
-                  "selectTypeStr": null,
-                  "targetId": null,
-                  "targetName": null,
-                  "targetTable": null,
-                  "tempId": null,
-                  "value": null
-                }
-              ],
-              "fieldType": 1,
-              "fieldTypeStr": null,
-              "foreignField": null,
-              "foreignId": null,
-              "fullNodeName": null,
-              "innerId": 6,
-              "matchType": 0,
-              "matchTypeStr": null,
-              "nodeName": "orderLine",
-              "parentId": 5,
-              "parentNode": {
-                "$ref": "$[0].parentNode.children[1]"
-              },
-              "remark": null,
-              "selectEnd": null,
-              "selectStart": null,
-              "selectType": null,
-              "selectTypeStr": null,
-              "targetId": null,
-              "targetName": "id",
-              "targetTable": "t2",
-              "tempId": null,
-              "value": null
-            },
-            {
-              "children": [
-                {
-                  "children": null,
-                  "fieldType": 9,
-                  "fieldTypeStr": null,
-                  "foreignField": null,
-                  "foreignId": null,
-                  "fullNodeName": null,
-                  "innerId": 25,
-                  "matchType": 0,
-                  "matchTypeStr": null,
-                  "nodeName": "produceCode",
-                  "parentId": 23,
-                  "parentNode": {
-                    "$ref": "$[0].parentNode.children[1].children[1]"
-                  },
-                  "remark": null,
-                  "selectEnd": null,
-                  "selectStart": null,
-                  "selectType": null,
-                  "selectTypeStr": null,
-                  "targetId": null,
-                  "targetName": "produceCode",
-                  "targetTable": "t8",
-                  "tempId": null,
-                  "value": null
-                }
-              ],
-              "fieldType": 1,
-              "fieldTypeStr": null,
-              "foreignField": null,
-              "foreignId": null,
-              "fullNodeName": null,
-              "innerId": 23,
-              "matchType": 0,
-              "matchTypeStr": null,
-              "nodeName": "orderLine",
-              "parentId": 5,
-              "parentNode": {
-                "$ref": "$[0].parentNode.children[1]"
-              },
-              "remark": null,
-              "selectEnd": null,
-              "selectStart": null,
-              "selectType": null,
-              "selectTypeStr": null,
-              "targetId": null,
-              "targetName": "id",
-              "targetTable": "t8",
-              "tempId": null,
-              "value": null
-            }
-          ],
-          "fieldType": 0,
-          "fieldTypeStr": null,
-          "foreignField": null,
-          "foreignId": null,
-          "fullNodeName": null,
-          "innerId": 5,
-          "matchType": 0,
-          "matchTypeStr": null,
-          "nodeName": "orderLines",
-          "parentId": 1,
-          "parentNode": {
-            "$ref": "$[0].parentNode"
-          },
-          "remark": null,
-          "selectEnd": null,
-          "selectStart": null,
-          "selectType": null,
-          "selectTypeStr": null,
-          "targetId": null,
-          "targetName": null,
-          "targetTable": null,
-          "tempId": null,
-          "value": null
-        },
-        {
-          "children": [
-            {
-              "children": null,
-              "fieldType": 9,
-              "fieldTypeStr": null,
-              "foreignField": null,
-              "foreignId": null,
-              "fullNodeName": null,
-              "innerId": 18,
-              "matchType": 0,
-              "matchTypeStr": null,
-              "nodeName": "confirmType",
-              "parentId": 17,
-              "parentNode": {
-                "$ref": "$[0].parentNode.children[2]"
-              },
-              "remark": null,
-              "selectEnd": null,
-              "selectStart": null,
-              "selectType": null,
-              "selectTypeStr": null,
-              "targetId": null,
-              "targetName": "confirmType",
-              "targetTable": "t5",
-              "tempId": null,
-              "value": null
-            },
-            {
-              "children": null,
-              "fieldType": 9,
-              "fieldTypeStr": null,
-              "foreignField": null,
-              "foreignId": null,
-              "fullNodeName": null,
-              "innerId": 19,
-              "matchType": 0,
-              "matchTypeStr": null,
-              "nodeName": "status",
-              "parentId": 17,
-              "parentNode": {
-                "$ref": "$[0].parentNode.children[2]"
-              },
-              "remark": null,
-              "selectEnd": null,
-              "selectStart": null,
-              "selectType": null,
-              "selectTypeStr": null,
-              "targetId": null,
-              "targetName": "status",
-              "targetTable": "t5",
-              "tempId": null,
-              "value": null
-            }
-          ],
-          "fieldType": 1,
-          "fieldTypeStr": null,
-          "foreignField": null,
-          "foreignId": null,
-          "fullNodeName": null,
-          "innerId": 17,
-          "matchType": 0,
-          "matchTypeStr": null,
-          "nodeName": "entryOrder",
-          "parentId": 1,
-          "parentNode": {
-            "$ref": "$[0].parentNode"
-          },
-          "remark": null,
-          "selectEnd": null,
-          "selectStart": null,
-          "selectType": null,
-          "selectTypeStr": null,
-          "targetId": null,
-          "targetName": "id",
-          "targetTable": "t5",
-          "tempId": null,
-          "value": null
+          "sn": "商品序列号, string(50)"
         }
       ],
-      "fieldType": 0,
-      "fieldTypeStr": null,
-      "foreignField": null,
-      "foreignId": null,
-      "fullNodeName": null,
-      "innerId": 1,
-      "matchType": 0,
-      "matchTypeStr": null,
-      "nodeName": "request",
-      "parentId": -1,
-      "parentNode": null,
-      "remark": null,
-      "selectEnd": null,
-      "selectStart": null,
-      "selectType": null,
-      "selectTypeStr": null,
-      "targetId": null,
-      "targetName": null,
-      "targetTable": null,
-      "tempId": null,
-      "value": null
+      "itemName": "商品名称, string (200)",
+      "inventoryType": "库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)",
+      "planQty": "应收数量, int",
+      "actualQty": "实收数量, int，必填",
+      "batchCode": "批次编码, string (50)",
+      "productDate": "商品生产日期，string（10）， YYYY-MM-DD",
+      "expireDate": "商品过期日期，string（10），YYYY-MM-DD",
+      "produceCode": "生产批号, string (50)",
+      "batchs": [
+        {
+          "batchCode": "批次编号，string(50)",
+          "productDate": "生产日期，string(10)，YYYY-MM-DD",
+          "expireDate": "过期日期，string(10)，YYYY-MM-DD",
+          "produceCode": "生产批号，string(50)，",
+          "inventoryType": "库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\n                    ",
+          "actualQty": "实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量"
+        }
+      ],
+      "remark": "备注, string (500)"
     },
-    "remark": null,
-    "selectEnd": null,
-    "selectStart": null,
-    "selectType": null,
-    "selectTypeStr": null,
-    "targetId": null,
-    "targetName": "id",
-    "targetTable": "t",
-    "tempId": null,
-    "value": null
-  }
-]
+    {
+      "outBizCode": "外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用",
+      "orderLineNo": "单据行号，string（50）",
+      "ownerCode": "货主编码, string (50)",
+      "itemCode": "商品编码, string (50) , 必填",
+      "itemId": "仓储系统商品ID, string (50) , 条件必填",
+      "snList": [
+        {
+          "sn": "商品序列号, string(40)"
+        },
+        {
+          "sn": "商品序列号, string(50)"
+        }
+      ],
+      "itemName": "商品名称, string (200)",
+      "inventoryType": "库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)",
+      "planQty": "应收数量, int",
+      "actualQty": "实收数量, int，必填",
+      "batchCode": "批次编码, string (50)",
+      "productDate": "商品生产日期，string（10）， YYYY-MM-DD",
+      "expireDate": "商品过期日期，string（10），YYYY-MM-DD",
+      "produceCode": "生产批号, string (50)",
+      "batchs": [
+        {
+          "batchCode": "批次编号，string(50)",
+          "productDate": "生产日期，string(10)，YYYY-MM-DD",
+          "expireDate": "过期日期，string(10)，YYYY-MM-DD",
+          "produceCode": "生产批号，string(50)，",
+          "inventoryType": "库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\n                    ",
+          "actualQty": "实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量"
+        }
+      ],
+      "remark": "备注, string (500)"
+    }
+  ]
+}
