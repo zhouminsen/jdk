@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <request>
     <entryOrder>
+        <id>dsadasd</id>
         <totalOrderLines>
             单据总行数，int，当单据需要分多个请求发送时，发送方需要将totalOrderLines填入，接收方收到后，根据实际接收到的条数和totalOrderLines进行比对，如果小于，则继续等待接收请求。如果等于，则表示该单据的所有请求发送完成。
         </totalOrderLines>
@@ -31,6 +32,7 @@
             <ownerCode>货主编码, string (50)</ownerCode>
             <itemCode>商品编码, string (50) , 必填</itemCode>
             <itemId>仓储系统商品ID, string (50) , 条件必填</itemId>
+            <foreignId>1111</foreignId>
             <snList>
                 <sn>商品序列号, string(50)</sn>
                 <sn>商品序列号, string(50)</sn>

@@ -25,21 +25,21 @@ public class JsonToData2 {
         List<TemplateNode> sources2 = new ArrayList<>();
         for (int i = 0; i < sources.size(); i++) {
             IfmPlatformTemplateDetailDTO item = sources.get(i);
-            if (item.getFieldType() == null) {
+            if (item.getDataType() == null) {
                 throw new RuntimeException(String.format("id：%s,平台字段：%s未设置字段类型", item.getInnerId(), item.getNodeName()));
             }
-            if (item.getArrayType() == null) {
+            if (item.getNodeType() == null) {
                 throw new RuntimeException(String.format("id：%s,平台字段：%s未设置数组类型", item.getInnerId(), item.getNodeName()));
             }
             if (item.getMatchType() == null) {
                 throw new RuntimeException(String.format("id：%s,平台字段：%s未设置匹配类型", item.getInnerId(), item.getNodeName()));
             }
 
-            if (item.getFieldType() == 2) {
+            if (item.getDataType() == 2) {
                 if (StringUtils.isEmpty(item.getForeignField())) {
                     throw new RuntimeException(String.format("id：%s,平台字段：%s未设置外键字段", item.getInnerId(), item.getNodeName()));
                 }
-            } else if (item.getFieldType() == 3) {
+            } else if (item.getDataType() == 3) {
                 if (item.getForeignId() == null) {
                     throw new RuntimeException(String.format("id：%s,平台字段：%s未设置外键id", item.getInnerId(), item.getNodeName()));
                 }
@@ -48,7 +48,7 @@ public class JsonToData2 {
                 for (int j = 0; j < i; j++) {
                     TemplateNode e = sources2.get(j);
                     if (Objects.equals(item.getForeignId(), e.getInnerId())) {
-                        if (e.getFieldType() != 1) {
+                        if (e.getDataType() != 1) {
                             throw new RuntimeException(String.format("id：%s,平台字段：%s设置的外键id关联的对象字段类型非主键", item.getInnerId(), item.getNodeName()));
                         }
                         count++;
@@ -157,45 +157,45 @@ public class JsonToData2 {
         List<IfmPlatformTemplateDetailDTO> sources = new ArrayList<>();
 
         sources.add(new IfmPlatformTemplateDetailDTO(1, -1, "entryOrder", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(2, 1, "id", 1, "t", "id", 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(3, 2, "totalOrderLines", 9, "t", "totalOrderLines", 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(4, 2, "entryOrderCode", 9, "t", "entryOrderCode", 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(2, 1, "id", 1, "t", "id", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(3, 2, "totalOrderLines", 9, "t", "totalOrderLines", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(4, 2, "entryOrderCode", 9, "t", "entryOrderCode", 0, 0, 0));
 
         sources.add(new IfmPlatformTemplateDetailDTO(5, -1, "orderLines", 0, 0, 1));
-        sources.add(new IfmPlatformTemplateDetailDTO(6, 5, "id", 1, "t2", "id", 0, 1));
-        sources.add(new IfmPlatformTemplateDetailDTO(7, 6, 2, "foreign_id", 3, "t2", "order_id", 0, 1));
-        sources.add(new IfmPlatformTemplateDetailDTO(8, 6, "outBizCode", 9, "t2", "outBizCode", 0, 1));
-        sources.add(new IfmPlatformTemplateDetailDTO(30, 6, "remark", 9, "t2", "remark", 0, 1));
+        sources.add(new IfmPlatformTemplateDetailDTO(6, 5, "id", 1, "t2", "id", 0, 1, 1));
+        sources.add(new IfmPlatformTemplateDetailDTO(7, 6, 2, "foreign_id", 3, "t2", "order_id", 0, 1, 1));
+        sources.add(new IfmPlatformTemplateDetailDTO(8, 6, "outBizCode", 9, "t2", "outBizCode", 0, 1, 1));
+        sources.add(new IfmPlatformTemplateDetailDTO(30, 6, "remark", 9, "t2", "remark", 0, 1, 1));
 
         sources.add(new IfmPlatformTemplateDetailDTO(9, 6, "snList", 0, 0, 1));
-        sources.add(new IfmPlatformTemplateDetailDTO(10, 9, "id", 1, "t3", "id", 0, 1));
-        sources.add(new IfmPlatformTemplateDetailDTO(11, 10, "foreign_id", 2, "t3", "sub_id", "id", 0, 1));
-        sources.add(new IfmPlatformTemplateDetailDTO(12, 10, "sn", 9, "t3", "sn2", 0, 1));
+        sources.add(new IfmPlatformTemplateDetailDTO(10, 9, "id", 1, "t3", "id", 0, 1, 1));
+        sources.add(new IfmPlatformTemplateDetailDTO(11, 10, "foreign_id", 2, "t3", "sub_id", "id", 0, 1, 1));
+        sources.add(new IfmPlatformTemplateDetailDTO(12, 10, "sn", 9, "t3", "sn2", 0, 1, 1));
 //
         sources.add(new IfmPlatformTemplateDetailDTO(13, 6, "batchs", 0, 0, 1));
-        sources.add(new IfmPlatformTemplateDetailDTO(14, 13, "id", 1, "t4", "id", "id", 0, 1));
-        sources.add(new IfmPlatformTemplateDetailDTO(15, 14, "foreign_id", 2, "t4", "sub_id", "id", 0, 1));
-        sources.add(new IfmPlatformTemplateDetailDTO(16, 14, "batchCode", 9, "t4", "batchCode", 0, 1));
+        sources.add(new IfmPlatformTemplateDetailDTO(14, 13, "id", 1, "t4", "id", "id", 0, 1, 1));
+        sources.add(new IfmPlatformTemplateDetailDTO(15, 14, "foreign_id", 2, "t4", "sub_id", "id", 0, 1, 1));
+        sources.add(new IfmPlatformTemplateDetailDTO(16, 14, "batchCode", 9, "t4", "batchCode", 0, 1, 1));
 //            sources.add(new IfmPlatformTemplateDetailDTO(102, 13, "productDate", 9, "t4", "batchCode2", 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(101, 14, "productDate", 9, "t4", "productDate_text", 1, 0, "0", "2", 1));
-        sources.add(new IfmPlatformTemplateDetailDTO(102, 14, "productDate", 9, "t4", "productDate_text2", 1, 0, "2", "4", 1));
+        sources.add(new IfmPlatformTemplateDetailDTO(101, 14, "productDate", 9, "t4", "productDate_text", 1, 0, "0", "2", 1, 1));
+        sources.add(new IfmPlatformTemplateDetailDTO(102, 14, "productDate", 9, "t4", "productDate_text2", 1, 0, "2", "4", 1, 1));
 
 //        //并集无外键
         sources.add(new IfmPlatformTemplateDetailDTO(17, -1, "entryOrder", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(18, 17, "id", 1, "t5", "id", 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(19, 18, "confirmType", 9, "t5", "confirmType", 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(103, 18, "status", 9, "t5", "status", 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(18, 17, "id", 1, "t5", "id", 0, 0, 1));
+        sources.add(new IfmPlatformTemplateDetailDTO(19, 18, "confirmType", 9, "t5", "confirmType", 0, 0, 1));
+        sources.add(new IfmPlatformTemplateDetailDTO(103, 18, "status", 9, "t5", "status", 0, 0, 1));
 
 //        //并集有外键
         sources.add(new IfmPlatformTemplateDetailDTO(20, 6, "batchs", 0, 0, 1));
-        sources.add(new IfmPlatformTemplateDetailDTO(21, 20, "id", 1, "t7", "id", 0, 1));
-        sources.add(new IfmPlatformTemplateDetailDTO(22, 21, "foreign_id", 2, "t7", "order_id", "id", 0, 1));
-        sources.add(new IfmPlatformTemplateDetailDTO(104, 21, "inventoryType", 9, "t7", "confirmType", 0, 1));
+        sources.add(new IfmPlatformTemplateDetailDTO(21, 20, "id", 1, "t7", "id", 0, 1, 1));
+        sources.add(new IfmPlatformTemplateDetailDTO(22, 21, "foreign_id", 2, "t7", "order_id", "id", 0, 1, 1));
+        sources.add(new IfmPlatformTemplateDetailDTO(104, 21, "inventoryType", 9, "t7", "confirmType", 0, 1, 1));
 //
 //        并集无外键
         sources.add(new IfmPlatformTemplateDetailDTO(23, -1, "orderLines", 0, 0, 1));
-        sources.add(new IfmPlatformTemplateDetailDTO(24, 23, "id", 1, "t8", "id", 0, 1));
-        sources.add(new IfmPlatformTemplateDetailDTO(25, 24, "produceCode", 9, "t8", "produceCode", 0, 1));
+        sources.add(new IfmPlatformTemplateDetailDTO(24, 23, "id", 1, "t8", "id", 0, 1,1));
+        sources.add(new IfmPlatformTemplateDetailDTO(25, 24, "produceCode", 9, "t8", "produceCode", 0, 1,1));
 
         List<TemplateNode> sources2 = getTemplateNodes(sources);
         List<TemplateNode> templateNodes = getNT(sources2, -1);
@@ -225,7 +225,7 @@ public class JsonToData2 {
         Table table = new Table();
         BeanUtils.copyProperties(nt, table);
         //主键
-        if (nt.getFieldType() == 1) {
+        if (nt.getDataType() == 1) {
             params.add(table);
             Object v = UtilFuns.getRandomOfScope(1, 1000) + "";
             nt.setValue(v);
@@ -245,17 +245,17 @@ public class JsonToData2 {
 //                xmlToData(templateNode, params, full, node);
 //                return;
             }
-        } else if (nt.getFieldType() == 2) {
+        } else if (nt.getDataType() == 2) {
             //子集外键
             TemplateNode parentNode = getUp(nt, nt.getTargetTable(), nt.getForeignField());
             table.setValue(parentNode.getValue());
             fullTable.getList().add(table);
-        } else if (nt.getFieldType() == 3) {
+        } else if (nt.getDataType() == 3) {
             //并集外键
             Table t = params.stream().filter(item -> item.getInnerId() == nt.getForeignId()).findFirst().get();
             table.setValue(t.getValue());
             fullTable.getList().add(table);
-        } else if (nt.getFieldType() == 9) {
+        } else if (nt.getDataType() == 9) {
             //普通节点
             String value = node.get(nt.getNodeName()).toString();
             if (nt.getMatchType() == 2) {
@@ -268,9 +268,9 @@ public class JsonToData2 {
             return;
         }
         Object o = null;
-        if (nt.getFieldType() == 0) {
+        if (nt.getDataType() == 0) {
             o = node.get(nt.getNodeName());
-        } else if (nt.getFieldType() == 1) {
+        } else if (nt.getDataType() == 1) {
             //当前是主键，取当前节点
             o = node;
         }
@@ -286,7 +286,7 @@ public class JsonToData2 {
         if (list.size() == 0) {
             throw new RuntimeException(String.format("当前节点%s查询不到节点%s", node.keySet(), nt.getNodeName()));
         }
-        if (list.size() > 1 && nt.getArrayType() == 0) {
+        if (list.size() > 1 && nt.getNodeType() == 0) {
             throw new RuntimeException(String.format("当前节点%s查询节点%s，实际数据为%s条，不符合当前节点标识",
                     node.keySet(), nt.getNodeName(), list.size()));
         }
@@ -317,7 +317,7 @@ public class JsonToData2 {
                 item.setChildren(getNT(sources, item.getInnerId()));
             }
             // 非主键参与目标字段重复判断
-            if (item.getFieldType() != 1 && item.getFieldType() != 0) {
+            if (item.getDataType() != 1 && item.getDataType() != 0) {
                 if (!targetNameSet.add(item.getTargetName())) {
                     throw new RuntimeException(String.format("id：%s,目标字段：%s重复了", item.getInnerId(), item.getNodeName()));
                 }
@@ -329,9 +329,9 @@ public class JsonToData2 {
                 }
             }
             //一个children下的对象只能在储存在一张表
-            if (item.getFieldType() == 9 || item.getFieldType() == 2 || item.getFieldType() == 3) {
+            if (item.getDataType() == 9 || item.getDataType() == 2 || item.getDataType() == 3) {
                 //并集外键
-                if (item.getFieldType() == 3) {
+                if (item.getDataType() == 3) {
                     if (Objects.equals(item.getForeignId(), item.getParentNode().getInnerId())) {
                         throw new RuntimeException(String.format("id：%s,平台字段：%s的外键id不能设置为当前节点的主键id", item.getInnerId(), item.getNodeName()));
                     }
@@ -339,8 +339,8 @@ public class JsonToData2 {
                 tableSet.add(item.getTargetTable());
                 //跟主键所属表做对比
                 tableSet.add(item.getParentNode().getTargetTable());
-                arrayTypeSet.add(item.getArrayType());
-                arrayTypeSet.add(item.getParentNode().getArrayType());
+                arrayTypeSet.add(item.getNodeType());
+                arrayTypeSet.add(item.getParentNode().getNodeType());
                 if (tableSet.size() > 1) {
                     throw new RuntimeException(String.format("id：%s,平台字段：%s所属表不一致", item.getInnerId(), item.getNodeName()));
                 }
@@ -405,142 +405,78 @@ public class JsonToData2 {
         public IfmPlatformTemplateDetailDTO() {
         }
 
-        public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName, Integer fieldType, Integer matchType) {
+        public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName, Integer dataType,
+                                            Integer matchType, Integer nodeType) {
             this.innerId = innerId;
             this.parentId = parentId;
             this.nodeName = nodeName;
-            this.fieldType = fieldType;
+            this.dataType = dataType;
             this.matchType = matchType;
-        }
-
-        public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName, Integer fieldType,
-                                            Integer matchType, Integer arrayType) {
-
-            this.innerId = innerId;
-            this.parentId = parentId;
-            this.nodeName = nodeName;
-            this.fieldType = fieldType;
-            this.matchType = matchType;
-            this.arrayType = arrayType;
+            this.nodeType = nodeType;
 
         }
 
-        public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName, Integer fieldType, String targetTable,
-                                            String targetName, String foreignField, Integer matchType) {
+
+        public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName, Integer dataType, String targetTable,
+                                            String targetName, String foreignField, Integer matchType, Integer nodeType,
+                                            Integer fieldType) {
             this.innerId = innerId;
             this.parentId = parentId;
             this.nodeName = nodeName;
-            this.fieldType = fieldType;
+            this.dataType = dataType;
             this.targetTable = targetTable;
             this.targetName = targetName;
             this.foreignField = foreignField;
             this.matchType = matchType;
+            this.nodeType = nodeType;
+            this.fieldType = fieldType;
         }
 
-        public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName, Integer fieldType, String targetTable,
-                                            String targetName, String foreignField, Integer matchType, Integer arrayType) {
+
+        public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName, Integer dataType, String targetTable,
+                                            String targetName, Integer matchType, Integer nodeType, Integer fieldType) {
             this.innerId = innerId;
             this.parentId = parentId;
             this.nodeName = nodeName;
-            this.fieldType = fieldType;
-            this.targetTable = targetTable;
-            this.targetName = targetName;
-            this.foreignField = foreignField;
-            this.matchType = matchType;
-            this.arrayType = arrayType;
-        }
-
-        public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName, Integer fieldType, String targetTable,
-                                            String targetName, Integer matchType) {
-            this.innerId = innerId;
-            this.parentId = parentId;
-            this.nodeName = nodeName;
-            this.fieldType = fieldType;
+            this.dataType = dataType;
             this.targetTable = targetTable;
             this.targetName = targetName;
             this.matchType = matchType;
-        }
-
-        public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName, Integer fieldType, String targetTable,
-                                            String targetName, Integer matchType, Integer arrayType) {
-            this.innerId = innerId;
-            this.parentId = parentId;
-            this.nodeName = nodeName;
+            this.nodeType = nodeType;
             this.fieldType = fieldType;
-            this.targetTable = targetTable;
-            this.targetName = targetName;
-            this.matchType = matchType;
-            this.arrayType = arrayType;
         }
 
-        public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName, Integer fieldType, String targetTable,
-                                            String targetName, Integer matchType, Integer selectType, String selectStart, String selectEnd) {
-            this.innerId = innerId;
-            this.parentId = parentId;
-            this.nodeName = nodeName;
-            this.fieldType = fieldType;
-            this.targetTable = targetTable;
-            this.targetName = targetName;
-            this.matchType = matchType;
-            this.selectType = selectType;
-            this.selectStart = selectStart;
-            this.selectEnd = selectEnd;
-        }
 
-        public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName, Integer fieldType, String targetTable,
+        public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName, Integer dataType, String targetTable,
                                             String targetName, Integer matchType, Integer selectType, String selectStart, String selectEnd,
-                                            Integer arrayType) {
+                                            Integer nodeType, Integer fieldType) {
             this.innerId = innerId;
             this.parentId = parentId;
             this.nodeName = nodeName;
-            this.fieldType = fieldType;
+            this.dataType = dataType;
             this.targetTable = targetTable;
             this.targetName = targetName;
             this.matchType = matchType;
             this.selectType = selectType;
             this.selectStart = selectStart;
             this.selectEnd = selectEnd;
-            this.arrayType = arrayType;
+            this.nodeType = nodeType;
+            this.fieldType = fieldType;
         }
 
-
-        public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, Integer foreignId, String nodeName, Integer fieldType,
-                                            String targetTable, String targetName, Integer matchType) {
+        public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, Integer foreignId, String nodeName, Integer dataType,
+                                            String targetTable, String targetName, Integer matchType, Integer nodeType,
+                                            Integer fieldType) {
             this.innerId = innerId;
             this.parentId = parentId;
             this.nodeName = nodeName;
-            this.fieldType = fieldType;
+            this.dataType = dataType;
             this.targetTable = targetTable;
             this.targetName = targetName;
             this.foreignId = foreignId;
             this.matchType = matchType;
-        }
-
-        public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, Integer foreignId, String nodeName, Integer fieldType,
-                                            String targetTable, String targetName, Integer matchType, Integer arrayType) {
-            this.innerId = innerId;
-            this.parentId = parentId;
-            this.nodeName = nodeName;
+            this.nodeType = nodeType;
             this.fieldType = fieldType;
-            this.targetTable = targetTable;
-            this.targetName = targetName;
-            this.foreignId = foreignId;
-            this.matchType = matchType;
-            this.arrayType = arrayType;
-        }
-
-        public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, Integer foreignId, String nodeName, Integer fieldType,
-                                            String targetTable, String targetName, String foreignField, Integer matchType) {
-            this.innerId = innerId;
-            this.parentId = parentId;
-            this.nodeName = nodeName;
-            this.fieldType = fieldType;
-            this.targetTable = targetTable;
-            this.targetName = targetName;
-            this.foreignId = foreignId;
-            this.foreignField = foreignField;
-            this.matchType = matchType;
-
         }
 
 
@@ -581,15 +517,17 @@ public class JsonToData2 {
 
         private String selectEnd;
 
-        private Integer fieldType;
-        private String fieldTypeStr;
+        private Integer dataType;
+        private String dataTypeStr;
         private Integer foreignId;
         private String foreignField;
 
         /**
-         * 是否是数组（0：不是，1：是）
+         * 节点类型 0:普通，1：对象数组，2：数组
          */
-        private Integer arrayType;
+        private Integer nodeType;
+
+        private Integer fieldType;
     }
 
     @Data
