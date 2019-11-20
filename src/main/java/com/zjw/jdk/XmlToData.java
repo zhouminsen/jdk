@@ -137,52 +137,53 @@ public class XmlToData {
     public void xml() throws DocumentException {
 
         List<IfmPlatformTemplateDetailDTO> sources = new ArrayList<>();
+        sources.add(new IfmPlatformTemplateDetailDTO(-1, -2, "params", 0, 0, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(1, -1, "request", 0, 0, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(2, 1, "entryOrder", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(3, 2, "id", 1, "t", "id", 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(4, 3, "totalOrderLines", 9, "t", "totalOrderLines", 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(5, 3, "entryOrderCode", 9, "t", "entryOrderCode", 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(3, 2, "id", 1, "t", "id", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(4, 3, "totalOrderLines", 9, "t", "totalOrderLines", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(5, 3, "entryOrderCode", 9, "t", "entryOrderCode", 0, 0, 0));
 
         sources.add(new IfmPlatformTemplateDetailDTO(7, 1, "orderLines", 0, 0, 1));
         sources.add(new IfmPlatformTemplateDetailDTO(8, 7, "orderLine", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(9, 8, "id", 1, "t2", "id", 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(10, 9, 3, "foreign_id", 3, "t2", "order_id", 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(11, 9, "outBizCode", 9, "t2", "outBizCode", 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(12, 9, "remark", 9, "t2", "remark", 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(9, 8, "id", 1, "t2", "id", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(10, 9, 3, "foreign_id", 3, "t2", "order_id", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(11, 9, "outBizCode", 9, "t2", "outBizCode", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(12, 9, "remark", 9, "t2", "remark", 0, 0, 0));
 
         sources.add(new IfmPlatformTemplateDetailDTO(13, 9, "snList", 0, 0, 2));
-        sources.add(new IfmPlatformTemplateDetailDTO(14, 13, "id", 1, "t3", "id", 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(15, 14, "foreign_id", 2, "t3", "sub_id", "id", 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(16, 14, "sn", 9, "t3", "sn2", 0, 0));
-
-        sources.add(new IfmPlatformTemplateDetailDTO(17, 9, "batchs", 0, 0, 1));
-        sources.add(new IfmPlatformTemplateDetailDTO(18, 17, "batch", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(19, 18, "id", 1, "t4", "id", 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(20, 19, "foreign_id", 2, "t4", "order_id", "id", 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(21, 19, "batchCode", 9, "t4", "batchCode", 0, 0));
-//            sources.add(new IfmPlatformTemplateDetailDTO9102, 13, "productDate", 9, "t4", "batchCode2", 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(22, 19, "productDate", 9, "t4", "productDate_text", 1, 0, "0", "2", 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(23, 19, "productDate", 9, "t4", "productDate_text2", 1, 0, "2", "4", 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(14, 13, "id", 1, "t3", "id", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(15, 14, "foreign_id", 2, "t3", "sub_id", "id", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(16, 14, "sn", 9, "t3", "sn2", 0, 0, 0));
 //
-//        //并集无外键
-        sources.add(new IfmPlatformTemplateDetailDTO(24, 1, "entryOrder", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(25, 24, "id", 1, "t5", "id", 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(26, 25, "confirmType", 9, "t5", "confirmType", 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(27, 25, "status", 9, "t5", "status", 0, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(17, 9, "batchs", 0, 0, 1));
+//        sources.add(new IfmPlatformTemplateDetailDTO(18, 17, "batch", 0, 0, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(19, 18, "id", 1, "t4", "id", 0, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(20, 19, "foreign_id", 2, "t4", "order_id", "id", 0, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(21, 19, "batchCode", 9, "t4", "batchCode", 0, 0));
+////            sources.add(new IfmPlatformTemplateDetailDTO9102, 13, "productDate", 9, "t4", "batchCode2", 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(22, 19, "productDate", 9, "t4", "productDate_text", 1, 0, "0", "2", 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(23, 19, "productDate", 9, "t4", "productDate_text2", 1, 0, "2", "4", 0));
 //
-        //并集有外键
-        sources.add(new IfmPlatformTemplateDetailDTO(28, 17, "batch", 0, 0, 1));
-        sources.add(new IfmPlatformTemplateDetailDTO(29, 28, "id", 1, "t7", "id", 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(30, 29, "foreign_id", 2, "t7", "order_id", "id", 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(31, 29, "inventoryType", 9, "t7", "confirmType", 0, 0));
-//
-//        并集无外键
-        sources.add(new IfmPlatformTemplateDetailDTO(32, 7, "orderLine", 0, 0, 1));
-        sources.add(new IfmPlatformTemplateDetailDTO(33, 32, "id", 1, "t8", "id", 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(34, 33, "produceCode", 9, "t8", "produceCode", 0, 0));
+////        //并集无外键
+//        sources.add(new IfmPlatformTemplateDetailDTO(24, 1, "entryOrder", 0, 0, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(25, 24, "id", 1, "t5", "id", 0, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(26, 25, "confirmType", 9, "t5", "confirmType", 0, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(27, 25, "status", 9, "t5", "status", 0, 0));
+////
+//        //并集有外键
+//        sources.add(new IfmPlatformTemplateDetailDTO(28, 17, "batch", 0, 0, 1));
+//        sources.add(new IfmPlatformTemplateDetailDTO(29, 28, "id", 1, "t7", "id", 0, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(30, 29, "foreign_id", 2, "t7", "order_id", "id", 0, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(31, 29, "inventoryType", 9, "t7", "confirmType", 0, 0));
+////
+////        并集无外键
+//        sources.add(new IfmPlatformTemplateDetailDTO(32, 7, "orderLine", 0, 0, 1));
+//        sources.add(new IfmPlatformTemplateDetailDTO(33, 32, "id", 1, "t8", "id", 0, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(34, 33, "produceCode", 9, "t8", "produceCode", 0, 0));
 
         List<TemplateNode> sources2 = getTemplateNodes(sources);
-        List<TemplateNode> templateNodes = getNT(sources2, -1);
+        List<TemplateNode> templateNodes = getNT(sources2, IfmApiParamsEnums.root_node.getParentId());
 //        System.out.println(JSON.toJSONString(templateNodes, SerializerFeature.WriteMapNullValue));
         TemplateNode templateNode = templateNodes.get(0);
 //        System.out.println(JSON.toJSONString(templateNode, SerializerFeature.WriteMapNullValue));
@@ -289,14 +290,17 @@ public class XmlToData {
                     for (Table sub : fullTable.getList()) {
                         Table t = new Table();
                         BeanUtils.copyProperties(sub, t);
-                        t.setId(UtilFuns.getRandomOfScope(1, 1000) + "");
+//                        t.setId(UtilFuns.getRandomOfScope(1, 1000) + "");
                         fullTable2.getList().add(t);
                     }
                     Table t = new Table();
                     BeanUtils.copyProperties(nt, t);
-                    t.setValue(element.getText());
+                    String value = element.getText();
+                    if (nt.getMatchType() == 1) {
+                        value = getSplit(value, nt.getSelectType(), nt.getSelectStart(), nt.getSelectEnd());
+                    }
+                    t.setValue(value);
                     fullTable2.getList().add(t);
-
                 }
                 fullTable.getParent().setChildren(fullTableList);
             } else {
@@ -315,9 +319,17 @@ public class XmlToData {
         if (CollectionUtils.isEmpty(nt.getChildren())) {
             return;
         }
+
+        //ifm的根节点
+        if (nt.getInnerId() == IfmApiParamsEnums.root_node.getInnerId()) {
+            for (TemplateNode item : nt.getChildren()) {
+                xmlToData(item, params, fullTable, node);
+            }
+            return;
+        }
         List list = new ArrayList();
-        //根节点
-        if (nt.getParentId() == -1) {
+        //节点的根节点
+        if (nt.getParentId() == IfmApiParamsEnums.root_node.getInnerId()) {
             node = node.selectSingleNode("/" + nt.getNodeName());
             list.add(node);
         } else if (nt.getDataType() == 0) {
@@ -354,7 +366,7 @@ public class XmlToData {
                 (item -> Objects.equals(innerId, item.getParentId())).collect(Collectors.toList());
         for (TemplateNode item : target) {
             boolean b = sources.stream().anyMatch(e -> Objects.equals(item.getInnerId(), e.getParentId()));
-            if (innerId != -1) {
+            if (innerId != IfmApiParamsEnums.root_node.getParentId()) {
                 TemplateNode templateNode = sources.stream().filter(e -> Objects.equals(item.getParentId(), e.getInnerId())).findFirst().get();
                 item.setParentNode(templateNode);
             }
@@ -447,21 +459,11 @@ public class XmlToData {
     @Data
     public static class IfmPlatformTemplateDetailDTO implements Serializable {
 
-
         public IfmPlatformTemplateDetailDTO() {
-        }
-
-        public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName, Integer dataType, Integer matchType) {
-            this.innerId = innerId;
-            this.parentId = parentId;
-            this.nodeName = nodeName;
-            this.dataType = dataType;
-            this.matchType = matchType;
         }
 
         public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName, Integer dataType,
                                             Integer matchType, Integer nodeType) {
-
             this.innerId = innerId;
             this.parentId = parentId;
             this.nodeName = nodeName;
@@ -471,20 +473,10 @@ public class XmlToData {
 
         }
 
-        public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName, Integer dataType, String targetTable,
-                                            String targetName, String foreignField, Integer matchType) {
-            this.innerId = innerId;
-            this.parentId = parentId;
-            this.nodeName = nodeName;
-            this.dataType = dataType;
-            this.targetTable = targetTable;
-            this.targetName = targetName;
-            this.foreignField = foreignField;
-            this.matchType = matchType;
-        }
 
         public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName, Integer dataType, String targetTable,
-                                            String targetName, String foreignField, Integer matchType, Integer nodeType) {
+                                            String targetName, String foreignField, Integer matchType, Integer nodeType,
+                                            Integer fieldType) {
             this.innerId = innerId;
             this.parentId = parentId;
             this.nodeName = nodeName;
@@ -494,21 +486,12 @@ public class XmlToData {
             this.foreignField = foreignField;
             this.matchType = matchType;
             this.nodeType = nodeType;
+            this.fieldType = fieldType;
         }
 
-        public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName, Integer dataType, String targetTable,
-                                            String targetName, Integer matchType) {
-            this.innerId = innerId;
-            this.parentId = parentId;
-            this.nodeName = nodeName;
-            this.dataType = dataType;
-            this.targetTable = targetTable;
-            this.targetName = targetName;
-            this.matchType = matchType;
-        }
 
         public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName, Integer dataType, String targetTable,
-                                            String targetName, Integer matchType, Integer nodeType) {
+                                            String targetName, Integer matchType, Integer nodeType, Integer fieldType) {
             this.innerId = innerId;
             this.parentId = parentId;
             this.nodeName = nodeName;
@@ -517,25 +500,13 @@ public class XmlToData {
             this.targetName = targetName;
             this.matchType = matchType;
             this.nodeType = nodeType;
+            this.fieldType = fieldType;
         }
 
-        public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName, Integer dataType, String targetTable,
-                                            String targetName, Integer matchType, Integer selectType, String selectStart, String selectEnd) {
-            this.innerId = innerId;
-            this.parentId = parentId;
-            this.nodeName = nodeName;
-            this.dataType = dataType;
-            this.targetTable = targetTable;
-            this.targetName = targetName;
-            this.matchType = matchType;
-            this.selectType = selectType;
-            this.selectStart = selectStart;
-            this.selectEnd = selectEnd;
-        }
 
         public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName, Integer dataType, String targetTable,
                                             String targetName, Integer matchType, Integer selectType, String selectStart, String selectEnd,
-                                            Integer nodeType) {
+                                            Integer nodeType, Integer fieldType) {
             this.innerId = innerId;
             this.parentId = parentId;
             this.nodeName = nodeName;
@@ -547,23 +518,12 @@ public class XmlToData {
             this.selectStart = selectStart;
             this.selectEnd = selectEnd;
             this.nodeType = nodeType;
-        }
-
-
-        public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, Integer foreignId, String nodeName, Integer dataType,
-                                            String targetTable, String targetName, Integer matchType) {
-            this.innerId = innerId;
-            this.parentId = parentId;
-            this.nodeName = nodeName;
-            this.dataType = dataType;
-            this.targetTable = targetTable;
-            this.targetName = targetName;
-            this.foreignId = foreignId;
-            this.matchType = matchType;
+            this.fieldType = fieldType;
         }
 
         public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, Integer foreignId, String nodeName, Integer dataType,
-                                            String targetTable, String targetName, Integer matchType, Integer nodeType) {
+                                            String targetTable, String targetName, Integer matchType, Integer nodeType,
+                                            Integer fieldType) {
             this.innerId = innerId;
             this.parentId = parentId;
             this.nodeName = nodeName;
@@ -573,20 +533,7 @@ public class XmlToData {
             this.foreignId = foreignId;
             this.matchType = matchType;
             this.nodeType = nodeType;
-        }
-
-        public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, Integer foreignId, String nodeName, Integer dataType,
-                                            String targetTable, String targetName, String foreignField, Integer matchType) {
-            this.innerId = innerId;
-            this.parentId = parentId;
-            this.nodeName = nodeName;
-            this.dataType = dataType;
-            this.targetTable = targetTable;
-            this.targetName = targetName;
-            this.foreignId = foreignId;
-            this.foreignField = foreignField;
-            this.matchType = matchType;
-
+            this.fieldType = fieldType;
         }
 
 
@@ -627,9 +574,6 @@ public class XmlToData {
 
         private String selectEnd;
 
-        /**
-         * 字段类型(0：节点，1：主键，2：外键，3：外键（（非同父节点和唯一节点）并集外键），9：普通字段)
-         */
         private Integer dataType;
         private String dataTypeStr;
         private Integer foreignId;
@@ -640,6 +584,10 @@ public class XmlToData {
          */
         private Integer nodeType;
 
+        /**
+         * 字段类型(0：字符串 1：时间 2：数字)
+         */
+        private Integer fieldType;
     }
 
     @Data
@@ -675,11 +623,11 @@ public class XmlToData {
         public TemplateNode parentNode;
         public Object value;
         public List<TemplateNode> children;
-
     }
 
+
     @Getter
-    public static enum ApiParamsEnums {
+    public static enum IfmApiParamsEnums {
 
 
         /**
@@ -702,7 +650,7 @@ public class XmlToData {
         private String name;
 
 
-        ApiParamsEnums(Integer innerId, String name, Integer parentId) {
+        IfmApiParamsEnums(Integer innerId, String name, Integer parentId) {
             this.innerId = innerId;
             this.name = name;
             this.parentId = parentId;

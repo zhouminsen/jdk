@@ -1,86 +1,247 @@
 {
-  "entryOrder": {
-    "totalOrderLines": "\n            单据总行数，int，当单据需要分多个请求发送时，发送方需要将totalOrderLines填入，接收方收到后，根据实际接收到的条数和totalOrderLines进行比对，如果小于，则继续等待接收请求。如果等于，则表示该单据的所有请求发送完成。\n        ",
-    "entryOrderCode": "入库单编码, string (50) , 必填",
-    "ownerCode": "货主编码, string (50)",
-    "warehouseCode": "仓库编码, string (50)，必填",
-    "entryOrderId": "仓储系统入库单ID, string (50) , 条件必填",
-    "entryOrderType": "入库单类型 ，SCRK=生产入库，LYRK=领用入1库，CCRK=残次品入库，CGRK=采购入库, DBRK=调拨入库, QTRK=其他入库，B2BRK=B2B入库\n        ",
-    "outBizCode": "外部业务编码, 消息ID, 用于去重, ISV对于同一请求，分配一个唯一性的编码。用来保证因为网络等原因导致重复传输，请求不会被重复处理, ,必填",
-    "confirmType": "支持出入库单多次收货, int，\n            多次收货后确认时\n            0 表示入库单最终状态确认；\n            1 表示入库单中间状态确认；\n            每次入库传入的数量为增量，特殊情况，同一入库单，如果先收到0，后又收到1，允许修改收货的数量。\n        ",
-    "status": "入库单状态, string (50) , 必填 (NEW-未开始处理, ACCEPT-仓库接单 , PARTFULFILLED-部分收货完成, FULFILLED-收货完成, EXCEPTION-异常,\n            CANCELED-取消, CLOSED-关闭, REJECT-拒单, CANCELEDFAIL-取消失败) , (只传英文编码)\n        ",
-    "freight": "快递费用 (元) , double (18, 2)",
-    "operateTime": "操作时间, string (19) , YYYY-MM-DD HH:MM:SS，(当status=FULFILLED, operateTime为入库时间)",
-    "remark": "备注, string (500)"
-  },
-  "orderLines": [
+  "children": [
     {
-      "outBizCode": "外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用",
-      "orderLineNo": "单据行号，string（50）",
-      "ownerCode": "货主编码, string (50)",
-      "itemCode": "商品编码, string (50) , 必填",
-      "itemId": "仓储系统商品ID, string (50) , 条件必填",
-      "snList": [
+      "children": [
         {
-          "sn": "商品序列号, string(40)"
+          "children": [],
+          "list": [
+            {
+              "fieldType": 0,
+              "innerId": 14,
+              "nodeName": "id",
+              "targetName": "id",
+              "targetTable": "t3",
+              "value": "186"
+            },
+            {
+              "fieldType": 0,
+              "innerId": 15,
+              "nodeName": "foreign_id",
+              "targetName": "sub_id",
+              "targetTable": "t3",
+              "value": "275"
+            },
+            {
+              "fieldType": 0,
+              "innerId": 16,
+              "nodeName": "sn",
+              "targetName": "sn2",
+              "targetTable": "t3",
+              "value": "商品序列号, string(40)"
+            }
+          ],
+          "parent": {
+            "$ref": "$.children[0]"
+          },
+          "tableName": "t3"
         },
         {
-          "sn": "商品序列号, string(50)"
+          "children": [],
+          "list": [
+            {
+              "fieldType": 0,
+              "innerId": 14,
+              "nodeName": "id",
+              "targetName": "id",
+              "targetTable": "t3",
+              "value": "186"
+            },
+            {
+              "fieldType": 0,
+              "innerId": 15,
+              "nodeName": "foreign_id",
+              "targetName": "sub_id",
+              "targetTable": "t3",
+              "value": "275"
+            },
+            {
+              "fieldType": 0,
+              "innerId": 16,
+              "nodeName": "sn",
+              "targetName": "sn2",
+              "targetTable": "t3",
+              "value": "商品序列号, string(1000)"
+            }
+          ],
+          "parent": {
+            "$ref": "$.children[0]"
+          },
+          "tableName": "t3"
         }
       ],
-      "itemName": "商品名称, string (200)",
-      "inventoryType": "库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)",
-      "planQty": "应收数量, int",
-      "actualQty": "实收数量, int，必填",
-      "batchCode": "批次编码, string (50)",
-      "productDate": "商品生产日期，string（10）， YYYY-MM-DD",
-      "expireDate": "商品过期日期，string（10），YYYY-MM-DD",
-      "produceCode": "生产批号, string (50)",
-      "batchs": [
+      "list": [
         {
-          "batchCode": "批次编号，string(50)",
-          "productDate": "生产日期，string(10)，YYYY-MM-DD",
-          "expireDate": "过期日期，string(10)，YYYY-MM-DD",
-          "produceCode": "生产批号，string(50)，",
-          "inventoryType": "库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\n                    ",
-          "actualQty": "实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量"
+          "fieldType": 0,
+          "innerId": 9,
+          "nodeName": "id",
+          "targetName": "id",
+          "targetTable": "t2",
+          "value": "275"
+        },
+        {
+          "fieldType": 0,
+          "innerId": 10,
+          "nodeName": "foreign_id",
+          "targetName": "order_id",
+          "targetTable": "t2",
+          "value": "167"
+        },
+        {
+          "fieldType": 0,
+          "innerId": 11,
+          "nodeName": "outBizCode",
+          "targetName": "outBizCode",
+          "targetTable": "t2",
+          "value": "外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用11"
+        },
+        {
+          "fieldType": 0,
+          "innerId": 12,
+          "nodeName": "remark",
+          "targetName": "remark",
+          "targetTable": "t2",
+          "value": "备注, string (500)"
         }
       ],
-      "remark": "备注, string (500)"
+      "parent": {
+        "$ref": "$"
+      },
+      "tableName": "t2"
     },
     {
-      "outBizCode": "外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用",
-      "orderLineNo": "单据行号，string（50）",
-      "ownerCode": "货主编码, string (50)",
-      "itemCode": "商品编码, string (50) , 必填",
-      "itemId": "仓储系统商品ID, string (50) , 条件必填",
-      "snList": [
+      "children": [
         {
-          "sn": "商品序列号, string(40)"
+          "children": [],
+          "list": [
+            {
+              "fieldType": 0,
+              "innerId": 14,
+              "nodeName": "id",
+              "targetName": "id",
+              "targetTable": "t3",
+              "value": "339"
+            },
+            {
+              "fieldType": 0,
+              "innerId": 15,
+              "nodeName": "foreign_id",
+              "targetName": "sub_id",
+              "targetTable": "t3",
+              "value": "784"
+            },
+            {
+              "fieldType": 0,
+              "innerId": 16,
+              "nodeName": "sn",
+              "targetName": "sn2",
+              "targetTable": "t3",
+              "value": "商品序列号, string(50)"
+            }
+          ],
+          "parent": {
+            "$ref": "$.children[1]"
+          },
+          "tableName": "t3"
         },
         {
-          "sn": "商品序列号, string(50)"
+          "children": [],
+          "list": [
+            {
+              "fieldType": 0,
+              "innerId": 14,
+              "nodeName": "id",
+              "targetName": "id",
+              "targetTable": "t3",
+              "value": "339"
+            },
+            {
+              "fieldType": 0,
+              "innerId": 15,
+              "nodeName": "foreign_id",
+              "targetName": "sub_id",
+              "targetTable": "t3",
+              "value": "784"
+            },
+            {
+              "fieldType": 0,
+              "innerId": 16,
+              "nodeName": "sn",
+              "targetName": "sn2",
+              "targetTable": "t3",
+              "value": "商品序列号, string(51)"
+            }
+          ],
+          "parent": {
+            "$ref": "$.children[1]"
+          },
+          "tableName": "t3"
         }
       ],
-      "itemName": "商品名称, string (200)",
-      "inventoryType": "库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)",
-      "planQty": "应收数量, int",
-      "actualQty": "实收数量, int，必填",
-      "batchCode": "批次编码, string (50)",
-      "productDate": "商品生产日期，string（10）， YYYY-MM-DD",
-      "expireDate": "商品过期日期，string（10），YYYY-MM-DD",
-      "produceCode": "生产批号, string (50)",
-      "batchs": [
+      "list": [
         {
-          "batchCode": "批次编号，string(50)",
-          "productDate": "生产日期，string(10)，YYYY-MM-DD",
-          "expireDate": "过期日期，string(10)，YYYY-MM-DD",
-          "produceCode": "生产批号，string(50)，",
-          "inventoryType": "库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\n                    ",
-          "actualQty": "实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量"
+          "fieldType": 0,
+          "innerId": 9,
+          "nodeName": "id",
+          "targetName": "id",
+          "targetTable": "t2",
+          "value": "784"
+        },
+        {
+          "fieldType": 0,
+          "innerId": 10,
+          "nodeName": "foreign_id",
+          "targetName": "order_id",
+          "targetTable": "t2",
+          "value": "167"
+        },
+        {
+          "fieldType": 0,
+          "innerId": 11,
+          "nodeName": "outBizCode",
+          "targetName": "outBizCode",
+          "targetTable": "t2",
+          "value": "外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用22"
+        },
+        {
+          "fieldType": 0,
+          "innerId": 12,
+          "nodeName": "remark",
+          "targetName": "remark",
+          "targetTable": "t2",
+          "value": "备注, string (600)"
         }
       ],
-      "remark": "备注, string (500)"
+      "parent": {
+        "$ref": "$"
+      },
+      "tableName": "t2"
     }
-  ]
+  ],
+  "list": [
+    {
+      "fieldType": 0,
+      "innerId": 3,
+      "nodeName": "id",
+      "targetName": "id",
+      "targetTable": "t",
+      "value": "167"
+    },
+    {
+      "fieldType": 0,
+      "innerId": 4,
+      "nodeName": "totalOrderLines",
+      "targetName": "totalOrderLines",
+      "targetTable": "t",
+      "value": "            单据总行数，int，当单据需要分多个请求发送时，发送方需要将totalOrderLines填入，接收方收到后，根据实际接收到的条数和totalOrderLines进行比对，如果小于，则继续等待接收请求。如果等于，则表示该单据的所有请求发送完成。        "
+    },
+    {
+      "fieldType": 0,
+      "innerId": 5,
+      "nodeName": "entryOrderCode",
+      "targetName": "entryOrderCode",
+      "targetTable": "t",
+      "value": "入库单编码, string (50) , 必填"
+    }
+  ],
+  "tableName": "t"
 }
