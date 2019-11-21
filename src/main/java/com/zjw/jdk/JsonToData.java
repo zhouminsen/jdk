@@ -157,14 +157,14 @@ public class JsonToData {
     public void json() {
         List<IfmPlatformTemplateDetailDTO> sources = new ArrayList<>();
         sources.add(new IfmPlatformTemplateDetailDTO(-1, -2, "params", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(1, -1, "entryOrder", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(2, 1, "id", 1, "t", "id", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(3, 2, "totalOrderLines", 9, "t", "totalOrderLines", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(4, 2, "entryOrderCode", 9, "t", "entryOrderCode", 0, 0, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(1, -1, "entryOrder", 0, 0, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(2, 1, "id", 1, "t", "id", 0, 0, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(3, 2, "totalOrderLines", 9, "t", "totalOrderLines", 0, 0, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(4, 2, "entryOrderCode", 9, "t", "entryOrderCode", 0, 0, 0));
 
         sources.add(new IfmPlatformTemplateDetailDTO(5, -1, "orderLines", 0, 0, 1));
         sources.add(new IfmPlatformTemplateDetailDTO(6, 5, "id", 1, "t2", "id", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(7, 6, 2, "foreign_id", 3, "t2", "order_id", 0, 0, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(7, 6, 2, "foreign_id", 3, "t2", "order_id", 0, 0, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(8, 6, "outBizCode", 9, "t2", "outBizCode", 0, 0, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(30, 6, "remark", 9, "t2", "remark", 0, 0, 0));
 
@@ -257,7 +257,7 @@ public class JsonToData {
         } else if (nt.getDataType() == 9) {
             //普通节点
             String value = node.get(nt.getNodeName()).toString();
-            if (nt.getMatchType() == 2) {
+            if (nt.getMatchType() == 1) {
                 value = getSplit(value, nt.getSelectType(), nt.getSelectStart(), nt.getSelectEnd());
             }
             table.setValue(value);
