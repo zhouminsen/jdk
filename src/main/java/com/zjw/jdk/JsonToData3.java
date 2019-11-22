@@ -342,10 +342,15 @@ public class JsonToData3 {
     }
 
     public static List<TemplateNode> getNT(List<TemplateNode> sources, Integer innerId, String nodeName) {
+        //验证节点重复
         Set<String> nodeSet = new HashSet<>();
+        //验证数据表不一致
         Set<String> tableSet = new HashSet<>();
+        //验证目标字段重复
         Set<String> targetNameSet = new HashSet<>();
+        //验证节点类型不一致
         Set<Integer> nodeTypeSet = new HashSet<>();
+        //验证节点类型为数组时，普通数据类型的节点出现多个
         List<String> arrayTypeList = new ArrayList<>();
         ArrayList<TemplateNode> result = new ArrayList<>();
         List<TemplateNode> target = sources.stream().filter
