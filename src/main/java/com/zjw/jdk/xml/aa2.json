@@ -1,230 +1,211 @@
-[
-  {
-    "children": [],
-    "list": [
-      {
-        "fieldType": 0,
-        "innerId": 2,
-        "nodeName": "id",
-        "targetName": "id",
-        "targetTable": "t",
-        "value": "710"
-      },
-      {
-        "fieldType": 0,
-        "innerId": 3,
-        "nodeName": "totalOrderLines",
-        "targetName": "totalOrderLines",
-        "targetTable": "t",
-        "value": "\n            单据总行数，int，当单据需要分多个请求发送时，发送方需要将totalOrderLines填入，接收方收到后，根据实际接收到的条数和totalOrderLines进行比对，如果小于，则继续等待接收请求。如果等于，则表示该单据的所有请求发送完成。\n        "
-      },
-      {
-        "fieldType": 0,
-        "innerId": 4,
-        "nodeName": "entryOrderCode",
-        "targetName": "entryOrderCode",
-        "targetTable": "t",
-        "value": "入库单编码, string (50) , 必填"
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "dataType": 9,
+              "fieldType": 0,
+              "fullNodeName": "params.entryOrder.[primary:id].totalOrderLines",
+              "innerId": 3,
+              "matchType": 0,
+              "nodeName": "totalOrderLines",
+              "nodeType": 0,
+              "parentId": 2,
+              "parentNode": {
+                "$ref": "$.children[0].children[0]"
+              },
+              "targetName": "totalOrderLines",
+              "targetTable": "t"
+            },
+            {
+              "dataType": 9,
+              "fieldType": 0,
+              "fullNodeName": "params.entryOrder.[primary:id].entryOrderCode",
+              "innerId": 4,
+              "matchType": 0,
+              "nodeName": "entryOrderCode",
+              "nodeType": 0,
+              "parentId": 2,
+              "parentNode": {
+                "$ref": "$.children[0].children[0]"
+              },
+              "targetName": "entryOrderCode",
+              "targetTable": "t"
+            }
+          ],
+          "dataType": 1,
+          "fieldType": 0,
+          "fullNodeName": "params.entryOrder.[primary:id].",
+          "innerId": 2,
+          "matchType": 0,
+          "nodeName": "id",
+          "nodeType": 0,
+          "parentId": 1,
+          "parentNode": {
+            "$ref": "$.children[0]"
+          },
+          "targetName": "id",
+          "targetTable": "t"
+        }
+      ],
+      "dataType": 0,
+      "fullNodeName": "params.entryOrder.",
+      "innerId": 1,
+      "matchType": 0,
+      "nodeName": "entryOrder",
+      "nodeType": 0,
+      "parentId": -1,
+      "parentNode": {
+        "$ref": "$"
       }
-    ],
-    "tableName": "t"
-  },
-  {
-    "children": [
-      {
-        "children": [],
-        "list": [
-          {
-            "fieldType": 0,
-            "innerId": 10,
-            "nodeName": "id",
-            "targetName": "id",
-            "targetTable": "t3",
-            "value": "350"
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "dataType": 3,
+              "fieldType": 0,
+              "foreignId": 2,
+              "fullNodeName": "params.orderLines.[primary:id].[foreign:foreign_id]",
+              "innerId": 7,
+              "matchType": 0,
+              "nodeName": "foreign_id",
+              "nodeType": 0,
+              "parentId": 6,
+              "parentNode": {
+                "$ref": "$.children[1].children[0]"
+              },
+              "targetName": "order_id",
+              "targetTable": "t2"
+            },
+            {
+              "dataType": 9,
+              "fieldType": 0,
+              "fullNodeName": "params.orderLines.[primary:id].outBizCode",
+              "innerId": 8,
+              "matchType": 0,
+              "nodeName": "outBizCode",
+              "nodeType": 0,
+              "parentId": 6,
+              "parentNode": {
+                "$ref": "$.children[1].children[0]"
+              },
+              "targetName": "outBizCode",
+              "targetTable": "t2"
+            },
+            {
+              "dataType": 9,
+              "fieldType": 0,
+              "fullNodeName": "params.orderLines.[primary:id].remark",
+              "innerId": 30,
+              "matchType": 0,
+              "nodeName": "remark",
+              "nodeType": 0,
+              "parentId": 6,
+              "parentNode": {
+                "$ref": "$.children[1].children[0]"
+              },
+              "targetName": "remark",
+              "targetTable": "t2"
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "dataType": 2,
+                      "fieldType": 0,
+                      "foreignField": "id",
+                      "fullNodeName": "params.orderLines.[primary:id].snList.[primary:id].[foreign:foreign_id]",
+                      "innerId": 11,
+                      "matchType": 0,
+                      "nodeName": "foreign_id",
+                      "nodeType": 0,
+                      "parentId": 10,
+                      "parentNode": {
+                        "$ref": "$.children[1].children[0].children[3].children[0]"
+                      },
+                      "targetName": "sub_id",
+                      "targetTable": "t3"
+                    },
+                    {
+                      "dataType": 9,
+                      "fieldType": 0,
+                      "fullNodeName": "params.orderLines.[primary:id].snList.[primary:id].sn",
+                      "innerId": 12,
+                      "matchType": 0,
+                      "nodeName": "sn",
+                      "nodeType": 0,
+                      "parentId": 10,
+                      "parentNode": {
+                        "$ref": "$.children[1].children[0].children[3].children[0]"
+                      },
+                      "targetName": "sn2",
+                      "targetTable": "t3"
+                    }
+                  ],
+                  "dataType": 1,
+                  "fieldType": 0,
+                  "fullNodeName": "params.orderLines.[primary:id].snList.[primary:id].",
+                  "innerId": 10,
+                  "matchType": 0,
+                  "nodeName": "id",
+                  "nodeType": 0,
+                  "parentId": 9,
+                  "parentNode": {
+                    "$ref": "$.children[1].children[0].children[3]"
+                  },
+                  "targetName": "id",
+                  "targetTable": "t3"
+                }
+              ],
+              "dataType": 0,
+              "fullNodeName": "params.orderLines.[primary:id].snList.",
+              "innerId": 9,
+              "matchType": 0,
+              "nodeName": "snList",
+              "nodeType": 1,
+              "parentId": 6,
+              "parentNode": {
+                "$ref": "$.children[1].children[0]"
+              }
+            }
+          ],
+          "dataType": 1,
+          "fieldType": 0,
+          "fullNodeName": "params.orderLines.[primary:id].",
+          "innerId": 6,
+          "matchType": 0,
+          "nodeName": "id",
+          "nodeType": 0,
+          "parentId": 5,
+          "parentNode": {
+            "$ref": "$.children[1]"
           },
-          {
-            "fieldType": 0,
-            "innerId": 11,
-            "nodeName": "foreign_id",
-            "targetName": "sub_id",
-            "targetTable": "t3",
-            "value": "602"
-          },
-          {
-            "fieldType": 0,
-            "innerId": 12,
-            "nodeName": "sn",
-            "targetName": "sn2",
-            "targetTable": "t3",
-            "value": "商品序列号, string(40)"
-          }
-        ],
-        "tableName": "t3"
-      },
-      {
-        "children": [],
-        "list": [
-          {
-            "fieldType": 0,
-            "innerId": 10,
-            "nodeName": "id",
-            "targetName": "id",
-            "targetTable": "t3",
-            "value": "527"
-          },
-          {
-            "fieldType": 0,
-            "innerId": 11,
-            "nodeName": "foreign_id",
-            "targetName": "sub_id",
-            "targetTable": "t3",
-            "value": "602"
-          },
-          {
-            "fieldType": 0,
-            "innerId": 12,
-            "nodeName": "sn",
-            "targetName": "sn2",
-            "targetTable": "t3",
-            "value": "商品序列号, string(50)"
-          }
-        ],
-        "tableName": "t3"
+          "targetName": "id",
+          "targetTable": "t2"
+        }
+      ],
+      "dataType": 0,
+      "fullNodeName": "params.orderLines.",
+      "innerId": 5,
+      "matchType": 0,
+      "nodeName": "orderLines",
+      "nodeType": 1,
+      "parentId": -1,
+      "parentNode": {
+        "$ref": "$"
       }
-    ],
-    "list": [
-      {
-        "fieldType": 0,
-        "innerId": 6,
-        "nodeName": "id",
-        "targetName": "id",
-        "targetTable": "t2",
-        "value": "602"
-      },
-      {
-        "fieldType": 0,
-        "innerId": 7,
-        "nodeName": "foreign_id",
-        "targetName": "order_id",
-        "targetTable": "t2",
-        "value": "710"
-      },
-      {
-        "fieldType": 0,
-        "innerId": 8,
-        "nodeName": "outBizCode",
-        "targetName": "outBizCode",
-        "targetTable": "t2",
-        "value": "外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用"
-      },
-      {
-        "fieldType": 0,
-        "innerId": 30,
-        "nodeName": "remark",
-        "targetName": "remark",
-        "targetTable": "t2",
-        "value": "备注, string (500)"
-      }
-    ],
-    "tableName": "t2"
-  },
-  {
-    "children": [
-      {
-        "children": [],
-        "list": [
-          {
-            "fieldType": 0,
-            "innerId": 10,
-            "nodeName": "id",
-            "targetName": "id",
-            "targetTable": "t3",
-            "value": "819"
-          },
-          {
-            "fieldType": 0,
-            "innerId": 11,
-            "nodeName": "foreign_id",
-            "targetName": "sub_id",
-            "targetTable": "t3",
-            "value": "553"
-          },
-          {
-            "fieldType": 0,
-            "innerId": 12,
-            "nodeName": "sn",
-            "targetName": "sn2",
-            "targetTable": "t3",
-            "value": "商品序列号, string(40)"
-          }
-        ],
-        "tableName": "t3"
-      },
-      {
-        "children": [],
-        "list": [
-          {
-            "fieldType": 0,
-            "innerId": 10,
-            "nodeName": "id",
-            "targetName": "id",
-            "targetTable": "t3",
-            "value": "832"
-          },
-          {
-            "fieldType": 0,
-            "innerId": 11,
-            "nodeName": "foreign_id",
-            "targetName": "sub_id",
-            "targetTable": "t3",
-            "value": "553"
-          },
-          {
-            "fieldType": 0,
-            "innerId": 12,
-            "nodeName": "sn",
-            "targetName": "sn2",
-            "targetTable": "t3",
-            "value": "商品序列号, string(50)"
-          }
-        ],
-        "tableName": "t3"
-      }
-    ],
-    "list": [
-      {
-        "fieldType": 0,
-        "innerId": 6,
-        "nodeName": "id",
-        "targetName": "id",
-        "targetTable": "t2",
-        "value": "553"
-      },
-      {
-        "fieldType": 0,
-        "innerId": 7,
-        "nodeName": "foreign_id",
-        "targetName": "order_id",
-        "targetTable": "t2",
-        "value": "710"
-      },
-      {
-        "fieldType": 0,
-        "innerId": 8,
-        "nodeName": "outBizCode",
-        "targetName": "outBizCode",
-        "targetTable": "t2",
-        "value": "外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用"
-      },
-      {
-        "fieldType": 0,
-        "innerId": 30,
-        "nodeName": "remark",
-        "targetName": "remark",
-        "targetTable": "t2",
-        "value": "备注, string (500)"
-      }
-    ],
-    "tableName": "t2"
-  }
-]
+    }
+  ],
+  "dataType": 0,
+  "fullNodeName": "params.",
+  "innerId": -1,
+  "matchType": 0,
+  "nodeName": "params",
+  "nodeType": 0,
+  "parentId": -2
+}

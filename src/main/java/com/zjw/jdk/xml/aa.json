@@ -21,12 +21,8 @@
       "itemCode": "商品编码, string (50) , 必填",
       "itemId": "仓储系统商品ID, string (50) , 条件必填",
       "snList": [
-        {
-          "sn": "商品序列号, string(40)"
-        },
-        {
-          "sn": "商品序列号, string(50)"
-        }
+        "商品序列号, string(40)",
+        "商品序列号, string(50)"
       ],
       "itemName": "商品名称, string (200)",
       "inventoryType": "库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)",
@@ -37,6 +33,14 @@
       "expireDate": "商品过期日期，string（10），YYYY-MM-DD",
       "produceCode": "生产批号, string (50)",
       "batchs": [
+        {
+          "batchCode": "批次编号，string(50)",
+          "productDate": "生产日期，string(10)，YYYY-MM-DD",
+          "expireDate": "过期日期，string(10)，YYYY-MM-DD",
+          "produceCode": "生产批号，string(50)，",
+          "inventoryType": "库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\n                    ",
+          "actualQty": "实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量"
+        },
         {
           "batchCode": "批次编号，string(50)",
           "productDate": "生产日期，string(10)，YYYY-MM-DD",
@@ -55,12 +59,8 @@
       "itemCode": "商品编码, string (50) , 必填",
       "itemId": "仓储系统商品ID, string (50) , 条件必填",
       "snList": [
-        {
-          "sn": "商品序列号, string(40)"
-        },
-        {
-          "sn": "商品序列号, string(50)"
-        }
+        "商品序列号, string(40)",
+        "商品序列号, string(50)"
       ],
       "itemName": "商品名称, string (200)",
       "inventoryType": "库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)",
@@ -71,6 +71,14 @@
       "expireDate": "商品过期日期，string（10），YYYY-MM-DD",
       "produceCode": "生产批号, string (50)",
       "batchs": [
+        {
+          "batchCode": "批次编号，string(50)",
+          "productDate": "生产日期，string(10)，YYYY-MM-DD",
+          "expireDate": "过期日期，string(10)，YYYY-MM-DD",
+          "produceCode": "生产批号，string(50)，",
+          "inventoryType": "库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\n                    ",
+          "actualQty": "实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量"
+        },
         {
           "batchCode": "批次编号，string(50)",
           "productDate": "生产日期，string(10)，YYYY-MM-DD",

@@ -89,12 +89,8 @@ public class JsonToData3 {
             "      \"itemCode\": \"商品编码, string (50) , 必填\",\n" +
             "      \"itemId\": \"仓储系统商品ID, string (50) , 条件必填\",\n" +
             "      \"snList\": [\n" +
-            "        {\n" +
-            "          \"sn\": \"商品序列号, string(40)\"\n" +
-            "        },\n" +
-            "        {\n" +
-            "          \"sn\": \"商品序列号, string(50)\"\n" +
-            "        }\n" +
+            "        \"商品序列号, string(40)\",\n" +
+            "        \"商品序列号, string(50)\"\n" +
             "      ],\n" +
             "      \"itemName\": \"商品名称, string (200)\",\n" +
             "      \"inventoryType\": \"库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\",\n" +
@@ -105,6 +101,14 @@ public class JsonToData3 {
             "      \"expireDate\": \"商品过期日期，string（10），YYYY-MM-DD\",\n" +
             "      \"produceCode\": \"生产批号, string (50)\",\n" +
             "      \"batchs\": [\n" +
+            "        {\n" +
+            "          \"batchCode\": \"批次编号，string(50)\",\n" +
+            "          \"productDate\": \"生产日期，string(10)，YYYY-MM-DD\",\n" +
+            "          \"expireDate\": \"过期日期，string(10)，YYYY-MM-DD\",\n" +
+            "          \"produceCode\": \"生产批号，string(50)，\",\n" +
+            "          \"inventoryType\": \"库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\\n                    \",\n" +
+            "          \"actualQty\": \"实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量\"\n" +
+            "        },\n" +
             "        {\n" +
             "          \"batchCode\": \"批次编号，string(50)\",\n" +
             "          \"productDate\": \"生产日期，string(10)，YYYY-MM-DD\",\n" +
@@ -123,12 +127,8 @@ public class JsonToData3 {
             "      \"itemCode\": \"商品编码, string (50) , 必填\",\n" +
             "      \"itemId\": \"仓储系统商品ID, string (50) , 条件必填\",\n" +
             "      \"snList\": [\n" +
-            "        {\n" +
-            "          \"sn\": \"商品序列号, string(40)\"\n" +
-            "        },\n" +
-            "        {\n" +
-            "          \"sn\": \"商品序列号, string(50)\"\n" +
-            "        }\n" +
+            "        \"商品序列号, string(40)\",\n" +
+            "        \"商品序列号, string(50)\"\n" +
             "      ],\n" +
             "      \"itemName\": \"商品名称, string (200)\",\n" +
             "      \"inventoryType\": \"库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\",\n" +
@@ -139,6 +139,14 @@ public class JsonToData3 {
             "      \"expireDate\": \"商品过期日期，string（10），YYYY-MM-DD\",\n" +
             "      \"produceCode\": \"生产批号, string (50)\",\n" +
             "      \"batchs\": [\n" +
+            "        {\n" +
+            "          \"batchCode\": \"批次编号，string(50)\",\n" +
+            "          \"productDate\": \"生产日期，string(10)，YYYY-MM-DD\",\n" +
+            "          \"expireDate\": \"过期日期，string(10)，YYYY-MM-DD\",\n" +
+            "          \"produceCode\": \"生产批号，string(50)，\",\n" +
+            "          \"inventoryType\": \"库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\\n                    \",\n" +
+            "          \"actualQty\": \"实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量\"\n" +
+            "        },\n" +
             "        {\n" +
             "          \"batchCode\": \"批次编号，string(50)\",\n" +
             "          \"productDate\": \"生产日期，string(10)，YYYY-MM-DD\",\n" +
@@ -177,20 +185,17 @@ public class JsonToData3 {
 //        sources.add(new IfmPlatformTemplateDetailDTO(14, 13, "id", 1, "t4", "id", "id", 0, 1, 0));
 //        sources.add(new IfmPlatformTemplateDetailDTO(15, 14, "foreign_id", 2, "t4", "sub_id", "id", 0, 1, 0));
 //        sources.add(new IfmPlatformTemplateDetailDTO(16, 14, "batchCode", 9, "t4", "batchCode", 0, 1, 0));
-////            sources.add(new IfmPlatformTemplateDetailDTO(102, 13, "productDate", 9, "t4", "batchCode2", 0));
 //        sources.add(new IfmPlatformTemplateDetailDTO(101, 14, "productDate", 9, "t4", "productDate_text", 1, 0, "0", "2", 1, 0));
 //        sources.add(new IfmPlatformTemplateDetailDTO(102, 14, "productDate", 9, "t4", "productDate_text2", 1, 0, "2", "4", 1, 0));
-//
-//////        //并集无外键
-////        sources.add(new IfmPlatformTemplateDetailDTO(17, -1, "entryOrder", 0, 0, 0));
+//        //并集无外键
 //        sources.add(new IfmPlatformTemplateDetailDTO(18, 1, "id", 1, "t5", "id", 0, 0, 0));
 //        sources.add(new IfmPlatformTemplateDetailDTO(19, 18, "confirmType", 9, "t5", "confirmType", 0, 0, 0));
 //        sources.add(new IfmPlatformTemplateDetailDTO(103, 18, "status", 9, "t5", "status", 0, 0, 0));
-//
-////        //并集有外键
-        sources.add(new IfmPlatformTemplateDetailDTO(21, 13, "id", 1, "t7", "id", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(22, 21, "foreign_id", 2, "t7", "order_id", "id", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(104, 21, "inventoryType", 9, "t7", "confirmType", 0, 0, 0));
+////
+//////        //并集有外键
+//        sources.add(new IfmPlatformTemplateDetailDTO(21, 13, "id", 1, "t7", "id", 0, 0, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(22, 21, "foreign_id", 2, "t7", "order_id", "id", 0, 0, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(104, 21, "inventoryType", 9, "t7", "confirmType", 0, 0, 0));
 ////
 ////        并集无外键
 //        sources.add(new IfmPlatformTemplateDetailDTO(23, -1, "orderLines", 0, 0, 1));
@@ -198,9 +203,10 @@ public class JsonToData3 {
 //        sources.add(new IfmPlatformTemplateDetailDTO(25, 24, "produceCode", 9, "t8", "produceCode", 0, 0, 0));
 
         List<TemplateNode> sources2 = getTemplateNodes(sources);
-        List<TemplateNode> templateNodes = getNT(sources2, IfmApiParamsEnums.root_node.parentId);
+        List<TemplateNode> templateNodes = getNT(sources2, IfmApiParamsEnums.root_node.parentId, "");
 //        System.out.println(JSON.toJSONString(templateNodes));
         TemplateNode templateNode = templateNodes.get(0);
+        System.out.println(JSON.toJSONString(templateNode));
         JSONArray jsonArray = new JSONArray();
         Object read = JSON.parse(jsonStr);
         if (read instanceof JSONObject) {
@@ -218,29 +224,25 @@ public class JsonToData3 {
             JSONObject jsonObject = (JSONObject) e;
             //ifm的params下的子节点
             for (TemplateNode item : nt.getChildren()) {
-                Map<String, FullTable> map = new HashMap<>();
-                this.jsonToData(item, params, fullTableList, map, jsonObject);
+                this.jsonToData(item, params, fullTableList, null, jsonObject, "");
             }
 
         }
-        System.out.println(JSON.toJSONString(fullTableList));
+//        System.out.println(JSON.toJSONString(fullTableList));
     }
 
-    private void jsonToData(TemplateNode nt, List<Table> params, Set<FullTable> fullTableList, Map<String, FullTable> map, JSONObject node) {
+    private void jsonToData(TemplateNode nt, List<Table> params, Set<FullTable> fullTableList, FullTable ft, JSONObject node, String nodeName) {
         Table table = new Table();
         BeanUtils.copyProperties(nt, table);
         //主键
         if (nt.getDataType() == 1) {
-            FullTable ft = null;
-            //如果是子集id
-            if (nt.getParentNode().getParentNode() != null) {
-                ft = map.get(nt.getParentNode().getParentNode().getNodeName());
+            //如果是父父对象是空
+            if (nt.getParentNode().getParentNode() == null) {
+                ft = null;
             }
             if (ft == null) {
                 ft = new FullTable();
                 fullTableList.add(ft);
-                map = new HashMap<>();
-                map.put(nt.getNodeName(), ft);
                 params.add(table);
                 Object v = UtilFuns.getRandomOfScope(1, 1000) + "";
                 nt.setValue(v);
@@ -251,8 +253,7 @@ public class JsonToData3 {
                 FullTable subFt = new FullTable();
 //                subFt.setParent(ft);
                 ft.getChildren().add(subFt);
-                map = new HashMap<>();
-                map.put(nt.getNodeName(), subFt);
+                ft = subFt;
                 params.add(table);
                 Object v = UtilFuns.getRandomOfScope(1, 1000) + "";
                 nt.setValue(v);
@@ -263,17 +264,16 @@ public class JsonToData3 {
 
         } else if (nt.getDataType() != 0) {
             //获取主键所属的value
-            FullTable subFt = map.get(nt.getParentNode().getNodeName());
             if (nt.getDataType() == 2) {
                 //子集外键
                 TemplateNode parentNode = getUp(nt, nt.getTargetTable(), nt.getForeignField());
                 table.setValue(parentNode.getValue());
-                subFt.getList().add(table);
+                ft.getList().add(table);
             } else if (nt.getDataType() == 3) {
                 //并集外键
                 Table t = params.stream().filter(item -> item.getInnerId() == nt.getForeignId()).findFirst().get();
                 table.setValue(t.getValue());
-                subFt.getList().add(table);
+                ft.getList().add(table);
             } else if (nt.getDataType() == 9) {
                 //普通节点
                 Object o = null;
@@ -283,14 +283,15 @@ public class JsonToData3 {
                     o = node.get(nt.getNodeName());
                 }
                 if (o == null) {
-                    throw new RuntimeException(String.format("当前节点%s查询不到节点%s", node.keySet(), nt.getNodeName()));
+                    throw new RuntimeException(String.format("获取节点value，当前节点%s的子节点%s中查询不到节点%s，节点父父类型是%s",
+                            nodeName, node.keySet(), nt.getFullNodeName(), nt.getParentNode().getParentNode().getNodeType()));
                 }
                 String value = o.toString();
                 if (nt.getMatchType() == 1) {
                     value = getSplit(value, nt.getSelectType(), nt.getSelectStart(), nt.getSelectEnd());
                 }
                 table.setValue(value);
-                subFt.getList().add(table);
+                ft.getList().add(table);
             }
         }
         if (CollectionUtils.isEmpty(nt.getChildren())) {
@@ -299,12 +300,15 @@ public class JsonToData3 {
         Object o = null;
         if (nt.getDataType() == 0) {
             o = node.get(nt.getNodeName());
+            nodeName += nt.getNodeName() + ".";
+            System.out.println("是什么" + nodeName);
         } else if (nt.getDataType() == 1) {
             //当前是主键，取当前节点
             o = node;
         }
-        if (o == null && nt.getDataType() != -1) {
-            throw new RuntimeException(String.format("当前节点%s查询不到节点%s", node.keySet(), nt.getNodeName()));
+        if (o == null) {
+            throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询不到节点%s，节点类型", nodeName,
+                    node.keySet(), nt.getFullNodeName(), nt.getDataType()));
         }
 
         JSONArray list = new JSONArray();
@@ -313,30 +317,30 @@ public class JsonToData3 {
         } else {
             list.addAll((Collection<? extends Object>) o);
         }
-        if (list.size() == 0) {
-            throw new RuntimeException(String.format("当前节点%s查询不到节点%s", node.keySet(), nt.getNodeName()));
-        }
         //查询节点是否是数组，不是数组，同节点不能重复出现||这里和xml转换不同
         if (list.size() > 1 && nt.getNodeType() == 0) {
-            throw new RuntimeException(String.format("当前节点%s查询节点%s，实际数据为%s条，不符合当前节点标识",
-                    node.keySet(), nt.getNodeName(), list.size()));
+            throw new RuntimeException(String.format("当前节点%s的子节点%s查询节点%s，实际数据为%s条，不符合当前节点标识，节点类型%s",
+                    nodeName, node.keySet(), nt.getFullNodeName(), list.size(), nt.getNodeType()));
         }
         for (int i = 0; i < list.size(); i++) {
             Object item = list.get(i);
             for (TemplateNode e : nt.getChildren()) {
                 if (item instanceof JSONObject) {
                     JSONObject element = (JSONObject) item;
-                    jsonToData(e, params, fullTableList, map, element);
+                    jsonToData(e, params, fullTableList, ft, element, nodeName);
                 } else {
                     JSONObject jsonObject = new JSONObject();
                     jsonObject.put(e.getNodeName(), item);
-                    jsonToData(e, params, fullTableList, map, jsonObject);
+                    jsonToData(e, params, fullTableList, ft, jsonObject, nodeName);
                 }
             }
+//            String makeup = nodeName;
+////                nodeName += item.getNodeName() + ".";
+//            nodeName = makeup;
         }
     }
 
-    public static List<TemplateNode> getNT(List<TemplateNode> sources, Integer innerId) {
+    public static List<TemplateNode> getNT(List<TemplateNode> sources, Integer innerId, String nodeName) {
         Set<String> nodeSet = new HashSet<>();
         Set<String> tableSet = new HashSet<>();
         Set<String> targetNameSet = new HashSet<>();
@@ -351,7 +355,21 @@ public class JsonToData3 {
                 item.setParentNode(templateNode);
             }
             if (b) {
-                item.setChildren(getNT(sources, item.getInnerId()));
+                String makeup = nodeName;
+                if (item.getDataType() == 1) {
+                    nodeName += "[primary:" + item.getNodeName() + "].";
+                } else {
+                    nodeName += item.getNodeName() + ".";
+                }
+                item.setChildren(getNT(sources, item.getInnerId(), nodeName));
+                item.setFullNodeName(nodeName);
+                nodeName = makeup;
+            } else {
+                if (item.getDataType() == 2 || item.getDataType() == 3) {
+                    item.setFullNodeName(nodeName + "[foreign:" + item.getNodeName() + "]");
+                } else {
+                    item.setFullNodeName(nodeName + item.getNodeName());
+                }
             }
             // 非主键参与目标字段重复判断
             if (item.getDataType() != 1 && item.getDataType() != 0) {
@@ -568,9 +586,16 @@ public class JsonToData3 {
         private Integer nodeType;
 
         /**
+         * 节点类型 0:普通，1：对象数组，2：数组
+         */
+        private String nodeTypeStr;
+
+        /**
          * 字段类型(0：字符串 1：时间 2：数字)
          */
         private Integer fieldType;
+
+        private String fieldTypeStr;
     }
 
     @Data
@@ -607,6 +632,23 @@ public class JsonToData3 {
         public Object value;
         public List<TemplateNode> children;
 
+        @Override
+        public String toString() {
+            return "TemplateNode{" +
+                    "innerId=" + innerId +
+                    ", parentId=" + parentId +
+                    ", nodeName='" + this.getNodeName() + '\'' +
+                    ", targetName='" + this.getNodeName() + '\'' +
+                    ", dataType=" + this.getDataType() +
+                    ", dataTypeStr='" + this.getDataTypeStr() + '\'' +
+                    ", foreignId=" + this.getForeignId() +
+                    ", foreignField='" + this.getForeignField() + '\'' +
+                    ", nodeType=" + this.getNodeType() +
+                    ", fieldType=" + this.getFieldType() +
+                    ", fullNodeName='" + fullNodeName + '\'' +
+                    ", value=" + value +
+                    '}';
+        }
     }
 
     @Getter
