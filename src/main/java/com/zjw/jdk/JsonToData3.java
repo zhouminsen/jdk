@@ -176,7 +176,8 @@ public class JsonToData3 {
         sources.add(new IfmPlatformTemplateDetailDTO(8, 6, "outBizCode", 9, "t2", "outBizCode", 0, 0, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(30, 6, "remark", 9, "t2", "remark", 0, 0, 0));
 
-        sources.add(new IfmPlatformTemplateDetailDTO(9, 6, "snList", 0, 0, 1));
+        // TODO: 2019-11-22 需要验证一个节点中多个主键
+        sources.add(new IfmPlatformTemplateDetailDTO(9, 6, "snList", 0, 0, 2));
         sources.add(new IfmPlatformTemplateDetailDTO(10, 9, "id", 1, "t3", "id", 0, 0, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(11, 10, "foreign_id", 2, "t3", "sub_id", "id", 0, 0, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(12, 10, "sn", 9, "t3", "sn2", 0, 0, 0));
@@ -307,8 +308,8 @@ public class JsonToData3 {
             o = node;
         }
         if (o == null) {
-            throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询不到节点%s，节点类型", nodeName,
-                    node.keySet(), nt.getFullNodeName(), nt.getDataType()));
+            throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询不到节点%s，节点类型%s，数据类型%s", nodeName,
+                    node.keySet(), nt.getFullNodeName(), nt.getNodeType(), nt.getDataType()));
         }
 
         JSONArray list = new JSONArray();
@@ -319,8 +320,8 @@ public class JsonToData3 {
         }
         //查询节点是否是数组，不是数组，同节点不能重复出现||这里和xml转换不同
         if (list.size() > 1 && nt.getNodeType() == 0) {
-            throw new RuntimeException(String.format("当前节点%s的子节点%s查询节点%s，实际数据为%s条，不符合当前节点标识，节点类型%s",
-                    nodeName, node.keySet(), nt.getFullNodeName(), list.size(), nt.getNodeType()));
+            throw new RuntimeException(String.format("当前节点%s的子节点%s查询节点%s，实际数据为%s条，不符合当前节点标识，节点类型%s，数据类型%s",
+                    nodeName, node.keySet(), nt.getFullNodeName(), list.size(), nt.getNodeType(), nt.getDataType()));
         }
         for (int i = 0; i < list.size(); i++) {
             Object item = list.get(i);
@@ -344,7 +345,8 @@ public class JsonToData3 {
         Set<String> nodeSet = new HashSet<>();
         Set<String> tableSet = new HashSet<>();
         Set<String> targetNameSet = new HashSet<>();
-        Set<Integer> arrayTypeSet = new HashSet<>();
+        Set<Integer> nodeTypeSet = new HashSet<>();
+        List<String> arrayTypeList = new ArrayList<>();
         ArrayList<TemplateNode> result = new ArrayList<>();
         List<TemplateNode> target = sources.stream().filter
                 (item -> Objects.equals(innerId, item.getParentId())).collect(Collectors.toList());
@@ -394,13 +396,23 @@ public class JsonToData3 {
                 tableSet.add(item.getTargetTable());
                 //跟主键所属表做对比
                 tableSet.add(item.getParentNode().getTargetTable());
-                arrayTypeSet.add(item.getNodeType());
-                arrayTypeSet.add(item.getParentNode().getNodeType());
+                nodeTypeSet.add(item.getNodeType());
+                nodeTypeSet.add(item.getParentNode().getNodeType());
                 if (tableSet.size() > 1) {
                     throw new RuntimeException(String.format("id：%s,平台字段：%s所属表不一致", item.getInnerId(), item.getNodeName()));
                 }
-                if (arrayTypeSet.size() > 1) {
+                if (nodeTypeSet.size() > 1) {
                     throw new RuntimeException(String.format("id：%s,平台字段：%s的节点类型不一致", item.getInnerId(), item.getNodeName()));
+                }
+                //如果是数组，数组只能有一个普通数据类型的节点，主键和外键除外
+                if (item.getParentNode().getParentNode().getNodeType() == 2) {
+                    if (item.getDataType() == 9) {
+                        arrayTypeList.add(item.getNodeName());
+                    }
+                    if (arrayTypeList.size() > 1) {
+                        throw new RuntimeException(String.format("id：%s，平台字段：%s，目标字段：%s，节点类型是%s，只能存在一个普通数据类型节点",
+                                item.getInnerId(), item.getNodeName(), item.getTargetName(), item.getParentNode().getParentNode().getNodeType()));
+                    }
                 }
             }
             result.add(item);
@@ -573,7 +585,7 @@ public class JsonToData3 {
         private String selectEnd;
 
         /**
-         * 字段类型(0：节点，1：主键，2：外键，3：外键（（非同父节点和唯一节点）并集外键），9：普通字段) (字典类型是data_type)
+         * 数据类型(0：节点，1：主键，2：外键，3：外键（（非同父节点和唯一节点）并集外键），9：普通字段) (字典类型是data_type)
          */
         private Integer dataType;
         private String dataTypeStr;
