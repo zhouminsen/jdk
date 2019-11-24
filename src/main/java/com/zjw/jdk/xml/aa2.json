@@ -1,123 +1,28 @@
 {
-  "children": [
+  "orderLinesl2": [
     {
-      "children": [
-        {
-          "dataType": 9,
-          "fieldType": 0,
-          "fullNodeName": "params.entryOrder.totalOrderLines",
-          "innerId": 3,
-          "matchType": 0,
-          "nodeName": "totalOrderLines",
-          "nodeType": 0,
-          "parentId": 1,
-          "parentNode": {
-            "$ref": "$.children[0]"
-          },
-          "targetName": "totalOrderLines2"
-        },
-        {
-          "dataType": 9,
-          "fieldType": 0,
-          "fullNodeName": "params.entryOrder.entryOrderCode",
-          "innerId": 4,
-          "matchType": 0,
-          "nodeName": "entryOrderCode",
-          "nodeType": 0,
-          "parentId": 1,
-          "parentNode": {
-            "$ref": "$.children[0]"
-          },
-          "targetName": "entryOrderCode2"
-        }
-      ],
-      "dataType": 0,
-      "fullNodeName": "params.entryOrder.",
-      "innerId": 1,
-      "matchType": 0,
-      "nodeName": "entryOrder",
-      "nodeType": 0,
-      "parentId": -1,
-      "parentNode": {
-        "$ref": "$"
-      },
-      "targetName": "entryOrder2"
+      "outBizCode2": {}
     },
     {
-      "children": [
-        {
-          "dataType": 9,
-          "fieldType": 0,
-          "fullNodeName": "params.orderLines.outBizCode",
-          "innerId": 6,
-          "matchType": 0,
-          "nodeName": "outBizCode",
-          "nodeType": 0,
-          "parentId": 5,
-          "parentNode": {
-            "$ref": "$.children[1]"
-          },
-          "targetName": "outBizCode2"
-        },
-        {
-          "dataType": 9,
-          "fieldType": 0,
-          "fullNodeName": "params.orderLines.remark",
-          "innerId": 7,
-          "matchType": 0,
-          "nodeName": "remark",
-          "nodeType": 0,
-          "parentId": 5,
-          "parentNode": {
-            "$ref": "$.children[1]"
-          },
-          "targetName": "remark2"
-        },
-        {
-          "dataType": 0,
-          "fullNodeName": "params.orderLines.snList",
-          "innerId": 8,
-          "matchType": 0,
-          "nodeName": "snList",
-          "nodeType": 2,
-          "parentId": 5,
-          "parentNode": {
-            "$ref": "$.children[1]"
-          },
-          "targetName": "snList2"
-        },
-        {
-          "dataType": 0,
-          "fullNodeName": "params.orderLines.batchs",
-          "innerId": 11,
-          "matchType": 0,
-          "nodeName": "batchs",
-          "nodeType": 1,
-          "parentId": 5,
-          "parentNode": {
-            "$ref": "$.children[1]"
-          },
-          "targetName": "batchs2"
-        }
-      ],
-      "dataType": 0,
-      "fullNodeName": "params.orderLines.",
-      "innerId": 5,
-      "matchType": 0,
-      "nodeName": "orderLines",
-      "nodeType": 1,
-      "parentId": -1,
-      "parentNode": {
-        "$ref": "$"
-      },
-      "targetName": "orderLinesl2"
+      "outBizCode2": "外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用"
+    },
+    {
+      "remark2": {}
+    },
+    {
+      "remark2": "备注, string (500)"
+    },
+    {
+      "outBizCode2": {}
+    },
+    {
+      "outBizCode2": "外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用"
+    },
+    {
+      "remark2": {}
+    },
+    {
+      "remark2": "备注, string (500)"
     }
-  ],
-  "dataType": 0,
-  "fullNodeName": "params.",
-  "innerId": -1,
-  "matchType": 0,
-  "nodeName": "params",
-  "nodeType": 0,
-  "parentId": -2
+  ]
 }

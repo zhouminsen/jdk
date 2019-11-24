@@ -22,8 +22,7 @@ import java.util.stream.Collectors;
  * 加入matchtype
  * Created by Administrator on 2019-10-12.
  */
-public class JsonToApi {
-
+public class JsonToApi2 {
 
     private List<TemplateNode> getTemplateNodes(List<IfmPlatformTemplateDetailDTO> sources) {
         List<TemplateNode> sources2 = new ArrayList<>();
@@ -143,12 +142,12 @@ public class JsonToApi {
         sources.add(new IfmPlatformTemplateDetailDTO(6, 5, "outBizCode", "outBizCode2", 0, 0, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(7, 5, "remark", "remark2", 0, 0, 0));
 
-        sources.add(new IfmPlatformTemplateDetailDTO(8, 5, "snList", "snList2", 0, 2));
-
-        sources.add(new IfmPlatformTemplateDetailDTO(11, 5, "batchs", "batchs2", 0, 1));
-        sources.add(new IfmPlatformTemplateDetailDTO(16, 14, "batchCode", "batchCode2", 0, 1, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(101, 14, "productDate", "productDate_text2", 1, 0, "0", "2", 1, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(102, 14, "productDate", "productDate_text22", 1, 0, "2", "4", 1, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(8, 5, "snList", "snList2", 0, 2));
+//
+//        sources.add(new IfmPlatformTemplateDetailDTO(11, 5, "batchs", "batchs2", 0, 1));
+//        sources.add(new IfmPlatformTemplateDetailDTO(16, 14, "batchCode", "batchCode2", 0, 1, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(101, 14, "productDate", "productDate_text2", 1, 0, "0", "2", 1, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(102, 14, "productDate", "productDate_text22", 1, 0, "2", "4", 1, 0));
 
 //        sources.add(new IfmPlatformTemplateDetailDTO(18, 1, "id", 1, "t5", "id", 0, 0, 0));
 //        sources.add(new IfmPlatformTemplateDetailDTO(19, 18, "confirmType", 9, "t5", "confirmType", 0, 0, 0));
@@ -193,6 +192,32 @@ public class JsonToApi {
 
     private void jsonToData(TemplateNode nt, List<FullTable> fullTableList, FullTable ft, JSONObject node, String nodeName) {
         Object o = node.get(nt.getNodeName());
+        if (o == null) {
+            throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询不到节点%s，节点类型%s", nodeName,
+                    node.keySet(), nt.getFullNodeName(), nt.getNodeType()));
+        }
+        if (StringUtils.isNotEmpty(nt.getTargetName())) {
+            if (ft == null) {
+                ft = new FullTable();
+                BeanUtils.copyProperties(nt, ft);
+                fullTableList.add(ft);
+                ft.setNodeName(nt.getNodeName());
+                ft.setTargetName(nt.getTargetName());
+            } else {
+                FullTable childFt = new FullTable();
+                BeanUtils.copyProperties(nt, childFt);
+                ft.getChildren2().add(childFt);
+                ft = childFt;
+                childFt.setNodeName(nt.getNodeName());
+                childFt.setTargetName(nt.getTargetName());
+            }
+        }
+
+        if (CollectionUtils.isEmpty(nt.getChildren())) {
+            ft.setValue(o);
+            return;
+        }
+
         JSONArray list = new JSONArray();
         if (o instanceof JSONObject) {
             list.add(o);
@@ -201,74 +226,50 @@ public class JsonToApi {
         }
         for (int i = 0; i < list.size(); i++) {
             Object item = list.get(i);
+            validate(nt, node, nodeName, o);
+
             for (TemplateNode e : nt.getChildren()) {
                 if (item instanceof JSONObject) {
                     JSONObject element = (JSONObject) item;
-                    //普通
-                    if (nt.getNodeType() == 0) {
-                        if (!(o instanceof JSONObject)) {
-                            throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询不到节点%s，节点类型%s", nodeName,
-                                    node.keySet(), nt.getFullNodeName(), nt.getNodeType()));
-                        }
-                    } else if (nt.getNodeType() == 1) {
-                        //对象数组
-                        if (!(o instanceof JSONArray)) {
-                            throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询不到节点%s，节点类型%s", nodeName,
-                                    node.keySet(), nt.getFullNodeName(), nt.getNodeType()));
-                        }
-                        JSONArray jsonArray = (JSONArray) o;
-                        for (Object sub : jsonArray) {
-                            if (!(sub instanceof JSONArray || sub instanceof JSONObject)) {
-                                throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询不到节点%s，节点类型%s", nodeName,
-                                        node.keySet(), nt.getFullNodeName(), nt.getNodeType()));
-                            }
-                        }
-                    } else {
-                        //数组
-                        if (!(o instanceof JSONArray || o instanceof JSONObject)) {
-                            throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询不到节点%s，节点类型%s", nodeName,
-                                    node.keySet(), nt.getFullNodeName(), nt.getNodeType()));
-                        }
-                    }
-                    if (StringUtils.isNotEmpty(nt.getTargetName())) {
-                        if (ft == null) {
-                            ft = new FullTable();
-                            BeanUtils.copyProperties(nt, ft);
-                            fullTableList.add(ft);
-                            ft.setNodeName(nt.getNodeName());
-                            ft.setTargetName(nt.getTargetName());
-                            //如果没有子节点，说明该节点是最终节点
-                            if (CollectionUtils.isEmpty(nt.getChildren())) {
-                                ft.setValue(o);
-                            } else {
-                                for (TemplateNode sub : nt.getChildren()) {
-                                    jsonToData(sub, fullTableList, ft, element, nodeName);
-                                }
-                            }
-
-                        } else {
-                            FullTable childFt = new FullTable();
-                            BeanUtils.copyProperties(nt, childFt);
-                            ft.getChildren().add(childFt);
-                            childFt.setNodeName(nt.getNodeName());
-                            childFt.setTargetName(nt.getTargetName());
-                            //如果没有子节点，说明该节点是最终节点
-                            if (CollectionUtils.isEmpty(nt.getChildren())) {
-                                childFt.setValue(o);
-                            } else {
-                                for (TemplateNode sub : nt.getChildren()) {
-                                    jsonToData(sub, fullTableList, childFt, element, nodeName);
-                                }
-                            }
-                        }
-                        return;
-                    }
                     jsonToData(e, fullTableList, ft, element, nodeName);
+                } else {
+                    JSONObject jsonObject = new JSONObject();
+                    jsonObject.put(e.getNodeName(), item);
+                    jsonToData(e, fullTableList, ft, jsonObject, nodeName);
                 }
             }
 //            String makeup = nodeName;
 ////                nodeName += item.getNodeName() + ".";
 //            nodeName = makeup;
+        }
+    }
+
+    private void validate(TemplateNode nt, JSONObject node, String nodeName, Object o) {
+        //普通
+        if (nt.getNodeType() == 0) {
+            if (!(o instanceof JSONObject)) {
+                throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询不到节点%s，节点类型%s", nodeName,
+                        node.keySet(), nt.getFullNodeName(), nt.getNodeType()));
+            }
+        } else if (nt.getNodeType() == 1) {
+            //对象数组
+            if (!(o instanceof JSONArray)) {
+                throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询不到节点%s，节点类型%s", nodeName,
+                        node.keySet(), nt.getFullNodeName(), nt.getNodeType()));
+            }
+            JSONArray jsonArray = (JSONArray) o;
+            for (Object item : jsonArray) {
+                if (!(item instanceof JSONArray || item instanceof JSONObject)) {
+                    throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询不到节点%s，节点类型%s", nodeName,
+                            node.keySet(), nt.getFullNodeName(), nt.getNodeType()));
+                }
+            }
+        } else {
+            //数组
+            if (!(o instanceof JSONArray || o instanceof JSONObject)) {
+                throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询不到节点%s，节点类型%s", nodeName,
+                        node.keySet(), nt.getFullNodeName(), nt.getNodeType()));
+            }
         }
     }
 
@@ -525,7 +526,7 @@ public class JsonToApi {
          */
         private String parentParameterName;
 
-        List<FullTable> children = new ArrayList<>();
+        List<FullTable> children2 = new ArrayList<>();
 
         /**
          * 传递参数
