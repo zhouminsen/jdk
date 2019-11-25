@@ -251,7 +251,7 @@ public class JsonToApi {
         sources.add(new IfmPlatformTemplateDetailDTO(303, 300, "ownerCode2", "ownerCode", 0, 0, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(304, 300, "haha", "", 0, 0, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(305, 304, "haha1", "haha1", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(306, 304, "haha2", "haha2", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(306, 304, "haha2", "", 0, 0, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(307, 304, "haha3", "haha3", 0, 0, 0));
 
 
@@ -260,7 +260,7 @@ public class JsonToApi {
         sources.add(new IfmPlatformTemplateDetailDTO(7, 5, "remark", "remark2", 0, 0, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(400, 5, "itemId", "itemId2", 0, 0, 0));
 
-        sources.add(new IfmPlatformTemplateDetailDTO(8, 5, "snList", "snList2", 0, 2));
+        sources.add(new IfmPlatformTemplateDetailDTO(8, 5, "snList", "snList", 0, 2));
 
         sources.add(new IfmPlatformTemplateDetailDTO(14, 5, "batchs", "batchs2", 0, 1));
         sources.add(new IfmPlatformTemplateDetailDTO(16, 14, "batchCode", "batchCode", 0, 0, 0));
@@ -283,7 +283,7 @@ public class JsonToApi {
         sources.add(new IfmPlatformTemplateDetailDTO(213, 211, "zjw12", "zjw12", 0, 0, 0));
 
         List<TemplateNode> sources2 = getTemplateNodes(sources);
-        List<TemplateNode> templateNodes = getNT(sources2, IfmApiParamsEnums.root_node.parentId, "");
+        List<TemplateNode> templateNodes = getNT(sources2, IfmApiParamsEnums.root_node.parentId, "", sources2.get(0).getNodeType());
         TemplateNode templateNode = templateNodes.get(0);
         System.out.println(JSON.toJSONString(templateNode));
         JSONArray jsonArray = new JSONArray();
@@ -465,7 +465,7 @@ public class JsonToApi {
      * @param nodeName
      * @return
      */
-    public static List<TemplateNode> getNT(List<TemplateNode> sources, Integer parentId, String nodeName) {
+    public static List<TemplateNode> getNT(List<TemplateNode> sources, Integer parentId, String nodeName, int nodeType) {
         List<TemplateNode> result = new ArrayList<>();
         List<TemplateNode> target = sources.stream().filter
                 (item -> Objects.equals(parentId, item.getParentId())).collect(Collectors.toList());
@@ -473,32 +473,13 @@ public class JsonToApi {
             boolean b = sources.stream().anyMatch(e -> Objects.equals(item.getInnerId(), e.getParentId()));
             if (parentId != IfmApiParamsEnums.root_node.parentId) {
                 TemplateNode templateNode = sources.stream().filter(e -> Objects.equals(item.getParentId(), e.getInnerId())).findFirst().get();
-                //非根节点
-                if (parentId != IfmApiParamsEnums.root_node.innerId) {
-                    if (StringUtils.isEmpty(item.getTargetName())) {
-                        throw new RuntimeException(String.format("子节点%s的目标字段不为能空",
-                                templateNode.getFullNodeName() + item.getNodeName()));
-                    }
-                } else {
-                    //根节点
-                    if (StringUtils.isEmpty(item.getTargetName())) {
-                        if (templateNode.getNodeType() == 1 || templateNode.getNodeType() == 2) {
-                            throw new RuntimeException(String.format("节点%s的父节点的类型是%s，目标字段不为能空",
-                                    templateNode.getFullNodeName() + item.getNodeName(), templateNode.getNodeType()));
-                        }
-                        if (item.getNodeType() == 1 || item.getNodeType() == 2) {
-                            throw new RuntimeException(String.format("根节点%s的类型是%s，目标字段不为能空",
-                                    templateNode.getFullNodeName() + item.getNodeName(), item.getNodeType()));
-                        }
-                    }
-                }
                 item.setParentNode(templateNode);
             }
             if (b) {
                 String makeup = nodeName;
                 nodeName += item.getNodeName() + ".";
                 item.setFullNodeName(nodeName);
-                item.setChildren(getNT(sources, item.getInnerId(), nodeName));
+                item.setChildren(getNT(sources, item.getInnerId(), nodeName, nodeType));
                 item.setFullNodeName(nodeName);
                 nodeName = makeup;
             } else {
@@ -506,7 +487,35 @@ public class JsonToApi {
             }
             result.add(item);
         }
+        for (TemplateNode item : result) {
+            if (StringUtils.isEmpty(item.getTargetName())) {
+                if (nodeType != 0) {
+                    throw new RuntimeException(String.format("节点%s的顶级父节点的类型是%s，目标字段不为能空",
+                            item.getFullNodeName(), item.getParentNode().getNodeType()));
+                }
+                if (item.getParentNode() != null) {
+                    // TODO: 2019-11-25   递归到顶级父类的类型
+                    TemplateNode up = findUp(item);
+                    if (up.getNodeType() == 1 || up.getNodeType() == 2) {
+                        throw new RuntimeException(String.format("节点%s的顶级父节点的类型是%s，目标字段不为能空",
+                                item.getFullNodeName(), item.getParentNode().getNodeType()));
+                    }
+                    if (item.getNodeType() == 1 || item.getNodeType() == 2) {
+                        throw new RuntimeException(String.format("当前节点%s的类型是%s，目标字段不为能空",
+                                item.getFullNodeName() + item.getNodeName(), item.getParentNode().getNodeType()));
+                    }
+                }
+            }
+        }
         return result;
+    }
+
+    static TemplateNode findUp(TemplateNode node) {
+        if (!node.getParentNode().getNodeName().equals("params")) {
+            return findUp(node.getParentNode());
+        } else {
+            return node;
+        }
     }
 
     public static String getSplit(String v, int selectType, String start, String end) {
