@@ -12,10 +12,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.util.CollectionUtils;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -23,7 +20,6 @@ import java.util.stream.Collectors;
  * Created by Administrator on 2019-10-12.
  */
 public class JsonToApi {
-
 
     private List<TemplateNode> getTemplateNodes(List<IfmPlatformTemplateDetailDTO> sources) {
         List<TemplateNode> sources2 = new ArrayList<>();
@@ -51,6 +47,25 @@ public class JsonToApi {
             "    \"operateTime\": \"操作时间, string (19) , YYYY-MM-DD HH:MM:SS，(当status=FULFILLED, operateTime为入库时间)\",\n" +
             "    \"remark\": \"备注, string (500)\"\n" +
             "  },\n" +
+            "  \"entryOrder2\": {\n" +
+            "    \"totalOrderLines2\": \"\\n            单据总行数，int，当单据需要分多个请求发送时，发送方需要将totalOrderLines填入，接收方收到后，根据实际接收到的条数和totalOrderLines进行比对，如果小于，则继续等待接收请求。如果等于，则表示该单据的所有请求发送完成。\\n        \",\n" +
+            "    \"entryOrderCode2\": \"入库单编码, string (50) , 必填\",\n" +
+            "    \"ownerCode2\": \"货主编码, string (50)\",\n" +
+            "    \"warehouseCode\": \"仓库编码, string (50)，必填\",\n" +
+            "    \"entryOrderId\": \"仓储系统入库单ID, string (50) , 条件必填\",\n" +
+            "    \"entryOrderType\": \"入库单类型 ，SCRK=生产入库，LYRK=领用入1库，CCRK=残次品入库，CGRK=采购入库, DBRK=调拨入库, QTRK=其他入库，B2BRK=B2B入库\\n        \",\n" +
+            "    \"outBizCode\": \"外部业务编码, 消息ID, 用于去重, ISV对于同一请求，分配一个唯一性的编码。用来保证因为网络等原因导致重复传输，请求不会被重复处理, ,必填\",\n" +
+            "    \"confirmType\": \"支持出入库单多次收货, int，\\n            多次收货后确认时\\n            0 表示入库单最终状态确认；\\n            1 表示入库单中间状态确认；\\n            每次入库传入的数量为增量，特殊情况，同一入库单，如果先收到0，后又收到1，允许修改收货的数量。\\n        \",\n" +
+            "    \"status\": \"入库单状态, string (50) , 必填 (NEW-未开始处理, ACCEPT-仓库接单 , PARTFULFILLED-部分收货完成, FULFILLED-收货完成, EXCEPTION-异常,\\n            CANCELED-取消, CLOSED-关闭, REJECT-拒单, CANCELEDFAIL-取消失败) , (只传英文编码)\\n        \",\n" +
+            "    \"freight\": \"快递费用 (元) , double (18, 2)\",\n" +
+            "    \"operateTime\": \"操作时间, string (19) , YYYY-MM-DD HH:MM:SS，(当status=FULFILLED, operateTime为入库时间)\",\n" +
+            "    \"remark\": \"备注, string (500)\",\n" +
+            "    \"haha\": {\n" +
+            "      \"haha1\": \"1111\",\n" +
+            "      \"haha2\": \"1111\",\n" +
+            "      \"haha3\": \"1111\"\n" +
+            "    }\n" +
+            "  },\n" +
             "  \"orderLines\": [\n" +
             "    {\n" +
             "      \"outBizCode\": \"外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用\",\n" +
@@ -70,6 +85,51 @@ public class JsonToApi {
             "      \"productDate\": \"商品生产日期，string（10）， YYYY-MM-DD\",\n" +
             "      \"expireDate\": \"商品过期日期，string（10），YYYY-MM-DD\",\n" +
             "      \"produceCode\": \"生产批号, string (50)\",\n" +
+            "      \"cc\": {\n" +
+            "        \"zjw\": {\n" +
+            "          \"zjw2\": \"周家伟\"\n" +
+            "        },\n" +
+            "        \"zjw3\": [\n" +
+            "          {\n" +
+            "            \"zjw4\": \"周家伟\",\n" +
+            "            \"zjw5\": \"dsadas\",\n" +
+            "            \"zjw6\": [\n" +
+            "              1,\n" +
+            "              2,\n" +
+            "              3,\n" +
+            "              4,\n" +
+            "              5\n" +
+            "            ],\n" +
+            "            \"zjw7\": {\n" +
+            "              \"zjw8\": \"周家伟1\",\n" +
+            "              \"zjw9\": \"周家伟2\",\n" +
+            "              \"zjw10\": {\n" +
+            "                \"zjw11\": \"周家伟3\",\n" +
+            "                \"zjw12\": \"周家伟4\"\n" +
+            "              }\n" +
+            "            }\n" +
+            "          },\n" +
+            "          {\n" +
+            "            \"zjw4\": \"周家伟\",\n" +
+            "            \"zjw5\": \"dsadas\",\n" +
+            "            \"zjw6\": [\n" +
+            "              1,\n" +
+            "              2,\n" +
+            "              3,\n" +
+            "              4,\n" +
+            "              5\n" +
+            "            ],\n" +
+            "            \"zjw7\": {\n" +
+            "              \"zjw8\": \"周家伟\",\n" +
+            "              \"zjw9\": \"周家伟\",\n" +
+            "              \"zjw10\": {\n" +
+            "                \"zjw11\": \"周家伟\",\n" +
+            "                \"zjw12\": \"周家伟\"\n" +
+            "              }\n" +
+            "            }\n" +
+            "          }\n" +
+            "        ]\n" +
+            "      },\n" +
             "      \"batchs\": [\n" +
             "        {\n" +
             "          \"batchCode\": \"批次编号，string(50)\",\n" +
@@ -108,6 +168,51 @@ public class JsonToApi {
             "      \"productDate\": \"商品生产日期，string（10）， YYYY-MM-DD\",\n" +
             "      \"expireDate\": \"商品过期日期，string（10），YYYY-MM-DD\",\n" +
             "      \"produceCode\": \"生产批号, string (50)\",\n" +
+            "      \"cc\": {\n" +
+            "        \"zjw\": {\n" +
+            "          \"zjw2\": \"周家伟\"\n" +
+            "        },\n" +
+            "        \"zjw3\": [\n" +
+            "          {\n" +
+            "            \"zjw4\": \"周家伟\",\n" +
+            "            \"zjw5\": \"dsadas\",\n" +
+            "            \"zjw6\": [\n" +
+            "              1,\n" +
+            "              2,\n" +
+            "              3,\n" +
+            "              4,\n" +
+            "              5\n" +
+            "            ],\n" +
+            "            \"zjw7\": {\n" +
+            "              \"zjw8\": \"周家伟5\",\n" +
+            "              \"zjw9\": \"周家伟6\",\n" +
+            "              \"zjw10\": {\n" +
+            "                \"zjw11\": \"周家伟7\",\n" +
+            "                \"zjw12\": \"周家伟8\"\n" +
+            "              }\n" +
+            "            }\n" +
+            "          },\n" +
+            "          {\n" +
+            "            \"zjw4\": \"周家伟\",\n" +
+            "            \"zjw5\": \"dsadas\",\n" +
+            "            \"zjw6\": [\n" +
+            "              1,\n" +
+            "              2,\n" +
+            "              3,\n" +
+            "              4,\n" +
+            "              5\n" +
+            "            ],\n" +
+            "            \"zjw7\": {\n" +
+            "              \"zjw8\": \"周家伟\",\n" +
+            "              \"zjw9\": \"周家伟\",\n" +
+            "              \"zjw10\": {\n" +
+            "                \"zjw11\": \"周家伟\",\n" +
+            "                \"zjw12\": \"周家伟\"\n" +
+            "              }\n" +
+            "            }\n" +
+            "          }\n" +
+            "        ]\n" +
+            "      },\n" +
             "      \"batchs\": [\n" +
             "        {\n" +
             "          \"batchCode\": \"批次编号，string(50)\",\n" +
@@ -135,39 +240,52 @@ public class JsonToApi {
     public void json() {
         List<IfmPlatformTemplateDetailDTO> sources = new ArrayList<>();
         sources.add(new IfmPlatformTemplateDetailDTO(-1, -2, "params", 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(1, -1, "entryOrder", "entryOrder2", 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(3, 1, "totalOrderLines", "totalOrderLines2", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(4, 1, "entryOrderCode", "entryOrderCode2", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(1, -1, "entryOrder", "", 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(3, 1, "totalOrderLines", "totalOrderLines", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(4, 1, "entryOrderCode", "entryOrderCode", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(199, 1, "ownerCode", "ownerCode", 0, 0, 0));
+//
+        sources.add(new IfmPlatformTemplateDetailDTO(300, -1, "entryOrder2", "", 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(301, 300, "totalOrderLines2", "totalOrderLines", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(302, 300, "entryOrderCode2", "entryOrderCode", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(303, 300, "ownerCode2", "ownerCode", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(304, 300, "haha", "", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(305, 304, "haha1", "haha1", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(306, 304, "haha2", "haha2", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(307, 304, "haha3", "haha3", 0, 0, 0));
 
-        sources.add(new IfmPlatformTemplateDetailDTO(5, -1, "orderLines", "orderLinesl2", 0, 1));
+
+        sources.add(new IfmPlatformTemplateDetailDTO(5, -1, "orderLines", "orderLines", 0, 1));
         sources.add(new IfmPlatformTemplateDetailDTO(6, 5, "outBizCode", "outBizCode2", 0, 0, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(7, 5, "remark", "remark2", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(400, 5, "itemId", "itemId2", 0, 0, 0));
 
         sources.add(new IfmPlatformTemplateDetailDTO(8, 5, "snList", "snList2", 0, 2));
 
-        sources.add(new IfmPlatformTemplateDetailDTO(11, 5, "batchs", "batchs2", 0, 1));
-        sources.add(new IfmPlatformTemplateDetailDTO(16, 14, "batchCode", "batchCode2", 0, 1, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(14, 5, "batchs", "batchs2", 0, 1));
+        sources.add(new IfmPlatformTemplateDetailDTO(16, 14, "batchCode", "batchCode", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(16, 14, "produceCode", "produceCode", 0, 0, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(101, 14, "productDate", "productDate_text2", 1, 0, "0", "2", 1, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(102, 14, "productDate", "productDate_text22", 1, 0, "2", "4", 1, 0));
-
-//        sources.add(new IfmPlatformTemplateDetailDTO(18, 1, "id", 1, "t5", "id", 0, 0, 0));
-//        sources.add(new IfmPlatformTemplateDetailDTO(19, 18, "confirmType", 9, "t5", "confirmType", 0, 0, 0));
-//        sources.add(new IfmPlatformTemplateDetailDTO(103, 18, "status", 9, "t5", "status", 0, 0, 0));
-
-        //并集有外键
-//        sources.add(new IfmPlatformTemplateDetailDTO(21, 13, "id", 1, "t7", "id", 0, 0, 0));
-//        sources.add(new IfmPlatformTemplateDetailDTO(22, 21, "foreign_id", 2, "t7", "order_id", "id", 0, 0, 0));
-//        sources.add(new IfmPlatformTemplateDetailDTO(104, 21, "inventoryType", 9, "t7", "confirmType", 0, 0, 0));
-
-//        并集无外键
-//        sources.add(new IfmPlatformTemplateDetailDTO(23, -1, "orderLines", 0, 0, 1));
-//        sources.add(new IfmPlatformTemplateDetailDTO(24, 23, "id", 1, "t8", "id", 0, 0, 0));
-//        sources.add(new IfmPlatformTemplateDetailDTO(25, 24, "produceCode", 9, "t8", "produceCode", 0, 0, 0));
+//
+        sources.add(new IfmPlatformTemplateDetailDTO(200, 5, "cc", "cc", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(201, 200, "zjw", "zjw", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(202, 201, "zjw2", "zjw2", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(203, 200, "zjw3", "zjw3", 0, 1, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(204, 203, "zjw4", "zjw4", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(205, 203, "zjw5", "zjw5", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(206, 203, "zjw6", "zjw6", 0, 2, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(207, 203, "zjw7", "zjw7", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(209, 207, "zjw8", "zjw8", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(210, 207, "zjw9", "zjw9", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(211, 207, "zjw10", "zjw10", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(212, 211, "zjw11", "zjw11", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(213, 211, "zjw12", "zjw12", 0, 0, 0));
 
         List<TemplateNode> sources2 = getTemplateNodes(sources);
-        List<TemplateNode> templateNodes = getNT(sources2, IfmApiParamsEnums.root_node.parentId);
+        List<TemplateNode> templateNodes = getNT(sources2, IfmApiParamsEnums.root_node.parentId, "");
         TemplateNode templateNode = templateNodes.get(0);
-//        System.out.println(JSON.toJSONString(templateNode));
+        System.out.println(JSON.toJSONString(templateNode));
         JSONArray jsonArray = new JSONArray();
         Object read = JSON.parse(jsonStr);
         if (read instanceof JSONObject) {
@@ -175,195 +293,216 @@ public class JsonToApi {
         } else {
             jsonArray.addAll((Collection<?>) read);
         }
-        cc(templateNode, jsonArray);
+//        cc(templateNode, jsonArray);
     }
 
     private void cc(TemplateNode nt, JSONArray jsonArray) {
-        List<FullTable> fullTableList = new ArrayList<>();
+        Map<String, Object> map = new LinkedHashMap<>();
         for (Object e : jsonArray) {
             JSONObject jsonObject = (JSONObject) e;
             //ifm的params下的子节点
-            for (TemplateNode item : nt.getChildren()) {
-                this.jsonToData(item, fullTableList, null, jsonObject, "");
-            }
+            this.jsonToData(nt.getChildren(), map, jsonObject, "");
 
         }
-        System.out.println(JSON.toJSONString(fullTableList, SerializerFeature.WriteMapNullValue));
+        System.out.println(JSON.toJSONString(map, SerializerFeature.WriteMapNullValue));
     }
 
-    private void jsonToData(TemplateNode nt, List<FullTable> fullTableList, FullTable ft, JSONObject node, String nodeName) {
-        Object o = node.get(nt.getNodeName());
-        JSONArray list = new JSONArray();
-        if (o instanceof JSONObject) {
-            list.add(o);
-        } else {
-            list.addAll((Collection<? extends Object>) o);
-        }
-        for (int i = 0; i < list.size(); i++) {
-            Object item = list.get(i);
-            for (TemplateNode e : nt.getChildren()) {
-                if (item instanceof JSONObject) {
-                    JSONObject element = (JSONObject) item;
-                    //普通
-                    if (nt.getNodeType() == 0) {
-                        if (!(o instanceof JSONObject)) {
-                            throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询不到节点%s，节点类型%s", nodeName,
-                                    node.keySet(), nt.getFullNodeName(), nt.getNodeType()));
-                        }
-                    } else if (nt.getNodeType() == 1) {
-                        //对象数组
-                        if (!(o instanceof JSONArray)) {
-                            throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询不到节点%s，节点类型%s", nodeName,
-                                    node.keySet(), nt.getFullNodeName(), nt.getNodeType()));
-                        }
-                        JSONArray jsonArray = (JSONArray) o;
-                        for (Object sub : jsonArray) {
-                            if (!(sub instanceof JSONArray || sub instanceof JSONObject)) {
-                                throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询不到节点%s，节点类型%s", nodeName,
-                                        node.keySet(), nt.getFullNodeName(), nt.getNodeType()));
-                            }
-                        }
-                    } else {
-                        //数组
-                        if (!(o instanceof JSONArray || o instanceof JSONObject)) {
-                            throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询不到节点%s，节点类型%s", nodeName,
-                                    node.keySet(), nt.getFullNodeName(), nt.getNodeType()));
-                        }
-                    }
-                    if (StringUtils.isNotEmpty(nt.getTargetName())) {
-                        if (ft == null) {
-                            ft = new FullTable();
-                            BeanUtils.copyProperties(nt, ft);
-                            fullTableList.add(ft);
-                            ft.setNodeName(nt.getNodeName());
-                            ft.setTargetName(nt.getTargetName());
-                            //如果没有子节点，说明该节点是最终节点
-                            if (CollectionUtils.isEmpty(nt.getChildren())) {
-                                ft.setValue(o);
-                            } else {
-                                for (TemplateNode sub : nt.getChildren()) {
-                                    jsonToData(sub, fullTableList, ft, element, nodeName);
-                                }
-                            }
 
-                        } else {
-                            FullTable childFt = new FullTable();
-                            BeanUtils.copyProperties(nt, childFt);
-                            ft.getChildren().add(childFt);
-                            childFt.setNodeName(nt.getNodeName());
-                            childFt.setTargetName(nt.getTargetName());
-                            //如果没有子节点，说明该节点是最终节点
-                            if (CollectionUtils.isEmpty(nt.getChildren())) {
-                                childFt.setValue(o);
-                            } else {
-                                for (TemplateNode sub : nt.getChildren()) {
-                                    jsonToData(sub, fullTableList, childFt, element, nodeName);
-                                }
-                            }
-                        }
-                        return;
-                    }
-                    jsonToData(e, fullTableList, ft, element, nodeName);
-                }
-            }
-//            String makeup = nodeName;
-////                nodeName += item.getNodeName() + ".";
-//            nodeName = makeup;
-        }
-    }
-
-/*
-    private void getApi3(List<TemplateNode> sources, Map<String, Object> map, JSONObject node, String nodeName) {
+    private void jsonToData(List<TemplateNode> sources, Map<String, Object> map, JSONObject node, String nodeName) {
         for (int i = 0; i < sources.size(); i++) {
             TemplateNode item = sources.get(i);
-            if (!CollectionUtils.isEmpty(item.getChildren2())) {
-                if (item.getParentNode().getNodeType() == null) {
-                    //对象
-                    if (item.getNodeType() == 0) {
-                        Map<String, Object> childMap = new HashMap<>();
-                        map.put(item.getTargetName(), childMap);
-                        getApi3(item.getChildren2(), childMap, node, nodeName);
-                        System.out.println("aaa");
-                    } else {
-                        // 对象数组
-                        List<Map<String, Object>> subMapList = new ArrayList<>();
-                        map.put(item.getTargetName(), subMapList);
-                        getApi3(item.getChildren2(), map, node, nodeName);
-                        System.out.println("aaa");
-                    }
-                } else {
-                    //对象
-                    if (item.getNodeType() == 0) {
-                        //父节点是对象
-                        if (item.getParentNode().getNodeType() == 0) {
-                            Map<String, Object> first = new HashMap<>();
-                            map.put(item.getTargetName(), first);
-                            getApi3(item.getChildren2(), first, node, nodeName);
-                        } else {
-                            List<Map<String, Object>> parentList = (List<Map<String, Object>>) map.get(item.getParentNode().getTargetName());
-                            Map<String, Object> first = new HashMap<>();
-                            parentList.add(first);
-                            Map<String, Object> second = new HashMap<>();
-                            first.put(item.getTargetName(), second);
-                            getApi3(item.getChildren2(), second, node, nodeName);
-                        }
-                        System.out.println("aaa");
-                    } else if (item.getNodeType() == 1) {
-                        //当前是对象数组
-                        if (item.getParentNode().getNodeType() == 0) {
-                            //父节点是对象
-                            List<Map<String, Object>> subMapList = new ArrayList<>();
-                            map.put(item.getTargetName(), subMapList);
-                            getApi3(item.getChildren2(), map, node, nodeName);
-                            System.out.println("aaa");
-                        } else {
-                            // 父节点是对象数组
-                            List<Map<String, Object>> firstList = (List<Map<String, Object>>) map.get(item.getParentNode().getTargetName());
-                            Map<String, Object> sub = new HashMap<>();
-                            firstList.add(sub);
-                            sub.put(item.getTargetName(), new ArrayList<>());
-                            getApi3(item.getChildren2(), sub, node, nodeName);
-                            System.out.println("aaa");
-                        }
-                    } else {
-                        //数组
-                        List<Object> subArray = new ArrayList<>();
-                        map.put(item.getTargetName(), subArray);
-                        getApi3(item.getChildren2(), map, node, nodeName);
-                        System.out.println("aaa");
+            Object o = node.get(item.getNodeName());
+            if (o == null) {
+                throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询不到节点%s，节点类型%s", nodeName,
+                        node.keySet(), item.getFullNodeName(), item.getNodeType()));
+            }
+            if (CollectionUtils.isEmpty(item.getChildren())) {
+                if (StringUtils.isEmpty(item.getTargetName())) {
+                    continue;
+                }
+                if (item.getNodeType() != 2) {
+                    if (o instanceof JSONObject || o instanceof JSONArray) {
+                        throw new RuntimeException(String.format("该节点并非最终节点", nodeName,
+                                node.keySet(), item.getFullNodeName(), item.getNodeType()));
                     }
                 }
-            } else {
-                ApiRequestParamValueDTO e = (ApiRequestParamValueDTO) item;
-                Object value = e.getValue();
-//                Object value = "1111";
-                if (item.getParentNodeType() == 2) {
-                    List<Object> list = (List<Object>) map.get(item.getParentParameterName());
-                    list.add(value);
-                } else if (item.getParentNodeType() == 1) {
-                    List<Map<String, Object>> list = (List<Map<String, Object>>) map.get(item.getParentParameterName());
-                    Map<String, Object> child = new HashMap<>();
-                    child.put(item.getParameterName(), value);
-                    list.add(child);
+                if (item.getParentNode().getNodeType() == 2) {
+                    LinkedList<Object> list = (LinkedList<Object>) map.get(item.getParentNode().getTargetName());
+                    list.add(o);
+                } else if (item.getParentNode().getNodeType() == 1) {
+                    LinkedList<Map<String, Object>> list = (LinkedList<Map<String, Object>>) map.get(item.getParentNode().getTargetName());
+                    Map<String, Object> child = list.getLast();
+                    child.put(item.getTargetName(), o);
                 } else {
-                    map.put(item.getParameterName(), value);
+                    map.put(item.getTargetName(), o);
+                }
+                continue;
+            }
+
+            JSONArray list = new JSONArray();
+            if (o instanceof JSONObject) {
+                list.add(o);
+            } else {
+                list.addAll((Collection<? extends Object>) o);
+            }
+            for (int j = 0; j < list.size(); j++) {
+                Object e = list.get(j);
+                JSONObject jsonObject = (JSONObject) e;
+                validate(item, node, nodeName, o);
+
+                if (StringUtils.isNotEmpty(item.getTargetName())) {
+                    if (item.getParentNode().getNodeName().equals("params")) {
+                        if (item.getNodeType() == 0) {
+                            Map<String, Object> childMap = new LinkedHashMap<>();
+                            map.put(item.getTargetName(), childMap);
+
+                            this.jsonToData(item.getChildren(), childMap, jsonObject, nodeName);
+                            System.out.println("aaa");
+                        } else if (item.getNodeType() == 1) {
+                            LinkedList<Map<String, Object>> subMapList = (LinkedList<Map<String, Object>>) map.get(item.getTargetName());
+                            if (CollectionUtils.isEmpty(subMapList)) {
+                                subMapList = new LinkedList<>();
+                                map.put(item.getTargetName(), subMapList);
+                            }
+                            subMapList.add(new LinkedHashMap<>());
+                            // 对象数组
+                            this.jsonToData(item.getChildren(), map, jsonObject, nodeName);
+                            System.out.println("aaa");
+                        }
+                    } else {
+                        //对象
+                        if (item.getNodeType() == 0) {
+                            //父节点是对象
+                            if (item.getParentNode().getNodeType() == 0) {
+                                //父节点是对象
+                                Map<String, Object> first = new LinkedHashMap<>();
+                                map.put(item.getTargetName(), first);
+                                this.jsonToData(item.getChildren(), first, jsonObject, nodeName);
+                            } else {
+                                LinkedList<Map<String, Object>> parentList = (LinkedList<Map<String, Object>>) map.get(item.getParentNode().getTargetName());
+                                Map<String, Object> subMap = parentList.getLast();
+                                Map<String, Object> second = new LinkedHashMap<>();
+                                subMap.put(item.getTargetName(), second);
+                                this.jsonToData(item.getChildren(), second, jsonObject, nodeName);
+                            }
+                            System.out.println("aaa");
+                        } else if (item.getNodeType() == 1) {
+                            //当前是对象数组
+                            if (item.getParentNode().getNodeType() == 0) {
+                                //父节点是对象
+                                LinkedList<Map<String, Object>> subMapList = (LinkedList<Map<String, Object>>) map.get(item.getTargetName());
+                                if (CollectionUtils.isEmpty(subMapList)) {
+                                    subMapList = new LinkedList<>();
+                                    map.put(item.getTargetName(), subMapList);
+                                }
+                                subMapList.add(new LinkedHashMap<>());
+                                this.jsonToData(item.getChildren(), map, jsonObject, nodeName);
+                                System.out.println("aaa");
+                            } else {
+                                // 父节点是对象数组
+                                LinkedList<Map<String, Object>> parentList = (LinkedList<Map<String, Object>>) map.get(item.getParentNode().getTargetName());
+                                Map<String, Object> sub = parentList.getLast();
+                                LinkedList<Map<String, Object>> subMapList = (LinkedList<Map<String, Object>>) sub.get(item.getTargetName());
+                                if (CollectionUtils.isEmpty(subMapList)) {
+                                    subMapList = new LinkedList<>();
+                                    sub.put(item.getTargetName(), subMapList);
+                                }
+                                Map<String, Object> second = new LinkedHashMap<>();
+                                subMapList.add(second);
+                                this.jsonToData(item.getChildren(), sub, jsonObject, nodeName);
+                                System.out.println("aaa");
+                            }
+                        } else {
+                            //数组
+                            List<Object> subArray = new LinkedList<>();
+                            map.put(item.getTargetName(), subArray);
+                            this.jsonToData(item.getChildren(), map, jsonObject, nodeName);
+                            System.out.println("aaa");
+                        }
+                    }
+                } else {
+                    this.jsonToData(item.getChildren(), map, jsonObject, nodeName);
                 }
             }
         }
-    }*/
 
-    public static List<TemplateNode> getNT(List<TemplateNode> sources, Integer innerId) {
-        ArrayList<TemplateNode> result = new ArrayList<>();
+    }
+
+    private void validate(TemplateNode nt, JSONObject node, String nodeName, Object o) {
+        //普通
+        if (nt.getNodeType() == 0) {
+            if (!(o instanceof JSONObject)) {
+                throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询不到节点%s，节点类型%s", nodeName,
+                        node.keySet(), nt.getFullNodeName(), nt.getNodeType()));
+            }
+        } else if (nt.getNodeType() == 1) {
+            //对象数组
+            if (!(o instanceof JSONArray)) {
+                throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询不到节点%s，节点类型%s", nodeName,
+                        node.keySet(), nt.getFullNodeName(), nt.getNodeType()));
+            }
+            JSONArray jsonArray = (JSONArray) o;
+            for (Object item : jsonArray) {
+                if (!(item instanceof JSONArray || item instanceof JSONObject)) {
+                    throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询不到节点%s，节点类型%s", nodeName,
+                            node.keySet(), nt.getFullNodeName(), nt.getNodeType()));
+                }
+            }
+        } else {
+            //数组
+            if (!(o instanceof JSONArray || o instanceof JSONObject)) {
+                throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询不到节点%s，节点类型%s", nodeName,
+                        node.keySet(), nt.getFullNodeName(), nt.getNodeType()));
+            }
+        }
+    }
+
+    /**
+     * 只有节点类型为0的根节点的目标字段可以为空行，其他的一律不为空
+     *
+     * @param sources
+     * @param parentId
+     * @param nodeName
+     * @return
+     */
+    public static List<TemplateNode> getNT(List<TemplateNode> sources, Integer parentId, String nodeName) {
+        List<TemplateNode> result = new ArrayList<>();
         List<TemplateNode> target = sources.stream().filter
-                (item -> Objects.equals(innerId, item.getParentId())).collect(Collectors.toList());
+                (item -> Objects.equals(parentId, item.getParentId())).collect(Collectors.toList());
         for (TemplateNode item : target) {
             boolean b = sources.stream().anyMatch(e -> Objects.equals(item.getInnerId(), e.getParentId()));
-            if (innerId != IfmApiParamsEnums.root_node.parentId) {
+            if (parentId != IfmApiParamsEnums.root_node.parentId) {
                 TemplateNode templateNode = sources.stream().filter(e -> Objects.equals(item.getParentId(), e.getInnerId())).findFirst().get();
+                //非根节点
+                if (parentId != IfmApiParamsEnums.root_node.innerId) {
+                    if (StringUtils.isEmpty(item.getTargetName())) {
+                        throw new RuntimeException(String.format("子节点%s的目标字段不为能空",
+                                templateNode.getFullNodeName() + item.getNodeName()));
+                    }
+                } else {
+                    //根节点
+                    if (StringUtils.isEmpty(item.getTargetName())) {
+                        if (templateNode.getNodeType() == 1 || templateNode.getNodeType() == 2) {
+                            throw new RuntimeException(String.format("节点%s的父节点的类型是%s，目标字段不为能空",
+                                    templateNode.getFullNodeName() + item.getNodeName(), templateNode.getNodeType()));
+                        }
+                        if (item.getNodeType() == 1 || item.getNodeType() == 2) {
+                            throw new RuntimeException(String.format("根节点%s的类型是%s，目标字段不为能空",
+                                    templateNode.getFullNodeName() + item.getNodeName(), item.getNodeType()));
+                        }
+                    }
+                }
                 item.setParentNode(templateNode);
             }
             if (b) {
-                item.setChildren(getNT(sources, item.getInnerId()));
+                String makeup = nodeName;
+                nodeName += item.getNodeName() + ".";
+                item.setFullNodeName(nodeName);
+                item.setChildren(getNT(sources, item.getInnerId(), nodeName));
+                item.setFullNodeName(nodeName);
+                nodeName = makeup;
+            } else {
+                item.setFullNodeName(nodeName + item.getNodeName());
             }
             result.add(item);
         }
@@ -525,7 +664,7 @@ public class JsonToApi {
          */
         private String parentParameterName;
 
-        List<FullTable> children = new ArrayList<>();
+        List<FullTable> children2 = new ArrayList<>();
 
         /**
          * 传递参数

@@ -1,3 +1,4 @@
+/*
 package com.zjw.jdk;
 
 import com.alibaba.fastjson.JSON;
@@ -15,10 +16,12 @@ import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 
+*/
 /**
  * 加入matchtype
  * Created by Administrator on 2019-10-12.
- */
+ *//*
+
 public class JsonToApi4 {
 
     private List<TemplateNode> getTemplateNodes(List<IfmPlatformTemplateDetailDTO> sources) {
@@ -66,6 +69,19 @@ public class JsonToApi4 {
             "      \"productDate\": \"商品生产日期，string（10）， YYYY-MM-DD\",\n" +
             "      \"expireDate\": \"商品过期日期，string（10），YYYY-MM-DD\",\n" +
             "      \"produceCode\": \"生产批号, string (50)\",\n" +
+            "      \"cc\": {\n" +
+            "        \"zjw\": {\n" +
+            "          \"zjw2\": \"周家伟\"\n" +
+            "        },\n" +
+            "        \"zjw3\": [\n" +
+            "          {\n" +
+            "            \"zjw4\": \"周家伟\"\n" +
+            "          },\n" +
+            "          {\n" +
+            "            \"zjw5\": \"周家伟\"\n" +
+            "          }\n" +
+            "        ]\n" +
+            "      },\n" +
             "      \"batchs\": [\n" +
             "        {\n" +
             "          \"batchCode\": \"批次编号，string(50)\",\n" +
@@ -104,6 +120,19 @@ public class JsonToApi4 {
             "      \"productDate\": \"商品生产日期，string（10）， YYYY-MM-DD\",\n" +
             "      \"expireDate\": \"商品过期日期，string（10），YYYY-MM-DD\",\n" +
             "      \"produceCode\": \"生产批号, string (50)\",\n" +
+            "      \"cc\": {\n" +
+            "        \"zjw\": {\n" +
+            "          \"zjw2\": \"周家伟\"\n" +
+            "        },\n" +
+            "        \"zjw3\": [\n" +
+            "          {\n" +
+            "            \"zjw4\": \"周家伟\"\n" +
+            "          },\n" +
+            "          {\n" +
+            "            \"zjw5\": \"周家伟\"\n" +
+            "          }\n" +
+            "        ]\n" +
+            "      },\n" +
             "      \"batchs\": [\n" +
             "        {\n" +
             "          \"batchCode\": \"批次编号，string(50)\",\n" +
@@ -136,15 +165,30 @@ public class JsonToApi4 {
 //        sources.add(new IfmPlatformTemplateDetailDTO(4, 1, "entryOrderCode", "entryOrderCode2", 0, 0, 0));
 
         sources.add(new IfmPlatformTemplateDetailDTO(5, -1, "orderLines", "orderLinesl2", 0, 1));
-        sources.add(new IfmPlatformTemplateDetailDTO(6, 5, "outBizCode", "outBizCode2", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(7, 5, "remark", "remark2", 0, 0, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(6, 5, "outBizCode", "outBizCode2", 0, 0, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(7, 5, "remark", "remark2", 0, 0, 0));
 
 //        sources.add(new IfmPlatformTemplateDetailDTO(8, 5, "snList", "snList2", 0, 2));
 //
-//        sources.add(new IfmPlatformTemplateDetailDTO(11, 5, "batchs", "batchs2", 0, 1));
-//        sources.add(new IfmPlatformTemplateDetailDTO(16, 14, "batchCode", "batchCode2", 0, 1, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(14, 5, "batchs", "batchs2", 0, 1));
+//        sources.add(new IfmPlatformTemplateDetailDTO(16, 14, "batchCode", "batchCode2", 0, 0, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(16, 14, "produceCode", "produceCode", 0, 0, 0));
 //        sources.add(new IfmPlatformTemplateDetailDTO(101, 14, "productDate", "productDate_text2", 1, 0, "0", "2", 1, 0));
 //        sources.add(new IfmPlatformTemplateDetailDTO(102, 14, "productDate", "productDate_text22", 1, 0, "2", "4", 1, 0));
+
+        sources.add(new IfmPlatformTemplateDetailDTO(200, 5, "cc", "cc", 0, 0, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(201, 200, "zjw", "zjw", 0, 0, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(202, 201, "zjw2", "zjw2", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(203, 200, "zjw3", "zjw3", 0, 1, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(204, 203, "zjw4", "zjw4", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(205, 203, "zjw5", "zjw5", 0, 0, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(206, 203, "zjw6", "zjw6", 0, 2, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(207, 203, "zjw3", "zjw3", 0, 0, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(208, 207, "zje4", "zjw4", 0, 0, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(209, 208, "zjw5", "zjw5", 0, 0, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(210, 208, "zjw6", "zjw6", 0, 0, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(211, 208, "zjw7", "zjw7", 0, 0, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(212, 208, "zjw8", "zjw8", 0, 0, 0));
 
 //        sources.add(new IfmPlatformTemplateDetailDTO(18, 1, "id", 1, "t5", "id", 0, 0, 0));
 //        sources.add(new IfmPlatformTemplateDetailDTO(19, 18, "confirmType", 9, "t5", "confirmType", 0, 0, 0));
@@ -193,90 +237,102 @@ public class JsonToApi4 {
                 throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询不到节点%s，节点类型%s", nodeName,
                         node.keySet(), item.getFullNodeName(), item.getNodeType()));
             }
-            if (StringUtils.isNotEmpty(item.getTargetName())) {
-                if (item.getParentNode().getNodeName().equals("params")) {
-                    if (item.getNodeType() == 0) {
-                        Map<String, Object> childMap = new HashMap<>();
-                        map.put(item.getTargetName(), childMap);
-                        map = childMap;
-                        System.out.println("aaa");
-                    } else if (item.getNodeType() == 1) {
-                        // 对象数组
-                        List<Map<String, Object>> subMapList = new ArrayList<>();
-                        map.put(item.getTargetName(), subMapList);
-                        System.out.println("aaa");
-                    }
-                } else {
-                    //对象
-                    if (item.getNodeType() == 0) {
-                        //父节点是对象
-                        if (item.getParentNode().getNodeType() == 0) {
-                            //父节点是对象
-                            Map<String, Object> first = new HashMap<>();
-                            map.put(item.getTargetName(), first);
-//                        first.put("parent", map);
-                            map = first;
-                        } else {
-                            List<Map<String, Object>> parentList = (List<Map<String, Object>>) map.get(item.getParentNode().getTargetName());
-                            Map<String, Object> first = new HashMap<>();
-                            parentList.add(first);
-                            Map<String, Object> second = new HashMap<>();
-                            first.put(item.getTargetName(), second);
-//                        second.put("parent", map);
-//                        map = second;
-                        }
-                        System.out.println("aaa");
-                    } else if (item.getNodeType() == 1) {
-                        //当前是对象数组
-                        if (item.getParentNode().getNodeType() == 0) {
-                            //父节点是对象
-                            List<Map<String, Object>> subMapList = new ArrayList<>();
-                            map.put(item.getTargetName(), subMapList);
-                            System.out.println("aaa");
-                        } else {
-                            // 父节点是对象数组
-                            List<Map<String, Object>> firstList = (List<Map<String, Object>>) map.get(item.getParentNode().getTargetName());
-                            Map<String, Object> sub = new HashMap<>();
-                            firstList.add(sub);
-                            sub.put(item.getTargetName(), new ArrayList<>());
-                            System.out.println("aaa");
-//                        map = sub;
-                        }
-                    } else {
-                        //数组
-                        List<Object> subArray = new ArrayList<>();
-                        map.put(item.getTargetName(), subArray);
-                        System.out.println("aaa");
-                    }
-                }
-            }
-
             if (CollectionUtils.isEmpty(item.getChildren())) {
+                if (o instanceof JSONObject || o instanceof JSONArray) {
+                    throw new RuntimeException(String.format("该节点并非最终节点", nodeName,
+                            node.keySet(), item.getFullNodeName(), item.getNodeType()));
+                }
                 if (item.getParentNode().getNodeType() == 2) {
-                    List<Object> list = (List<Object>) map.get(item.getParentNode().getTargetName());
+                    LinkedList<Object> list = (LinkedList<Object>) map.get(item.getParentNode().getTargetName());
                     list.add(o);
                 } else if (item.getParentNode().getNodeType() == 1) {
-                    List<Map<String, Object>> list = (List<Map<String, Object>>) map.get(item.getParentNode().getTargetName());
-                    Map<String, Object> child = list.get(0);
+                    LinkedList<Map<String, Object>> list = (LinkedList<Map<String, Object>>) map.get(item.getParentNode().getTargetName());
+                    Map<String, Object> child = list.getLast();
                     child.put(item.getTargetName(), o);
-//                    list.add(child);
                 } else {
                     map.put(item.getTargetName(), o);
                 }
-                return;
-            }
-
-            JSONArray list = new JSONArray();
-            if (o instanceof JSONObject) {
-                list.add(o);
             } else {
-                list.addAll((Collection<? extends Object>) o);
-            }
-            for (int j = 0; j < list.size(); j++) {
-                Object e = list.get(j);
-                JSONObject jsonObject = (JSONObject) e;
-                validate(item, node, nodeName, o);
-                this.jsonToData(item.getChildren(), map, jsonObject, nodeName);
+                JSONArray list = new JSONArray();
+                if (o instanceof JSONObject) {
+                    list.add(o);
+                } else {
+                    list.addAll((Collection<? extends Object>) o);
+                }
+                if (StringUtils.isNotEmpty(item.getTargetName())) {
+                    if (item.getParentNode().getNodeName().equals("params")) {
+                        if (item.getNodeType() == 0) {
+                            Map<String, Object> childMap = new HashMap<>();
+                            map.put(item.getTargetName(), childMap);
+                            this.jsonToData(item.getChildren(), childMap, jsonObject, nodeName);
+                            System.out.println("aaa");
+                        } else if (item.getNodeType() == 1) {
+                            LinkedList<Map<String, Object>> subMapList = (LinkedList<Map<String, Object>>) map.get(item.getTargetName());
+                            if (CollectionUtils.isEmpty(subMapList)) {
+                                subMapList = new LinkedList<>();
+                                map.put(item.getTargetName(), subMapList);
+                            }
+                            subMapList.add(new HashMap<>());
+                            // 对象数组
+                            this.jsonToData(item.getChildren(), map, jsonObject, nodeName);
+                            System.out.println("aaa");
+                        }
+                    } else {
+                        //对象
+                        if (item.getNodeType() == 0) {
+                            //父节点是对象
+                            if (item.getParentNode().getNodeType() == 0) {
+                                //父节点是对象
+                                Map<String, Object> first = new HashMap<>();
+                                map.put(item.getTargetName(), first);
+                                this.jsonToData(item.getChildren(), first, jsonObject, nodeName);
+                            } else {
+                                LinkedList<Map<String, Object>> parentList = (LinkedList<Map<String, Object>>) map.get(item.getParentNode().getTargetName());
+                                Map<String, Object> subMap = parentList.getLast();
+                                Map<String, Object> second = new HashMap<>();
+                                subMap.put(item.getTargetName(), second);
+                                this.jsonToData(item.getChildren(), second, jsonObject, nodeName);
+                            }
+                            System.out.println("aaa");
+                        } else if (item.getNodeType() == 1) {
+                            //当前是对象数组
+                            if (item.getParentNode().getNodeType() == 0) {
+                                //父节点是对象
+                                List<Map<String, Object>> subMapList = new LinkedList<>();//dasdasdasd
+                                map.put(item.getTargetName(), subMapList);
+                                subMapList.add(new HashMap<>());
+                                this.jsonToData(item.getChildren(), map, jsonObject, nodeName);
+                                System.out.println("aaa");
+                            } else {
+                                // 父节点是对象数组
+                                LinkedList<Map<String, Object>> parentList = (LinkedList<Map<String, Object>>) map.get(item.getParentNode().getTargetName());
+                                Map<String, Object> sub = parentList.getLast();
+                                LinkedList<Map<String, Object>> subMapList = (LinkedList<Map<String, Object>>) sub.get(item.getTargetName());
+                                if (CollectionUtils.isEmpty(subMapList)) {
+                                    subMapList = new LinkedList<>();
+                                    sub.put(item.getTargetName(), subMapList);
+                                }
+                                Map<String, Object> second = new HashMap<>();
+                                subMapList.add(second);
+                                this.jsonToData(item.getChildren(), sub, jsonObject, nodeName);
+                                System.out.println("aaa");
+//                        map = sub;
+                            }
+                        } else {
+                            //数组
+                            List<Object> subArray = new LinkedList<>();
+                            map.put(item.getTargetName(), subArray);
+                            this.jsonToData(item.getChildren(), map, jsonObject, nodeName);
+                            System.out.println("aaa");
+                        }
+                    }
+                } else {
+                    for (Object e : list) {
+                        JSONObject jsonObject = (JSONObject) e;
+                        this.jsonToData(item.getChildren(), map, jsonObject, nodeName);
+                    }
+                }
+
             }
         }
 
@@ -311,6 +367,7 @@ public class JsonToApi4 {
         }
     }
 
+*/
 /*
     private void getApi3(List<TemplateNode> sources, Map<String, Object> map, JSONObject node, String nodeName) {
         for (int i = 0; i < sources.size(); i++) {
@@ -389,10 +446,11 @@ public class JsonToApi4 {
                 }
             }
         }
-    }*/
+    }*//*
+
 
     public static List<TemplateNode> getNT(List<TemplateNode> sources, Integer innerId) {
-        ArrayList<TemplateNode> result = new ArrayList<>();
+        List<TemplateNode> result = new ArrayList<>();
         List<TemplateNode> target = sources.stream().filter
                 (item -> Objects.equals(innerId, item.getParentId())).collect(Collectors.toList());
         for (TemplateNode item : target) {
@@ -509,41 +567,53 @@ public class JsonToApi4 {
 
         private String remark;
 
-        /**
+        */
+/**
          * 参数匹配类型
-         */
+         *//*
+
         private Integer matchType;
 
         private String matchTypeStr;
 
-        /**
+        */
+/**
          * 选择类型
-         */
+         *//*
+
         private Integer selectType;
         private String selectTypeStr;
 
-        /**
+        */
+/**
          * 选择起始值
-         */
+         *//*
+
         private String selectStart;
 
 
         private String selectEnd;
 
 
-        /**
+        */
+/**
          * 节点类型 0:普通，1：对象数组，2：数组
-         */
+         *//*
+
         private Integer nodeType;
 
-        /**
+        */
+/**
          * 节点类型 0:普通，1：对象数组，2：数组
-         */
+         *//*
+
         private String nodeTypeStr;
 
-        /**
+        */
+/**
          * 字段类型(0：字符串 1：时间 2：数字)
-         */
+         *//*
+
         private Integer fieldType;
 
         private String fieldTypeStr;
@@ -551,24 +621,32 @@ public class JsonToApi4 {
 
     @Data
     public static class FullTable {
-        /**
+        */
+/**
          * 字段类型注释
-         */
+         *//*
+
         private String parameterColumnTypeStr;
-        /**
+        */
+/**
          * 父节点类型 0:普通，1：对象数组，2：数组 (字典类型是node_type)
-         */
+         *//*
+
         private Integer parentNodeType;
-        /**
+        */
+/**
          * 父节点名称
-         */
+         *//*
+
         private String parentParameterName;
 
         List<FullTable> children2 = new ArrayList<>();
 
-        /**
+        */
+/**
          * 传递参数
-         */
+         *//*
+
         private Object value;
 
         public String id;
@@ -609,23 +687,29 @@ public class JsonToApi4 {
     public static enum IfmApiParamsEnums {
 
 
-        /**
+        */
+/**
          * 根节点
-         */
+         *//*
+
         root_node(-1, "params", -2);
 
 
-        /**
+        */
+/**
          * api类型
-         */
+         *//*
+
         private Integer innerId;
 
         private Integer parentId;
 
 
-        /**
+        */
+/**
          *
-         */
+         *//*
+
         private String name;
 
 
@@ -636,3 +720,4 @@ public class JsonToApi4 {
         }
     }
 }
+*/
