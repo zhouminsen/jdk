@@ -1,28 +1,10 @@
 {
   "orderLinesl2": [
     {
-      "outBizCode2": {}
-    },
-    {
       "outBizCode2": "外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用"
     },
     {
-      "remark2": {}
-    },
-    {
-      "remark2": "备注, string (500)"
-    },
-    {
       "outBizCode2": {}
-    },
-    {
-      "outBizCode2": "外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用"
-    },
-    {
-      "remark2": {}
-    },
-    {
-      "remark2": "备注, string (500)"
     }
   ]
 }
