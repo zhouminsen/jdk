@@ -239,53 +239,56 @@ public class JsonToApi {
     @Test
     public void json() {
         List<IfmPlatformTemplateDetailDTO> sources = new ArrayList<>();
-        sources.add(new IfmPlatformTemplateDetailDTO(-1, -2, "params", 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(-1, -2, "params", "params", 0, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(1, -1, "entryOrder", "", 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(3, 1, "totalOrderLines", "totalOrderLines", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(4, 1, "entryOrderCode", "entryOrderCode", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(199, 1, "ownerCode", "ownerCode", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(3, 1, "totalOrderLines", "totalOrderLines", 0, 3, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(4, 1, "entryOrderCode", "entryOrderCode", 0, 3, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(199, 1, "ownerCode", "ownerCode", 0, 3, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(999, 1, "haha1", "haha1", 0, 3, 0));
 //
         sources.add(new IfmPlatformTemplateDetailDTO(300, -1, "entryOrder2", "", 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(301, 300, "totalOrderLines2", "totalOrderLines", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(302, 300, "entryOrderCode2", "entryOrderCode", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(303, 300, "ownerCode2", "ownerCode", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(304, 300, "haha", "", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(305, 304, "haha1", "haha1", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(306, 304, "haha2", "", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(307, 304, "haha3", "haha3", 0, 0, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(301, 300, "totalOrderLines2", "totalOrderLines", 0, 3, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(302, 300, "entryOrderCode2", "entryOrderCode", 0, 3, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(303, 300, "ownerCode2", "ownerCode", 0, 0, 3));
+        sources.add(new IfmPlatformTemplateDetailDTO(304, 300, "haha", "haha", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(305, 304, "haha1", "haha1", 0, 3, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(306, 304, "haha2", "haha2", 0, 3, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(307, 304, "haha3", "haha3", 0, 3, 0));
 
 
         sources.add(new IfmPlatformTemplateDetailDTO(5, -1, "orderLines", "orderLines", 0, 1));
-        sources.add(new IfmPlatformTemplateDetailDTO(6, 5, "outBizCode", "outBizCode2", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(7, 5, "remark", "remark2", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(400, 5, "itemId", "itemId2", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(6, 5, "outBizCode", "outBizCode2", 0, 3, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(7, 5, "remark", "remark2", 0, 3, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(400, 5, "itemId", "itemId2", 0, 3, 0));
 
         sources.add(new IfmPlatformTemplateDetailDTO(8, 5, "snList", "snList", 0, 2));
 
-        sources.add(new IfmPlatformTemplateDetailDTO(14, 5, "batchs", "batchs2", 0, 1));
-        sources.add(new IfmPlatformTemplateDetailDTO(16, 14, "batchCode", "batchCode", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(16, 14, "produceCode", "produceCode", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(101, 14, "productDate", "productDate_text2", 1, 0, "0", "2", 1, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(102, 14, "productDate", "productDate_text22", 1, 0, "2", "4", 1, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(14, 5, "batchs", "batchs", 0, 1));
+        sources.add(new IfmPlatformTemplateDetailDTO(16, 14, "batchCode", "batchCode", 0, 3, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(16, 14, "produceCode", "produceCode", 0, 3, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(101, 14, "productDate", "productDate_text2", 1, 0, "0", "2", 3, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(102, 14, "productDate", "productDate_text3", 1, 0, "2", "4", 3, 0));
 //
         sources.add(new IfmPlatformTemplateDetailDTO(200, 5, "cc", "cc", 0, 0, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(201, 200, "zjw", "zjw", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(202, 201, "zjw2", "zjw2", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(202, 201, "zjw2", "zjw2", 0, 3, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(203, 200, "zjw3", "zjw3", 0, 1, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(204, 203, "zjw4", "zjw4", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(205, 203, "zjw5", "zjw5", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(204, 203, "zjw4", "zjw4", 0, 3, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(205, 203, "zjw5", "zjw5", 0, 3, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(206, 203, "zjw6", "zjw6", 0, 2, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(207, 203, "zjw7", "zjw7", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(209, 207, "zjw8", "zjw8", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(210, 207, "zjw9", "zjw9", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(209, 207, "zjw8", "zjw8", 0, 3, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(210, 207, "zjw9", "zjw9", 0, 3, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(211, 207, "zjw10", "zjw10", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(212, 211, "zjw11", "zjw11", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(213, 211, "zjw12", "zjw12", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(212, 211, "zjw11", "zjw11", 0, 3, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(213, 211, "zjw12", "zjw12", 0, 3, 0));
 
         List<TemplateNode> sources2 = getTemplateNodes(sources);
-        List<TemplateNode> templateNodes = getNT(sources2, IfmApiParamsEnums.root_node.parentId, "", sources2.get(0).getNodeType());
+        List<TemplateNode> templateNodes = getNT(sources2, IfmApiParamsEnums.root_node.parentId, "", "");
+        validate(sources2);
+        validate(templateNodes.get(0));
         TemplateNode templateNode = templateNodes.get(0);
-        System.out.println(JSON.toJSONString(templateNode));
+//        System.out.println(JSON.toJSONString(templateNode));
         JSONArray jsonArray = new JSONArray();
         Object read = JSON.parse(jsonStr);
         if (read instanceof JSONObject) {
@@ -293,7 +296,65 @@ public class JsonToApi {
         } else {
             jsonArray.addAll((Collection<?>) read);
         }
-//        cc(templateNode, jsonArray);
+        cc(templateNode, jsonArray);
+    }
+
+    private void validate(List<TemplateNode> sources2) {
+        List<TemplateNode> splitList = new ArrayList<>();
+        for (Iterator<TemplateNode> iterator = sources2.iterator(); iterator.hasNext(); ) {
+            TemplateNode item = iterator.next();
+            //顶级节点的params.开头的节点不算在重复判断项，
+            if (item.getFullTargetName().equals("params.")) {
+                iterator.remove();
+                continue;
+            }
+            //拆分匹配不要
+            if (item.getMatchType() == 1) {
+                splitList.add(item);
+                iterator.remove();
+            }
+        }
+        Set<String> nodeName = new HashSet<>();
+        Set<String> targetName = new HashSet<>();
+        for (TemplateNode item : sources2) {
+            if (!nodeName.add(item.getFullNodeName())) {
+                throw new RuntimeException(String.format("节点%s重复。", item.getFullNodeName()));
+            }
+            //目标字段只有节点类型=3时才判断重复
+            if (item.getNodeType() == 3) {
+                if (!targetName.add(item.getFullTargetName())) {
+                    throw new RuntimeException(String.format("目标字段%s重复。", item.getFullTargetName()));
+                }
+            }
+        }
+        Map<String, List<TemplateNode>> collect = splitList.stream().collect(Collectors.groupingBy(item -> item.getFullNodeName()));
+        for (Map.Entry<String, List<TemplateNode>> item : collect.entrySet()) {
+            if (!nodeName.add(item.getKey())) {
+                throw new RuntimeException(String.format("节点%s重复。", item.getKey()));
+            }
+        }
+        for (TemplateNode item : splitList) {
+            //目标字段只有节点类型=3时才判断重复
+            if (item.getNodeType() == 3) {
+                if (!targetName.add(item.getFullTargetName())) {
+                    throw new RuntimeException(String.format("目标字段%s重复。", item.getFullTargetName()));
+                }
+            }
+        }
+    }
+
+    private void validate(TemplateNode templateNode) {
+        for (TemplateNode item : templateNode.getChildren()) {
+            if (StringUtils.isEmpty(item.getTargetName())) {
+                TemplateNode up = getUpByNodeType(item);
+                if (up != null) {
+                    throw new RuntimeException(String.format("当前节点%s的类型是%s，父节点%s的类型是%s" +
+                                    "目标字段不为能空。", item.getFullNodeName(), item.getNodeType(),
+                            up.getFullNodeName(), up.getNodeType()));
+                }
+            }
+            validate(item);
+        }
     }
 
     private void cc(TemplateNode nt, JSONArray jsonArray) {
@@ -465,7 +526,7 @@ public class JsonToApi {
      * @param nodeName
      * @return
      */
-    public static List<TemplateNode> getNT(List<TemplateNode> sources, Integer parentId, String nodeName, int nodeType) {
+    public static List<TemplateNode> getNT(List<TemplateNode> sources, Integer parentId, String nodeName, String targetName) {
         List<TemplateNode> result = new ArrayList<>();
         List<TemplateNode> target = sources.stream().filter
                 (item -> Objects.equals(parentId, item.getParentId())).collect(Collectors.toList());
@@ -478,43 +539,42 @@ public class JsonToApi {
             if (b) {
                 String makeup = nodeName;
                 nodeName += item.getNodeName() + ".";
+
+                String makeup2 = targetName;
+                if (StringUtils.isNotEmpty(item.getTargetName())) {
+                    targetName += item.getTargetName() + ".";
+                }
+                item.setChildren(getNT(sources, item.getInnerId(), nodeName, targetName));
                 item.setFullNodeName(nodeName);
-                item.setChildren(getNT(sources, item.getInnerId(), nodeName, nodeType));
-                item.setFullNodeName(nodeName);
+                item.setFullTargetName(targetName);
                 nodeName = makeup;
+                targetName = makeup2;
             } else {
                 item.setFullNodeName(nodeName + item.getNodeName());
+                item.setFullTargetName(targetName + item.getTargetName());
             }
             result.add(item);
-        }
-        for (TemplateNode item : result) {
-            if (StringUtils.isEmpty(item.getTargetName())) {
-                if (nodeType != 0) {
-                    throw new RuntimeException(String.format("节点%s的顶级父节点的类型是%s，目标字段不为能空",
-                            item.getFullNodeName(), item.getParentNode().getNodeType()));
-                }
-                if (item.getParentNode() != null) {
-                    // TODO: 2019-11-25   递归到顶级父类的类型
-                    TemplateNode up = findUp(item);
-                    if (up.getNodeType() == 1 || up.getNodeType() == 2) {
-                        throw new RuntimeException(String.format("节点%s的顶级父节点的类型是%s，目标字段不为能空",
-                                item.getFullNodeName(), item.getParentNode().getNodeType()));
-                    }
-                    if (item.getNodeType() == 1 || item.getNodeType() == 2) {
-                        throw new RuntimeException(String.format("当前节点%s的类型是%s，目标字段不为能空",
-                                item.getFullNodeName() + item.getNodeName(), item.getParentNode().getNodeType()));
-                    }
-                }
-            }
         }
         return result;
     }
 
-    static TemplateNode findUp(TemplateNode node) {
-        if (!node.getParentNode().getNodeName().equals("params")) {
-            return findUp(node.getParentNode());
-        } else {
+    /**
+     * 递归取上级节点,取节点类型!=0
+     *
+     * @param node
+     * @return
+     */
+    static TemplateNode getUpByNodeType(TemplateNode node) {
+        if (node.getInnerId() != IfmApiParamsEnums.root_node.getParentId()) {
+            if (node.getNodeType() == 0) {
+                if (node.getParentNode() == null) {
+                    return null;
+                }
+                return getUpByNodeType(node.getParentNode());
+            }
             return node;
+        } else {
+            return null;
         }
     }
 
@@ -641,12 +701,12 @@ public class JsonToApi {
 
 
         /**
-         * 节点类型 0:普通，1：对象数组，2：数组
+         * 节点类型 0:对象，1：对象数组，2：数组，3：最终节点
          */
         private Integer nodeType;
 
         /**
-         * 节点类型 0:普通，1：对象数组，2：数组
+         * 节点类型 0:对象，1：对象数组，2：数组，3：最终节点
          */
         private String nodeTypeStr;
 
@@ -695,9 +755,17 @@ public class JsonToApi {
         }
 
         public String fullNodeName;
+        public String fullTargetName;
         public TemplateNode parentNode;
         public Object value;
         public List<TemplateNode> children;
+
+        public List<TemplateNode> getChildren() {
+            if (children == null) {
+                children = new ArrayList<>();
+            }
+            return children;
+        }
 
         @Override
         public String toString() {

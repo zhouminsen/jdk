@@ -156,26 +156,24 @@ public class XmlToData {
         sources.add(new IfmPlatformTemplateDetailDTO(15, 14, "foreign_id", 2, "t3", "sub_id", "id", 0, 0, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(16, 14, "sn", 9, "t3", "sn2", 0, 0, 0));
 //
-//        sources.add(new IfmPlatformTemplateDetailDTO(17, 9, "batchs", 0, 0, 1));
-//        sources.add(new IfmPlatformTemplateDetailDTO(18, 17, "batch", 0, 0, 0));
-//        sources.add(new IfmPlatformTemplateDetailDTO(19, 18, "id", 1, "t4", "id", 0, 0));
-//        sources.add(new IfmPlatformTemplateDetailDTO(20, 19, "foreign_id", 2, "t4", "order_id", "id", 0, 0));
-//        sources.add(new IfmPlatformTemplateDetailDTO(21, 19, "batchCode", 9, "t4", "batchCode", 0, 0));
-////            sources.add(new IfmPlatformTemplateDetailDTO9102, 13, "productDate", 9, "t4", "batchCode2", 0));
-//        sources.add(new IfmPlatformTemplateDetailDTO(22, 19, "productDate", 9, "t4", "productDate_text", 1, 0, "0", "2", 0));
-//        sources.add(new IfmPlatformTemplateDetailDTO(23, 19, "productDate", 9, "t4", "productDate_text2", 1, 0, "2", "4", 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(17, 9, "batchs", 0, 0, 1));
+        sources.add(new IfmPlatformTemplateDetailDTO(18, 17, "batch", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(19, 18, "id", 1, "t4", "id", "id", 0, 1, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(20, 19, "foreign_id", 2, "t4", "sub_id", "id", 0, 1, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(21, 19, "batchCode", 9, "t4", "batchCode", 0, 1, 0));
+//            sources.add(new IfmPlatformTemplateDetailDTO9102, 13, "productDate", 9, "t4", "batchCode2", 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(22, 19, "productDate", 9, "t4", "productDate_text", 1, 0, "0", "2", 1, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(23, 19, "productDate", 9, "t4", "productDate_text2", 1, 0, "2", "4", 1, 0));
 //
 ////        //并集无外键
-//        sources.add(new IfmPlatformTemplateDetailDTO(24, 1, "entryOrder", 0, 0, 0));
-//        sources.add(new IfmPlatformTemplateDetailDTO(25, 24, "id", 1, "t5", "id", 0, 0));
-//        sources.add(new IfmPlatformTemplateDetailDTO(26, 25, "confirmType", 9, "t5", "confirmType", 0, 0));
-//        sources.add(new IfmPlatformTemplateDetailDTO(27, 25, "status", 9, "t5", "status", 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(25, 2, "id", 1, "t5", "id", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(26, 25, "confirmType", 9, "t5", "confirmType", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(27, 25, "status", 9, "t5", "status", 0, 0, 0));
 ////
 //        //并集有外键
-//        sources.add(new IfmPlatformTemplateDetailDTO(28, 17, "batch", 0, 0, 1));
-//        sources.add(new IfmPlatformTemplateDetailDTO(29, 28, "id", 1, "t7", "id", 0, 0));
-//        sources.add(new IfmPlatformTemplateDetailDTO(30, 29, "foreign_id", 2, "t7", "order_id", "id", 0, 0));
-//        sources.add(new IfmPlatformTemplateDetailDTO(31, 29, "inventoryType", 9, "t7", "confirmType", 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(29, 18, "id", 1, "t7", "id", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(30, 29, "foreign_id", 2, "t7", "order_id", "id", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(31, 29, "inventoryType", 9, "t7", "confirmType", 0, 0, 0));
 ////
 ////        并集无外键
 //        sources.add(new IfmPlatformTemplateDetailDTO(32, 7, "orderLine", 0, 0, 1));
@@ -189,10 +187,20 @@ public class XmlToData {
 //        System.out.println(JSON.toJSONString(templateNode, SerializerFeature.WriteMapNullValue));
         org.dom4j.Document read = DocumentHelper.parseText(xmlStr);
         Element rootElement = read.getRootElement();
-        List<Table> params = new ArrayList<>();
         FullTable fullTable = new FullTable();
-        xmlToData(templateNode, params, fullTable, rootElement);
+        cc(templateNode, rootElement);
         System.out.println(JSON.toJSONString(fullTable));
+    }
+
+    private void cc(TemplateNode nt, Element rootElement) {
+        Node root = rootElement;
+        List<Table> params = new ArrayList<>();
+        Set<FullTable> fullTableList = new HashSet<>();
+        //ifm的params下的子节点
+        for (TemplateNode item : nt.getChildren()) {
+            this.xmlToData(item, params, fullTableList, null, root);
+        }
+        System.out.println(JSON.toJSONString(fullTableList));
     }
 
     private List<TemplateNode> getTemplateNodes(List<IfmPlatformTemplateDetailDTO> sources) {
@@ -239,71 +247,54 @@ public class XmlToData {
         return sources2;
     }
 
-    private void xmlToData(TemplateNode nt, List<Table> params, FullTable fullTable, Node node) {
+    private void xmlToData(TemplateNode nt, List<Table> params, Set<FullTable> fullTableList, FullTable ft, Node node) {
         Table table = new Table();
         BeanUtils.copyProperties(nt, table);
         //主键
         if (nt.getDataType() == 1) {
-            params.add(table);
-            Object v = UtilFuns.getRandomOfScope(1, 1000) + "";
-            nt.setValue(v);
-            table.setValue(v);
-            //初始化或者并集节点
-            if (fullTable.getTableName() == null) {
-                fullTable.setTableName(nt.getTargetTable());
-                fullTable.getList().add(table);
+            //如果是父父对象是空，说明他是根节点
+            if (nt.getParentNode().getParentNode() == null) {
+                ft = null;
+            }
+            if (ft == null) {
+                ft = new FullTable();
+                fullTableList.add(ft);
+                params.add(table);
+                Object v = UtilFuns.getRandomOfScope(1, 1000) + "";
+                nt.setValue(v);
+                table.setValue(v);
+                ft.setTableName(nt.getTargetTable());
+                ft.getList().add(table);
             } else {
-                //子集节点
-                FullTable full = new FullTable();
-                full.setTableName(table.getTargetTable());
-                full.getList().add(table);
-                full.setParent(fullTable);
-                fullTable.getChildren().add(full);
-                fullTable = full;
-//                xmlToData(templateNode, params, full, node);
-//                return;
+                FullTable subFt = new FullTable();
+//                subFt.setParent(ft);
+                ft.getChildren().add(subFt);
+                ft = subFt;
+                params.add(table);
+                Object v = UtilFuns.getRandomOfScope(1, 1000) + "";
+                nt.setValue(v);
+                table.setValue(v);
+                subFt.setTableName(nt.getTargetTable());
+                subFt.getList().add(table);
             }
-        } else if (nt.getDataType() == 2) {
-            //子集外键
-            TemplateNode parentNode = getUp(nt, nt.getTargetTable(), nt.getForeignField());
-            table.setValue(parentNode.getValue());
-            fullTable.getList().add(table);
-        } else if (nt.getDataType() == 3) {
-            //并集外键
-            Table t = params.stream().filter(item -> item.getInnerId() == nt.getForeignId()).findFirst().get();
-            table.setValue(t.getValue());
-            fullTable.getList().add(table);
-        } else if (nt.getDataType() == 9) {
-            //普通节点
-            List list = node.selectNodes(nt.getNodeName());
-            if (list.size() == 0) {
-                throw new RuntimeException(String.format("当前节点%s查询不到节点%s", node.getPath(), nt.getNodeName()));
-            }
-            if (nt.getParentNode().getParentNode().getNodeType() == 2) {
-                List<FullTable> fullTableList = new ArrayList<>();
-                for (Object item : list) {
-                    Element element = (Element) item;
-                    FullTable fullTable2 = new FullTable();
-                    fullTable2.setParent(fullTable.getParent());
-                    fullTable2.setTableName(fullTable.getTableName());
-                    fullTableList.add(fullTable2);
-                    for (Table sub : fullTable.getList()) {
-                        Table t = new Table();
-                        BeanUtils.copyProperties(sub, t);
-//                        t.setId(UtilFuns.getRandomOfScope(1, 1000) + "");
-                        fullTable2.getList().add(t);
-                    }
-                    Table t = new Table();
-                    BeanUtils.copyProperties(nt, t);
-                    String value = element.getText();
-                    if (nt.getMatchType() == 1) {
-                        value = getSplit(value, nt.getSelectType(), nt.getSelectStart(), nt.getSelectEnd());
-                    }
-                    t.setValue(value);
-                    fullTable2.getList().add(t);
+
+        } else if (nt.getDataType() != 0) {
+            if (nt.getDataType() == 2) {
+                //子集外键
+                TemplateNode parentNode = getUp(nt, nt.getTargetTable(), nt.getForeignField());
+                table.setValue(parentNode.getValue());
+                ft.getList().add(table);
+            } else if (nt.getDataType() == 3) {
+                //并集外键
+                Table t = params.stream().filter(item -> item.getInnerId() == nt.getForeignId()).findFirst().get();
+                table.setValue(t.getValue());
+                ft.getList().add(table);
+            } else if (nt.getDataType() == 9) {
+                /*//普通节点
+                List list = node.selectNodes(nt.getNodeName());
+                if (list.size() == 0) {
+                    throw new RuntimeException(String.format("当前节点%s查询不到节点%s", node.getPath(), nt.getNodeName()));
                 }
-                fullTable.getParent().setChildren(fullTableList);
-            } else {
                 if (list.size() > 1) {
                     throw new RuntimeException(String.format("当前节点%s查询节点%s，实际数据为%s条，不符合当前节点标识",
                             node.getPath(), nt.getNodeName(), list.size()));
@@ -313,20 +304,37 @@ public class XmlToData {
                     value = getSplit(value, nt.getSelectType(), nt.getSelectStart(), nt.getSelectEnd());
                 }
                 table.setValue(value);
-                fullTable.getList().add(table);
+                subFt.getList().add(table);*/
+                //普通节点
+                Object o = null;
+                if (nt.getParentNode().getParentNode().getNodeType() == 2) {
+                    o = node.getText();
+                } else {
+                    List list = node.selectNodes(nt.getNodeName());
+                    if (list.size() == 0) {
+                        throw new RuntimeException(String.format("当前节点%s查询不到节点%s", node.getPath(), nt.getNodeName()));
+                    }
+                    if (list.size() > 1) {
+                        throw new RuntimeException(String.format("当前节点%s查询节点%s，实际数据为%s条，不符合当前节点标识",
+                                node.getPath(), nt.getNodeName(), list.size()));
+                    }
+                    o = ((Node) list.get(0)).getText();
+                }
+                if (o == null) {
+                    throw new RuntimeException(String.format("当前节点%s查询不到节点%s", node.getPath(), nt.getNodeName()));
+                }
+                String value = o.toString();
+                if (nt.getMatchType() == 1) {
+                    value = getSplit(value, nt.getSelectType(), nt.getSelectStart(), nt.getSelectEnd());
+                }
+                table.setValue(value);
+                ft.getList().add(table);
             }
         }
         if (CollectionUtils.isEmpty(nt.getChildren())) {
             return;
         }
 
-        //ifm的根节点
-        if (nt.getInnerId() == IfmApiParamsEnums.root_node.getInnerId()) {
-            for (TemplateNode item : nt.getChildren()) {
-                xmlToData(item, params, fullTable, node);
-            }
-            return;
-        }
         List list = new ArrayList();
         //节点的根节点
         if (nt.getParentId() == IfmApiParamsEnums.root_node.getInnerId()) {
@@ -341,7 +349,7 @@ public class XmlToData {
         if (list.size() == 0) {
             throw new RuntimeException(String.format("当前节点%s查询不到节点%s", node.getPath(), nt.getNodeName()));
         }
-        //查询父节点是否是数组，不是数组，同节点不能重复出现
+        //查询父节点是否是数组，不是数组，同节点不能重复出现||这里和json转换不同
         if (list.size() > 1 && nt.getParentNode().getNodeType() == 0) {
             throw new RuntimeException(String.format("当前节点%s查询节点%s，实际数据为%s条，不符合当前节点标识",
                     node.getPath(), nt.getNodeName(), list.size()));
@@ -350,7 +358,17 @@ public class XmlToData {
             Object item = list.get(i);
             for (TemplateNode e : nt.getChildren()) {
                 Node element = (Element) item;
-                xmlToData(e, params, fullTable, element);
+                if (e.getNodeType() != 2) {
+                    xmlToData(e, params, fullTableList, ft, element);
+                } else {
+                    element = element.selectSingleNode(e.getNodeName());
+                    List elements = ((Element) element).elements();
+                    for (Object sub : elements) {
+                        for (TemplateNode cc : e.getChildren()) {
+                            xmlToData(cc, params, fullTableList, ft, (Node) sub);
+                        }
+                    }
+                }
             }
         }
     }
