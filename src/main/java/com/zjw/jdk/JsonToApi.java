@@ -82,170 +82,174 @@ public class JsonToApi {
             "  },\n" +
             "  \"orderLines\": [\n" +
             "    {\n" +
-            "      \"outBizCode\": \"外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用\",\n" +
-            "      \"orderLineNo\": \"单据行号，string（50）\",\n" +
-            "      \"ownerCode\": \"货主编码, string (50)\",\n" +
-            "      \"itemCode\": \"商品编码, string (50) , 必填\",\n" +
-            "      \"itemId\": \"仓储系统商品ID, string (50) , 条件必填\",\n" +
-            "      \"snList\": [\n" +
-            "        \"商品序列号, string(40)\",\n" +
-            "        \"商品序列号, string(50)\"\n" +
-            "      ],\n" +
-            "      \"itemName\": \"商品名称, string (200)\",\n" +
-            "      \"inventoryType\": \"库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\",\n" +
-            "      \"planQty\": \"应收数量, int\",\n" +
-            "      \"actualQty\": \"实收数量, int，必填\",\n" +
-            "      \"batchCode\": \"批次编码, string (50)\",\n" +
-            "      \"productDate\": \"商品生产日期，string（10）， YYYY-MM-DD\",\n" +
-            "      \"expireDate\": \"商品过期日期，string（10），YYYY-MM-DD\",\n" +
-            "      \"produceCode\": \"生产批号, string (50)\",\n" +
-            "      \"cc\": {\n" +
-            "        \"zjw\": {\n" +
-            "          \"zjw2\": \"周家伟\"\n" +
-            "        },\n" +
-            "        \"zjw3\": [\n" +
-            "          {\n" +
-            "            \"zjw4\": \"周家伟\",\n" +
-            "            \"zjw5\": \"dsadas\",\n" +
-            "            \"zjw6\": [\n" +
-            "              1,\n" +
-            "              2,\n" +
-            "              3,\n" +
-            "              4,\n" +
-            "              5\n" +
-            "            ],\n" +
-            "            \"zjw7\": {\n" +
-            "              \"zjw8\": \"周家伟1\",\n" +
-            "              \"zjw9\": \"周家伟2\",\n" +
-            "              \"zjw10\": {\n" +
-            "                \"zjw11\": \"周家伟3\",\n" +
-            "                \"zjw12\": \"周家伟4\"\n" +
+            "      \"orderLine\": {\n" +
+            "        \"outBizCode\": \"外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用\",\n" +
+            "        \"orderLineNo\": \"单据行号，string（50）\",\n" +
+            "        \"ownerCode\": \"货主编码, string (50)\",\n" +
+            "        \"itemCode\": \"商品编码, string (50) , 必填\",\n" +
+            "        \"itemId\": \"仓储系统商品ID, string (50) , 条件必填\",\n" +
+            "        \"snList\": [\n" +
+            "          \"商品序列号, string(40)\",\n" +
+            "          \"商品序列号, string(50)\"\n" +
+            "        ],\n" +
+            "        \"itemName\": \"商品名称, string (200)\",\n" +
+            "        \"inventoryType\": \"库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\",\n" +
+            "        \"planQty\": \"应收数量, int\",\n" +
+            "        \"actualQty\": \"实收数量, int，必填\",\n" +
+            "        \"batchCode\": \"批次编码, string (50)\",\n" +
+            "        \"productDate\": \"商品生产日期，string（10）， YYYY-MM-DD\",\n" +
+            "        \"expireDate\": \"商品过期日期，string（10），YYYY-MM-DD\",\n" +
+            "        \"produceCode\": \"生产批号, string (50)\",\n" +
+            "        \"cc\": {\n" +
+            "          \"zjw\": {\n" +
+            "            \"zjw2\": \"周家伟\"\n" +
+            "          },\n" +
+            "          \"zjw3\": [\n" +
+            "            {\n" +
+            "              \"zjw4\": \"周家伟\",\n" +
+            "              \"zjw5\": \"dsadas\",\n" +
+            "              \"zjw6\": [\n" +
+            "                1,\n" +
+            "                2,\n" +
+            "                3,\n" +
+            "                4,\n" +
+            "                5\n" +
+            "              ],\n" +
+            "              \"zjw7\": {\n" +
+            "                \"zjw8\": \"周家伟1\",\n" +
+            "                \"zjw9\": \"周家伟2\",\n" +
+            "                \"zjw10\": {\n" +
+            "                  \"zjw11\": \"周家伟3\",\n" +
+            "                  \"zjw12\": \"周家伟4\"\n" +
+            "                }\n" +
+            "              }\n" +
+            "            },\n" +
+            "            {\n" +
+            "              \"zjw4\": \"周家伟\",\n" +
+            "              \"zjw5\": \"dsadas\",\n" +
+            "              \"zjw6\": [\n" +
+            "                1,\n" +
+            "                2,\n" +
+            "                3,\n" +
+            "                4,\n" +
+            "                5\n" +
+            "              ],\n" +
+            "              \"zjw7\": {\n" +
+            "                \"zjw8\": \"周家伟\",\n" +
+            "                \"zjw9\": \"周家伟\",\n" +
+            "                \"zjw10\": {\n" +
+            "                  \"zjw11\": \"周家伟\",\n" +
+            "                  \"zjw12\": \"周家伟\"\n" +
+            "                }\n" +
             "              }\n" +
             "            }\n" +
+            "          ]\n" +
+            "        },\n" +
+            "        \"batchs\": [\n" +
+            "          {\n" +
+            "            \"batchCode\": \"批次编号，string(50)\",\n" +
+            "            \"productDate\": \"生产日期，string(10)，YYYY-MM-DD\",\n" +
+            "            \"expireDate\": \"过期日期，string(10)，YYYY-MM-DD\",\n" +
+            "            \"produceCode\": \"生产批号，string(50)，\",\n" +
+            "            \"inventoryType\": \"库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\\n                    \",\n" +
+            "            \"actualQty\": \"实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量\"\n" +
             "          },\n" +
             "          {\n" +
-            "            \"zjw4\": \"周家伟\",\n" +
-            "            \"zjw5\": \"dsadas\",\n" +
-            "            \"zjw6\": [\n" +
-            "              1,\n" +
-            "              2,\n" +
-            "              3,\n" +
-            "              4,\n" +
-            "              5\n" +
-            "            ],\n" +
-            "            \"zjw7\": {\n" +
-            "              \"zjw8\": \"周家伟\",\n" +
-            "              \"zjw9\": \"周家伟\",\n" +
-            "              \"zjw10\": {\n" +
-            "                \"zjw11\": \"周家伟\",\n" +
-            "                \"zjw12\": \"周家伟\"\n" +
-            "              }\n" +
-            "            }\n" +
+            "            \"batchCode\": \"批次编号，string(50)\",\n" +
+            "            \"productDate\": \"生产日期，string(10)，YYYY-MM-DD\",\n" +
+            "            \"expireDate\": \"过期日期，string(10)，YYYY-MM-DD\",\n" +
+            "            \"produceCode\": \"生产批号，string(50)，\",\n" +
+            "            \"inventoryType\": \"库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\\n                    \",\n" +
+            "            \"actualQty\": \"实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量\"\n" +
             "          }\n" +
-            "        ]\n" +
-            "      },\n" +
-            "      \"batchs\": [\n" +
-            "        {\n" +
-            "          \"batchCode\": \"批次编号，string(50)\",\n" +
-            "          \"productDate\": \"生产日期，string(10)，YYYY-MM-DD\",\n" +
-            "          \"expireDate\": \"过期日期，string(10)，YYYY-MM-DD\",\n" +
-            "          \"produceCode\": \"生产批号，string(50)，\",\n" +
-            "          \"inventoryType\": \"库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\\n                    \",\n" +
-            "          \"actualQty\": \"实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量\"\n" +
-            "        },\n" +
-            "        {\n" +
-            "          \"batchCode\": \"批次编号，string(50)\",\n" +
-            "          \"productDate\": \"生产日期，string(10)，YYYY-MM-DD\",\n" +
-            "          \"expireDate\": \"过期日期，string(10)，YYYY-MM-DD\",\n" +
-            "          \"produceCode\": \"生产批号，string(50)，\",\n" +
-            "          \"inventoryType\": \"库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\\n                    \",\n" +
-            "          \"actualQty\": \"实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量\"\n" +
-            "        }\n" +
-            "      ],\n" +
-            "      \"remark\": \"备注, string (500)\"\n" +
+            "        ],\n" +
+            "        \"remark\": \"备注, string (500)\"\n" +
+            "      }\n" +
             "    },\n" +
             "    {\n" +
-            "      \"outBizCode\": \"外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用\",\n" +
-            "      \"orderLineNo\": \"单据行号，string（50）\",\n" +
-            "      \"ownerCode\": \"货主编码, string (50)\",\n" +
-            "      \"itemCode\": \"商品编码, string (50) , 必填\",\n" +
-            "      \"itemId\": \"仓储系统商品ID, string (50) , 条件必填\",\n" +
-            "      \"snList\": [\n" +
-            "        \"商品序列号, string(40)\",\n" +
-            "        \"商品序列号, string(50)\"\n" +
-            "      ],\n" +
-            "      \"itemName\": \"商品名称, string (200)\",\n" +
-            "      \"inventoryType\": \"库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\",\n" +
-            "      \"planQty\": \"应收数量, int\",\n" +
-            "      \"actualQty\": \"实收数量, int，必填\",\n" +
-            "      \"batchCode\": \"批次编码, string (50)\",\n" +
-            "      \"productDate\": \"商品生产日期，string（10）， YYYY-MM-DD\",\n" +
-            "      \"expireDate\": \"商品过期日期，string（10），YYYY-MM-DD\",\n" +
-            "      \"produceCode\": \"生产批号, string (50)\",\n" +
-            "      \"cc\": {\n" +
-            "        \"zjw\": {\n" +
-            "          \"zjw2\": \"周家伟\"\n" +
-            "        },\n" +
-            "        \"zjw3\": [\n" +
-            "          {\n" +
-            "            \"zjw4\": \"周家伟\",\n" +
-            "            \"zjw5\": \"dsadas\",\n" +
-            "            \"zjw6\": [\n" +
-            "              1,\n" +
-            "              2,\n" +
-            "              3,\n" +
-            "              4,\n" +
-            "              5\n" +
-            "            ],\n" +
-            "            \"zjw7\": {\n" +
-            "              \"zjw8\": \"周家伟5\",\n" +
-            "              \"zjw9\": \"周家伟6\",\n" +
-            "              \"zjw10\": {\n" +
-            "                \"zjw11\": \"周家伟7\",\n" +
-            "                \"zjw12\": \"周家伟8\"\n" +
+            "      \"orderLine\": {\n" +
+            "        \"outBizCode\": \"外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用\",\n" +
+            "        \"orderLineNo\": \"单据行号，string（50）\",\n" +
+            "        \"ownerCode\": \"货主编码, string (50)\",\n" +
+            "        \"itemCode\": \"商品编码, string (50) , 必填\",\n" +
+            "        \"itemId\": \"仓储系统商品ID, string (50) , 条件必填\",\n" +
+            "        \"snList\": [\n" +
+            "          \"商品序列号, string(40)\",\n" +
+            "          \"商品序列号, string(50)\"\n" +
+            "        ],\n" +
+            "        \"itemName\": \"商品名称, string (200)\",\n" +
+            "        \"inventoryType\": \"库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\",\n" +
+            "        \"planQty\": \"应收数量, int\",\n" +
+            "        \"actualQty\": \"实收数量, int，必填\",\n" +
+            "        \"batchCode\": \"批次编码, string (50)\",\n" +
+            "        \"productDate\": \"商品生产日期，string（10）， YYYY-MM-DD\",\n" +
+            "        \"expireDate\": \"商品过期日期，string（10），YYYY-MM-DD\",\n" +
+            "        \"produceCode\": \"生产批号, string (50)\",\n" +
+            "        \"cc\": {\n" +
+            "          \"zjw\": {\n" +
+            "            \"zjw2\": \"周家伟\"\n" +
+            "          },\n" +
+            "          \"zjw3\": [\n" +
+            "            {\n" +
+            "              \"zjw4\": \"周家伟\",\n" +
+            "              \"zjw5\": \"dsadas\",\n" +
+            "              \"zjw6\": [\n" +
+            "                1,\n" +
+            "                2,\n" +
+            "                3,\n" +
+            "                4,\n" +
+            "                5\n" +
+            "              ],\n" +
+            "              \"zjw7\": {\n" +
+            "                \"zjw8\": \"周家伟1\",\n" +
+            "                \"zjw9\": \"周家伟2\",\n" +
+            "                \"zjw10\": {\n" +
+            "                  \"zjw11\": \"周家伟3\",\n" +
+            "                  \"zjw12\": \"周家伟4\"\n" +
+            "                }\n" +
+            "              }\n" +
+            "            },\n" +
+            "            {\n" +
+            "              \"zjw4\": \"周家伟\",\n" +
+            "              \"zjw5\": \"dsadas\",\n" +
+            "              \"zjw6\": [\n" +
+            "                1,\n" +
+            "                2,\n" +
+            "                3,\n" +
+            "                4,\n" +
+            "                5\n" +
+            "              ],\n" +
+            "              \"zjw7\": {\n" +
+            "                \"zjw8\": \"周家伟\",\n" +
+            "                \"zjw9\": \"周家伟\",\n" +
+            "                \"zjw10\": {\n" +
+            "                  \"zjw11\": \"周家伟\",\n" +
+            "                  \"zjw12\": \"周家伟\"\n" +
+            "                }\n" +
             "              }\n" +
             "            }\n" +
+            "          ]\n" +
+            "        },\n" +
+            "        \"batchs\": [\n" +
+            "          {\n" +
+            "            \"batchCode\": \"批次编号，string(50)\",\n" +
+            "            \"productDate\": \"生产日期，string(10)，YYYY-MM-DD\",\n" +
+            "            \"expireDate\": \"过期日期，string(10)，YYYY-MM-DD\",\n" +
+            "            \"produceCode\": \"生产批号，string(50)，\",\n" +
+            "            \"inventoryType\": \"库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\\n                    \",\n" +
+            "            \"actualQty\": \"实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量\"\n" +
             "          },\n" +
             "          {\n" +
-            "            \"zjw4\": \"周家伟\",\n" +
-            "            \"zjw5\": \"dsadas\",\n" +
-            "            \"zjw6\": [\n" +
-            "              1,\n" +
-            "              2,\n" +
-            "              3,\n" +
-            "              4,\n" +
-            "              5\n" +
-            "            ],\n" +
-            "            \"zjw7\": {\n" +
-            "              \"zjw8\": \"周家伟\",\n" +
-            "              \"zjw9\": \"周家伟\",\n" +
-            "              \"zjw10\": {\n" +
-            "                \"zjw11\": \"周家伟\",\n" +
-            "                \"zjw12\": \"周家伟\"\n" +
-            "              }\n" +
-            "            }\n" +
+            "            \"batchCode\": \"批次编号，string(50)\",\n" +
+            "            \"productDate\": \"生产日期，string(10)，YYYY-MM-DD\",\n" +
+            "            \"expireDate\": \"过期日期，string(10)，YYYY-MM-DD\",\n" +
+            "            \"produceCode\": \"生产批号，string(50)，\",\n" +
+            "            \"inventoryType\": \"库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\\n                    \",\n" +
+            "            \"actualQty\": \"实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量\"\n" +
             "          }\n" +
-            "        ]\n" +
-            "      },\n" +
-            "      \"batchs\": [\n" +
-            "        {\n" +
-            "          \"batchCode\": \"批次编号，string(50)\",\n" +
-            "          \"productDate\": \"生产日期，string(10)，YYYY-MM-DD\",\n" +
-            "          \"expireDate\": \"过期日期，string(10)，YYYY-MM-DD\",\n" +
-            "          \"produceCode\": \"生产批号，string(50)，\",\n" +
-            "          \"inventoryType\": \"库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\\n                    \",\n" +
-            "          \"actualQty\": \"实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量\"\n" +
-            "        },\n" +
-            "        {\n" +
-            "          \"batchCode\": \"批次编号，string(50)\",\n" +
-            "          \"productDate\": \"生产日期，string(10)，YYYY-MM-DD\",\n" +
-            "          \"expireDate\": \"过期日期，string(10)，YYYY-MM-DD\",\n" +
-            "          \"produceCode\": \"生产批号，string(50)，\",\n" +
-            "          \"inventoryType\": \"库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\\n                    \",\n" +
-            "          \"actualQty\": \"实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量\"\n" +
-            "        }\n" +
-            "      ],\n" +
-            "      \"remark\": \"备注, string (500)\"\n" +
+            "        ],\n" +
+            "        \"remark\": \"备注, string (500)\"\n" +
+            "      }\n" +
             "    }\n" +
             "  ]\n" +
             "}";
@@ -258,8 +262,7 @@ public class JsonToApi {
         sources.add(new IfmPlatformTemplateDetailDTO(3, 1, "totalOrderLines", "totalOrderLines", 0, 3, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(4, 1, "entryOrderCode", "entryOrderCode", 0, 3, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(199, 1, "ownerCode", "ownerCode", 0, 3, 0));
-//        sources.add(new IfmPlatformTemplateDetailDTO(999, 1, "haha1", "haha1", 0, 3, 0));
-//
+
         sources.add(new IfmPlatformTemplateDetailDTO(300, -1, "entryOrder2", "entryOrder2", 0));
         sources.add(new IfmPlatformTemplateDetailDTO(301, 300, "totalOrderLines2", "totalOrderLines", 0, 3, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(302, 300, "entryOrderCode2", "entryOrderCode", 0, 3, 0));
@@ -270,19 +273,20 @@ public class JsonToApi {
         sources.add(new IfmPlatformTemplateDetailDTO(307, 304, "haha3", "haha3", 0, 3, 0));
 
 
-        sources.add(new IfmPlatformTemplateDetailDTO(5, -1, "orderLines", "orderLines", 1));
+        sources.add(new IfmPlatformTemplateDetailDTO(1001, -1, "orderLines", "orderLines", 1));
+        sources.add(new IfmPlatformTemplateDetailDTO(5, 1001, "orderLine", "orderLine", 0));
         sources.add(new IfmPlatformTemplateDetailDTO(6, 5, "outBizCode", "outBizCode2", 0, 3, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(7, 5, "remark", "remark2", 0, 3, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(400, 5, "itemId", "itemId2", 0, 3, 0));
-
+//
         sources.add(new IfmPlatformTemplateDetailDTO(8, 5, "snList", "snList", 0, 2, 0));
-
+//
         sources.add(new IfmPlatformTemplateDetailDTO(14, 5, "batchs", "batchs", 1));
         sources.add(new IfmPlatformTemplateDetailDTO(16, 14, "batchCode", "batchCode", 0, 3, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(16, 14, "produceCode", "produceCode", 0, 3, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(101, 14, "productDate", "productDate_text2", 1, 0, "0", "2", 3, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(102, 14, "productDate", "productDate_text3", 1, 0, "2", "4", 3, 0));
-//
+////
         sources.add(new IfmPlatformTemplateDetailDTO(200, 5, "cc", "cc", 0));
         sources.add(new IfmPlatformTemplateDetailDTO(201, 200, "zjw", "zjw", 0));
         sources.add(new IfmPlatformTemplateDetailDTO(202, 201, "zjw2", "zjw2", 0, 3, 0));
@@ -429,17 +433,14 @@ public class JsonToApi {
             Object o = node.get(item.getNodeName());
             if (o == null) {
                 throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询不到节点%s，节点类型%s", nodeName,
-                        node.keySet(), item.getFullNodeName(), item.getNodeType()));
+                        node.keySet(), item.getFullNodeName(), item.getNodeTypeStr()));
             }
             if (CollectionUtils.isEmpty(item.getChildren())) {
                 if (StringUtils.isEmpty(item.getTargetName())) {
                     continue;
                 }
-                validate(item, node, nodeName, o);
-                if (item.getParentNode().getNodeType() == 2) {
-                    LinkedList<Object> list = (LinkedList<Object>) map.get(item.getParentNode().getTargetName());
-                    list.add(o);
-                } else if (item.getParentNode().getNodeType() == 1) {
+                validate2(item, node, nodeName, o);
+                if (item.getParentNode().getNodeType() == 1) {
                     LinkedList<Map<String, Object>> list = (LinkedList<Map<String, Object>>) map.get(item.getParentNode().getTargetName());
                     Map<String, Object> child = list.getLast();
                     child.put(item.getTargetName(), o);
@@ -493,7 +494,13 @@ public class JsonToApi {
                                 LinkedList<Map<String, Object>> parentList = (LinkedList<Map<String, Object>>) map.get(item.getParentNode().getTargetName());
                                 Map<String, Object> subMap = parentList.getLast();
                                 Map<String, Object> second = new LinkedHashMap<>();
-                                subMap.put(item.getTargetName(), second);
+                                if (subMap.containsKey(item.getTargetName())) {
+                                    subMap = new LinkedHashMap<>();
+                                    parentList.add(subMap);
+                                    subMap.put(item.getTargetName(), second);
+                                } else {
+                                    subMap.put(item.getTargetName(), second);
+                                }
                                 this.jsonToData(item.getChildren(), second, jsonObject, nodeName);
                             }
                             System.out.println("aaa");
@@ -539,6 +546,36 @@ public class JsonToApi {
 
     }
 
+    private void validate2(TemplateNode nt, JSONObject node, String nodeName, Object o) {
+        //数组，取得的节点一定是jsonArray，并且集合里的数据一定是基本数据类型
+        if (nt.getNodeType() == 2) {
+            if (!(o instanceof JSONArray)) {
+                throw new RuntimeException(String.format("设置节点对象，当前节点%s的子节点%s查询到节点%s，节点类型是%s，" +
+                                "但是源数据该节点的类型非%s", nodeName, node.keySet(), nt.getFullNodeName(),
+                        nt.getNodeTypeStr(), nt.getNodeTypeStr()));
+            }
+            JSONArray jsonArray = (JSONArray) o;
+            for (Object item : jsonArray) {
+                if (item instanceof JSONArray || item instanceof JSONObject) {
+                    throw new RuntimeException(String.format("设置节点对象，当前节点%s的子节点%s查询到节点%s，节点类型是%s，" +
+                                    "但是源数据该节点的类型非%s", nodeName, node.keySet(), nt.getFullNodeName(),
+                            nt.getNodeTypeStr(), nt.getNodeTypeStr()));
+                }
+            }
+        } else if (nt.getNodeType() == 3) {
+            // 最终节点，取得的对象一定不是jsonObject和jsonArray
+            if (o instanceof JSONObject && o instanceof JSONArray) {
+                throw new RuntimeException(String.format("设置节点对象，当前节点%s的子节点%s查询到节点%s，节点类型是%s，" +
+                                "但是源数据该节点的类型非%s", nodeName, node.keySet(), nt.getFullNodeName(),
+                        nt.getNodeTypeStr(), nt.getNodeTypeStr()));
+            }
+        } else {
+            throw new RuntimeException(String.format("设置节点对象，当前节点%s的类型是%s，不能设置值", nt.getFullNodeName(),
+                    nt.getNodeTypeStr()));
+        }
+    }
+
+
     private void validate(TemplateNode nt, JSONObject node, String nodeName, Object o) {
         // 对象
         if (nt.getNodeType() == 0) {
@@ -562,20 +599,9 @@ public class JsonToApi {
                             nt.getNodeTypeStr(), nt.getNodeTypeStr()));
                 }
             }
-        } else if (nt.getNodeType() == 2) {
-            //数组
-            if (!(o instanceof JSONArray || o instanceof JSONObject)) {
-                throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询到节点%s，节点类型是%s，" +
-                                "但是源数据该节点的类型非%s", nodeName, node.keySet(), nt.getFullNodeName(),
-                        nt.getNodeTypeStr(), nt.getNodeTypeStr()));
-            }
         } else {
-//            最终节点
-            if (o instanceof JSONArray || o instanceof JSONObject) {
-                throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询到节点%s，节点类型是%s，" +
-                                "但是源数据该节点的类型非%s", nodeName, node.keySet(), nt.getFullNodeName(),
-                        nt.getNodeTypeStr(), nt.getNodeTypeStr()));
-            }
+            throw new RuntimeException(String.format("当前节点%s的子节点%s查询到节点%s，节点类型是%s，不能作为对象类型的判断",
+                    nodeName, node.keySet(), nt.getFullNodeName(), nt.getNodeTypeStr()));
         }
     }
 
@@ -633,7 +659,7 @@ public class JsonToApi {
                 }
                 return getUpByNodeType(node.getParentNode());
             }
-            return node;
+            return node.getParentNode();
         } else {
             return null;
         }

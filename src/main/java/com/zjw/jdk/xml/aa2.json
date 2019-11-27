@@ -1,154 +1,22 @@
 {
-  "entryOrder": {
-    "totalOrderLines": "\n            单据总行数，int，当单据需要分多个请求发送时，发送方需要将totalOrderLines填入，接收方收到后，根据实际接收到的条数和totalOrderLines进行比对，如果小于，则继续等待接收请求。如果等于，则表示该单据的所有请求发送完成。\n        ",
-    "entryOrderCode": "入库单编码, string (50) , 必填",
-    "ownerCode": "货主编码, string (50)"
-  },
-  "entryOrder2": {
-    "totalOrderLines": "\n            单据总行数，int，当单据需要分多个请求发送时，发送方需要将totalOrderLines填入，接收方收到后，根据实际接收到的条数和totalOrderLines进行比对，如果小于，则继续等待接收请求。如果等于，则表示该单据的所有请求发送完成。\n        ",
-    "entryOrderCode": "入库单编码, string (50) , 必填",
-    "ownerCode": "货主编码, string (50)",
-    "haha": {
-      "haha1": "1111",
-      "haha2": "1111",
-      "haha3": "1111"
-    }
-  },
-  "orderLines": [
+  "flag": "success|failure",
+  "code": "响应码",
+  "message": "响应信息",
+  "totalLines": "itemLines总条数，int，必填",
+  "items": [
     {
-      "outBizCode2": "外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用",
-      "remark2": "备注, string (500)",
-      "itemId2": "仓储系统商品ID, string (50) , 条件必填",
-      "snList": [
-        "商品序列号, string(40)",
-        "商品序列号, string(50)"
-      ],
-      "batchs": [
-        {
-          "batchCode": "批次编号，string(50)",
-          "produceCode": "生产批号，string(50)，",
-          "productDate_text2": "生产日期，string(10)，YYYY-MM-DD",
-          "productDate_text3": "生产日期，string(10)，YYYY-MM-DD"
-        },
-        {
-          "batchCode": "批次编号，string(50)",
-          "produceCode": "生产批号，string(50)，",
-          "productDate_text2": "生产日期，string(10)，YYYY-MM-DD",
-          "productDate_text3": "生产日期，string(10)，YYYY-MM-DD"
-        }
-      ],
-      "cc": {
-        "zjw": {
-          "zjw2": "周家伟"
-        },
-        "zjw3": [
-          {
-            "zjw4": "周家伟",
-            "zjw5": "dsadas",
-            "zjw6": [
-              1,
-              2,
-              3,
-              4,
-              5
-            ],
-            "zjw7": {
-              "zjw8": "周家伟1",
-              "zjw9": "周家伟2",
-              "zjw10": {
-                "zjw11": "周家伟3",
-                "zjw12": "周家伟4"
-              }
-            }
-          },
-          {
-            "zjw4": "周家伟",
-            "zjw5": "dsadas",
-            "zjw6": [
-              1,
-              2,
-              3,
-              4,
-              5
-            ],
-            "zjw7": {
-              "zjw8": "周家伟",
-              "zjw9": "周家伟",
-              "zjw10": {
-                "zjw11": "周家伟",
-                "zjw12": "周家伟"
-              }
-            }
-          }
-        ]
-      }
-    },
-    {
-      "outBizCode2": "外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用",
-      "remark2": "备注, string (500)",
-      "itemId2": "仓储系统商品ID, string (50) , 条件必填",
-      "snList": [
-        "商品序列号, string(40)",
-        "商品序列号, string(50)"
-      ],
-      "batchs": [
-        {
-          "batchCode": "批次编号，string(50)",
-          "produceCode": "生产批号，string(50)，",
-          "productDate_text2": "生产日期，string(10)，YYYY-MM-DD",
-          "productDate_text3": "生产日期，string(10)，YYYY-MM-DD"
-        },
-        {
-          "batchCode": "批次编号，string(50)",
-          "produceCode": "生产批号，string(50)，",
-          "productDate_text2": "生产日期，string(10)，YYYY-MM-DD",
-          "productDate_text3": "生产日期，string(10)，YYYY-MM-DD"
-        }
-      ],
-      "cc": {
-        "zjw": {
-          "zjw2": "周家伟"
-        },
-        "zjw3": [
-          {
-            "zjw4": "周家伟",
-            "zjw5": "dsadas",
-            "zjw6": [
-              1,
-              2,
-              3,
-              4,
-              5
-            ],
-            "zjw7": {
-              "zjw8": "周家伟5",
-              "zjw9": "周家伟6",
-              "zjw10": {
-                "zjw11": "周家伟7",
-                "zjw12": "周家伟8"
-              }
-            }
-          },
-          {
-            "zjw4": "周家伟",
-            "zjw5": "dsadas",
-            "zjw6": [
-              1,
-              2,
-              3,
-              4,
-              5
-            ],
-            "zjw7": {
-              "zjw8": "周家伟",
-              "zjw9": "周家伟",
-              "zjw10": {
-                "zjw11": "周家伟",
-                "zjw12": "周家伟"
-              }
-            }
-          }
-        ]
+      "item": {
+        "itemId": "货号(商品) , 必填",
+        "outerId": "外部编码    ",
+        "title": "商品标题,不能超过200字节   ，",
+        "num": "商品数量 ",
+        "desc": "商品描述",
+        "price": "商品价格,    ",
+        "listTime": "上架时间。大于当前时间则宝贝会下架进入定时上架的宝贝中 (19) YYYY-MM-DD HH:MM:SS",
+        "delistTime": "下架时间。   YYYY-MM-DD HH:MM:SS",
+        "updateTime": "更新时间。   YYYY-MM-DD HH:MM:SS",
+        "type": "发布类型。可选值:fixed(一口价),auction(拍卖) (10) ",
+        "approveStatus": "商品上传后的状态。可选值:onsale(出售中),instock(仓库中);默认值:onsale    "
       }
     }
   ]

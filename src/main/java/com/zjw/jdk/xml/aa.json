@@ -34,170 +34,175 @@
   },
   "orderLines": [
     {
-      "outBizCode": "外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用",
-      "orderLineNo": "单据行号，string（50）",
-      "ownerCode": "货主编码, string (50)",
-      "itemCode": "商品编码, string (50) , 必填",
-      "itemId": "仓储系统商品ID, string (50) , 条件必填",
-      "snList": [
-        "商品序列号, string(40)",
-        "商品序列号, string(50)"
-      ],
-      "itemName": "商品名称, string (200)",
-      "inventoryType": "库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)",
-      "planQty": "应收数量, int",
-      "actualQty": "实收数量, int，必填",
-      "batchCode": "批次编码, string (50)",
-      "productDate": "商品生产日期，string（10）， YYYY-MM-DD",
-      "expireDate": "商品过期日期，string（10），YYYY-MM-DD",
-      "produceCode": "生产批号, string (50)",
-      "cc": {
-        "zjw": {
-          "zjw2": "周家伟"
-        },
-        "zjw3": [
-          {
-            "zjw4": "周家伟",
-            "zjw5": "dsadas",
-            "zjw6": [
-              1,
-              2,
-              3,
-              4,
-              5
-            ],
-            "zjw7": {
-              "zjw8": "周家伟1",
-              "zjw9": "周家伟2",
-              "zjw10": {
-                "zjw11": "周家伟3",
-                "zjw12": "周家伟4"
+      "orderLine": {
+        "outBizCode": "外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用",
+        "orderLineNo": "单据行号，string（50）",
+        "ownerCode": "货主编码, string (50)",
+        "itemCode": "商品编码, string (50) , 必填",
+        "itemId": "仓储系统商品ID, string (50) , 条件必填",
+        "snList": [
+          "商品序列号, string(40)",
+          "商品序列号, string(50)"
+        ],
+        "itemName": "商品名称, string (200)",
+        "inventoryType": "库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)",
+        "planQty": "应收数量, int",
+        "actualQty": "实收数量, int，必填",
+        "batchCode": "批次编码, string (50)",
+        "productDate": "商品生产日期，string（10）， YYYY-MM-DD",
+        "expireDate": "商品过期日期，string（10），YYYY-MM-DD",
+        "produceCode": "生产批号, string (50)",
+        "cc": {
+          "zjw": {
+            "zjw2": "周家伟"
+          },
+          "zjw3": [
+            {
+              "zjw4": "周家伟",
+              "zjw5": "dsadas",
+              "zjw6": [
+                {},
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "zjw7": {
+                "zjw8": "周家伟1",
+                "zjw9": "周家伟2",
+                "zjw10": {
+                  "zjw11": "周家伟3",
+                  "zjw12": "周家伟4"
+                }
+              }
+            },
+            {
+              "zjw4": "周家伟",
+              "zjw5": "dsadas",
+              "zjw6": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "zjw7": {
+                "zjw8": "周家伟",
+                "zjw9": "周家伟",
+                "zjw10": {
+                  "zjw11": "周家伟",
+                  "zjw12": "周家伟"
+                }
               }
             }
+          ]
+        },
+        "batchs": [
+          {
+            "batchCode": "批次编号，string(50)",
+            "productDate": "生产日期，string(10)，YYYY-MM-DD",
+            "expireDate": "过期日期，string(10)，YYYY-MM-DD",
+            "produceCode": "生产批号，string(50)，",
+            "inventoryType": "库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\n                    ",
+            "actualQty": "实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量"
           },
           {
-            "zjw4": "周家伟",
-            "zjw5": "dsadas",
-            "zjw6": [
-              1,
-              2,
-              3,
-              4,
-              5
-            ],
-            "zjw7": {
-              "zjw8": "周家伟",
-              "zjw9": "周家伟",
-              "zjw10": {
-                "zjw11": "周家伟",
-                "zjw12": "周家伟"
-              }
-            }
+            "batchCode": "批次编号，string(50)",
+            "productDate": "生产日期，string(10)，YYYY-MM-DD",
+            "expireDate": "过期日期，string(10)，YYYY-MM-DD",
+            "produceCode": "生产批号，string(50)，",
+            "inventoryType": "库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\n                    ",
+            "actualQty": "实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量"
           }
-        ]
-      },
-      "batchs": [
-        {
-          "batchCode": "批次编号，string(50)",
-          "productDate": "生产日期，string(10)，YYYY-MM-DD",
-          "expireDate": "过期日期，string(10)，YYYY-MM-DD",
-          "produceCode": "生产批号，string(50)，",
-          "inventoryType": "库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\n                    ",
-          "actualQty": "实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量"
-        },
-        {
-          "batchCode": "批次编号，string(50)",
-          "productDate": "生产日期，string(10)，YYYY-MM-DD",
-          "expireDate": "过期日期，string(10)，YYYY-MM-DD",
-          "produceCode": "生产批号，string(50)，",
-          "inventoryType": "库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\n                    ",
-          "actualQty": "实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量"
-        }
-      ],
-      "remark": "备注, string (500)"
+        ],
+        "remark": "备注, string (500)"
+      }
     },
     {
-      "outBizCode": "外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用",
-      "orderLineNo": "单据行号，string（50）",
-      "ownerCode": "货主编码, string (50)",
-      "itemCode": "商品编码, string (50) , 必填",
-      "itemId": "仓储系统商品ID, string (50) , 条件必填",
-      "snList": [
-        "商品序列号, string(40)",
-        "商品序列号, string(50)"
-      ],
-      "itemName": "商品名称, string (200)",
-      "inventoryType": "库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)",
-      "planQty": "应收数量, int",
-      "actualQty": "实收数量, int，必填",
-      "batchCode": "批次编码, string (50)",
-      "productDate": "商品生产日期，string（10）， YYYY-MM-DD",
-      "expireDate": "商品过期日期，string（10），YYYY-MM-DD",
-      "produceCode": "生产批号, string (50)",
-      "cc": {
-        "zjw": {
-          "zjw2": "周家伟"
-        },
-        "zjw3": [
-          {
-            "zjw4": "周家伟",
-            "zjw5": "dsadas",
-            "zjw6": [
-              1,
-              2,
-              3,
-              4,
-              5
-            ],
-            "zjw7": {
-              "zjw8": "周家伟5",
-              "zjw9": "周家伟6",
-              "zjw10": {
-                "zjw11": "周家伟7",
-                "zjw12": "周家伟8"
+      "orderLine": {
+        "outBizCode": "外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用",
+        "orderLineNo": "单据行号，string（50）",
+        "ownerCode": "货主编码, string (50)",
+        "itemCode": "商品编码, string (50) , 必填",
+        "itemId": "仓储系统商品ID, string (50) , 条件必填",
+        "snList": [
+          "商品序列号, string(40)",
+          "商品序列号, string(50)"
+        ],
+        "itemName": "商品名称, string (200)",
+        "inventoryType": "库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)",
+        "planQty": "应收数量, int",
+        "actualQty": "实收数量, int，必填",
+        "batchCode": "批次编码, string (50)",
+        "productDate": "商品生产日期，string（10）， YYYY-MM-DD",
+        "expireDate": "商品过期日期，string（10），YYYY-MM-DD",
+        "produceCode": "生产批号, string (50)",
+        "cc": {
+          "zjw": {
+            "zjw2": "周家伟"
+          },
+          "zjw3": [
+            {
+              "zjw4": "周家伟",
+              "zjw5": "dsadas",
+              "zjw6": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "zjw7": {
+                "zjw8": "周家伟1",
+                "zjw9": "周家伟2",
+                "zjw10": {
+                  "zjw11": "周家伟3",
+                  "zjw12": "周家伟4"
+                }
+              }
+            },
+            {
+              "zjw4": "周家伟",
+              "zjw5": "dsadas",
+              "zjw6": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "zjw7": {
+                "zjw8": "周家伟",
+                "zjw9": "周家伟",
+                "zjw10": {
+                  "zjw11": "周家伟",
+                  "zjw12": "周家伟"
+                }
               }
             }
+          ]
+        },
+        "batchs": [
+          {
+            "batchCode": "批次编号，string(50)",
+            "productDate": "生产日期，string(10)，YYYY-MM-DD",
+            "expireDate": "过期日期，string(10)，YYYY-MM-DD",
+            "produceCode": "生产批号，string(50)，",
+            "inventoryType": "库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\n                    ",
+            "actualQty": "实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量"
           },
           {
-            "zjw4": "周家伟",
-            "zjw5": "dsadas",
-            "zjw6": [
-              1,
-              2,
-              3,
-              4,
-              5
-            ],
-            "zjw7": {
-              "zjw8": "周家伟",
-              "zjw9": "周家伟",
-              "zjw10": {
-                "zjw11": "周家伟",
-                "zjw12": "周家伟"
-              }
-            }
+            "batchCode": "批次编号，string(50)",
+            "productDate": "生产日期，string(10)，YYYY-MM-DD",
+            "expireDate": "过期日期，string(10)，YYYY-MM-DD",
+            "produceCode": "生产批号，string(50)，",
+            "inventoryType": "库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\n                    ",
+            "actualQty": "实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量"
           }
-        ]
-      },
-      "batchs": [
-        {
-          "batchCode": "批次编号，string(50)",
-          "productDate": "生产日期，string(10)，YYYY-MM-DD",
-          "expireDate": "过期日期，string(10)，YYYY-MM-DD",
-          "produceCode": "生产批号，string(50)，",
-          "inventoryType": "库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\n                    ",
-          "actualQty": "实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量"
-        },
-        {
-          "batchCode": "批次编号，string(50)",
-          "productDate": "生产日期，string(10)，YYYY-MM-DD",
-          "expireDate": "过期日期，string(10)，YYYY-MM-DD",
-          "produceCode": "生产批号，string(50)，",
-          "inventoryType": "库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)\n                    ",
-          "actualQty": "实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量"
-        }
-      ],
-      "remark": "备注, string (500)"
+        ],
+        "remark": "备注, string (500)"
+      }
     }
   ]
 }
