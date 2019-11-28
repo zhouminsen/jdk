@@ -21,10 +21,10 @@ import java.util.stream.Collectors;
  */
 public class JsonToApi {
 
-    private List<TemplateNode> getTemplateNodes(List<IfmPlatformTemplateDetailDTO> sources) {
+    private List<TemplateNode> getTemplateNodes(List<IfmResponseTemplateDetailDTO> sources) {
         List<TemplateNode> sources2 = new ArrayList<>();
         for (int i = 0; i < sources.size(); i++) {
-            IfmPlatformTemplateDetailDTO item = sources.get(i);
+            IfmResponseTemplateDetailDTO item = sources.get(i);
             String str = "";
             if (item.getNodeType() == 0) {
                 str = "对象";
@@ -256,50 +256,50 @@ public class JsonToApi {
 
     @Test
     public void json() {
-        List<IfmPlatformTemplateDetailDTO> sources = new ArrayList<>();
-        sources.add(new IfmPlatformTemplateDetailDTO(-1, -2, "params", "params", 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(1, -1, "entryOrder", "entryOrder", 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(3, 1, "totalOrderLines", "totalOrderLines", 0, 3, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(4, 1, "entryOrderCode", "entryOrderCode", 0, 3, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(199, 1, "ownerCode", "ownerCode", 0, 3, 0));
+        List<IfmResponseTemplateDetailDTO> sources = new ArrayList<>();
+        sources.add(new IfmResponseTemplateDetailDTO(-1, -2, "params", "params", 0));
+        sources.add(new IfmResponseTemplateDetailDTO(1, -1, "entryOrder", "entryOrder", 0));
+        sources.add(new IfmResponseTemplateDetailDTO(3, 1, "totalOrderLines", "totalOrderLines", 0, 3, 0));
+        sources.add(new IfmResponseTemplateDetailDTO(4, 1, "entryOrderCode", "entryOrderCode", 0, 3, 0));
+        sources.add(new IfmResponseTemplateDetailDTO(199, 1, "ownerCode", "ownerCode", 0, 3, 0));
 
-        sources.add(new IfmPlatformTemplateDetailDTO(300, -1, "entryOrder2", "entryOrder2", 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(301, 300, "totalOrderLines2", "totalOrderLines", 0, 3, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(302, 300, "entryOrderCode2", "entryOrderCode", 0, 3, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(303, 300, "ownerCode2", "ownerCode", 0, 3, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(304, 300, "haha", "haha", 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(305, 304, "haha1", "haha1", 0, 3, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(306, 304, "haha2", "haha2", 0, 3, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(307, 304, "haha3", "haha3", 0, 3, 0));
+        sources.add(new IfmResponseTemplateDetailDTO(300, -1, "entryOrder2", "entryOrder2", 0));
+        sources.add(new IfmResponseTemplateDetailDTO(301, 300, "totalOrderLines2", "totalOrderLines", 0, 3, 0));
+        sources.add(new IfmResponseTemplateDetailDTO(302, 300, "entryOrderCode2", "entryOrderCode", 0, 3, 0));
+        sources.add(new IfmResponseTemplateDetailDTO(303, 300, "ownerCode2", "ownerCode", 0, 3, 0));
+        sources.add(new IfmResponseTemplateDetailDTO(304, 300, "haha", "haha", 0));
+        sources.add(new IfmResponseTemplateDetailDTO(305, 304, "haha1", "haha1", 0, 3, 0));
+        sources.add(new IfmResponseTemplateDetailDTO(306, 304, "haha2", "haha2", 0, 3, 0));
+        sources.add(new IfmResponseTemplateDetailDTO(307, 304, "haha3", "haha3", 0, 3, 0));
 
 
-        sources.add(new IfmPlatformTemplateDetailDTO(1001, -1, "orderLines", "orderLines", 1));
-        sources.add(new IfmPlatformTemplateDetailDTO(5, 1001, "orderLine", "", 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(6, 5, "outBizCode", "outBizCode2", 0, 3, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(7, 5, "remark", "remark2", 0, 3, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(400, 5, "itemId", "itemId2", 0, 3, 0));
+        sources.add(new IfmResponseTemplateDetailDTO(1001, -1, "orderLines", "orderLines", 1));
+        sources.add(new IfmResponseTemplateDetailDTO(5, 1001, "orderLine", "", 0));
+        sources.add(new IfmResponseTemplateDetailDTO(6, 5, "outBizCode", "outBizCode2", 0, 3, 0));
+        sources.add(new IfmResponseTemplateDetailDTO(7, 5, "remark", "remark2", 0, 3, 0));
+        sources.add(new IfmResponseTemplateDetailDTO(400, 5, "itemId", "itemId2", 0, 3, 0));
 //
-        sources.add(new IfmPlatformTemplateDetailDTO(8, 5, "snList", "snList", 0, 2, 0));
+        sources.add(new IfmResponseTemplateDetailDTO(8, 5, "snList", "snList", 0, 2, 0));
 //
-        sources.add(new IfmPlatformTemplateDetailDTO(14, 5, "batchs", "batchs", 1));
-        sources.add(new IfmPlatformTemplateDetailDTO(16, 14, "batchCode", "batchCode", 0, 3, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(16, 14, "produceCode", "produceCode", 0, 3, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(101, 14, "productDate", "productDate_text2", 1, 0, "0", "2", 3, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(102, 14, "productDate", "productDate_text3", 1, 0, "2", "4", 3, 0));
+        sources.add(new IfmResponseTemplateDetailDTO(14, 5, "batchs", "batchs", 1));
+        sources.add(new IfmResponseTemplateDetailDTO(16, 14, "batchCode", "batchCode", 0, 3, 0));
+        sources.add(new IfmResponseTemplateDetailDTO(16, 14, "produceCode", "produceCode", 0, 3, 0));
+        sources.add(new IfmResponseTemplateDetailDTO(101, 14, "productDate", "productDate_text2", 1, 0, "0", "2", 3, 0));
+        sources.add(new IfmResponseTemplateDetailDTO(102, 14, "productDate", "productDate_text3", 1, 0, "2", "4", 3, 0));
 ////
-        sources.add(new IfmPlatformTemplateDetailDTO(200, 5, "cc", "cc", 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(201, 200, "zjw", "zjw", 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(202, 201, "zjw2", "zjw2", 0, 3, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(203, 200, "zjw3", "zjw3", 1));
-        sources.add(new IfmPlatformTemplateDetailDTO(204, 203, "zjw4", "zjw4", 0, 3, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(205, 203, "zjw5", "zjw5", 0, 3, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(206, 203, "zjw6", "zjw6", 0, 2, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(207, 203, "zjw7", "zjw7", 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(209, 207, "zjw8", "zjw8", 0, 3, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(210, 207, "zjw9", "zjw9", 0, 3, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(211, 207, "zjw10", "zjw10", 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(212, 211, "zjw11", "zjw11", 0, 3, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(213, 211, "zjw12", "zjw12", 0, 3, 0));
+        sources.add(new IfmResponseTemplateDetailDTO(200, 5, "cc", "cc", 0));
+        sources.add(new IfmResponseTemplateDetailDTO(201, 200, "zjw", "zjw", 0));
+        sources.add(new IfmResponseTemplateDetailDTO(202, 201, "zjw2", "zjw2", 0, 3, 0));
+        sources.add(new IfmResponseTemplateDetailDTO(203, 200, "zjw3", "zjw3", 1));
+        sources.add(new IfmResponseTemplateDetailDTO(204, 203, "zjw4", "zjw4", 0, 3, 0));
+        sources.add(new IfmResponseTemplateDetailDTO(205, 203, "zjw5", "zjw5", 0, 3, 0));
+        sources.add(new IfmResponseTemplateDetailDTO(206, 203, "zjw6", "zjw6", 0, 2, 0));
+        sources.add(new IfmResponseTemplateDetailDTO(207, 203, "zjw7", "zjw7", 0));
+        sources.add(new IfmResponseTemplateDetailDTO(209, 207, "zjw8", "zjw8", 0, 3, 0));
+        sources.add(new IfmResponseTemplateDetailDTO(210, 207, "zjw9", "zjw9", 0, 3, 0));
+        sources.add(new IfmResponseTemplateDetailDTO(211, 207, "zjw10", "zjw10", 0));
+        sources.add(new IfmResponseTemplateDetailDTO(212, 211, "zjw11", "zjw11", 0, 3, 0));
+        sources.add(new IfmResponseTemplateDetailDTO(213, 211, "zjw12", "zjw12", 0, 3, 0));
 
         List<TemplateNode> sources2 = getTemplateNodes(sources);
         List<TemplateNode> templateNodes = getNT(sources2, IfmApiParamsEnums.root_node.parentId, "", "");
@@ -703,13 +703,13 @@ public class JsonToApi {
 
 
     @Data
-    public static class IfmPlatformTemplateDetailDTO implements Serializable {
+    public static class IfmResponseTemplateDetailDTO implements Serializable {
 
-        public IfmPlatformTemplateDetailDTO() {
+        public IfmResponseTemplateDetailDTO() {
         }
 
 
-        public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName,
+        public IfmResponseTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName,
                                             String targetName, Integer nodeType) {
             this.innerId = innerId;
             this.parentId = parentId;
@@ -720,7 +720,7 @@ public class JsonToApi {
         }
 
 
-        public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName,
+        public IfmResponseTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName,
                                             String targetName, Integer matchType, Integer nodeType,
                                             Integer fieldType) {
             this.innerId = innerId;
@@ -733,7 +733,7 @@ public class JsonToApi {
         }
 
 
-        public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName,
+        public IfmResponseTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName,
                                             String targetName, Integer matchType, Integer selectType, String selectStart, String selectEnd,
                                             Integer nodeType, Integer fieldType) {
             this.innerId = innerId;
@@ -804,39 +804,9 @@ public class JsonToApi {
         private String fieldTypeStr;
     }
 
-    @Data
-    public static class FullTable {
-        /**
-         * 字段类型注释
-         */
-        private String parameterColumnTypeStr;
-        /**
-         * 父节点类型 0:普通，1：对象数组，2：数组 (字典类型是node_type)
-         */
-        private Integer parentNodeType;
-        /**
-         * 父节点名称
-         */
-        private String parentParameterName;
-
-        List<FullTable> children2 = new ArrayList<>();
-
-        /**
-         * 传递参数
-         */
-        private Object value;
-
-        public String id;
-        public Integer innerId;
-        public String targetName;
-        public String nodeName;
-        public Integer fieldType;
-
-    }
-
 
     @Data
-    private static class TemplateNode extends IfmPlatformTemplateDetailDTO implements Serializable {
+    private static class TemplateNode extends IfmResponseTemplateDetailDTO implements Serializable {
         public TemplateNode() {
         }
 
