@@ -286,7 +286,7 @@ public class XmlToApi {
         sources.add(new IfmPlatformTemplateDetailDTO(4, 2, "entryOrderCode", "entryOrderCode", 0, 3, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(5, 2, "ownerCode", "ownerCode", 0, 3, 0));
 //        sources.add(new IfmPlatformTemplateDetailDTO(999, 1, "haha1", "haha1", 0, 3, 0));
-//
+
         sources.add(new IfmPlatformTemplateDetailDTO(300, 1, "entryOrder2", "", 0));
         sources.add(new IfmPlatformTemplateDetailDTO(301, 300, "totalOrderLines2", "totalOrderLines2", 0, 3, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(302, 300, "entryOrderCode2", "entryOrderCode2", 0, 3, 0));
@@ -305,7 +305,7 @@ public class XmlToApi {
         sources.add(new IfmPlatformTemplateDetailDTO(9, 7, "snList", "snList", 0, 2, 0));
 
         sources.add(new IfmPlatformTemplateDetailDTO(13, 7, "batchs", "batchs", 1));
-        sources.add(new IfmPlatformTemplateDetailDTO(14, 13, "batch", "batch", 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(14, 13, "batch", "", 0));
         sources.add(new IfmPlatformTemplateDetailDTO(16, 14, "batchCode", "batchCode", 0, 3, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(16, 14, "produceCode", "produceCode", 0, 3, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(101, 14, "productDate", "productDate_text2", 1, 0, "0", "2", 3, 0));
@@ -341,10 +341,10 @@ public class XmlToApi {
         List<TemplateNode> splitList = new ArrayList<>();
         for (Iterator<TemplateNode> iterator = sources2.iterator(); iterator.hasNext(); ) {
             TemplateNode item = iterator.next();
-           /* if (StringUtils.isEmpty(item.getTargetName()) && item.getNodeType() == 2) {
+            if (StringUtils.isEmpty(item.getTargetName()) && item.getNodeType() == 2) {
                 throw new RuntimeException(String.format("%s%s的目标字段不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
-            }*/
-          /*  if (item.getNodeType() == 2 && item.getFieldType() == null) {
+            }
+            if (item.getNodeType() == 2 && item.getFieldType() == null) {
                 throw new RuntimeException(String.format("%s%s的字段类型不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
             }
             if (item.getNodeType() == 2 && item.getMatchType() == null) {
@@ -365,7 +365,7 @@ public class XmlToApi {
             }
             if (item.getNodeType() == 3 && item.getMatchType() == 1 && item.getSelectType() == null) {
                 throw new RuntimeException(String.format("%s%s的参数匹配类型规则不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
-            }*/
+            }
 
             //顶级节点的params.开头的节点不算在重复判断项，
             if (item.getFullTargetName().equals("params.")) {
@@ -426,11 +426,11 @@ public class XmlToApi {
                             , item.getFullNodeName(), item.getNodeTypeStr(), item.getParentNode().getFullNodeName(),
                             item.getParentNode().getNodeTypeStr()));
                 }
-                TemplateNode up = getUpByNodeType(item);
+              /*  TemplateNode up = getUpByNodeType(item);
                 if (up != null) {
                     throw new RuntimeException(String.format("当前节点%s的类型是%s，父节点%s的类型是%s ,目标字段不为能空。"
                             , item.getFullNodeName(), item.getNodeTypeStr(), up.getFullNodeName(), up.getNodeTypeStr()));
-                }
+                }*/
             }
             validate(item);
         }
@@ -497,7 +497,17 @@ public class XmlToApi {
                 Element el = (Element) e;
                 validate(item, el);
                 if (StringUtils.isEmpty(item.getTargetName())) {
-                    this.xmlToData(item.getChildren(), map, el, nodeName);
+                    if (item.getParentNode().getNodeType() == 1) {
+                        LinkedList<Map<String, Object>> o1 = (LinkedList<Map<String, Object>>) map.get(item.getParentNode().getTargetName());
+                        Map<String, Object> last = o1.getLast();
+                        if (last.size() > 0) {
+                            last = new LinkedHashMap<>();
+                            o1.add(last);
+                        }
+                        this.xmlToData(item.getChildren(), last, el, nodeName);
+                    } else {
+                        this.xmlToData(item.getChildren(), map, el, nodeName);
+                    }
                 } else {
                     if (item.getParentNode().getNodeName().equals("params")) {
                         if (item.getNodeType() == 0) {
@@ -625,6 +635,15 @@ public class XmlToApi {
                 throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询到节点%s，节点类型是%s，" +
                                 "但是源数据该节点的类型非%s", o.getPath(), Arrays.toString(objects), nt.getFullNodeName(),
                         nt.getNodeTypeStr(), nt.getNodeTypeStr()));
+            }
+            Set<String> name = new HashSet<>();
+            for (Object item : o.elements()) {
+                Element el = (Element) item;
+                if (!name.add(el.getName())) {
+                    throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询到节点%s，节点类型是%s，" +
+                                    "但是源数据该节点的类型非%s，字节点重复", o.getPath(), Arrays.toString(objects), nt.getFullNodeName(),
+                            nt.getNodeTypeStr(), nt.getNodeTypeStr()));
+                }
             }
         } else if (nt.getNodeType() == 1) {
             //对象数组

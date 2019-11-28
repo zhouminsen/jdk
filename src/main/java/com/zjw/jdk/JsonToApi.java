@@ -274,7 +274,7 @@ public class JsonToApi {
 
 
         sources.add(new IfmPlatformTemplateDetailDTO(1001, -1, "orderLines", "orderLines", 1));
-        sources.add(new IfmPlatformTemplateDetailDTO(5, 1001, "orderLine", "orderLine", 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(5, 1001, "orderLine", "", 0));
         sources.add(new IfmPlatformTemplateDetailDTO(6, 5, "outBizCode", "outBizCode2", 0, 3, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(7, 5, "remark", "remark2", 0, 3, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(400, 5, "itemId", "itemId2", 0, 3, 0));
@@ -401,10 +401,10 @@ public class JsonToApi {
         }
         for (TemplateNode item : templateNode.getChildren()) {
             if (StringUtils.isEmpty(item.getTargetName())) {
-                TemplateNode up = getUpByNodeType(item);
-                if (up != null) {
-                    throw new RuntimeException(String.format("当前节点%s的类型是%s，父节点%s的类型是%s" + "目标字段不为能空。"
-                            , item.getFullNodeName(), item.getNodeTypeStr(), up.getFullNodeName(), up.getNodeTypeStr()));
+                if (item.getNodeType() == 1 || item.getNodeType() == 2) {
+                    throw new RuntimeException(String.format("当前节点%s的类型是%s，父节点%s的类型是%s ,目标字段不为能空。"
+                            , item.getFullNodeName(), item.getNodeTypeStr(), item.getParentNode().getFullNodeName(),
+                            item.getParentNode().getNodeTypeStr()));
                 }
             }
             validate(item);
@@ -461,8 +461,19 @@ public class JsonToApi {
                 Object e = list.get(j);
                 JSONObject jsonObject = (JSONObject) e;
                 validate(item, node, nodeName, o);
-
-                if (StringUtils.isNotEmpty(item.getTargetName())) {
+                if (StringUtils.isEmpty(item.getTargetName())) {
+                    if (item.getParentNode().getNodeType() == 1) {
+                        LinkedList<Map<String, Object>> o1 = (LinkedList<Map<String, Object>>) map.get(item.getParentNode().getTargetName());
+                        Map<String, Object> last = o1.getLast();
+                        if (last.size() > 0) {
+                            last = new LinkedHashMap<>();
+                            o1.add(last);
+                        }
+                        this.jsonToData(item.getChildren(), last, jsonObject, nodeName);
+                    } else {
+                        this.jsonToData(item.getChildren(), map, jsonObject, nodeName);
+                    }
+                } else {
                     if (item.getParentNode().getNodeName().equals("params")) {
                         if (item.getNodeType() == 0) {
                             Map<String, Object> childMap = new LinkedHashMap<>();
@@ -538,8 +549,6 @@ public class JsonToApi {
                             System.out.println("aaa");
                         }
                     }
-                } else {
-                    this.jsonToData(item.getChildren(), map, jsonObject, nodeName);
                 }
             }
         }
