@@ -1,5 +1,5 @@
 {
-  "currentTime": 1574943078949,
+  "currentTime": 1574956462529,
   "data": {
     "bodyList": [
       {
@@ -19,7 +19,16 @@
                 "nodeType": 3,
                 "parentId": 1,
                 "parentNode": {
-                  "$ref": "$.data.bodyList[0].children[0]"
+                  "children": [],
+                  "fullNodeName": "params.entryOrder.",
+                  "fullTargetName": "params.entryOrder.",
+                  "innerId": 1,
+                  "matchType": 0,
+                  "matchTypeStr": "完全匹配",
+                  "nodeName": "entryOrder",
+                  "nodeType": 0,
+                  "parentId": -1,
+                  "targetName": "entryOrder"
                 },
                 "targetName": "totalOrderLines"
               },
@@ -36,7 +45,16 @@
                 "nodeType": 3,
                 "parentId": 1,
                 "parentNode": {
-                  "$ref": "$.data.bodyList[0].children[0]"
+                  "children": [],
+                  "fullNodeName": "params.entryOrder.",
+                  "fullTargetName": "params.entryOrder.",
+                  "innerId": 1,
+                  "matchType": 0,
+                  "matchTypeStr": "完全匹配",
+                  "nodeName": "entryOrder",
+                  "nodeType": 0,
+                  "parentId": -1,
+                  "targetName": "entryOrder"
                 },
                 "targetName": "entryOrderCode"
               },
@@ -53,7 +71,16 @@
                 "nodeType": 3,
                 "parentId": 1,
                 "parentNode": {
-                  "$ref": "$.data.bodyList[0].children[0]"
+                  "children": [],
+                  "fullNodeName": "params.entryOrder.",
+                  "fullTargetName": "params.entryOrder.",
+                  "innerId": 1,
+                  "matchType": 0,
+                  "matchTypeStr": "完全匹配",
+                  "nodeName": "entryOrder",
+                  "nodeType": 0,
+                  "parentId": -1,
+                  "targetName": "entryOrder"
                 },
                 "targetName": "ownerCode"
               }
@@ -67,7 +94,16 @@
             "nodeType": 0,
             "parentId": -1,
             "parentNode": {
-              "$ref": "$.data.bodyList[0]"
+              "children": [],
+              "fullNodeName": "params.",
+              "fullTargetName": "params.",
+              "innerId": -1,
+              "matchType": 0,
+              "matchTypeStr": "完全匹配",
+              "nodeName": "params",
+              "nodeType": 0,
+              "parentId": -2,
+              "targetName": "params"
             },
             "targetName": "entryOrder"
           },
@@ -86,7 +122,16 @@
                 "nodeType": 3,
                 "parentId": 300,
                 "parentNode": {
-                  "$ref": "$.data.bodyList[0].children[1]"
+                  "children": [],
+                  "fullNodeName": "params.entryOrder2.",
+                  "fullTargetName": "params.entryOrder2.",
+                  "innerId": 300,
+                  "matchType": 0,
+                  "matchTypeStr": "完全匹配",
+                  "nodeName": "entryOrder2",
+                  "nodeType": 0,
+                  "parentId": -1,
+                  "targetName": "entryOrder2"
                 },
                 "targetName": "totalOrderLines"
               },
@@ -103,7 +148,16 @@
                 "nodeType": 3,
                 "parentId": 300,
                 "parentNode": {
-                  "$ref": "$.data.bodyList[0].children[1]"
+                  "children": [],
+                  "fullNodeName": "params.entryOrder2.",
+                  "fullTargetName": "params.entryOrder2.",
+                  "innerId": 300,
+                  "matchType": 0,
+                  "matchTypeStr": "完全匹配",
+                  "nodeName": "entryOrder2",
+                  "nodeType": 0,
+                  "parentId": -1,
+                  "targetName": "entryOrder2"
                 },
                 "targetName": "entryOrderCode"
               },
@@ -120,7 +174,16 @@
                 "nodeType": 3,
                 "parentId": 300,
                 "parentNode": {
-                  "$ref": "$.data.bodyList[0].children[1]"
+                  "children": [],
+                  "fullNodeName": "params.entryOrder2.",
+                  "fullTargetName": "params.entryOrder2.",
+                  "innerId": 300,
+                  "matchType": 0,
+                  "matchTypeStr": "完全匹配",
+                  "nodeName": "entryOrder2",
+                  "nodeType": 0,
+                  "parentId": -1,
+                  "targetName": "entryOrder2"
                 },
                 "targetName": "ownerCode"
               },
@@ -139,7 +202,16 @@
                     "nodeType": 3,
                     "parentId": 304,
                     "parentNode": {
-                      "$ref": "$.data.bodyList[0].children[1].children[3]"
+                      "children": [],
+                      "fullNodeName": "params.entryOrder2.haha.",
+                      "fullTargetName": "params.entryOrder2.haha.",
+                      "innerId": 304,
+                      "matchType": 0,
+                      "matchTypeStr": "完全匹配",
+                      "nodeName": "haha",
+                      "nodeType": 0,
+                      "parentId": 300,
+                      "targetName": "haha"
                     },
                     "targetName": "haha1"
                   },
@@ -156,7 +228,16 @@
                     "nodeType": 3,
                     "parentId": 304,
                     "parentNode": {
-                      "$ref": "$.data.bodyList[0].children[1].children[3]"
+                      "children": [],
+                      "fullNodeName": "params.entryOrder2.haha.",
+                      "fullTargetName": "params.entryOrder2.haha.",
+                      "innerId": 304,
+                      "matchType": 0,
+                      "matchTypeStr": "完全匹配",
+                      "nodeName": "haha",
+                      "nodeType": 0,
+                      "parentId": 300,
+                      "targetName": "haha"
                     },
                     "targetName": "haha2"
                   },
@@ -173,7 +254,16 @@
                     "nodeType": 3,
                     "parentId": 304,
                     "parentNode": {
-                      "$ref": "$.data.bodyList[0].children[1].children[3]"
+                      "children": [],
+                      "fullNodeName": "params.entryOrder2.haha.",
+                      "fullTargetName": "params.entryOrder2.haha.",
+                      "innerId": 304,
+                      "matchType": 0,
+                      "matchTypeStr": "完全匹配",
+                      "nodeName": "haha",
+                      "nodeType": 0,
+                      "parentId": 300,
+                      "targetName": "haha"
                     },
                     "targetName": "haha3"
                   }
@@ -187,7 +277,16 @@
                 "nodeType": 0,
                 "parentId": 300,
                 "parentNode": {
-                  "$ref": "$.data.bodyList[0].children[1]"
+                  "children": [],
+                  "fullNodeName": "params.entryOrder2.",
+                  "fullTargetName": "params.entryOrder2.",
+                  "innerId": 300,
+                  "matchType": 0,
+                  "matchTypeStr": "完全匹配",
+                  "nodeName": "entryOrder2",
+                  "nodeType": 0,
+                  "parentId": -1,
+                  "targetName": "entryOrder2"
                 },
                 "targetName": "haha"
               }
@@ -201,7 +300,16 @@
             "nodeType": 0,
             "parentId": -1,
             "parentNode": {
-              "$ref": "$.data.bodyList[0]"
+              "children": [],
+              "fullNodeName": "params.",
+              "fullTargetName": "params.",
+              "innerId": -1,
+              "matchType": 0,
+              "matchTypeStr": "完全匹配",
+              "nodeName": "params",
+              "nodeType": 0,
+              "parentId": -2,
+              "targetName": "params"
             },
             "targetName": "entryOrder2"
           },
@@ -222,7 +330,16 @@
                     "nodeType": 3,
                     "parentId": 5,
                     "parentNode": {
-                      "$ref": "$.data.bodyList[0].children[2].children[0]"
+                      "children": [],
+                      "fullNodeName": "params.orderLines.orderLine.",
+                      "fullTargetName": "params.orderLines.",
+                      "innerId": 5,
+                      "matchType": 0,
+                      "matchTypeStr": "完全匹配",
+                      "nodeName": "orderLine",
+                      "nodeType": 0,
+                      "parentId": 1001,
+                      "targetName": ""
                     },
                     "targetName": "outBizCode2"
                   },
@@ -239,7 +356,16 @@
                     "nodeType": 3,
                     "parentId": 5,
                     "parentNode": {
-                      "$ref": "$.data.bodyList[0].children[2].children[0]"
+                      "children": [],
+                      "fullNodeName": "params.orderLines.orderLine.",
+                      "fullTargetName": "params.orderLines.",
+                      "innerId": 5,
+                      "matchType": 0,
+                      "matchTypeStr": "完全匹配",
+                      "nodeName": "orderLine",
+                      "nodeType": 0,
+                      "parentId": 1001,
+                      "targetName": ""
                     },
                     "targetName": "remark2"
                   },
@@ -256,7 +382,16 @@
                     "nodeType": 3,
                     "parentId": 5,
                     "parentNode": {
-                      "$ref": "$.data.bodyList[0].children[2].children[0]"
+                      "children": [],
+                      "fullNodeName": "params.orderLines.orderLine.",
+                      "fullTargetName": "params.orderLines.",
+                      "innerId": 5,
+                      "matchType": 0,
+                      "matchTypeStr": "完全匹配",
+                      "nodeName": "orderLine",
+                      "nodeType": 0,
+                      "parentId": 1001,
+                      "targetName": ""
                     },
                     "targetName": "itemId2"
                   },
@@ -273,7 +408,16 @@
                     "nodeType": 2,
                     "parentId": 5,
                     "parentNode": {
-                      "$ref": "$.data.bodyList[0].children[2].children[0]"
+                      "children": [],
+                      "fullNodeName": "params.orderLines.orderLine.",
+                      "fullTargetName": "params.orderLines.",
+                      "innerId": 5,
+                      "matchType": 0,
+                      "matchTypeStr": "完全匹配",
+                      "nodeName": "orderLine",
+                      "nodeType": 0,
+                      "parentId": 1001,
+                      "targetName": ""
                     },
                     "targetName": "snList"
                   },
@@ -292,7 +436,16 @@
                         "nodeType": 3,
                         "parentId": 14,
                         "parentNode": {
-                          "$ref": "$.data.bodyList[0].children[2].children[0].children[4]"
+                          "children": [],
+                          "fullNodeName": "params.orderLines.orderLine.batchs.",
+                          "fullTargetName": "params.orderLines.batchs.",
+                          "innerId": 14,
+                          "matchType": 0,
+                          "matchTypeStr": "完全匹配",
+                          "nodeName": "batchs",
+                          "nodeType": 1,
+                          "parentId": 5,
+                          "targetName": "batchs"
                         },
                         "targetName": "batchCode"
                       },
@@ -309,7 +462,16 @@
                         "nodeType": 3,
                         "parentId": 14,
                         "parentNode": {
-                          "$ref": "$.data.bodyList[0].children[2].children[0].children[4]"
+                          "children": [],
+                          "fullNodeName": "params.orderLines.orderLine.batchs.",
+                          "fullTargetName": "params.orderLines.batchs.",
+                          "innerId": 14,
+                          "matchType": 0,
+                          "matchTypeStr": "完全匹配",
+                          "nodeName": "batchs",
+                          "nodeType": 1,
+                          "parentId": 5,
+                          "targetName": "batchs"
                         },
                         "targetName": "produceCode"
                       },
@@ -326,7 +488,16 @@
                         "nodeType": 3,
                         "parentId": 14,
                         "parentNode": {
-                          "$ref": "$.data.bodyList[0].children[2].children[0].children[4]"
+                          "children": [],
+                          "fullNodeName": "params.orderLines.orderLine.batchs.",
+                          "fullTargetName": "params.orderLines.batchs.",
+                          "innerId": 14,
+                          "matchType": 0,
+                          "matchTypeStr": "完全匹配",
+                          "nodeName": "batchs",
+                          "nodeType": 1,
+                          "parentId": 5,
+                          "targetName": "batchs"
                         },
                         "selectEnd": "2",
                         "selectStart": "0",
@@ -347,7 +518,16 @@
                         "nodeType": 3,
                         "parentId": 14,
                         "parentNode": {
-                          "$ref": "$.data.bodyList[0].children[2].children[0].children[4]"
+                          "children": [],
+                          "fullNodeName": "params.orderLines.orderLine.batchs.",
+                          "fullTargetName": "params.orderLines.batchs.",
+                          "innerId": 14,
+                          "matchType": 0,
+                          "matchTypeStr": "完全匹配",
+                          "nodeName": "batchs",
+                          "nodeType": 1,
+                          "parentId": 5,
+                          "targetName": "batchs"
                         },
                         "selectEnd": "4",
                         "selectStart": "2",
@@ -365,7 +545,16 @@
                     "nodeType": 1,
                     "parentId": 5,
                     "parentNode": {
-                      "$ref": "$.data.bodyList[0].children[2].children[0]"
+                      "children": [],
+                      "fullNodeName": "params.orderLines.orderLine.",
+                      "fullTargetName": "params.orderLines.",
+                      "innerId": 5,
+                      "matchType": 0,
+                      "matchTypeStr": "完全匹配",
+                      "nodeName": "orderLine",
+                      "nodeType": 0,
+                      "parentId": 1001,
+                      "targetName": ""
                     },
                     "targetName": "batchs"
                   },
@@ -386,7 +575,16 @@
                             "nodeType": 3,
                             "parentId": 201,
                             "parentNode": {
-                              "$ref": "$.data.bodyList[0].children[2].children[0].children[5].children[0]"
+                              "children": [],
+                              "fullNodeName": "params.orderLines.orderLine.cc.zjw.",
+                              "fullTargetName": "params.orderLines.cc.zjw.",
+                              "innerId": 201,
+                              "matchType": 0,
+                              "matchTypeStr": "完全匹配",
+                              "nodeName": "zjw",
+                              "nodeType": 0,
+                              "parentId": 200,
+                              "targetName": "zjw"
                             },
                             "targetName": "zjw2"
                           }
@@ -400,7 +598,16 @@
                         "nodeType": 0,
                         "parentId": 200,
                         "parentNode": {
-                          "$ref": "$.data.bodyList[0].children[2].children[0].children[5]"
+                          "children": [],
+                          "fullNodeName": "params.orderLines.orderLine.cc.",
+                          "fullTargetName": "params.orderLines.cc.",
+                          "innerId": 200,
+                          "matchType": 0,
+                          "matchTypeStr": "完全匹配",
+                          "nodeName": "cc",
+                          "nodeType": 0,
+                          "parentId": 5,
+                          "targetName": "cc"
                         },
                         "targetName": "zjw"
                       },
@@ -419,7 +626,16 @@
                             "nodeType": 3,
                             "parentId": 203,
                             "parentNode": {
-                              "$ref": "$.data.bodyList[0].children[2].children[0].children[5].children[1]"
+                              "children": [],
+                              "fullNodeName": "params.orderLines.orderLine.cc.zjw3.",
+                              "fullTargetName": "params.orderLines.cc.zjw3.",
+                              "innerId": 203,
+                              "matchType": 0,
+                              "matchTypeStr": "完全匹配",
+                              "nodeName": "zjw3",
+                              "nodeType": 1,
+                              "parentId": 200,
+                              "targetName": "zjw3"
                             },
                             "targetName": "zjw4"
                           },
@@ -436,7 +652,16 @@
                             "nodeType": 3,
                             "parentId": 203,
                             "parentNode": {
-                              "$ref": "$.data.bodyList[0].children[2].children[0].children[5].children[1]"
+                              "children": [],
+                              "fullNodeName": "params.orderLines.orderLine.cc.zjw3.",
+                              "fullTargetName": "params.orderLines.cc.zjw3.",
+                              "innerId": 203,
+                              "matchType": 0,
+                              "matchTypeStr": "完全匹配",
+                              "nodeName": "zjw3",
+                              "nodeType": 1,
+                              "parentId": 200,
+                              "targetName": "zjw3"
                             },
                             "targetName": "zjw5"
                           },
@@ -453,7 +678,16 @@
                             "nodeType": 2,
                             "parentId": 203,
                             "parentNode": {
-                              "$ref": "$.data.bodyList[0].children[2].children[0].children[5].children[1]"
+                              "children": [],
+                              "fullNodeName": "params.orderLines.orderLine.cc.zjw3.",
+                              "fullTargetName": "params.orderLines.cc.zjw3.",
+                              "innerId": 203,
+                              "matchType": 0,
+                              "matchTypeStr": "完全匹配",
+                              "nodeName": "zjw3",
+                              "nodeType": 1,
+                              "parentId": 200,
+                              "targetName": "zjw3"
                             },
                             "targetName": "zjw6"
                           },
@@ -472,7 +706,16 @@
                                 "nodeType": 3,
                                 "parentId": 207,
                                 "parentNode": {
-                                  "$ref": "$.data.bodyList[0].children[2].children[0].children[5].children[1].children[3]"
+                                  "children": [],
+                                  "fullNodeName": "params.orderLines.orderLine.cc.zjw3.zjw7.",
+                                  "fullTargetName": "params.orderLines.cc.zjw3.zjw7.",
+                                  "innerId": 207,
+                                  "matchType": 0,
+                                  "matchTypeStr": "完全匹配",
+                                  "nodeName": "zjw7",
+                                  "nodeType": 0,
+                                  "parentId": 203,
+                                  "targetName": "zjw7"
                                 },
                                 "targetName": "zjw8"
                               },
@@ -489,7 +732,16 @@
                                 "nodeType": 3,
                                 "parentId": 207,
                                 "parentNode": {
-                                  "$ref": "$.data.bodyList[0].children[2].children[0].children[5].children[1].children[3]"
+                                  "children": [],
+                                  "fullNodeName": "params.orderLines.orderLine.cc.zjw3.zjw7.",
+                                  "fullTargetName": "params.orderLines.cc.zjw3.zjw7.",
+                                  "innerId": 207,
+                                  "matchType": 0,
+                                  "matchTypeStr": "完全匹配",
+                                  "nodeName": "zjw7",
+                                  "nodeType": 0,
+                                  "parentId": 203,
+                                  "targetName": "zjw7"
                                 },
                                 "targetName": "zjw9"
                               },
@@ -508,7 +760,16 @@
                                     "nodeType": 3,
                                     "parentId": 211,
                                     "parentNode": {
-                                      "$ref": "$.data.bodyList[0].children[2].children[0].children[5].children[1].children[3].children[2]"
+                                      "children": [],
+                                      "fullNodeName": "params.orderLines.orderLine.cc.zjw3.zjw7.zjw10.",
+                                      "fullTargetName": "params.orderLines.cc.zjw3.zjw7.zjw10.",
+                                      "innerId": 211,
+                                      "matchType": 0,
+                                      "matchTypeStr": "完全匹配",
+                                      "nodeName": "zjw10",
+                                      "nodeType": 0,
+                                      "parentId": 207,
+                                      "targetName": "zjw10"
                                     },
                                     "targetName": "zjw11"
                                   },
@@ -525,7 +786,16 @@
                                     "nodeType": 3,
                                     "parentId": 211,
                                     "parentNode": {
-                                      "$ref": "$.data.bodyList[0].children[2].children[0].children[5].children[1].children[3].children[2]"
+                                      "children": [],
+                                      "fullNodeName": "params.orderLines.orderLine.cc.zjw3.zjw7.zjw10.",
+                                      "fullTargetName": "params.orderLines.cc.zjw3.zjw7.zjw10.",
+                                      "innerId": 211,
+                                      "matchType": 0,
+                                      "matchTypeStr": "完全匹配",
+                                      "nodeName": "zjw10",
+                                      "nodeType": 0,
+                                      "parentId": 207,
+                                      "targetName": "zjw10"
                                     },
                                     "targetName": "zjw12"
                                   }
@@ -539,7 +809,16 @@
                                 "nodeType": 0,
                                 "parentId": 207,
                                 "parentNode": {
-                                  "$ref": "$.data.bodyList[0].children[2].children[0].children[5].children[1].children[3]"
+                                  "children": [],
+                                  "fullNodeName": "params.orderLines.orderLine.cc.zjw3.zjw7.",
+                                  "fullTargetName": "params.orderLines.cc.zjw3.zjw7.",
+                                  "innerId": 207,
+                                  "matchType": 0,
+                                  "matchTypeStr": "完全匹配",
+                                  "nodeName": "zjw7",
+                                  "nodeType": 0,
+                                  "parentId": 203,
+                                  "targetName": "zjw7"
                                 },
                                 "targetName": "zjw10"
                               }
@@ -553,7 +832,16 @@
                             "nodeType": 0,
                             "parentId": 203,
                             "parentNode": {
-                              "$ref": "$.data.bodyList[0].children[2].children[0].children[5].children[1]"
+                              "children": [],
+                              "fullNodeName": "params.orderLines.orderLine.cc.zjw3.",
+                              "fullTargetName": "params.orderLines.cc.zjw3.",
+                              "innerId": 203,
+                              "matchType": 0,
+                              "matchTypeStr": "完全匹配",
+                              "nodeName": "zjw3",
+                              "nodeType": 1,
+                              "parentId": 200,
+                              "targetName": "zjw3"
                             },
                             "targetName": "zjw7"
                           }
@@ -567,7 +855,16 @@
                         "nodeType": 1,
                         "parentId": 200,
                         "parentNode": {
-                          "$ref": "$.data.bodyList[0].children[2].children[0].children[5]"
+                          "children": [],
+                          "fullNodeName": "params.orderLines.orderLine.cc.",
+                          "fullTargetName": "params.orderLines.cc.",
+                          "innerId": 200,
+                          "matchType": 0,
+                          "matchTypeStr": "完全匹配",
+                          "nodeName": "cc",
+                          "nodeType": 0,
+                          "parentId": 5,
+                          "targetName": "cc"
                         },
                         "targetName": "zjw3"
                       }
@@ -581,7 +878,16 @@
                     "nodeType": 0,
                     "parentId": 5,
                     "parentNode": {
-                      "$ref": "$.data.bodyList[0].children[2].children[0]"
+                      "children": [],
+                      "fullNodeName": "params.orderLines.orderLine.",
+                      "fullTargetName": "params.orderLines.",
+                      "innerId": 5,
+                      "matchType": 0,
+                      "matchTypeStr": "完全匹配",
+                      "nodeName": "orderLine",
+                      "nodeType": 0,
+                      "parentId": 1001,
+                      "targetName": ""
                     },
                     "targetName": "cc"
                   }
@@ -595,7 +901,16 @@
                 "nodeType": 0,
                 "parentId": 1001,
                 "parentNode": {
-                  "$ref": "$.data.bodyList[0].children[2]"
+                  "children": [],
+                  "fullNodeName": "params.orderLines.",
+                  "fullTargetName": "params.orderLines.",
+                  "innerId": 1001,
+                  "matchType": 0,
+                  "matchTypeStr": "完全匹配",
+                  "nodeName": "orderLines",
+                  "nodeType": 1,
+                  "parentId": -1,
+                  "targetName": "orderLines"
                 },
                 "targetName": ""
               }
@@ -609,7 +924,16 @@
             "nodeType": 1,
             "parentId": -1,
             "parentNode": {
-              "$ref": "$.data.bodyList[0]"
+              "children": [],
+              "fullNodeName": "params.",
+              "fullTargetName": "params.",
+              "innerId": -1,
+              "matchType": 0,
+              "matchTypeStr": "完全匹配",
+              "nodeName": "params",
+              "nodeType": 0,
+              "parentId": -2,
+              "targetName": "params"
             },
             "targetName": "orderLines"
           }
@@ -637,8 +961,8 @@
         "parameterType": 1,
         "parameterTypeStr": "请求头参数",
         "parentId": -1000,
-        "pfId": 1,
-        "ruleId": 1,
+        "pfId": 86,
+        "ruleId": 89,
         "targetName": "token"
       },
       {
@@ -652,8 +976,8 @@
         "parameterType": 1,
         "parameterTypeStr": "请求头参数",
         "parentId": -1000,
-        "pfId": 2,
-        "ruleId": 2,
+        "pfId": 87,
+        "ruleId": 90,
         "targetName": "sessionId"
       }
     ]

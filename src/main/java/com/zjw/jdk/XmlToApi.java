@@ -343,48 +343,48 @@ public class XmlToApi {
 
     private void validate(List<TemplateNode> sources2) {
         List<TemplateNode> splitList = new ArrayList<>();
-        for (Iterator<TemplateNode> iterator = sources2.iterator(); iterator.hasNext(); ) {
-            TemplateNode item = iterator.next();
+        List<TemplateNode> others = new ArrayList<>();
+        for (TemplateNode item : sources2) {
             if (StringUtils.isEmpty(item.getTargetName()) && item.getNodeType() == 2) {
-                throw new RuntimeException(String.format("%s%s的目标字段不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
+                throw new RuntimeException(String.format("%s的目标字段不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
             }
             if (item.getNodeType() == 2 && item.getFieldType() == null) {
-                throw new RuntimeException(String.format("%s%s的字段类型不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
+                throw new RuntimeException(String.format("%s的字段类型不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
             }
             if (item.getNodeType() == 2 && item.getMatchType() == null) {
-                throw new RuntimeException(String.format("%s%s的参数匹配类型不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
+                throw new RuntimeException(String.format("%s的参数匹配类型不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
             }
             if (item.getNodeType() == 2 && item.getMatchType() == 1) {
-                throw new RuntimeException(String.format("%s%s的参数只能设置为完全匹配", item.getNodeTypeStr(), item.getFullNodeName()));
+                throw new RuntimeException(String.format("%s的参数只能设置为完全匹配", item.getNodeTypeStr(), item.getFullNodeName()));
             }
 
             if (StringUtils.isEmpty(item.getTargetName()) && item.getNodeType() == 3) {
-                throw new RuntimeException(String.format("%s%s的目标字段不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
+                throw new RuntimeException(String.format("%s的目标字段不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
             }
             if (item.getNodeType() == 3 && item.getFieldType() == null) {
-                throw new RuntimeException(String.format("%s%s的字段类型不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
+                throw new RuntimeException(String.format("%s的字段类型不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
             }
             if (item.getNodeType() == 3 && item.getMatchType() == null) {
-                throw new RuntimeException(String.format("%s%s的参数匹配类型不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
+                throw new RuntimeException(String.format("%s的参数匹配类型不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
             }
             if (item.getNodeType() == 3 && item.getMatchType() == 1 && item.getSelectType() == null) {
-                throw new RuntimeException(String.format("%s%s的参数匹配类型规则不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
+                throw new RuntimeException(String.format("%s的参数匹配类型规则不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
             }
 
             //顶级节点的params.开头的节点不算在重复判断项，
             if (item.getFullTargetName().equals("params.")) {
-                iterator.remove();
                 continue;
             }
             //拆分匹配不要
             if (item.getMatchType() != null && item.getMatchType() == 1) {
                 splitList.add(item);
-                iterator.remove();
+                continue;
             }
+            others.add(item);
         }
         Set<String> nodeName = new HashSet<>();
         Set<String> targetName = new HashSet<>();
-        for (TemplateNode item : sources2) {
+        for (TemplateNode item : others) {
             if (!nodeName.add(item.getFullNodeName())) {
                 throw new RuntimeException(String.format("节点%s重复。", item.getFullNodeName()));
             }
@@ -412,6 +412,14 @@ public class XmlToApi {
     }
 
     private void validate(TemplateNode templateNode) {
+        if (templateNode.getParentNode() != null) {
+            TemplateNode parent = new TemplateNode();
+            BeanUtils.copyProperties(templateNode.getParentNode(), parent);
+            //设置为nul避免循环依赖
+            parent.setParentNode(null);
+            parent.setChildren(null);
+            templateNode.setParentNode(parent);
+        }
         if (templateNode.getNodeType() == 2 || templateNode.getNodeType() == 3) {
             if (!CollectionUtils.isEmpty(templateNode.getChildren())) {
                 throw new RuntimeException(String.format("节点%s的数据类型是%s，不能包含子集合",
