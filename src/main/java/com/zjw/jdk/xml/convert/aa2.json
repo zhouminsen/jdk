@@ -1,0 +1,24 @@
+{
+  "orderLines": [
+    {
+      "orderLine": {
+        "snList": {
+          "sn": [
+            "商品序列号, string(40)",
+            "商品序列号, string(50)"
+          ]
+        }
+      }
+    },
+    {
+      "orderLine": {
+        "snList": {
+          "sn": [
+            "商品序列号, string(40)",
+            "商品序列号, string(50)"
+          ]
+        }
+      }
+    }
+  ]
+}

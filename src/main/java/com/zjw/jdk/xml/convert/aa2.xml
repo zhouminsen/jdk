@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<orderLines>
+    <orderLine>
+        <snList>
+            <sn>商品序列号, string(40)</sn>
+            <sn>商品序列号, string(50)</sn>
+        </snList>
+    </orderLine>
+
+    <orderLine>
+        <snList>
+            <sn>商品序列号, string(40)</sn>
+            <sn>商品序列号, string(50)</sn>
+        </snList>
+    </orderLine>
+</orderLines>

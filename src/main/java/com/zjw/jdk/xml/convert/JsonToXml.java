@@ -1,17 +1,14 @@
-package com.zjw.jdk;
+package com.zjw.jdk.xml.convert;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.serializer.SerializerFeature;
-import lombok.Data;
-import lombok.Getter;
+import com.zjw.jdk.XmlUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.springframework.beans.BeanUtils;
 import org.springframework.util.CollectionUtils;
 
-import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -19,7 +16,7 @@ import java.util.stream.Collectors;
  * 加入matchtype
  * Created by Administrator on 2019-10-12.
  */
-public class JsonToApi {
+public class JsonToXml {
 
     private List<TemplateNode> getTemplateNodes(List<IfmResponseTemplateDetailDTO> sources) {
         List<TemplateNode> sources2 = new ArrayList<>();
@@ -108,7 +105,7 @@ public class JsonToApi {
             "            {\n" +
             "              \"zjw4\": \"周家伟\",\n" +
             "              \"zjw5\": \"dsadas\",\n" +
-            "              \"zjw6\": [\n" +
+            "              \"zjw6_s\": [\n" +
             "                1,\n" +
             "                2,\n" +
             "                3,\n" +
@@ -127,7 +124,7 @@ public class JsonToApi {
             "            {\n" +
             "              \"zjw4\": \"周家伟\",\n" +
             "              \"zjw5\": \"dsadas\",\n" +
-            "              \"zjw6\": [\n" +
+            "              \"zjw6_s\": [\n" +
             "                1,\n" +
             "                2,\n" +
             "                3,\n" +
@@ -193,7 +190,7 @@ public class JsonToApi {
             "            {\n" +
             "              \"zjw4\": \"周家伟\",\n" +
             "              \"zjw5\": \"dsadas\",\n" +
-            "              \"zjw6\": [\n" +
+            "              \"zjw6_s\": [\n" +
             "                1,\n" +
             "                2,\n" +
             "                3,\n" +
@@ -212,7 +209,7 @@ public class JsonToApi {
             "            {\n" +
             "              \"zjw4\": \"周家伟\",\n" +
             "              \"zjw5\": \"dsadas\",\n" +
-            "              \"zjw6\": [\n" +
+            "              \"zjw6_s\": [\n" +
             "                1,\n" +
             "                2,\n" +
             "                3,\n" +
@@ -258,42 +255,44 @@ public class JsonToApi {
     public void json() {
         List<IfmResponseTemplateDetailDTO> sources = new ArrayList<>();
         sources.add(new IfmResponseTemplateDetailDTO(-1, -2, "params", "params", 0));
-        sources.add(new IfmResponseTemplateDetailDTO(1, -1, "entryOrder", "entryOrder", 0));
-        sources.add(new IfmResponseTemplateDetailDTO(3, 1, "totalOrderLines", "totalOrderLines", 0, 3, 0));
-        sources.add(new IfmResponseTemplateDetailDTO(4, 1, "entryOrderCode", "entryOrderCode", 0, 3, 0));
-        sources.add(new IfmResponseTemplateDetailDTO(199, 1, "ownerCode", "ownerCode", 0, 3, 0));
-
-        sources.add(new IfmResponseTemplateDetailDTO(300, -1, "entryOrder2", "entryOrder2", 0));
-        sources.add(new IfmResponseTemplateDetailDTO(301, 300, "totalOrderLines2", "totalOrderLines", 0, 3, 0));
-        sources.add(new IfmResponseTemplateDetailDTO(302, 300, "entryOrderCode2", "entryOrderCode", 0, 3, 0));
-        sources.add(new IfmResponseTemplateDetailDTO(303, 300, "ownerCode2", "ownerCode", 0, 3, 0));
-        sources.add(new IfmResponseTemplateDetailDTO(304, 300, "haha", "haha", 0));
-        sources.add(new IfmResponseTemplateDetailDTO(305, 304, "haha1", "haha1", 0, 3, 0));
-        sources.add(new IfmResponseTemplateDetailDTO(306, 304, "haha2", "haha2", 0, 3, 0));
-        sources.add(new IfmResponseTemplateDetailDTO(307, 304, "haha3", "haha3", 0, 3, 0));
+//        sources.add(new IfmResponseTemplateDetailDTO(1, -1, "entryOrder", "entryOrder", 0));
+//        sources.add(new IfmResponseTemplateDetailDTO(3, 1, "totalOrderLines", "totalOrderLines", 0, 3, 0));
+//        sources.add(new IfmResponseTemplateDetailDTO(4, 1, "entryOrderCode", "entryOrderCode", 0, 3, 0));
+//        sources.add(new IfmResponseTemplateDetailDTO(199, 1, "ownerCode", "ownerCode", 0, 3, 0));
+//
+//        sources.add(new IfmResponseTemplateDetailDTO(300, -1, "entryOrder2", "entryOrder2", 0));
+//        sources.add(new IfmResponseTemplateDetailDTO(301, 300, "totalOrderLines2", "totalOrderLines", 0, 3, 0));
+//        sources.add(new IfmResponseTemplateDetailDTO(302, 300, "entryOrderCode2", "entryOrderCode", 0, 3, 0));
+//        sources.add(new IfmResponseTemplateDetailDTO(303, 300, "ownerCode2", "ownerCode", 0, 3, 0));
+//        sources.add(new IfmResponseTemplateDetailDTO(304, 300, "haha", "haha", 0));
+//        sources.add(new IfmResponseTemplateDetailDTO(305, 304, "haha1", "haha1", 0, 3, 0));
+//        sources.add(new IfmResponseTemplateDetailDTO(306, 304, "haha2", "haha2", 0, 3, 0));
+//        sources.add(new IfmResponseTemplateDetailDTO(307, 304, "haha3", "haha3", 0, 3, 0));
 
 
         sources.add(new IfmResponseTemplateDetailDTO(1001, -1, "orderLines", "orderLines", 1));
-        sources.add(new IfmResponseTemplateDetailDTO(5, 1001, "orderLine", "", 0));
-        sources.add(new IfmResponseTemplateDetailDTO(6, 5, "outBizCode", "outBizCode2", 0, 3, 0));
-        sources.add(new IfmResponseTemplateDetailDTO(7, 5, "remark", "remark2", 0, 3, 0));
-        sources.add(new IfmResponseTemplateDetailDTO(400, 5, "itemId", "itemId2", 0, 3, 0));
-//
-        sources.add(new IfmResponseTemplateDetailDTO(8, 5, "snList", "snList", 0, 2, 0));
-//
-        sources.add(new IfmResponseTemplateDetailDTO(14, 5, "batchs", "batchs", 1));
-        sources.add(new IfmResponseTemplateDetailDTO(16, 14, "batchCode", "batchCode", 0, 3, 0));
-        sources.add(new IfmResponseTemplateDetailDTO(16, 14, "produceCode", "produceCode", 0, 3, 0));
-        sources.add(new IfmResponseTemplateDetailDTO(101, 14, "productDate", "productDate_text2", 1, 0, "0", "2", 3, 0));
-        sources.add(new IfmResponseTemplateDetailDTO(102, 14, "productDate", "productDate_text3", 1, 0, "2", "4", 3, 0));
+        sources.add(new IfmResponseTemplateDetailDTO(5, 1001, "orderLine", "orderLine", 0));
+//        sources.add(new IfmResponseTemplateDetailDTO(6, 5, "outBizCode", "outBizCode2", 0, 3, 0));
+//        sources.add(new IfmResponseTemplateDetailDTO(7, 5, "remark", "remark2", 0, 3, 0));
+//        sources.add(new IfmResponseTemplateDetailDTO(400, 5, "itemId", "itemId2", 0, 3, 0));
 ////
+        sources.add(new IfmResponseTemplateDetailDTO(8, 5, "snList", "snList", 0, 2, 0));
+        sources.add(new IfmResponseTemplateDetailDTO(500, 8, "sn", "sn", 0, 3, 0));
+////
+//        sources.add(new IfmResponseTemplateDetailDTO(14, 5, "batchs", "batchs", 1));
+//        sources.add(new IfmResponseTemplateDetailDTO(16, 14, "batchCode", "batchCode", 0, 3, 0));
+//        sources.add(new IfmResponseTemplateDetailDTO(16, 14, "produceCode", "produceCode", 0, 3, 0));
+//        sources.add(new IfmResponseTemplateDetailDTO(101, 14, "productDate", "productDate_text2", 1, 0, "0", "2", 3, 0));
+//        sources.add(new IfmResponseTemplateDetailDTO(102, 14, "productDate", "productDate_text3", 1, 0, "2", "4", 3, 0));
+//
         sources.add(new IfmResponseTemplateDetailDTO(200, 5, "cc", "cc", 0));
         sources.add(new IfmResponseTemplateDetailDTO(201, 200, "zjw", "zjw", 0));
         sources.add(new IfmResponseTemplateDetailDTO(202, 201, "zjw2", "zjw2", 0, 3, 0));
         sources.add(new IfmResponseTemplateDetailDTO(203, 200, "zjw3", "zjw3", 1));
-        sources.add(new IfmResponseTemplateDetailDTO(204, 203, "zjw4", "zjw4", 0, 3, 0));
-        sources.add(new IfmResponseTemplateDetailDTO(205, 203, "zjw5", "zjw5", 0, 3, 0));
-        sources.add(new IfmResponseTemplateDetailDTO(206, 203, "zjw6", "zjw6", 0, 2, 0));
+//        sources.add(new IfmResponseTemplateDetailDTO(204, 203, "zjw4", "zjw4", 0, 3, 0));
+//        sources.add(new IfmResponseTemplateDetailDTO(205, 203, "zjw5", "zjw5", 0, 3, 0));
+        sources.add(new IfmResponseTemplateDetailDTO(206, 203, "zjw6_s", "zjw6_s", 0, 2, 0));
+        sources.add(new IfmResponseTemplateDetailDTO(214, 206, "zjw6", "zjw6", 0, 3, 0));
         sources.add(new IfmResponseTemplateDetailDTO(207, 203, "zjw7", "zjw7", 0));
         sources.add(new IfmResponseTemplateDetailDTO(209, 207, "zjw8", "zjw8", 0, 3, 0));
         sources.add(new IfmResponseTemplateDetailDTO(210, 207, "zjw9", "zjw9", 0, 3, 0));
@@ -302,9 +301,8 @@ public class JsonToApi {
         sources.add(new IfmResponseTemplateDetailDTO(213, 211, "zjw12", "zjw12", 0, 3, 0));
 
         List<TemplateNode> sources2 = getTemplateNodes(sources);
-        List<TemplateNode> templateNodes = getNT(sources2, IfmApiParamsEnums.root_node.parentId, "", "");
-        validate(sources2);
-        validate(templateNodes.get(0));
+        List<TemplateNode> templateNodes = getNT(sources2, IfmApiParamsEnums.root_node.getParentId(), "", "");
+        validateRepeat(sources2);
         TemplateNode templateNode = templateNodes.get(0);
 //        System.out.println(JSON.toJSONString(templateNode));
         JSONArray jsonArray = new JSONArray();
@@ -317,50 +315,77 @@ public class JsonToApi {
         cc(templateNode, jsonArray);
     }
 
-    private void validate(List<TemplateNode> sources2) {
+
+    private void validateRepeat(List<TemplateNode> sources2) {
         List<TemplateNode> splitList = new ArrayList<>();
-        for (Iterator<TemplateNode> iterator = sources2.iterator(); iterator.hasNext(); ) {
-            TemplateNode item = iterator.next();
-            if (StringUtils.isEmpty(item.getTargetName()) && item.getNodeType() == 2) {
-                throw new RuntimeException(String.format("%s%s的目标字段不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
+        List<TemplateNode> others = new ArrayList<>();
+        for (TemplateNode item : sources2) {
+            if (item.getParentNode() != null) {
+                TemplateNode parent = new TemplateNode();
+                BeanUtils.copyProperties(item.getParentNode(), parent);
+                //设置为nul避免循环依赖
+                parent.setParentNode(null);
+                parent.setChildren(null);
+                item.setParentNode(parent);
             }
-            if (item.getNodeType() == 2 && item.getFieldType() == null) {
-                throw new RuntimeException(String.format("%s%s的字段类型不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
-            }
-            if (item.getNodeType() == 3 && item.getMatchType() == null) {
-                throw new RuntimeException(String.format("%s%s的参数匹配类型不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
-            }
-            if (item.getNodeType() == 2 && item.getMatchType() == 1) {
-                throw new RuntimeException(String.format("%s%s的参数只能设置为完全匹配", item.getNodeTypeStr(), item.getFullNodeName()));
+            if (item.getNodeType() == 3) {
+                if (StringUtils.isEmpty(item.getTargetName())) {
+                    throw new RuntimeException(String.format("%s的目标字段不能为空", item.getFullNodeName()));
+                }
+                if (item.getFieldType() == null) {
+                    throw new RuntimeException(String.format("%s的字段类型不能为空", item.getFullNodeName()));
+                }
+                if (item.getMatchType() == null) {
+                    throw new RuntimeException(String.format("%s的参数匹配类型不能为空", item.getFullNodeName()));
+                }
+                if (item.getParentNode().getNodeType() == 2 && !(item.getMatchType() == 0)) {
+                    throw new RuntimeException(String.format("节点%s的父节点%s的类型是%s，该节点的参数匹配类型必须是%s",
+                            item.getFullNodeName(), item.getParentNode().getFullNodeName(), item.getParentNode().getNodeTypeStr(), "完全匹配"));
+                }
+                if (item.getMatchType() == 1 && item.getSelectType() == null) {
+                    throw new RuntimeException(String.format("%s的参数匹配类型规则不能为空", item.getFullNodeName()));
+                }
+                if (!CollectionUtils.isEmpty(item.getChildren())) {
+                    throw new RuntimeException(String.format("节点%s的数据类型是%s，不能包含子集合",
+                            item.getFullNodeName(), item.getNodeTypeStr()));
+                }
+            } else {
+                if (CollectionUtils.isEmpty(item.getChildren())) {
+                    throw new RuntimeException(String.format("节点%s的数据类型是%s，子集合不能为空",
+                            item.getFullNodeName(), item.getNodeTypeStr()));
+                }
+                //验证数组的下的子节点必须只有一个，并且必须是最终节点
+                if (item.getNodeType() == 2) {
+                    if (item.getChildren().size() > 1) {
+                        throw new RuntimeException(String.format("节点%s的数据类型是%s，只能包含一个节点",
+                                item.getFullNodeName(), item.getNodeTypeStr()));
+                    }
+                    if (item.getChildren().get(0).getNodeType() != 3) {
+                        TemplateNode child = item.getChildren().get(0);
+                        throw new RuntimeException(String.format("节点%s的数据类型是%s，子集节点%s类型是%s，子节点必须是最终节点",
+                                item.getFullNodeName(), item.getNodeTypeStr(), child.getFullNodeName(),
+                                child.getNodeTypeStr()));
+                    }
+                }
             }
 
-            if (StringUtils.isEmpty(item.getTargetName()) && item.getNodeType() == 3) {
-                throw new RuntimeException(String.format("%s%s的目标字段不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
-            }
-            if (item.getNodeType() == 3 && item.getFieldType() == null) {
-                throw new RuntimeException(String.format("%s%s的字段类型不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
-            }
-            if (item.getNodeType() == 3 && item.getMatchType() == null) {
-                throw new RuntimeException(String.format("%s%s的参数匹配类型不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
-            }
-            if (item.getNodeType() == 3 && item.getMatchType() == 1 && item.getSelectType() == null) {
-                throw new RuntimeException(String.format("%s%s的参数匹配类型规则不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
-            }
-
-            //顶级节点的params.开头的节点不算在重复判断项，
-            if (item.getFullTargetName().equals("params.")) {
-                iterator.remove();
-                continue;
+            if (StringUtils.isEmpty(item.getTargetName())) {
+                if (item.getNodeType() == 1 || item.getNodeType() == 2 || item.getNodeType() == 3) {
+                    throw new RuntimeException(String.format("当前节点%s的类型是%s，父节点%s的类型是%s ,目标字段不为能空。"
+                            , item.getFullNodeName(), item.getNodeTypeStr(), item.getParentNode().getFullNodeName(),
+                            item.getParentNode().getNodeTypeStr()));
+                }
             }
             //拆分匹配不要
             if (item.getMatchType() != null && item.getMatchType() == 1) {
                 splitList.add(item);
-                iterator.remove();
+                continue;
             }
+            others.add(item);
         }
         Set<String> nodeName = new HashSet<>();
         Set<String> targetName = new HashSet<>();
-        for (TemplateNode item : sources2) {
+        for (TemplateNode item : others) {
             if (!nodeName.add(item.getFullNodeName())) {
                 throw new RuntimeException(String.format("节点%s重复。", item.getFullNodeName()));
             }
@@ -387,8 +412,16 @@ public class JsonToApi {
         }
     }
 
-    private void validate(TemplateNode templateNode) {
-        if (templateNode.getNodeType() == 2 || templateNode.getNodeType() == 3) {
+    private void validateDependence(TemplateNode templateNode) {
+        if (templateNode.getParentNode() != null) {
+            TemplateNode parent = new TemplateNode();
+            BeanUtils.copyProperties(templateNode.getParentNode(), parent);
+            //设置为nul避免循环依赖
+            parent.setParentNode(null);
+            parent.setChildren(null);
+            templateNode.setParentNode(parent);
+        }
+        if (templateNode.getNodeType() == 3) {
             if (!CollectionUtils.isEmpty(templateNode.getChildren())) {
                 throw new RuntimeException(String.format("节点%s的数据类型是%s，不能包含子集合",
                         templateNode.getFullNodeName(), templateNode.getNodeTypeStr()));
@@ -407,7 +440,7 @@ public class JsonToApi {
                             item.getParentNode().getNodeTypeStr()));
                 }
             }
-            validate(item);
+            validateDependence(item);
         }
     }
 
@@ -416,41 +449,96 @@ public class JsonToApi {
         for (Object e : jsonArray) {
             JSONObject jsonObject = (JSONObject) e;
             //ifm的params下的子节点
-            this.jsonToData(nt.getChildren(), map, jsonObject, "");
+            this.convert(nt.getChildren(), map, jsonObject);
 
         }
-        System.out.println(JSON.toJSONString(map, SerializerFeature.WriteMapNullValue));
+//        System.out.println(JSON.toJSONString(map, SerializerFeature.WriteMapNullValue));
+        map = JSON.parseObject("{\n" +
+                "  \"orderLines\": [\n" +
+                "    {\n" +
+                "      \"orderLine\": {\n" +
+                "        \"snList\": [\n" +
+                "          {\n" +
+                "            \"sn\": \"11111\"\n" +
+                "          },\n" +
+                "          {\n" +
+                "            \"sn\": \"11111\"\n" +
+                "          },\n" +
+                "          {\n" +
+                "            \"sn\": \"11111\"\n" +
+                "          }\n" +
+                "        ]\n" +
+                "      }\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}", Map.class);
+        System.out.println(XmlUtils.jsonToXml("{\n" +
+                "  \"orderLines\": [\n" +
+                "    {\n" +
+                "      \"orderLine\": {\n" +
+                "        \"snList\": {\n" +
+                "          \"sn\": [\n" +
+                "            \"商品序列号, string(40)\",\n" +
+                "            \"商品序列号, string(50)\"\n" +
+                "          ]\n" +
+                "        }\n" +
+                "      }\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"orderLine\": {\n" +
+                "        \"snList\": {\n" +
+                "          \"sn\": [\n" +
+                "            \"商品序列号, string(40)\",\n" +
+                "            \"商品序列号, string(50)\"\n" +
+                "          ]\n" +
+                "        }\n" +
+                "      }\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}"));
+
     }
 
 
-    private void jsonToData(List<TemplateNode> sources, Map<String, Object> map, JSONObject node, String nodeName) {
+    private void convert(List<TemplateNode> sources, Map<String, Object> map, JSONObject node) {
         for (int i = 0; i < sources.size(); i++) {
             TemplateNode item = sources.get(i);
-            //当循环至根节点时重置nodeName
-            if (item.getParentId() == IfmApiParamsEnums.root_node.innerId) {
-                nodeName = "";
-            }
             Object o = node.get(item.getNodeName());
             if (o == null) {
-                throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询不到节点%s，节点类型%s", nodeName,
+                throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询不到节点%s，节点类型%s", item.getFullNodeName(),
                         node.keySet(), item.getFullNodeName(), item.getNodeTypeStr()));
             }
             if (CollectionUtils.isEmpty(item.getChildren())) {
                 if (StringUtils.isEmpty(item.getTargetName())) {
                     continue;
                 }
-                validate2(item, node, nodeName, o);
+                validateValue(item, node, o);
                 if (item.getParentNode().getNodeType() == 1) {
-                    LinkedList<Map<String, Object>> list = (LinkedList<Map<String, Object>>) map.get(item.getParentNode().getTargetName());
-                    Map<String, Object> child = list.getLast();
+                    List<Map<String, Object>> list = (List<Map<String, Object>>) map.get(item.getParentNode().getTargetName());
+                    Map<String, Object> child = list.get(list.size() - 1);
                     child.put(item.getTargetName(), o);
                 } else {
                     map.put(item.getTargetName(), o);
                 }
                 continue;
+            } else {
+                if (item.getNodeType() == 2) {
+                    //拿到数组的最终节点
+                    TemplateNode templateNode = item.getChildren().get(0);
+                    Map<String, Object> arrayMap = new LinkedHashMap<>();
+                    if (item.getParentNode().getNodeType() == 0) {
+                        map.put(item.getTargetName(), arrayMap);
+                        arrayMap.put(templateNode.getNodeName(), o);
+                    } else {
+                        List<Map<String, Object>> list = (List<Map<String, Object>>) map.get(item.getParentNode().getTargetName());
+                        Map<String, Object> child = list.get(list.size() - 1);
+                        child.put(item.getTargetName(), arrayMap);
+                    }
+                    arrayMap.put(templateNode.getNodeName(), o);
+                    continue;
+                }
+
             }
-            nodeName += item.getNodeName() + ".";
-            System.out.println("是什么" + nodeName);
             JSONArray list = new JSONArray();
             if (o instanceof JSONObject) {
                 list.add(o);
@@ -459,19 +547,20 @@ public class JsonToApi {
             }
             for (int j = 0; j < list.size(); j++) {
                 Object e = list.get(j);
+//                System.out.println(item);
+                validateDateType(item, node, o);
                 JSONObject jsonObject = (JSONObject) e;
-                validate(item, node, nodeName, o);
                 if (StringUtils.isEmpty(item.getTargetName())) {
                     if (item.getParentNode().getNodeType() == 1) {
-                        LinkedList<Map<String, Object>> o1 = (LinkedList<Map<String, Object>>) map.get(item.getParentNode().getTargetName());
-                        Map<String, Object> last = o1.getLast();
+                        List<Map<String, Object>> o1 = (List<Map<String, Object>>) map.get(item.getParentNode().getTargetName());
+                        Map<String, Object> last = o1.get(o1.size() - 1);
                         if (last.size() > 0) {
                             last = new LinkedHashMap<>();
                             o1.add(last);
                         }
-                        this.jsonToData(item.getChildren(), last, jsonObject, nodeName);
+                        this.convert(item.getChildren(), last, jsonObject);
                     } else {
-                        this.jsonToData(item.getChildren(), map, jsonObject, nodeName);
+                        this.convert(item.getChildren(), map, jsonObject);
                     }
                 } else {
                     if (item.getParentNode().getNodeName().equals("params")) {
@@ -479,17 +568,17 @@ public class JsonToApi {
                             Map<String, Object> childMap = new LinkedHashMap<>();
                             map.put(item.getTargetName(), childMap);
 
-                            this.jsonToData(item.getChildren(), childMap, jsonObject, nodeName);
+                            this.convert(item.getChildren(), childMap, jsonObject);
                             System.out.println("aaa");
                         } else if (item.getNodeType() == 1) {
-                            LinkedList<Map<String, Object>> subMapList = (LinkedList<Map<String, Object>>) map.get(item.getTargetName());
+                            List<Map<String, Object>> subMapList = (List<Map<String, Object>>) map.get(item.getTargetName());
                             if (CollectionUtils.isEmpty(subMapList)) {
-                                subMapList = new LinkedList<>();
+                                subMapList = new ArrayList<>();
                                 map.put(item.getTargetName(), subMapList);
                             }
                             subMapList.add(new LinkedHashMap<>());
                             // 对象数组
-                            this.jsonToData(item.getChildren(), map, jsonObject, nodeName);
+                            this.convert(item.getChildren(), map, jsonObject);
                             System.out.println("aaa");
                         }
                     } else {
@@ -500,10 +589,10 @@ public class JsonToApi {
                                 //父节点是对象
                                 Map<String, Object> first = new LinkedHashMap<>();
                                 map.put(item.getTargetName(), first);
-                                this.jsonToData(item.getChildren(), first, jsonObject, nodeName);
+                                this.convert(item.getChildren(), first, jsonObject);
                             } else {
-                                LinkedList<Map<String, Object>> parentList = (LinkedList<Map<String, Object>>) map.get(item.getParentNode().getTargetName());
-                                Map<String, Object> subMap = parentList.getLast();
+                                List<Map<String, Object>> parentList = (List<Map<String, Object>>) map.get(item.getParentNode().getTargetName());
+                                Map<String, Object> subMap = parentList.get(parentList.size() - 1);
                                 Map<String, Object> second = new LinkedHashMap<>();
                                 if (subMap.containsKey(item.getTargetName())) {
                                     subMap = new LinkedHashMap<>();
@@ -512,40 +601,40 @@ public class JsonToApi {
                                 } else {
                                     subMap.put(item.getTargetName(), second);
                                 }
-                                this.jsonToData(item.getChildren(), second, jsonObject, nodeName);
+                                this.convert(item.getChildren(), second, jsonObject);
                             }
                             System.out.println("aaa");
                         } else if (item.getNodeType() == 1) {
                             //当前是对象数组
                             if (item.getParentNode().getNodeType() == 0) {
                                 //父节点是对象
-                                LinkedList<Map<String, Object>> subMapList = (LinkedList<Map<String, Object>>) map.get(item.getTargetName());
+                                List<Map<String, Object>> subMapList = (List<Map<String, Object>>) map.get(item.getTargetName());
                                 if (CollectionUtils.isEmpty(subMapList)) {
-                                    subMapList = new LinkedList<>();
+                                    subMapList = new ArrayList<>();
                                     map.put(item.getTargetName(), subMapList);
                                 }
                                 subMapList.add(new LinkedHashMap<>());
-                                this.jsonToData(item.getChildren(), map, jsonObject, nodeName);
+                                this.convert(item.getChildren(), map, jsonObject);
                                 System.out.println("aaa");
                             } else {
                                 // 父节点是对象数组
-                                LinkedList<Map<String, Object>> parentList = (LinkedList<Map<String, Object>>) map.get(item.getParentNode().getTargetName());
-                                Map<String, Object> sub = parentList.getLast();
-                                LinkedList<Map<String, Object>> subMapList = (LinkedList<Map<String, Object>>) sub.get(item.getTargetName());
+                                List<Map<String, Object>> parentList = (List<Map<String, Object>>) map.get(item.getParentNode().getTargetName());
+                                Map<String, Object> sub = parentList.get(parentList.size());
+                                List<Map<String, Object>> subMapList = (List<Map<String, Object>>) sub.get(item.getTargetName());
                                 if (CollectionUtils.isEmpty(subMapList)) {
-                                    subMapList = new LinkedList<>();
+                                    subMapList = new ArrayList<>();
                                     sub.put(item.getTargetName(), subMapList);
                                 }
                                 Map<String, Object> second = new LinkedHashMap<>();
                                 subMapList.add(second);
-                                this.jsonToData(item.getChildren(), sub, jsonObject, nodeName);
+                                this.convert(item.getChildren(), sub, jsonObject);
                                 System.out.println("aaa");
                             }
                         } else if (item.getNodeType() == 2) {
                             //数组
-                            List<Object> subArray = new LinkedList<>();
+                            List<Object> subArray = new ArrayList<>();
                             map.put(item.getTargetName(), subArray);
-                            this.jsonToData(item.getChildren(), map, jsonObject, nodeName);
+                            this.convert(item.getChildren(), map, jsonObject);
                             System.out.println("aaa");
                         }
                     }
@@ -555,62 +644,62 @@ public class JsonToApi {
 
     }
 
-    private void validate2(TemplateNode nt, JSONObject node, String nodeName, Object o) {
+    private void validateValue(TemplateNode nt, JSONObject node, Object o) {
         //数组，取得的节点一定是jsonArray，并且集合里的数据一定是基本数据类型
         if (nt.getNodeType() == 2) {
             if (!(o instanceof JSONArray)) {
-                throw new RuntimeException(String.format("设置节点对象，当前节点%s的子节点%s查询到节点%s，节点类型是%s，" +
-                                "但是源数据该节点的类型非%s", nodeName, node.keySet(), nt.getFullNodeName(),
-                        nt.getNodeTypeStr(), nt.getNodeTypeStr()));
+                throw new RuntimeException(String.format("设置节点对象，在%s%s查询到节点%s，节点类型是%s" +
+                                "但是源数据该节点的类型非%s", nt.getParentNode().getFullNodeName(), node.keySet(),
+                        nt.getFullNodeName(), nt.getNodeTypeStr()));
             }
             JSONArray jsonArray = (JSONArray) o;
             for (Object item : jsonArray) {
                 if (item instanceof JSONArray || item instanceof JSONObject) {
-                    throw new RuntimeException(String.format("设置节点对象，当前节点%s的子节点%s查询到节点%s，节点类型是%s，" +
-                                    "但是源数据该节点的类型非%s", nodeName, node.keySet(), nt.getFullNodeName(),
-                            nt.getNodeTypeStr(), nt.getNodeTypeStr()));
+                    throw new RuntimeException(String.format("设置节点对象，在%s%s查询到节点%s，节点类型是%s" +
+                                    "但是源数据该节点的类型非%s", nt.getParentNode().getFullNodeName(), node.keySet(),
+                            nt.getFullNodeName(), nt.getNodeTypeStr()));
                 }
             }
         } else if (nt.getNodeType() == 3) {
             // 最终节点，取得的对象一定不是jsonObject和jsonArray
-            if (o instanceof JSONObject && o instanceof JSONArray) {
-                throw new RuntimeException(String.format("设置节点对象，当前节点%s的子节点%s查询到节点%s，节点类型是%s，" +
-                                "但是源数据该节点的类型非%s", nodeName, node.keySet(), nt.getFullNodeName(),
-                        nt.getNodeTypeStr(), nt.getNodeTypeStr()));
+            if (o instanceof JSONObject || o instanceof JSONArray) {
+                throw new RuntimeException(String.format("设置节点对象，在%s%s查询到节点%s，节点类型是%s" +
+                                "但是源数据该节点的类型非%s", nt.getParentNode().getFullNodeName(), node.keySet(),
+                        nt.getFullNodeName(), nt.getNodeTypeStr()));
             }
         } else {
-            throw new RuntimeException(String.format("设置节点对象，当前节点%s的类型是%s，不能设置值", nt.getFullNodeName(),
-                    nt.getNodeTypeStr()));
+            throw new RuntimeException(String.format("设置节点对象，在%s%s查询到节点%s，节点类型是%s，不能设置值",
+                    nt.getParentNode().getFullNodeName(), node.keySet(), nt.getFullNodeName(), nt.getNodeTypeStr()));
         }
     }
 
 
-    private void validate(TemplateNode nt, JSONObject node, String nodeName, Object o) {
+    private void validateDateType(TemplateNode nt, JSONObject node, Object o) {
         // 对象
         if (nt.getNodeType() == 0) {
             if (!(o instanceof JSONObject)) {
-                throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询到节点%s，节点类型是%s，" +
-                                "但是源数据该节点的类型非%s", nodeName, node.keySet(), nt.getFullNodeName(),
+                throw new RuntimeException(String.format("获取节点对象，在%s%s查询到节点%s，节点类型是%s，节点类型是%s，" +
+                                "但是源数据该节点的类型非%s", nt.getParentNode().getFullNodeName(), node.keySet(), nt.getFullNodeName(),
                         nt.getNodeTypeStr(), nt.getNodeTypeStr()));
             }
         } else if (nt.getNodeType() == 1) {
             //对象数组
             if (!(o instanceof JSONArray)) {
-                throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询到节点%s，节点类型是%s，" +
-                                "但是源数据该节点的类型非%s", nodeName, node.keySet(), nt.getFullNodeName(),
+                throw new RuntimeException(String.format("获取节点对象，在%s%s查询到节点%s，节点类型是%s，节点类型是%s，" +
+                                "但是源数据该节点的类型非%s", nt.getParentNode().getFullNodeName(), node.keySet(), nt.getFullNodeName(),
                         nt.getNodeTypeStr(), nt.getNodeTypeStr()));
             }
             JSONArray jsonArray = (JSONArray) o;
             for (Object item : jsonArray) {
                 if (!(item instanceof JSONArray || item instanceof JSONObject)) {
-                    throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询到节点%s，节点类型是%s，" +
-                                    "但是源数据该节点的类型非%s", nodeName, node.keySet(), nt.getFullNodeName(),
+                    throw new RuntimeException(String.format("获取节点对象，在%s%s查询到节点%s，节点类型是%s，节点类型是%s，" +
+                                    "但是源数据该节点的类型非%s", nt.getParentNode().getFullNodeName(), node.keySet(), nt.getFullNodeName(),
                             nt.getNodeTypeStr(), nt.getNodeTypeStr()));
                 }
             }
         } else {
-            throw new RuntimeException(String.format("当前节点%s的子节点%s查询到节点%s，节点类型是%s，不能作为对象类型的判断",
-                    nodeName, node.keySet(), nt.getFullNodeName(), nt.getNodeTypeStr()));
+            throw new RuntimeException(String.format("获取节点对象，在%s%s查询到节点%s，节点类型是%s，不能作为对象类型的判断",
+                    nt.getParentNode().getFullNodeName(), node.keySet(), nt.getFullNodeName(), nt.getNodeTypeStr()));
         }
     }
 
@@ -628,7 +717,7 @@ public class JsonToApi {
                 (item -> Objects.equals(parentId, item.getParentId())).collect(Collectors.toList());
         for (TemplateNode item : target) {
             boolean b = sources.stream().anyMatch(e -> Objects.equals(item.getInnerId(), e.getParentId()));
-            if (parentId != IfmApiParamsEnums.root_node.parentId) {
+            if (parentId != IfmApiParamsEnums.root_node.getParentId()) {
                 TemplateNode templateNode = sources.stream().filter(e -> Objects.equals(item.getParentId(), e.getInnerId())).findFirst().get();
                 item.setParentNode(templateNode);
             }
@@ -701,171 +790,4 @@ public class JsonToApi {
         return s;
     }
 
-
-    @Data
-    public static class IfmResponseTemplateDetailDTO implements Serializable {
-
-        public IfmResponseTemplateDetailDTO() {
-        }
-
-
-        public IfmResponseTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName,
-                                            String targetName, Integer nodeType) {
-            this.innerId = innerId;
-            this.parentId = parentId;
-            this.nodeName = nodeName;
-            this.nodeType = nodeType;
-            this.targetName = targetName;
-
-        }
-
-
-        public IfmResponseTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName,
-                                            String targetName, Integer matchType, Integer nodeType,
-                                            Integer fieldType) {
-            this.innerId = innerId;
-            this.parentId = parentId;
-            this.nodeName = nodeName;
-            this.targetName = targetName;
-            this.matchType = matchType;
-            this.nodeType = nodeType;
-            this.fieldType = fieldType;
-        }
-
-
-        public IfmResponseTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName,
-                                            String targetName, Integer matchType, Integer selectType, String selectStart, String selectEnd,
-                                            Integer nodeType, Integer fieldType) {
-            this.innerId = innerId;
-            this.parentId = parentId;
-            this.nodeName = nodeName;
-            this.targetName = targetName;
-            this.matchType = matchType;
-            this.selectType = selectType;
-            this.selectStart = selectStart;
-            this.selectEnd = selectEnd;
-            this.nodeType = nodeType;
-            this.fieldType = fieldType;
-        }
-
-
-        public Integer innerId;
-
-        public Integer parentId;
-
-
-        private String targetId;
-
-        private String tempId;
-
-        private String nodeName;
-
-        private String targetName;
-
-        private String remark;
-
-        /**
-         * 参数匹配类型
-         */
-        private Integer matchType;
-
-        private String matchTypeStr;
-
-        /**
-         * 选择类型
-         */
-        private Integer selectType;
-        private String selectTypeStr;
-
-        /**
-         * 选择起始值
-         */
-        private String selectStart;
-
-
-        private String selectEnd;
-
-
-        /**
-         * 节点类型 0:对象，1：对象数组，2：数组，3：最终节点
-         */
-        private Integer nodeType;
-
-        /**
-         * 节点类型 0:对象，1：对象数组，2：数组，3：最终节点
-         */
-        private String nodeTypeStr;
-
-        /**
-         * 字段类型(0：字符串 1：时间 2：数字)
-         */
-        private Integer fieldType;
-
-        private String fieldTypeStr;
-    }
-
-
-    @Data
-    private static class TemplateNode extends IfmResponseTemplateDetailDTO implements Serializable {
-        public TemplateNode() {
-        }
-
-        public String fullNodeName;
-        public String fullTargetName;
-        public TemplateNode parentNode;
-        public Object value;
-        public List<TemplateNode> children;
-
-        public List<TemplateNode> getChildren() {
-            if (children == null) {
-                children = new ArrayList<>();
-            }
-            return children;
-        }
-
-        @Override
-        public String toString() {
-            return "TemplateNode{" +
-                    "innerId=" + innerId +
-                    ", parentId=" + parentId +
-                    ", nodeName='" + this.getNodeName() + '\'' +
-                    ", targetName='" + this.getNodeName() + '\'' +
-                    ", nodeType=" + this.getNodeType() +
-                    ", fieldType=" + this.getFieldType() +
-                    ", fullNodeName='" + fullNodeName + '\'' +
-                    ", value=" + value +
-                    '}';
-        }
-    }
-
-    @Getter
-    public static enum IfmApiParamsEnums {
-
-
-        /**
-         * 根节点
-         */
-        root_node(-1, "params", -2);
-
-
-        /**
-         * api类型
-         */
-        private Integer innerId;
-
-        private Integer parentId;
-
-
-        /**
-         *
-         */
-        private String name;
-
-
-        IfmApiParamsEnums(Integer innerId, String name, Integer parentId) {
-            this.innerId = innerId;
-            this.name = name;
-            this.parentId = parentId;
-        }
-    }
 }

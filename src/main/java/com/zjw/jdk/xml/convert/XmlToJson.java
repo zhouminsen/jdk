@@ -1,9 +1,7 @@
-package com.zjw.jdk;
+package com.zjw.jdk.xml.convert;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import lombok.Data;
-import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
@@ -12,7 +10,6 @@ import org.junit.Test;
 import org.springframework.beans.BeanUtils;
 import org.springframework.util.CollectionUtils;
 
-import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -20,7 +17,7 @@ import java.util.stream.Collectors;
  * 加入matchtype
  * Created by Administrator on 2019-10-12.
  */
-public class XmlToApi {
+public class XmlToJson {
     private List<TemplateNode> getTemplateNodes(List<IfmResponseTemplateDetailDTO> sources) {
         List<TemplateNode> sources2 = new ArrayList<>();
         for (int i = 0; i < sources.size(); i++) {
@@ -283,9 +280,9 @@ public class XmlToApi {
         headerList.add(new IfmResponseTemplateDetailDTO("sessionId", "sessionId", 3, 0));
 
         List<IfmResponseTemplateDetailDTO> bodyList = new ArrayList<>();
-        bodyList.add(new IfmResponseTemplateDetailDTO(-1, -2, "params", "params", 0));
-        bodyList.add(new IfmResponseTemplateDetailDTO(1, -1, "request", "", 0));
-        bodyList.add(new IfmResponseTemplateDetailDTO(2, 1, "entryOrder", "", 0));
+        bodyList.add(new IfmResponseTemplateDetailDTO(-1, -2, "params", "", 0));
+        bodyList.add(new IfmResponseTemplateDetailDTO(1, -1, "request", "request", 0));
+        bodyList.add(new IfmResponseTemplateDetailDTO(2, 1, "entryOrder", "entryOrder", 0));
         bodyList.add(new IfmResponseTemplateDetailDTO(3, 2, "totalOrderLines", "totalOrderLines", 0, 3, 0));
         bodyList.add(new IfmResponseTemplateDetailDTO(4, 2, "entryOrderCode", "entryOrderCode", 0, 3, 0));
         bodyList.add(new IfmResponseTemplateDetailDTO(5, 2, "ownerCode", "ownerCode", 0, 3, 0));
@@ -332,8 +329,7 @@ public class XmlToApi {
 
         List<TemplateNode> sources2 = getTemplateNodes(bodyList);
         List<TemplateNode> templateNodes = getNT(sources2, IfmApiParamsEnums.root_node.getParentId(), "", "");
-        validate(sources2);
-        validate(templateNodes.get(0));
+        validateRepeat(sources2);
         TemplateNode templateNode = templateNodes.get(0);
 //        System.out.println(JSON.toJSONString(templateNode));
         org.dom4j.Document read = DocumentHelper.parseText(xmlStr);
@@ -341,40 +337,60 @@ public class XmlToApi {
         cc(templateNode, rootElement);
     }
 
-    private void validate(List<TemplateNode> sources2) {
+    private void validateRepeat(List<TemplateNode> sources2) {
         List<TemplateNode> splitList = new ArrayList<>();
         List<TemplateNode> others = new ArrayList<>();
         for (TemplateNode item : sources2) {
-            if (StringUtils.isEmpty(item.getTargetName()) && item.getNodeType() == 2) {
-                throw new RuntimeException(String.format("%s的目标字段不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
-            }
-            if (item.getNodeType() == 2 && item.getFieldType() == null) {
-                throw new RuntimeException(String.format("%s的字段类型不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
-            }
-            if (item.getNodeType() == 2 && item.getMatchType() == null) {
-                throw new RuntimeException(String.format("%s的参数匹配类型不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
-            }
-            if (item.getNodeType() == 2 && item.getMatchType() == 1) {
-                throw new RuntimeException(String.format("%s的参数只能设置为完全匹配", item.getNodeTypeStr(), item.getFullNodeName()));
+            if (item.getNodeType() == 3) {
+                if (StringUtils.isEmpty(item.getTargetName())) {
+                    throw new RuntimeException(String.format("%s的目标字段不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
+                }
+                if (item.getFieldType() == null) {
+                    throw new RuntimeException(String.format("%s的字段类型不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
+                }
+                if (item.getMatchType() == null) {
+                    throw new RuntimeException(String.format("%s的参数匹配类型不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
+                }
+                if (item.getMatchType() == 1 && item.getSelectType() == null) {
+                    throw new RuntimeException(String.format("%s的参数匹配类型规则不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
+                }
+                if (!CollectionUtils.isEmpty(item.getChildren())) {
+                    throw new RuntimeException(String.format("节点%s的数据类型是%s，不能包含子集合",
+                            item.getFullNodeName(), item.getNodeTypeStr()));
+                }
+            } else if (item.getNodeType() == 2) {
+                if (StringUtils.isEmpty(item.getTargetName())) {
+                    throw new RuntimeException(String.format("%s的目标字段不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
+                }
+                if (item.getFieldType() == null) {
+                    throw new RuntimeException(String.format("%s的字段类型不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
+                }
+                if (item.getMatchType() == null) {
+                    throw new RuntimeException(String.format("%s的参数匹配类型不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
+                }
+                if (item.getMatchType() == 1) {
+                    throw new RuntimeException(String.format("%s的参数只能设置为完全匹配", item.getNodeTypeStr(), item.getFullNodeName()));
+                }
+                if (!CollectionUtils.isEmpty(item.getChildren())) {
+                    throw new RuntimeException(String.format("节点%s的数据类型是%s，不能包含子集合",
+                            item.getFullNodeName(), item.getNodeTypeStr()));
+                }
+            } else {
+                if (CollectionUtils.isEmpty(item.getChildren())) {
+                    throw new RuntimeException(String.format("节点%s的数据类型是%s，子集合不能为空",
+                            item.getFullNodeName(), item.getNodeTypeStr()));
+                }
             }
 
-            if (StringUtils.isEmpty(item.getTargetName()) && item.getNodeType() == 3) {
-                throw new RuntimeException(String.format("%s的目标字段不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
-            }
-            if (item.getNodeType() == 3 && item.getFieldType() == null) {
-                throw new RuntimeException(String.format("%s的字段类型不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
-            }
-            if (item.getNodeType() == 3 && item.getMatchType() == null) {
-                throw new RuntimeException(String.format("%s的参数匹配类型不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
-            }
-            if (item.getNodeType() == 3 && item.getMatchType() == 1 && item.getSelectType() == null) {
-                throw new RuntimeException(String.format("%s的参数匹配类型规则不能为空", item.getNodeTypeStr(), item.getFullNodeName()));
+            if (StringUtils.isEmpty(item.getTargetName())) {
+                if (item.getNodeType() == 1 || item.getNodeType() == 2 || item.getNodeType() == 3) {
+                    throw new RuntimeException(String.format("当前节点%s的类型是%s，父节点%s的类型是%s ,目标字段不为能空。"
+                            , item.getFullNodeName(), item.getNodeTypeStr(), item.getParentNode().getFullNodeName(),
+                            item.getParentNode().getNodeTypeStr()));
+                }
             }
 
-            //顶级节点的params.开头的节点不算在重复判断项，
-            if (item.getFullTargetName().equals("params.")) {
-                continue;
-            }
+
             //拆分匹配不要
             if (item.getMatchType() != null && item.getMatchType() == 1) {
                 splitList.add(item);
@@ -411,7 +427,7 @@ public class XmlToApi {
         }
     }
 
-    private void validate(TemplateNode templateNode) {
+    private void validateDependence(TemplateNode templateNode) {
         if (templateNode.getParentNode() != null) {
             TemplateNode parent = new TemplateNode();
             BeanUtils.copyProperties(templateNode.getParentNode(), parent);
@@ -433,7 +449,7 @@ public class XmlToApi {
         }
         for (TemplateNode item : templateNode.getChildren()) {
             if (StringUtils.isEmpty(item.getTargetName())) {
-                if (item.getNodeType() == 1 || item.getNodeType() == 2) {
+                if (item.getNodeType() == 1 || item.getNodeType() == 2 || item.getNodeType() == 3) {
                     throw new RuntimeException(String.format("当前节点%s的类型是%s，父节点%s的类型是%s ,目标字段不为能空。"
                             , item.getFullNodeName(), item.getNodeTypeStr(), item.getParentNode().getFullNodeName(),
                             item.getParentNode().getNodeTypeStr()));
@@ -444,24 +460,24 @@ public class XmlToApi {
                             , item.getFullNodeName(), item.getNodeTypeStr(), up.getFullNodeName(), up.getNodeTypeStr()));
                 }*/
             }
-            validate(item);
+            validateDependence(item);
         }
     }
 
     private void cc(TemplateNode nt, Element element) {
         Map<String, Object> map = new LinkedHashMap<>();
         //ifm的params下的子节点
-        this.xmlToData(nt.getChildren(), map, element, "");
+        this.convert(nt.getChildren(), map, element, "");
         System.out.println(JSON.toJSONString(map, SerializerFeature.WriteMapNullValue));
     }
 
 
-    private void xmlToData(List<TemplateNode> sources, Map<String, Object> map, Element node, String nodeName) {
+    private void convert(List<TemplateNode> sources, Map<String, Object> map, Element node, String nodeName) {
         for (int i = 0; i < sources.size(); i++) {
             TemplateNode item = sources.get(i);
             //当循环至根节点时重置nodeName
             List o = null;
-            if (item.getParentId() == IfmApiParamsEnums.root_node.innerId) {
+            if (item.getParentId() == IfmApiParamsEnums.root_node.getInnerId()) {
                 nodeName = "";
                 o = node.selectNodes("/" + item.getNodeName());
             } else {
@@ -507,7 +523,7 @@ public class XmlToApi {
             for (int j = 0; j < list.size(); j++) {
                 Object e = list.get(j);
                 Element el = (Element) e;
-                validate(item, el);
+                validateDependence(item, el);
                 if (StringUtils.isEmpty(item.getTargetName())) {
                     if (item.getParentNode().getNodeType() == 1) {
                         LinkedList<Map<String, Object>> o1 = (LinkedList<Map<String, Object>>) map.get(item.getParentNode().getTargetName());
@@ -516,16 +532,16 @@ public class XmlToApi {
                             last = new LinkedHashMap<>();
                             o1.add(last);
                         }
-                        this.xmlToData(item.getChildren(), last, el, nodeName);
+                        this.convert(item.getChildren(), last, el, nodeName);
                     } else {
-                        this.xmlToData(item.getChildren(), map, el, nodeName);
+                        this.convert(item.getChildren(), map, el, nodeName);
                     }
                 } else {
                     if (item.getParentNode().getNodeName().equals("params")) {
                         if (item.getNodeType() == 0) {
                             Map<String, Object> childMap = new LinkedHashMap<>();
                             map.put(item.getTargetName(), childMap);
-                            this.xmlToData(item.getChildren(), childMap, el, nodeName);
+                            this.convert(item.getChildren(), childMap, el, nodeName);
                             System.out.println("aaa");
                         } else if (item.getNodeType() == 1) {
                             LinkedList<Map<String, Object>> subMapList = (LinkedList<Map<String, Object>>) map.get(item.getTargetName());
@@ -535,7 +551,7 @@ public class XmlToApi {
                             }
                             subMapList.add(new LinkedHashMap<>());
                             // 对象数组
-                            this.xmlToData(item.getChildren(), map, el, nodeName);
+                            this.convert(item.getChildren(), map, el, nodeName);
                             System.out.println("aaa");
                         }
                     } else {
@@ -546,7 +562,7 @@ public class XmlToApi {
                                 //父节点是对象
                                 Map<String, Object> first = new LinkedHashMap<>();
                                 map.put(item.getTargetName(), first);
-                                this.xmlToData(item.getChildren(), first, el, nodeName);
+                                this.convert(item.getChildren(), first, el, nodeName);
                             } else {
                                 LinkedList<Map<String, Object>> parentList = (LinkedList<Map<String, Object>>) map.get(item.getParentNode().getTargetName());
                                 Map<String, Object> subMap = parentList.getLast();
@@ -558,7 +574,7 @@ public class XmlToApi {
                                 } else {
                                     subMap.put(item.getTargetName(), second);
                                 }
-                                this.xmlToData(item.getChildren(), second, el, nodeName);
+                                this.convert(item.getChildren(), second, el, nodeName);
                             }
                             System.out.println("aaa");
                         } else if (item.getNodeType() == 1) {
@@ -571,7 +587,7 @@ public class XmlToApi {
                                     map.put(item.getTargetName(), subMapList);
                                 }
                                 subMapList.add(new LinkedHashMap<>());
-                                this.xmlToData(item.getChildren(), map, el, nodeName);
+                                this.convert(item.getChildren(), map, el, nodeName);
                                 System.out.println("aaa");
                             } else {
                                 // 父节点是对象数组
@@ -584,14 +600,14 @@ public class XmlToApi {
                                 }
                                 Map<String, Object> second = new LinkedHashMap<>();
                                 subMapList.add(second);
-                                this.xmlToData(item.getChildren(), sub, el, nodeName);
+                                this.convert(item.getChildren(), sub, el, nodeName);
                                 System.out.println("aaa");
                             }
                         } else if (item.getNodeType() == 2) {
                             //数组
                             List<Object> subArray = new LinkedList<>();
                             map.put(item.getTargetName(), subArray);
-                            this.xmlToData(item.getChildren(), map, el, nodeName);
+                            this.convert(item.getChildren(), map, el, nodeName);
                             System.out.println("aaa");
                         }
                     }
@@ -639,7 +655,7 @@ public class XmlToApi {
         }
     }
 
-    private void validate(TemplateNode nt, Element o) {
+    private void validateDependence(TemplateNode nt, Element o) {
         // 对象
         Object[] objects = o.elements().stream().map(e -> ((Element) e).getName()).toArray();
         if (nt.getNodeType() == 0) {
@@ -768,209 +784,5 @@ public class XmlToApi {
             }
         }
         return s;
-    }
-
-
-    @Data
-    public static class IfmResponseTemplateDetailDTO implements Serializable {
-
-        public IfmResponseTemplateDetailDTO() {
-        }
-
-        public IfmResponseTemplateDetailDTO(String nodeName, String targetName, Integer nodeType, Integer fieldType) {
-            this.nodeName = nodeName;
-            this.targetName = targetName;
-            this.nodeType = nodeType;
-            this.fieldType = fieldType;
-        }
-
-        public IfmResponseTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName,
-                                            String targetName, Integer nodeType) {
-            this.innerId = innerId;
-            this.parentId = parentId;
-            this.nodeName = nodeName;
-            this.nodeType = nodeType;
-            this.targetName = targetName;
-
-        }
-
-
-        public IfmResponseTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName,
-                                            String targetName, Integer matchType, Integer nodeType,
-                                            Integer fieldType) {
-            this.innerId = innerId;
-            this.parentId = parentId;
-            this.nodeName = nodeName;
-            this.targetName = targetName;
-            this.matchType = matchType;
-            this.nodeType = nodeType;
-            this.fieldType = fieldType;
-        }
-
-
-        public IfmResponseTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName,
-                                            String targetName, Integer matchType, Integer selectType, String selectStart, String selectEnd,
-                                            Integer nodeType, Integer fieldType) {
-            this.innerId = innerId;
-            this.parentId = parentId;
-            this.nodeName = nodeName;
-            this.targetName = targetName;
-            this.matchType = matchType;
-            this.selectType = selectType;
-            this.selectStart = selectStart;
-            this.selectEnd = selectEnd;
-            this.nodeType = nodeType;
-            this.fieldType = fieldType;
-        }
-
-
-        public Integer innerId;
-
-        public Integer parentId;
-
-
-        private String targetId;
-
-        private String tempId;
-
-        private String nodeName;
-
-        private String targetName;
-
-        private String remark;
-
-        /**
-         * 参数匹配类型
-         */
-        private Integer matchType;
-
-        private String matchTypeStr;
-
-        /**
-         * 选择类型
-         */
-        private Integer selectType;
-        private String selectTypeStr;
-
-        /**
-         * 选择起始值
-         */
-        private String selectStart;
-
-
-        private String selectEnd;
-
-
-        /**
-         * 节点类型 0:对象，1：对象数组，2：数组，3：最终节点
-         */
-        private Integer nodeType;
-
-        /**
-         * 节点类型 0:对象，1：对象数组，2：数组，3：最终节点
-         */
-        private String nodeTypeStr;
-
-        /**
-         * 字段类型(0：字符串 1：时间 2：数字)
-         */
-        private Integer fieldType;
-
-        private String fieldTypeStr;
-    }
-
-    @Data
-    public static class FullTable {
-        /**
-         * 字段类型注释
-         */
-        private String parameterColumnTypeStr;
-        /**
-         * 父节点类型 0:普通，1：对象数组，2：数组 (字典类型是node_type)
-         */
-        private Integer parentNodeType;
-        /**
-         * 父节点名称
-         */
-        private String parentParameterName;
-
-        List<FullTable> children2 = new ArrayList<>();
-
-        /**
-         * 传递参数
-         */
-        private Object value;
-
-        public String id;
-        public Integer innerId;
-        public String targetName;
-        public String nodeName;
-        public Integer fieldType;
-
-    }
-
-
-    @Data
-    private static class TemplateNode extends IfmResponseTemplateDetailDTO implements Serializable {
-        public TemplateNode() {
-        }
-
-        public String fullNodeName;
-        public String fullTargetName;
-        public TemplateNode parentNode;
-        public Object value;
-        public List<TemplateNode> children;
-
-        public List<TemplateNode> getChildren() {
-            if (children == null) {
-                children = new ArrayList<>();
-            }
-            return children;
-        }
-
-        @Override
-        public String toString() {
-            return "TemplateNode{" +
-                    "innerId=" + innerId +
-                    ", parentId=" + parentId +
-                    ", nodeName='" + this.getNodeName() + '\'' +
-                    ", targetName='" + this.getNodeName() + '\'' +
-                    ", nodeType=" + this.getNodeType() +
-                    ", fieldType=" + this.getFieldType() +
-                    ", fullNodeName='" + fullNodeName + '\'' +
-                    ", value=" + value +
-                    '}';
-        }
-    }
-
-    @Getter
-    public static enum IfmApiParamsEnums {
-
-
-        /**
-         * 根节点
-         */
-        root_node(-1, "params", -2);
-
-
-        /**
-         * api类型
-         */
-        private Integer innerId;
-
-        private Integer parentId;
-
-
-        /**
-         *
-         */
-        private String name;
-
-
-        IfmApiParamsEnums(Integer innerId, String name, Integer parentId) {
-            this.innerId = innerId;
-            this.name = name;
-            this.parentId = parentId;
-        }
     }
 }
