@@ -23,7 +23,9 @@ import java.util.List;
         "password",
         "birthday",
         "money",
-        "computers"
+        "computers",
+        "computer",
+        "snList"
 })
 @Data
 public class User implements Serializable {
@@ -41,6 +43,9 @@ public class User implements Serializable {
     private double money;
     // 拥有的电脑
     private List<Computer> computers;
+    private Computer computer;
+
+    private List<Integer> snList;
 
     public User() {
         super();

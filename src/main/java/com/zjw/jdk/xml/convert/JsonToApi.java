@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.zjw.jdk.xml.convert.utils.XML;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.springframework.beans.BeanUtils;
@@ -16,7 +17,7 @@ import java.util.stream.Collectors;
  * 加入matchtype
  * Created by Administrator on 2019-10-12.
  */
-public class JsonToJson {
+public class JsonToApi {
 
     private List<TemplateNode> getTemplateNodes(List<IfmResponseTemplateDetailDTO> sources) {
         List<TemplateNode> sources2 = new ArrayList<>();
@@ -43,7 +44,7 @@ public class JsonToJson {
         return sources2;
     }
 
-    String jsonStr = "{\n" +
+    String str = "{\n" +
             "  \"entryOrder\": {\n" +
             "    \"totalOrderLines\": \"\\n            单据总行数，int，当单据需要分多个请求发送时，发送方需要将totalOrderLines填入，接收方收到后，根据实际接收到的条数和totalOrderLines进行比对，如果小于，则继续等待接收请求。如果等于，则表示该单据的所有请求发送完成。\\n        \",\n" +
             "    \"entryOrderCode\": \"入库单编码, string (50) , 必填\",\n" +
@@ -277,8 +278,8 @@ public class JsonToJson {
         sources.add(new IfmResponseTemplateDetailDTO(400, 5, "itemId", "itemId2", 0, 3, 0));
 //
         sources.add(new IfmResponseTemplateDetailDTO(8, 5, "snList", "snList", 0, 2, 0));
-//
-        sources.add(new IfmResponseTemplateDetailDTO(14, 5, "batchs", "batchs", 1));
+////
+        sources.add(new IfmResponseTemplateDetailDTO(14, 5, "batchs", "batchs", 0));
         sources.add(new IfmResponseTemplateDetailDTO(16, 14, "batchCode", "batchCode", 0, 3, 0));
         sources.add(new IfmResponseTemplateDetailDTO(16, 14, "produceCode", "produceCode", 0, 3, 0));
         sources.add(new IfmResponseTemplateDetailDTO(101, 14, "productDate", "productDate_text2", 1, 0, "0", "2", 3, 0));
@@ -304,7 +305,7 @@ public class JsonToJson {
         TemplateNode templateNode = templateNodes.get(0);
 //        System.out.println(JSON.toJSONString(templateNode));
         JSONArray jsonArray = new JSONArray();
-        Object read = JSON.parse(jsonStr);
+        Object read = JSON.parse(str);
         if (read instanceof JSONObject) {
             jsonArray.add(read);
         } else {
@@ -410,78 +411,55 @@ public class JsonToJson {
         }
     }
 
-    private void validateDependence(TemplateNode templateNode) {
-        if (templateNode.getParentNode() != null) {
-            TemplateNode parent = new TemplateNode();
-            BeanUtils.copyProperties(templateNode.getParentNode(), parent);
-            //设置为nul避免循环依赖
-            parent.setParentNode(null);
-            parent.setChildren(null);
-            templateNode.setParentNode(parent);
-        }
-        if (templateNode.getNodeType() == 2 || templateNode.getNodeType() == 3) {
-            if (!CollectionUtils.isEmpty(templateNode.getChildren())) {
-                throw new RuntimeException(String.format("节点%s的数据类型是%s，不能包含子集合",
-                        templateNode.getFullNodeName(), templateNode.getNodeTypeStr()));
-            }
-        } else {
-            if (CollectionUtils.isEmpty(templateNode.getChildren())) {
-                throw new RuntimeException(String.format("节点%s的数据类型是%s，子集合不能为空",
-                        templateNode.getFullNodeName(), templateNode.getNodeTypeStr()));
-            }
-        }
-        for (TemplateNode item : templateNode.getChildren()) {
-            if (StringUtils.isEmpty(item.getTargetName())) {
-                if (item.getNodeType() == 1 || item.getNodeType() == 2 || templateNode.getNodeType() == 3) {
-                    throw new RuntimeException(String.format("当前节点%s的类型是%s，父节点%s的类型是%s ,目标字段不为能空。"
-                            , item.getFullNodeName(), item.getNodeTypeStr(), item.getParentNode().getFullNodeName(),
-                            item.getParentNode().getNodeTypeStr()));
-                }
-            }
-            validateDependence(item);
-        }
-    }
 
     private void cc(TemplateNode nt, JSONArray jsonArray) {
         Map<String, Object> map = new LinkedHashMap<>();
         for (Object e : jsonArray) {
             JSONObject jsonObject = (JSONObject) e;
             //ifm的params下的子节点
-            this.convert(nt.getChildren(), map, jsonObject, "");
+            this.convert(nt.getChildren(), map, jsonObject);
 
         }
         System.out.println(JSON.toJSONString(map, SerializerFeature.WriteMapNullValue));
+        System.out.println(XML.toString(new com.zjw.jdk.xml.convert.utils.JSONObject(map), "root"));
     }
 
 
-    private void convert(List<TemplateNode> sources, Map<String, Object> map, JSONObject node, String nodeName) {
+    private void convert(List<TemplateNode> sources, Map<String, Object> map, JSONObject node) {
         for (int i = 0; i < sources.size(); i++) {
             TemplateNode item = sources.get(i);
-            //当循环至根节点时重置nodeName
-            if (item.getParentId() == IfmApiParamsEnums.root_node.getInnerId()) {
-                nodeName = "";
-            }
             Object o = node.get(item.getNodeName());
             if (o == null) {
-                throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询不到节点%s，节点类型%s", nodeName,
+                throw new RuntimeException(String.format("获取节点对象，在节点%s%s查询不到节点%s，节点类型%s", item.getParentNode().getFullNodeName(),
                         node.keySet(), item.getFullNodeName(), item.getNodeTypeStr()));
             }
             if (CollectionUtils.isEmpty(item.getChildren())) {
                 if (StringUtils.isEmpty(item.getTargetName())) {
                     continue;
                 }
-                validate2(item, node, nodeName, o);
+                validateValue(item, node, o);
+                String v = null;
                 if (item.getParentNode().getNodeType() == 1) {
                     LinkedList<Map<String, Object>> list = (LinkedList<Map<String, Object>>) map.get(item.getParentNode().getTargetName());
                     Map<String, Object> child = list.getLast();
-                    child.put(item.getTargetName(), o);
+                    if (item.getMatchType() == 1) {
+                        v = o.toString();
+                        v = getSplit(v, item.getSelectType(), item.getSelectStart(), item.getSelectEnd());
+                        child.put(item.getTargetName(), v);
+                    } else {
+                        child.put(item.getTargetName(), o);
+                    }
                 } else {
-                    map.put(item.getTargetName(), o);
+                    if (item.getMatchType() == 1) {
+                        v = o.toString();
+                        v = getSplit(v, item.getSelectType(), item.getSelectStart(), item.getSelectEnd());
+                        map.put(item.getTargetName(), v);
+                    } else {
+                        map.put(item.getTargetName(), o);
+                    }
                 }
                 continue;
             }
-            nodeName += item.getNodeName() + ".";
-            System.out.println("是什么" + nodeName);
             JSONArray list = new JSONArray();
             if (o instanceof JSONObject) {
                 list.add(o);
@@ -491,7 +469,7 @@ public class JsonToJson {
             for (int j = 0; j < list.size(); j++) {
                 Object e = list.get(j);
                 JSONObject jsonObject = (JSONObject) e;
-                validateDependence(item, node, nodeName, o);
+                validateDateType(item, node, o);
                 if (StringUtils.isEmpty(item.getTargetName())) {
                     if (item.getParentNode().getNodeType() == 1) {
                         LinkedList<Map<String, Object>> o1 = (LinkedList<Map<String, Object>>) map.get(item.getParentNode().getTargetName());
@@ -500,9 +478,9 @@ public class JsonToJson {
                             last = new LinkedHashMap<>();
                             o1.add(last);
                         }
-                        this.convert(item.getChildren(), last, jsonObject, nodeName);
+                        this.convert(item.getChildren(), last, jsonObject);
                     } else {
-                        this.convert(item.getChildren(), map, jsonObject, nodeName);
+                        this.convert(item.getChildren(), map, jsonObject);
                     }
                 } else {
                     if (item.getParentNode().getNodeName().equals("params")) {
@@ -510,7 +488,7 @@ public class JsonToJson {
                             Map<String, Object> childMap = new LinkedHashMap<>();
                             map.put(item.getTargetName(), childMap);
 
-                            this.convert(item.getChildren(), childMap, jsonObject, nodeName);
+                            this.convert(item.getChildren(), childMap, jsonObject);
                             System.out.println("aaa");
                         } else if (item.getNodeType() == 1) {
                             LinkedList<Map<String, Object>> subMapList = (LinkedList<Map<String, Object>>) map.get(item.getTargetName());
@@ -520,7 +498,7 @@ public class JsonToJson {
                             }
                             subMapList.add(new LinkedHashMap<>());
                             // 对象数组
-                            this.convert(item.getChildren(), map, jsonObject, nodeName);
+                            this.convert(item.getChildren(), map, jsonObject);
                             System.out.println("aaa");
                         }
                     } else {
@@ -531,7 +509,7 @@ public class JsonToJson {
                                 //父节点是对象
                                 Map<String, Object> first = new LinkedHashMap<>();
                                 map.put(item.getTargetName(), first);
-                                this.convert(item.getChildren(), first, jsonObject, nodeName);
+                                this.convert(item.getChildren(), first, jsonObject);
                             } else {
                                 LinkedList<Map<String, Object>> parentList = (LinkedList<Map<String, Object>>) map.get(item.getParentNode().getTargetName());
                                 Map<String, Object> subMap = parentList.getLast();
@@ -543,7 +521,7 @@ public class JsonToJson {
                                 } else {
                                     subMap.put(item.getTargetName(), second);
                                 }
-                                this.convert(item.getChildren(), second, jsonObject, nodeName);
+                                this.convert(item.getChildren(), second, jsonObject);
                             }
                             System.out.println("aaa");
                         } else if (item.getNodeType() == 1) {
@@ -556,7 +534,7 @@ public class JsonToJson {
                                     map.put(item.getTargetName(), subMapList);
                                 }
                                 subMapList.add(new LinkedHashMap<>());
-                                this.convert(item.getChildren(), map, jsonObject, nodeName);
+                                this.convert(item.getChildren(), map, jsonObject);
                                 System.out.println("aaa");
                             } else {
                                 // 父节点是对象数组
@@ -569,14 +547,14 @@ public class JsonToJson {
                                 }
                                 Map<String, Object> second = new LinkedHashMap<>();
                                 subMapList.add(second);
-                                this.convert(item.getChildren(), sub, jsonObject, nodeName);
+                                this.convert(item.getChildren(), sub, jsonObject);
                                 System.out.println("aaa");
                             }
                         } else if (item.getNodeType() == 2) {
                             //数组
                             List<Object> subArray = new LinkedList<>();
                             map.put(item.getTargetName(), subArray);
-                            this.convert(item.getChildren(), map, jsonObject, nodeName);
+                            this.convert(item.getChildren(), map, jsonObject);
                             System.out.println("aaa");
                         }
                     }
@@ -586,62 +564,62 @@ public class JsonToJson {
 
     }
 
-    private void validate2(TemplateNode nt, JSONObject node, String nodeName, Object o) {
+    private void validateValue(TemplateNode nt, JSONObject node, Object o) {
         //数组，取得的节点一定是jsonArray，并且集合里的数据一定是基本数据类型
         if (nt.getNodeType() == 2) {
             if (!(o instanceof JSONArray)) {
-                throw new RuntimeException(String.format("设置节点对象，当前节点%s的子节点%s查询到节点%s，节点类型是%s，" +
-                                "但是源数据该节点的类型非%s", nodeName, node.keySet(), nt.getFullNodeName(),
-                        nt.getNodeTypeStr(), nt.getNodeTypeStr()));
+                throw new RuntimeException(String.format("设置节点对象，在%s%s查询到节点%s，节点类型是%s" +
+                                "但是源数据该节点的类型非%s", nt.getParentNode().getFullNodeName(), node.keySet(),
+                        nt.getFullNodeName(), nt.getNodeTypeStr(), nt.getNodeTypeStr()));
             }
             JSONArray jsonArray = (JSONArray) o;
             for (Object item : jsonArray) {
                 if (item instanceof JSONArray || item instanceof JSONObject) {
-                    throw new RuntimeException(String.format("设置节点对象，当前节点%s的子节点%s查询到节点%s，节点类型是%s，" +
-                                    "但是源数据该节点的类型非%s", nodeName, node.keySet(), nt.getFullNodeName(),
-                            nt.getNodeTypeStr(), nt.getNodeTypeStr()));
+                    throw new RuntimeException(String.format("设置节点对象，在%s%s查询到节点%s，节点类型是%s" +
+                                    "但是源数据该节点的类型非%s", nt.getParentNode().getFullNodeName(), node.keySet(),
+                            nt.getFullNodeName(), nt.getNodeTypeStr(), nt.getNodeTypeStr()));
                 }
             }
         } else if (nt.getNodeType() == 3) {
             // 最终节点，取得的对象一定不是jsonObject和jsonArray
             if (o instanceof JSONObject || o instanceof JSONArray) {
-                throw new RuntimeException(String.format("设置节点对象，当前节点%s的子节点%s查询到节点%s，节点类型是%s，" +
-                                "但是源数据该节点的类型非%s", nodeName, node.keySet(), nt.getFullNodeName(),
-                        nt.getNodeTypeStr(), nt.getNodeTypeStr()));
+                throw new RuntimeException(String.format("设置节点对象，在%s%s查询到节点%s，节点类型是%s" +
+                                "但是源数据该节点的类型非%s", nt.getParentNode().getFullNodeName(), node.keySet(),
+                        nt.getFullNodeName(), nt.getNodeTypeStr(), nt.getNodeTypeStr()));
             }
         } else {
-            throw new RuntimeException(String.format("设置节点对象，当前节点%s的类型是%s，不能设置值", nt.getFullNodeName(),
-                    nt.getNodeTypeStr()));
+            throw new RuntimeException(String.format("设置节点对象，在%s%s查询到节点%s，节点类型是%s，不能设置值",
+                    nt.getParentNode().getFullNodeName(), node.keySet(), nt.getFullNodeName(), nt.getNodeTypeStr()));
         }
     }
 
 
-    private void validateDependence(TemplateNode nt, JSONObject node, String nodeName, Object o) {
+    private void validateDateType(TemplateNode nt, JSONObject node, Object o) {
         // 对象
         if (nt.getNodeType() == 0) {
             if (!(o instanceof JSONObject)) {
-                throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询到节点%s，节点类型是%s，" +
-                                "但是源数据该节点的类型非%s", nodeName, node.keySet(), nt.getFullNodeName(),
+                throw new RuntimeException(String.format("获取节点对象，在%s%s查询到节点%s，节点类型是%s，" +
+                                "但是源数据该节点的类型非%s", nt.getParentNode().getFullNodeName(), node.keySet(), nt.getFullNodeName(),
                         nt.getNodeTypeStr(), nt.getNodeTypeStr()));
             }
         } else if (nt.getNodeType() == 1) {
             //对象数组
             if (!(o instanceof JSONArray)) {
-                throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询到节点%s，节点类型是%s，" +
-                                "但是源数据该节点的类型非%s", nodeName, node.keySet(), nt.getFullNodeName(),
+                throw new RuntimeException(String.format("获取节点对象，在%s%s查询到节点%s，节点类型是%s，" +
+                                "但是源数据该节点的类型非%s", nt.getParentNode().getFullNodeName(), node.keySet(), nt.getFullNodeName(),
                         nt.getNodeTypeStr(), nt.getNodeTypeStr()));
             }
             JSONArray jsonArray = (JSONArray) o;
             for (Object item : jsonArray) {
                 if (!(item instanceof JSONArray || item instanceof JSONObject)) {
-                    throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询到节点%s，节点类型是%s，" +
-                                    "但是源数据该节点的类型非%s", nodeName, node.keySet(), nt.getFullNodeName(),
+                    throw new RuntimeException(String.format("获取节点对象，在%s%s查询到节点%s，节点类型是%s，" +
+                                    "但是源数据该节点的类型非%s", nt.getParentNode().getFullNodeName(), node.keySet(), nt.getFullNodeName(),
                             nt.getNodeTypeStr(), nt.getNodeTypeStr()));
                 }
             }
         } else {
-            throw new RuntimeException(String.format("当前节点%s的子节点%s查询到节点%s，节点类型是%s，不能作为对象类型的判断",
-                    nodeName, node.keySet(), nt.getFullNodeName(), nt.getNodeTypeStr()));
+            throw new RuntimeException(String.format("获取节点对象，在%s%s查询到节点%s，节点类型是%s，不能作为对象类型的判断",
+                    nt.getParentNode().getFullNodeName(), node.keySet(), nt.getFullNodeName(), nt.getNodeTypeStr()));
         }
     }
 
@@ -653,7 +631,7 @@ public class JsonToJson {
      * @param nodeName
      * @return
      */
-    public static List<TemplateNode> getNT(List<TemplateNode> sources, Integer parentId, String nodeName, String targetName) {
+    public  List<TemplateNode> getNT(List<TemplateNode> sources, Integer parentId, String nodeName, String targetName) {
         List<TemplateNode> result = new ArrayList<>();
         List<TemplateNode> target = sources.stream().filter
                 (item -> Objects.equals(parentId, item.getParentId())).collect(Collectors.toList());

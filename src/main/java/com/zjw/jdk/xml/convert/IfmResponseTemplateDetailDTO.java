@@ -56,11 +56,11 @@ public class IfmResponseTemplateDetailDTO implements Serializable {
         this.fieldType = fieldType;
     }
 
+    public Integer innerId;
 
-    private Integer innerId;
+    public Integer parentId;
 
-    private Integer parentId;
-
+    private String targetTable;
 
     private String targetId;
 
@@ -93,21 +93,37 @@ public class IfmResponseTemplateDetailDTO implements Serializable {
 
     private String selectEnd;
 
+    private Integer dataType;
+    private String dataTypeStr;
+    private Integer foreignId;
+    private String foreignField;
 
-    /**
-     * 节点类型 0:对象，1：对象数组，2：数组，3：最终节点
-     */
     private Integer nodeType;
 
-    /**
-     * 节点类型 0:对象，1：对象数组，2：数组，3：最终节点
-     */
     private String nodeTypeStr;
 
-    /**
-     * 字段类型(0：字符串 1：时间 2：数字)
-     */
     private Integer fieldType;
-
     private String fieldTypeStr;
+
+
+    @Override
+    public boolean equals(Object o) {
+       /* if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        IfmResponseTemplateDetailDto that = (IfmResponseTemplateDetailDto) o;
+
+        return nodeName.equals(that.nodeName);*/
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+/*        return nodeName.hashCode();*/
+        return super.hashCode();
+    }
 }
