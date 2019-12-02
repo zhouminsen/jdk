@@ -1,4 +1,4 @@
-package com.zjw.jdk;
+package com.zjw.jdk.xml.convert;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
  * 加入matchtype
  * Created by Administrator on 2019-10-12.
  */
-public class JsonToData {
+public class JsonToData2 {
 
 
     private List<TemplateNode> getTemplateNodes(List<IfmPlatformTemplateDetailDTO> sources) {
@@ -185,26 +185,26 @@ public class JsonToData {
         sources.add(new IfmPlatformTemplateDetailDTO(-1, -2, "params", 0, 0, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(1, -1, "entryOrder", 0, 0, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(2, 1, "id", 1, "t", "id", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(3, 2, "totalOrderLines", 9, "t", "totalOrderLines", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(4, 2, "entryOrderCode", 9, "t", "entryOrderCode", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(3, 1, "totalOrderLines", 9, "t", "totalOrderLines", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(4, 1, "entryOrderCode", 9, "t", "entryOrderCode", 0, 0, 0));
 
         sources.add(new IfmPlatformTemplateDetailDTO(5, -1, "orderLines", 0, 0, 1));
         sources.add(new IfmPlatformTemplateDetailDTO(6, 5, "id", 1, "t2", "id", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(7, 6, 2, "foreign_id", 3, "t2", "order_id", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(8, 6, "outBizCode", 9, "t2", "outBizCode", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(30, 6, "remark", 9, "t2", "remark", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(7, 5, 2, "foreign_id", 3, "t2", "order_id", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(8, 5, "outBizCode", 9, "t2", "outBizCode", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(30, 5, "remark", 9, "t2", "remark", 0, 0, 0));
 
         sources.add(new IfmPlatformTemplateDetailDTO(9, 6, "snList", 0, 0, 2));
         sources.add(new IfmPlatformTemplateDetailDTO(10, 9, "id", 1, "t3", "id", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(11, 10, "foreign_id", 2, "t3", "sub_id", "id", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(12, 10, "sn", 9, "t3", "sn2", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(11, 9, "foreign_id", 2, "t3", "sub_id", "id", 0, 0, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(12, 9, "sn", 9, "t3", "sn2", 0, 0, 0));
 //
         sources.add(new IfmPlatformTemplateDetailDTO(13, 6, "batchs", 0, 0, 1));
         sources.add(new IfmPlatformTemplateDetailDTO(14, 13, "id", 1, "t4", "id", "id", 0, 1, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(15, 14, "foreign_id", 2, "t4", "sub_id", "id", 0, 1, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(16, 14, "batchCode", 9, "t4", "batchCode", 0, 1, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(101, 14, "productDate", 9, "t4", "productDate_text", 1, 0, "0", "2", 1, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(102, 14, "productDate", 9, "t4", "productDate_text2", 1, 0, "2", "4", 1, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(15, 13, "foreign_id", 2, "t4", "sub_id", "id", 0, 1, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(16, 13, "batchCode", 9, "t4", "batchCode", 0, 1, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(101, 13, "productDate", 9, "t4", "productDate_text", 1, 0, "0", "2", 1, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(102, 13, "productDate", 9, "t4", "productDate_text2", 1, 0, "2", "4", 1, 0));
 //        //并集无外键
 //        sources.add(new IfmPlatformTemplateDetailDTO(18, 1, "id", 1, "t5", "id", 0, 0, 0));
 //        sources.add(new IfmPlatformTemplateDetailDTO(19, 18, "confirmType", 9, "t5", "confirmType", 0, 0, 0));

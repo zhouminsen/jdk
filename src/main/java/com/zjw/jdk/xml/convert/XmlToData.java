@@ -1,4 +1,4 @@
-package com.zjw.jdk;
+package com.zjw.jdk.xml.convert;
 
 import com.alibaba.fastjson.JSON;
 import com.zjw.jdk.util.UtilFuns;

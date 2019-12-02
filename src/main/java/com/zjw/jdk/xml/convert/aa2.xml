@@ -1,137 +1,38 @@
-<request>
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <request>
+        <entryOrder>
+            <totalOrderLines>1111</totalOrderLines>
+            <entryOrderCode>1111</entryOrderCode>
+            <remark>1111</remark>
+        </entryOrder>
+    </request>
     <orderLines>
-        <batch>
-            <produceCode>生产批号，string(50)，</produceCode>
-            <productDate_text3>日期</productDate_text3>
-            <productDate_text2>生产</productDate_text2>
-            <batchCode>批次编号，string(50)</batchCode>
-        </batch>
-        <batch>
-            <produceCode>生产批号，string(50)，</produceCode>
-            <productDate_text3>日期</productDate_text3>
-            <productDate_text2>生产</productDate_text2>
-            <batchCode>批次编号，string(50)</batchCode>
-        </batch>
-        <cc>
-            <zjws>
-                <zjw7>
-                    <zjw8>周家伟1</zjw8>
-                    <zjw9>周家伟2</zjw9>
-                    <zjw10>
-                        <zjw12>周家伟4</zjw12>
-                        <zjw11>周家伟3</zjw11>
-                    </zjw10>
-                </zjw7>
-                <zjw4>周家伟</zjw4>
-                <zjw6>
-                    <zjw6_6>1</zjw6_6>
-                    <zjw6_6>2</zjw6_6>
-                    <zjw6_6>3</zjw6_6>
-                    <zjw6_6>4</zjw6_6>
-                    <zjw6_6>5</zjw6_6>
-                </zjw6>
-                <zjw5>dsadas</zjw5>
-            </zjws>
-            <zjws>
-                <zjw7>
-                    <zjw8>周家伟1</zjw8>
-                    <zjw9>周家伟2</zjw9>
-                    <zjw10>
-                        <zjw12>周家伟4</zjw12>
-                        <zjw11>周家伟3</zjw11>
-                    </zjw10>
-                </zjw7>
-                <zjw4>周家伟</zjw4>
-                <zjw6>
-                    <zjw6_6>2</zjw6_6>
-                    <zjw6_6>3</zjw6_6>
-                    <zjw6_6>4</zjw6_6>
-                    <zjw6_6>5</zjw6_6>
-                </zjw6>
-                <zjw5>dsadas</zjw5>
-            </zjws>
-            <zjw>
-                <zjw2>周家伟</zjw2>
-            </zjw>
-        </cc>
-        <outBizCode2>外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用</outBizCode2>
-        <sn>商品序列号, string(50)</sn>
-        <sn>商品序列号, string(50)</sn>
-        <itemId2>仓储系统商品ID, string (50) , 条件必填</itemId2>
-        <remark2>备注, string (500)</remark2>
+        <orderLine>
+            <outBizCode>1111</outBizCode>
+            <remark>1111</remark>
+            <itemCode>
+                <weige>1111</weige>
+                <weige2>1111</weige2>
+            </itemCode>
+            <snList>
+                <sn>1111</sn>
+                <sn>1111</sn>
+            </snList>
+            <batchs>
+                <batch>
+                    <batchCode>1111</batchCode>
+                    <productDate>1111</productDate>
+                </batch>
+            </batchs>
+        </orderLine>
+        <orderLine>
+            <outBizCode>1111</outBizCode>
+            <remark>1111</remark>
+            <itemCode>
+                <weige>1111</weige>
+                <weige2>1111</weige2>
+            </itemCode>
+        </orderLine>
     </orderLines>
-    <orderLines>
-        <batch>
-            <produceCode>生产批号，string(50)，</produceCode>
-            <productDate_text3>日期</productDate_text3>
-            <productDate_text2>生产</productDate_text2>
-            <batchCode>批次编号，string(50)</batchCode>
-        </batch>
-        <batch>
-            <produceCode>生产批号，string(50)，</produceCode>
-            <productDate_text3>日期</productDate_text3>
-            <productDate_text2>生产</productDate_text2>
-            <batchCode>批次编号，string(50)</batchCode>
-        </batch>
-        <cc>
-            <zjws>
-                <zjw7>
-                    <zjw8>周家伟1</zjw8>
-                    <zjw9>周家伟2</zjw9>
-                    <zjw10>
-                        <zjw12>周家伟4</zjw12>
-                        <zjw11>周家伟3</zjw11>
-                    </zjw10>
-                </zjw7>
-                <zjw4>周家伟</zjw4>
-                <zjw6>
-                    <zjw6_6>1</zjw6_6>
-                    <zjw6_6>2</zjw6_6>
-                    <zjw6_6>3</zjw6_6>
-                    <zjw6_6>4</zjw6_6>
-                    <zjw6_6>5</zjw6_6>
-                </zjw6>
-                <zjw5>dsadas</zjw5>
-            </zjws>
-            <zjws>
-                <zjw7>
-                    <zjw8>周家伟1</zjw8>
-                    <zjw9>周家伟2</zjw9>
-                    <zjw10>
-                        <zjw12>周家伟4</zjw12>
-                        <zjw11>周家伟3</zjw11>
-                    </zjw10>
-                </zjw7>
-                <zjw4>周家伟</zjw4>
-                <zjw6>
-                    <zjw6_6>2</zjw6_6>
-                    <zjw6_6>3</zjw6_6>
-                    <zjw6_6>4</zjw6_6>
-                    <zjw6_6>5</zjw6_6>
-                </zjw6>
-                <zjw5>dsadas</zjw5>
-            </zjws>
-            <zjw>
-                <zjw2>周家伟</zjw2>
-            </zjw>
-        </cc>
-        <outBizCode2>外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用</outBizCode2>
-        <sn>商品序列号, string(50)</sn>
-        <sn>商品序列号, string(50)</sn>
-        <itemId2>仓储系统商品ID, string (50) , 条件必填</itemId2>
-        <remark2>备注, string (500)</remark2>
-    </orderLines>
-    <entryOrder>
-        <entryOrderCode>入库单编码, string (50) , 必填</entryOrderCode>
-        <ownerCode>货主编码, string (50)</ownerCode>
-        <totalOrderLines>大撒大撒大撒、</totalOrderLines>
-    </entryOrder>
-    <entryOrder2>
-        <totalOrderLines2>dsadsads</totalOrderLines2>
-        <ownerCode2>货主编码, string (50)</ownerCode2>
-        <haha1>111</haha1>
-        <entryOrderCode2>入库单编码, string (50) , 必填</entryOrderCode2>
-        <haha3>111</haha3>
-        <haha2>111</haha2>
-    </entryOrder2>
-</request>
+</root>
