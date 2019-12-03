@@ -1,482 +1,223 @@
-[
-  {
-    "apiId": 1,
-    "children": [
-      {
-        "apiId": 1,
-        "children": [
-          {
-            "apiId": 1,
-            "children": [],
-            "fullNodeName": "params.request.entryOrder.totalOrderLines",
-            "id": 62,
-            "innerId": 3,
-            "nodeType": 3,
-            "nodeTypeStr": "最终节点",
-            "paramId": "62",
-            "parameterColumnType": 1,
-            "parameterColumnTypeStr": "时间",
-            "parameterName": "totalOrderLines",
-            "parameterType": 2,
-            "parameterTypeStr": "请求体参数",
-            "parentId": 2,
-            "parentNodeType": 0,
-            "parentParameterName": "entryOrder",
-            "rowId": "6",
-            "value": "1111"
-          },
-          {
-            "apiId": 1,
-            "children": [],
-            "fullNodeName": "params.request.entryOrder.entryOrderCode",
-            "id": 63,
-            "innerId": 4,
-            "nodeType": 3,
-            "nodeTypeStr": "最终节点",
-            "paramId": "63",
-            "parameterColumnType": 1,
-            "parameterColumnTypeStr": "时间",
-            "parameterName": "entryOrderCode",
-            "parameterType": 2,
-            "parameterTypeStr": "请求体参数",
-            "parentId": 2,
-            "parentNodeType": 0,
-            "parentParameterName": "entryOrder",
-            "rowId": "7",
-            "value": "1111"
-          },
-          {
-            "apiId": 1,
-            "children": [],
-            "fullNodeName": "params.request.entryOrder.remark",
-            "id": 64,
-            "innerId": 13,
-            "nodeType": 3,
-            "nodeTypeStr": "最终节点",
-            "paramId": "64",
-            "parameterColumnType": 1,
-            "parameterColumnTypeStr": "时间",
-            "parameterName": "remark",
-            "parameterType": 2,
-            "parameterTypeStr": "请求体参数",
-            "parentId": 2,
-            "parentNodeType": 0,
-            "parentParameterName": "entryOrder",
-            "rowId": "8",
-            "value": "1111"
-          }
-        ],
-        "fullNodeName": "params.request.entryOrder.",
-        "id": 61,
-        "innerId": 2,
-        "nodeType": 0,
-        "nodeTypeStr": "对象",
-        "paramId": "61",
-        "parameterName": "entryOrder",
-        "parameterType": 2,
-        "parameterTypeStr": "请求体参数",
-        "parentId": 1,
-        "parentNodeType": 0,
-        "parentParameterName": "request",
-        "rowId": "5"
-      }
-    ],
-    "fullNodeName": "params.request.",
-    "id": 60,
-    "innerId": 1,
-    "nodeType": 0,
-    "nodeTypeStr": "对象",
-    "paramId": "60",
-    "parameterName": "request",
-    "parameterType": 2,
-    "parameterTypeStr": "请求体参数",
-    "parentId": -1,
-    "parentNodeType": 0,
-    "parentParameterName": "params",
-    "rowId": "4"
+{
+  "entryOrder": {
+    "totalOrderLines": "大撒大撒大撒、",
+    "entryOrderCode": "入库单编码, string (50) , 必填",
+    "ownerCode": "货主编码, string (50)",
+    "warehouseCode": "仓库编码, string (50)，必填",
+    "entryOrderId": "仓储系统入库单ID, string (50) , 条件必填",
+    "entryOrderType": "大苏打撒旦",
+    "outBizCode": "x'z'X'zX",
+    "confirmType": "大撒大撒大撒",
+    "status": "的撒旦撒旦",
+    "freight": "快递费用 (元) , double (18, 2)",
+    "operateTime": "操作时间, string (19) , YYYY-MM-DD HH:MM:SS，(当status=FULFILLED, operateTime为入库时间)",
+    "remark": "备注, string (500)"
   },
-  {
-    "apiId": 1,
-    "children": [
+  "entryOrder2": {
+    "totalOrderLines2": "dsadsads",
+    "entryOrderCode2": "入库单编码, string (50) , 必填",
+    "ownerCode2": "货主编码, string (50)",
+    "warehouseCode": "仓库编码, string (50)，必填",
+    "entryOrderId": "仓储系统入库单ID, string (50) , 条件必填",
+    "entryOrderType": "撒大大撒旦",
+    "outBizCode": "的撒旦撒旦",
+    "confirmType": "支持出入库单多次收货, int，",
+    "status": "入库单状态, string (50) , 必填 (NEW-未开始处理, ACCEPT-仓库接单",
+    "freight": "快递费用 (元) , double (18, 2)",
+    "operateTime": "操作时间, string (19) , YYYY-MM-DD HH:MM:SS，(当status=FULFILLED, operateTime为入库时间)",
+    "remark": "备注, string (500)",
+    "haha": {
+      "haha1": "111",
+      "haha2": "111",
+      "haha3": "111"
+    }
+  },
+  "orderLines": {
+    "orderLine": [
       {
-        "apiId": 1,
-        "children": [
-          {
-            "apiId": 1,
-            "children": [],
-            "fullNodeName": "params.orderLines.orderLine.outBizCode",
-            "id": 67,
-            "innerId": 16,
-            "nodeType": 3,
-            "nodeTypeStr": "最终节点",
-            "paramId": "67",
-            "parameterColumnType": 1,
-            "parameterColumnTypeStr": "时间",
-            "parameterName": "outBizCode",
-            "parameterType": 2,
-            "parameterTypeStr": "请求体参数",
-            "parentId": 15,
-            "parentNodeType": 1,
-            "parentParameterName": "orderLine",
-            "rowId": "11",
-            "value": "1111"
+        "outBizCode": "外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用",
+        "orderLineNo": "单据行号，string（50）",
+        "ownerCode": "货主编码, string (50)",
+        "itemCode": "商品编码, string (50) , 必填",
+        "itemId": "仓储系统商品ID, string (50) , 条件必填",
+        "foreignId": "1111",
+        "snList": {
+          "sn": [
+            "商品序列号, string(50)",
+            "商品序列号, string(50)"
+          ]
+        },
+        "itemName": "商品名称, string (200)",
+        "inventoryType": "大撒大撒大撒",
+        "planQty": "应收数量, int",
+        "actualQty": "实收数量, int，必填",
+        "batchCode": "批次编码, string (50)",
+        "productDate": "商品生产日期，string（10）， YYYY-MM-DD",
+        "expireDate": "商品过期日期，string（10），YYYY-MM-DD",
+        "produceCode": "生产批号, string (50)",
+        "cc": {
+          "zjw": {
+            "zjw2": "周家伟"
           },
-          {
-            "apiId": 1,
-            "children": [],
-            "fullNodeName": "params.orderLines.orderLine.remark",
-            "id": 68,
-            "innerId": 17,
-            "nodeType": 3,
-            "nodeTypeStr": "最终节点",
-            "paramId": "68",
-            "parameterColumnType": 1,
-            "parameterColumnTypeStr": "时间",
-            "parameterName": "remark",
-            "parameterType": 2,
-            "parameterTypeStr": "请求体参数",
-            "parentId": 15,
-            "parentNodeType": 1,
-            "parentParameterName": "orderLine",
-            "rowId": "12",
-            "value": "1111"
-          },
-          {
-            "apiId": 1,
-            "children": [
+          "zjw3_s": {
+            "zjw3": [
               {
-                "apiId": 1,
-                "children": [],
-                "fullNodeName": "params.orderLines.orderLine.itemCode.weige",
-                "id": 70,
-                "innerId": 19,
-                "nodeType": 3,
-                "nodeTypeStr": "最终节点",
-                "paramId": "70",
-                "parameterColumnType": 1,
-                "parameterColumnTypeStr": "时间",
-                "parameterName": "weige",
-                "parameterType": 2,
-                "parameterTypeStr": "请求体参数",
-                "parentId": 18,
-                "parentNodeType": 0,
-                "parentParameterName": "itemCode",
-                "rowId": "14",
-                "value": "1111"
-              },
-              {
-                "apiId": 1,
-                "children": [],
-                "fullNodeName": "params.orderLines.orderLine.itemCode.weige2",
-                "id": 71,
-                "innerId": 20,
-                "nodeType": 3,
-                "nodeTypeStr": "最终节点",
-                "paramId": "71",
-                "parameterColumnType": 1,
-                "parameterColumnTypeStr": "时间",
-                "parameterName": "weige2",
-                "parameterType": 2,
-                "parameterTypeStr": "请求体参数",
-                "parentId": 18,
-                "parentNodeType": 0,
-                "parentParameterName": "itemCode",
-                "rowId": "15",
-                "value": "1111"
-              }
-            ],
-            "fullNodeName": "params.orderLines.orderLine.itemCode.",
-            "id": 69,
-            "innerId": 18,
-            "nodeType": 0,
-            "nodeTypeStr": "对象",
-            "paramId": "69",
-            "parameterName": "itemCode",
-            "parameterType": 2,
-            "parameterTypeStr": "请求体参数",
-            "parentId": 15,
-            "parentNodeType": 1,
-            "parentParameterName": "orderLine",
-            "rowId": "13"
-          },
-          {
-            "apiId": 1,
-            "children": [
-              {
-                "apiId": 1,
-                "children": [],
-                "fullNodeName": "params.orderLines.orderLine.snList.sn",
-                "id": 73,
-                "innerId": 22,
-                "nodeType": 2,
-                "nodeTypeStr": "数组",
-                "paramId": "73",
-                "parameterColumnType": 0,
-                "parameterColumnTypeStr": "字符串",
-                "parameterName": "sn",
-                "parameterType": 2,
-                "parameterTypeStr": "请求体参数",
-                "parentId": 21,
-                "parentNodeType": 0,
-                "parentParameterName": "snList",
-                "rowId": "17",
-                "value": "1111"
-              },
-              {
-                "apiId": 1,
-                "children": [],
-                "fullNodeName": "params.orderLines.orderLine.snList.sn",
-                "id": 74,
-                "innerId": 23,
-                "nodeType": 2,
-                "nodeTypeStr": "数组",
-                "paramId": "74",
-                "parameterColumnType": 0,
-                "parameterColumnTypeStr": "字符串",
-                "parameterName": "sn",
-                "parameterType": 2,
-                "parameterTypeStr": "请求体参数",
-                "parentId": 21,
-                "parentNodeType": 0,
-                "parentParameterName": "snList",
-                "rowId": "18",
-                "value": "1111"
-              }
-            ],
-            "fullNodeName": "params.orderLines.orderLine.snList.",
-            "id": 72,
-            "innerId": 21,
-            "nodeType": 0,
-            "nodeTypeStr": "对象",
-            "paramId": "72",
-            "parameterName": "snList",
-            "parameterType": 2,
-            "parameterTypeStr": "请求体参数",
-            "parentId": 15,
-            "parentNodeType": 1,
-            "parentParameterName": "orderLine",
-            "rowId": "16"
-          },
-          {
-            "apiId": 1,
-            "children": [
-              {
-                "apiId": 1,
-                "children": [
-                  {
-                    "apiId": 1,
-                    "children": [],
-                    "fullNodeName": "params.orderLines.orderLine.batchs.batch.batchCode",
-                    "id": 77,
-                    "innerId": 33,
-                    "nodeType": 3,
-                    "nodeTypeStr": "最终节点",
-                    "paramId": "77",
-                    "parameterColumnType": 1,
-                    "parameterColumnTypeStr": "时间",
-                    "parameterName": "batchCode",
-                    "parameterType": 2,
-                    "parameterTypeStr": "请求体参数",
-                    "parentId": 32,
-                    "parentNodeType": 0,
-                    "parentParameterName": "batch",
-                    "rowId": "21",
-                    "value": "1111"
-                  },
-                  {
-                    "apiId": 1,
-                    "children": [],
-                    "fullNodeName": "params.orderLines.orderLine.batchs.batch.productDate",
-                    "id": 78,
-                    "innerId": 34,
-                    "nodeType": 3,
-                    "nodeTypeStr": "最终节点",
-                    "paramId": "78",
-                    "parameterColumnType": 1,
-                    "parameterColumnTypeStr": "时间",
-                    "parameterName": "productDate",
-                    "parameterType": 2,
-                    "parameterTypeStr": "请求体参数",
-                    "parentId": 32,
-                    "parentNodeType": 0,
-                    "parentParameterName": "batch",
-                    "rowId": "22",
-                    "value": "1111"
+                "zjw4": "周家伟",
+                "zjw5": "dsadas",
+                "zjw6": {
+                  "zjw6_6": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5"
+                  ]
+                },
+                "zjw7": {
+                  "zjw8": "周家伟1",
+                  "zjw9": "周家伟2",
+                  "zjw10": {
+                    "zjw11": "周家伟3",
+                    "zjw12": "周家伟4"
                   }
-                ],
-                "fullNodeName": "params.orderLines.orderLine.batchs.batch.",
-                "id": 76,
-                "innerId": 32,
-                "nodeType": 0,
-                "nodeTypeStr": "对象",
-                "paramId": "76",
-                "parameterName": "batch",
-                "parameterType": 2,
-                "parameterTypeStr": "请求体参数",
-                "parentId": 31,
-                "parentNodeType": 1,
-                "parentParameterName": "batchs",
-                "rowId": "20"
+                }
+              },
+              {
+                "zjw4": "周家伟",
+                "zjw5": "dsadas",
+                "zjw6": {
+                  "zjw6_6": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5"
+                  ]
+                },
+                "zjw7": {
+                  "zjw8": "周家伟1",
+                  "zjw9": "周家伟2",
+                  "zjw10": {
+                    "zjw11": "周家伟3",
+                    "zjw12": "周家伟4"
+                  }
+                }
               }
-            ],
-            "fullNodeName": "params.orderLines.orderLine.batchs.",
-            "id": 75,
-            "innerId": 31,
-            "nodeType": 1,
-            "nodeTypeStr": "对象数组",
-            "paramId": "75",
-            "parameterName": "batchs",
-            "parameterType": 2,
-            "parameterTypeStr": "请求体参数",
-            "parentId": 15,
-            "parentNodeType": 1,
-            "parentParameterName": "orderLine",
-            "rowId": "19"
+            ]
           }
-        ],
-        "fullNodeName": "params.orderLines.orderLine.",
-        "id": 66,
-        "innerId": 15,
-        "nodeType": 1,
-        "nodeTypeStr": "对象数组",
-        "paramId": "66",
-        "parameterName": "orderLine",
-        "parameterType": 2,
-        "parameterTypeStr": "请求体参数",
-        "parentId": 14,
-        "parentNodeType": 0,
-        "parentParameterName": "orderLines",
-        "rowId": "10"
+        },
+        "batchs": {
+          "batch": [
+            {
+              "batchCode": "批次编号，string(50)",
+              "productDate": "生产日期，string(10)，YYYY-MM-DD",
+              "expireDate": "过期日期，string(10)，YYYY-MM-DD",
+              "produceCode": "生产批号，string(50)，",
+              "inventoryType": "的撒旦撒旦",
+              "actualQty": "实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量"
+            },
+            {
+              "batchCode": "批次编号，string(50)",
+              "productDate": "生产日期，string(10)，YYYY-MM-DD",
+              "expireDate": "过期日期，string(10)，YYYY-MM-DD",
+              "produceCode": "生产批号，string(50)，",
+              "inventoryType": "dsadasdsa",
+              "actualQty": "实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量"
+            }
+          ]
+        },
+        "remark": "备注, string (500)"
       },
       {
-        "apiId": 1,
-        "children": [
-          {
-            "apiId": 1,
-            "children": [],
-            "fullNodeName": "params.orderLines.orderLine.outBizCode",
-            "id": 80,
-            "innerId": 41,
-            "nodeType": 3,
-            "nodeTypeStr": "最终节点",
-            "paramId": "80",
-            "parameterColumnType": 1,
-            "parameterColumnTypeStr": "时间",
-            "parameterName": "outBizCode",
-            "parameterType": 2,
-            "parameterTypeStr": "请求体参数",
-            "parentId": 40,
-            "parentNodeType": 1,
-            "parentParameterName": "orderLine",
-            "rowId": "24",
-            "value": "1111"
+        "outBizCode": "外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用",
+        "orderLineNo": "单据行号，string（50）",
+        "ownerCode": "货主编码, string (50)",
+        "itemCode": "商品编码, string (50) , 必填",
+        "itemId": "仓储系统商品ID, string (50) , 条件必填",
+        "snList": {
+          "sn": "商品序列号, string(50)"
+        },
+        "itemName": "商品名称, string (200)",
+        "inventoryType": "dasdsa",
+        "planQty": "应收数量, int",
+        "actualQty": "实收数量, int，必填",
+        "batchCode": "批次编码, string (50)",
+        "productDate": "商品生产日期，string（10）， YYYY-MM-DD",
+        "expireDate": "商品过期日期，string（10），YYYY-MM-DD",
+        "produceCode": "生产批号, string (50)",
+        "cc": {
+          "zjw": {
+            "zjw2": "周家伟"
           },
-          {
-            "apiId": 1,
-            "children": [],
-            "fullNodeName": "params.orderLines.orderLine.remark",
-            "id": 81,
-            "innerId": 42,
-            "nodeType": 3,
-            "nodeTypeStr": "最终节点",
-            "paramId": "81",
-            "parameterColumnType": 1,
-            "parameterColumnTypeStr": "时间",
-            "parameterName": "remark",
-            "parameterType": 2,
-            "parameterTypeStr": "请求体参数",
-            "parentId": 40,
-            "parentNodeType": 1,
-            "parentParameterName": "orderLine",
-            "rowId": "25",
-            "value": "1111"
-          },
-          {
-            "apiId": 1,
-            "children": [
+          "zjw3_s": {
+            "zjw3": [
               {
-                "apiId": 1,
-                "children": [],
-                "fullNodeName": "params.orderLines.orderLine.itemCode.weige",
-                "id": 83,
-                "innerId": 44,
-                "nodeType": 3,
-                "nodeTypeStr": "最终节点",
-                "paramId": "83",
-                "parameterColumnType": 1,
-                "parameterColumnTypeStr": "时间",
-                "parameterName": "weige",
-                "parameterType": 2,
-                "parameterTypeStr": "请求体参数",
-                "parentId": 43,
-                "parentNodeType": 0,
-                "parentParameterName": "itemCode",
-                "rowId": "27",
-                "value": "1111"
+                "zjw4": "周家伟",
+                "zjw5": "dsadas",
+                "zjw6": {
+                  "zjw6_6": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5"
+                  ]
+                },
+                "zjw7": {
+                  "zjw8": "周家伟1",
+                  "zjw9": "周家伟2",
+                  "zjw10": {
+                    "zjw11": "周家伟3",
+                    "zjw12": "周家伟4"
+                  }
+                }
               },
               {
-                "apiId": 1,
-                "children": [],
-                "fullNodeName": "params.orderLines.orderLine.itemCode.weige2",
-                "id": 84,
-                "innerId": 45,
-                "nodeType": 3,
-                "nodeTypeStr": "最终节点",
-                "paramId": "84",
-                "parameterColumnType": 1,
-                "parameterColumnTypeStr": "时间",
-                "parameterName": "weige2",
-                "parameterType": 2,
-                "parameterTypeStr": "请求体参数",
-                "parentId": 43,
-                "parentNodeType": 0,
-                "parentParameterName": "itemCode",
-                "rowId": "28",
-                "value": "1111"
+                "zjw4": "周家伟",
+                "zjw5": "dsadas",
+                "zjw6": {
+                  "zjw6_7": "1",
+                  "zjw6_6": [
+                    "2",
+                    "3",
+                    "4",
+                    "5"
+                  ]
+                },
+                "zjw7": {
+                  "zjw8": "周家伟1",
+                  "zjw9": "周家伟2",
+                  "zjw10": {
+                    "zjw11": "周家伟3",
+                    "zjw12": "周家伟4"
+                  }
+                }
               }
-            ],
-            "fullNodeName": "params.orderLines.orderLine.itemCode.",
-            "id": 82,
-            "innerId": 43,
-            "nodeType": 0,
-            "nodeTypeStr": "对象",
-            "paramId": "82",
-            "parameterName": "itemCode",
-            "parameterType": 2,
-            "parameterTypeStr": "请求体参数",
-            "parentId": 40,
-            "parentNodeType": 1,
-            "parentParameterName": "orderLine",
-            "rowId": "26"
+            ]
           }
-        ],
-        "fullNodeName": "params.orderLines.orderLine.",
-        "id": 79,
-        "innerId": 40,
-        "nodeType": 1,
-        "nodeTypeStr": "对象数组",
-        "paramId": "79",
-        "parameterName": "orderLine",
-        "parameterType": 2,
-        "parameterTypeStr": "请求体参数",
-        "parentId": 14,
-        "parentNodeType": 0,
-        "parentParameterName": "orderLines",
-        "rowId": "23"
+        },
+        "batchs": {
+          "batch": [
+            {
+              "batchCode": "批次编号，string(50)",
+              "productDate": "生产日期，string(10)，YYYY-MM-DD",
+              "expireDate": "过期日期，string(10)，YYYY-MM-DD",
+              "produceCode": "生产批号，string(50)，",
+              "inventoryType": "撒大苏打撒旦",
+              "actualQty": "实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量"
+            },
+            {
+              "batchCode": "批次编号，string(50)",
+              "productDate": "生产日期，string(10)，YYYY-MM-DD",
+              "expireDate": "过期日期，string(10)，YYYY-MM-DD",
+              "produceCode": "生产批号，string(50)，",
+              "inventoryType": "的撒大大撒旦撒旦",
+              "actualQty": "实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量"
+            }
+          ]
+        },
+        "remark": "备注, string (500)"
       }
-    ],
-    "fullNodeName": "params.orderLines.",
-    "id": 65,
-    "innerId": 14,
-    "nodeType": 0,
-    "nodeTypeStr": "对象",
-    "paramId": "65",
-    "parameterName": "orderLines",
-    "parameterType": 2,
-    "parameterTypeStr": "请求体参数",
-    "parentId": -1,
-    "parentNodeType": 0,
-    "parentParameterName": "params",
-    "rowId": "9"
+    ]
   }
-]
+}

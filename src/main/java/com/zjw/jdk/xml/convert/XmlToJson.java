@@ -411,18 +411,17 @@ public class XmlToJson {
         Element rootElement = read.getRootElement();
         Map<String, Object> map = new LinkedHashMap<>();
         //ifm的params下的子节点
-        this.convert(nt.getChildren(), map, rootElement, "");
+        this.convert(nt.getChildren(), map, rootElement);
         System.out.println(JSON.toJSONString(map, SerializerFeature.WriteMapNullValue));
         System.out.println(XML.toString(new JSONObject(map)));
     }
 
 
-    private void convert(List<TemplateNode> sources, Map<String, Object> map, Element node, String nodeName) {
+    private void convert(List<TemplateNode> sources, Map<String, Object> map, Element node) {
         for (int i = 0; i < sources.size(); i++) {
             TemplateNode item = sources.get(i);
             List o = null;
             if (item.getParentId() == IfmApiParamsEnums.root_node.getInnerId()) {
-                nodeName = "";
                 o = node.selectNodes("/" + item.getNodeName());
             } else {
                 o = node.selectNodes(item.getNodeName());
@@ -473,16 +472,16 @@ public class XmlToJson {
                     if (item.getParentNode().getNodeType() == 1) {
                         LinkedList<Map<String, Object>> o1 = (LinkedList<Map<String, Object>>) map.get(item.getParentNode().getTargetName());
                         Map<String, Object> last = o1.getLast();
-                        this.convert(item.getChildren(), last, el, nodeName);
+                        this.convert(item.getChildren(), last, el);
                     } else {
-                        this.convert(item.getChildren(), map, el, nodeName);
+                        this.convert(item.getChildren(), map, el);
                     }
                 } else {
                     if (item.getParentNode().getNodeName().equals("params")) {
                         if (item.getNodeType() == 0) {
                             Map<String, Object> childMap = new LinkedHashMap<>();
                             map.put(item.getTargetName(), childMap);
-                            this.convert(item.getChildren(), childMap, el, nodeName);
+                            this.convert(item.getChildren(), childMap, el);
                             System.out.println("aaa");
                         } else if (item.getNodeType() == 1) {
                             LinkedList<Map<String, Object>> subMapList = (LinkedList<Map<String, Object>>) map.get(item.getTargetName());
@@ -492,7 +491,7 @@ public class XmlToJson {
                             }
                             subMapList.add(new LinkedHashMap<>());
                             // 对象数组
-                            this.convert(item.getChildren(), map, el, nodeName);
+                            this.convert(item.getChildren(), map, el);
                             System.out.println("aaa");
                         }
                     } else {
@@ -503,7 +502,7 @@ public class XmlToJson {
                                 //父节点是对象
                                 Map<String, Object> first = new LinkedHashMap<>();
                                 map.put(item.getTargetName(), first);
-                                this.convert(item.getChildren(), first, el, nodeName);
+                                this.convert(item.getChildren(), first, el);
                             } else {
                                 LinkedList<Map<String, Object>> parentList = (LinkedList<Map<String, Object>>) map.get(item.getParentNode().getTargetName());
                                 Map<String, Object> subMap = parentList.getLast();
@@ -515,7 +514,7 @@ public class XmlToJson {
                                 } else {
                                     subMap.put(item.getTargetName(), second);
                                 }
-                                this.convert(item.getChildren(), second, el, nodeName);
+                                this.convert(item.getChildren(), second, el);
                             }
                             System.out.println("aaa");
                         } else if (item.getNodeType() == 1) {
@@ -528,7 +527,7 @@ public class XmlToJson {
                                     map.put(item.getTargetName(), subMapList);
                                 }
                                 subMapList.add(new LinkedHashMap<>());
-                                this.convert(item.getChildren(), map, el, nodeName);
+                                this.convert(item.getChildren(), map, el);
                                 System.out.println("aaa");
                             } else {
                                 // 父节点是对象数组
@@ -541,14 +540,14 @@ public class XmlToJson {
                                 }
                                 Map<String, Object> second = new LinkedHashMap<>();
                                 subMapList.add(second);
-                                this.convert(item.getChildren(), sub, el, nodeName);
+                                this.convert(item.getChildren(), sub, el);
                                 System.out.println("aaa");
                             }
                         } else if (item.getNodeType() == 2) {
                             //数组
                             List<Object> subArray = new LinkedList<>();
                             map.put(item.getTargetName(), subArray);
-                            this.convert(item.getChildren(), map, el, nodeName);
+                            this.convert(item.getChildren(), map, el);
                             System.out.println("aaa");
                         }
                     }
@@ -558,24 +557,6 @@ public class XmlToJson {
 
     }
 
-    private void validateRepeat(TemplateNode item, List o) {
-        if (item.getNodeType() == 0) {
-            int count = 0;
-            List<String> names = new ArrayList<>();
-            for (Object e : o) {
-                Element element = (Element) e;
-                names.add(element.getName());
-                if (item.getNodeName().equals(element.getName())) {
-                    count++;
-                }
-            }
-            if (count > 1) {
-                throw new RuntimeException(String.format("获取节点对象，在%s%s查询到节点%s，节点类型是%s，" +
-                                "但是源数据该节点的类型非%s", item.getParentNode().getFullNodeName(), names, item.getFullNodeName(),
-                        item.getNodeTypeStr(), item.getNodeTypeStr()));
-            }
-        }
-    }
 
     private void validateValue(TemplateNode nt, Object o) {
         List<Element> list = new ArrayList<>();
