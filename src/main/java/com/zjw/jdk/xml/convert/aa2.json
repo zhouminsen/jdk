@@ -1,223 +1,382 @@
-{
-  "entryOrder": {
-    "totalOrderLines": "大撒大撒大撒、",
-    "entryOrderCode": "入库单编码, string (50) , 必填",
-    "ownerCode": "货主编码, string (50)",
-    "warehouseCode": "仓库编码, string (50)，必填",
-    "entryOrderId": "仓储系统入库单ID, string (50) , 条件必填",
-    "entryOrderType": "大苏打撒旦",
-    "outBizCode": "x'z'X'zX",
-    "confirmType": "大撒大撒大撒",
-    "status": "的撒旦撒旦",
-    "freight": "快递费用 (元) , double (18, 2)",
-    "operateTime": "操作时间, string (19) , YYYY-MM-DD HH:MM:SS，(当status=FULFILLED, operateTime为入库时间)",
-    "remark": "备注, string (500)"
-  },
-  "entryOrder2": {
-    "totalOrderLines2": "dsadsads",
-    "entryOrderCode2": "入库单编码, string (50) , 必填",
-    "ownerCode2": "货主编码, string (50)",
-    "warehouseCode": "仓库编码, string (50)，必填",
-    "entryOrderId": "仓储系统入库单ID, string (50) , 条件必填",
-    "entryOrderType": "撒大大撒旦",
-    "outBizCode": "的撒旦撒旦",
-    "confirmType": "支持出入库单多次收货, int，",
-    "status": "入库单状态, string (50) , 必填 (NEW-未开始处理, ACCEPT-仓库接单",
-    "freight": "快递费用 (元) , double (18, 2)",
-    "operateTime": "操作时间, string (19) , YYYY-MM-DD HH:MM:SS，(当status=FULFILLED, operateTime为入库时间)",
-    "remark": "备注, string (500)",
-    "haha": {
-      "haha1": "111",
-      "haha2": "111",
-      "haha3": "111"
-    }
-  },
-  "orderLines": {
-    "orderLine": [
+[
+  {
+    "children": [
       {
-        "outBizCode": "外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用",
-        "orderLineNo": "单据行号，string（50）",
-        "ownerCode": "货主编码, string (50)",
-        "itemCode": "商品编码, string (50) , 必填",
-        "itemId": "仓储系统商品ID, string (50) , 条件必填",
-        "foreignId": "1111",
-        "snList": {
-          "sn": [
-            "商品序列号, string(50)",
-            "商品序列号, string(50)"
-          ]
-        },
-        "itemName": "商品名称, string (200)",
-        "inventoryType": "大撒大撒大撒",
-        "planQty": "应收数量, int",
-        "actualQty": "实收数量, int，必填",
-        "batchCode": "批次编码, string (50)",
-        "productDate": "商品生产日期，string（10）， YYYY-MM-DD",
-        "expireDate": "商品过期日期，string（10），YYYY-MM-DD",
-        "produceCode": "生产批号, string (50)",
-        "cc": {
-          "zjw": {
-            "zjw2": "周家伟"
+        "children": [],
+        "list": [
+          {
+            "fieldType": 0,
+            "id": null,
+            "innerId": 100,
+            "nodeName": "zjw2_id",
+            "targetName": "id",
+            "targetTable": "t_t",
+            "value": null
           },
-          "zjw3_s": {
-            "zjw3": [
-              {
-                "zjw4": "周家伟",
-                "zjw5": "dsadas",
-                "zjw6": {
-                  "zjw6_6": [
-                    "1",
-                    "2",
-                    "3",
-                    "4",
-                    "5"
-                  ]
-                },
-                "zjw7": {
-                  "zjw8": "周家伟1",
-                  "zjw9": "周家伟2",
-                  "zjw10": {
-                    "zjw11": "周家伟3",
-                    "zjw12": "周家伟4"
-                  }
-                }
-              },
-              {
-                "zjw4": "周家伟",
-                "zjw5": "dsadas",
-                "zjw6": {
-                  "zjw6_6": [
-                    "1",
-                    "2",
-                    "3",
-                    "4",
-                    "5"
-                  ]
-                },
-                "zjw7": {
-                  "zjw8": "周家伟1",
-                  "zjw9": "周家伟2",
-                  "zjw10": {
-                    "zjw11": "周家伟3",
-                    "zjw12": "周家伟4"
-                  }
-                }
-              }
-            ]
+          {
+            "fieldType": 0,
+            "id": null,
+            "innerId": 101,
+            "nodeName": "foreign_id",
+            "targetName": "foreign_id",
+            "targetTable": "t_t",
+            "value": "32"
+          },
+          {
+            "fieldType": 0,
+            "id": null,
+            "innerId": 102,
+            "nodeName": "outBizCode",
+            "targetName": "outBizCode",
+            "targetTable": "t_t",
+            "value": null
+          },
+          {
+            "fieldType": 0,
+            "id": null,
+            "innerId": 13,
+            "nodeName": "confirmType",
+            "targetName": "confirmType",
+            "targetTable": "t_t",
+            "value": null
           }
-        },
-        "batchs": {
-          "batch": [
-            {
-              "batchCode": "批次编号，string(50)",
-              "productDate": "生产日期，string(10)，YYYY-MM-DD",
-              "expireDate": "过期日期，string(10)，YYYY-MM-DD",
-              "produceCode": "生产批号，string(50)，",
-              "inventoryType": "的撒旦撒旦",
-              "actualQty": "实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量"
-            },
-            {
-              "batchCode": "批次编号，string(50)",
-              "productDate": "生产日期，string(10)，YYYY-MM-DD",
-              "expireDate": "过期日期，string(10)，YYYY-MM-DD",
-              "produceCode": "生产批号，string(50)，",
-              "inventoryType": "dsadasdsa",
-              "actualQty": "实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量"
-            }
-          ]
-        },
-        "remark": "备注, string (500)"
+        ],
+        "parent": null,
+        "tableName": "t_t",
+        "vId": null
+      }
+    ],
+    "list": [
+      {
+        "fieldType": 0,
+        "id": "32",
+        "innerId": 3,
+        "nodeName": "zjw_id",
+        "targetName": "id",
+        "targetTable": "t",
+        "value": "32"
       },
       {
-        "outBizCode": "外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用",
-        "orderLineNo": "单据行号，string（50）",
-        "ownerCode": "货主编码, string (50)",
-        "itemCode": "商品编码, string (50) , 必填",
-        "itemId": "仓储系统商品ID, string (50) , 条件必填",
-        "snList": {
-          "sn": "商品序列号, string(50)"
-        },
-        "itemName": "商品名称, string (200)",
-        "inventoryType": "dasdsa",
-        "planQty": "应收数量, int",
-        "actualQty": "实收数量, int，必填",
-        "batchCode": "批次编码, string (50)",
-        "productDate": "商品生产日期，string（10）， YYYY-MM-DD",
-        "expireDate": "商品过期日期，string（10），YYYY-MM-DD",
-        "produceCode": "生产批号, string (50)",
-        "cc": {
-          "zjw": {
-            "zjw2": "周家伟"
-          },
-          "zjw3_s": {
-            "zjw3": [
-              {
-                "zjw4": "周家伟",
-                "zjw5": "dsadas",
-                "zjw6": {
-                  "zjw6_6": [
-                    "1",
-                    "2",
-                    "3",
-                    "4",
-                    "5"
-                  ]
-                },
-                "zjw7": {
-                  "zjw8": "周家伟1",
-                  "zjw9": "周家伟2",
-                  "zjw10": {
-                    "zjw11": "周家伟3",
-                    "zjw12": "周家伟4"
-                  }
-                }
-              },
-              {
-                "zjw4": "周家伟",
-                "zjw5": "dsadas",
-                "zjw6": {
-                  "zjw6_7": "1",
-                  "zjw6_6": [
-                    "2",
-                    "3",
-                    "4",
-                    "5"
-                  ]
-                },
-                "zjw7": {
-                  "zjw8": "周家伟1",
-                  "zjw9": "周家伟2",
-                  "zjw10": {
-                    "zjw11": "周家伟3",
-                    "zjw12": "周家伟4"
-                  }
-                }
-              }
-            ]
-          }
-        },
-        "batchs": {
-          "batch": [
-            {
-              "batchCode": "批次编号，string(50)",
-              "productDate": "生产日期，string(10)，YYYY-MM-DD",
-              "expireDate": "过期日期，string(10)，YYYY-MM-DD",
-              "produceCode": "生产批号，string(50)，",
-              "inventoryType": "撒大苏打撒旦",
-              "actualQty": "实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量"
-            },
-            {
-              "batchCode": "批次编号，string(50)",
-              "productDate": "生产日期，string(10)，YYYY-MM-DD",
-              "expireDate": "过期日期，string(10)，YYYY-MM-DD",
-              "produceCode": "生产批号，string(50)，",
-              "inventoryType": "的撒大大撒旦撒旦",
-              "actualQty": "实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量"
-            }
-          ]
-        },
-        "remark": "备注, string (500)"
+        "fieldType": 0,
+        "id": null,
+        "innerId": 4,
+        "nodeName": "totalOrderLines",
+        "targetName": "totalOrderLines",
+        "targetTable": "t",
+        "value": null
+      },
+      {
+        "fieldType": 0,
+        "id": null,
+        "innerId": 5,
+        "nodeName": "entryOrderCode",
+        "targetName": "entryOrderCode",
+        "targetTable": "t",
+        "value": null
       }
-    ]
+    ],
+    "parent": null,
+    "tableName": "t",
+    "vId": "32"
+  },
+  {
+    "children": [],
+    "list": [
+      {
+        "fieldType": 0,
+        "id": "504",
+        "innerId": 9,
+        "nodeName": "line_id",
+        "targetName": "id",
+        "targetTable": "t2",
+        "value": "504"
+      },
+      {
+        "fieldType": 0,
+        "id": null,
+        "innerId": 10,
+        "nodeName": "foreign_id",
+        "targetName": "foreign_id",
+        "targetTable": "t2",
+        "value": "32"
+      },
+      {
+        "fieldType": 0,
+        "id": null,
+        "innerId": 11,
+        "nodeName": "outBizCode",
+        "targetName": "outBizCode",
+        "targetTable": "t2",
+        "value": null
+      },
+      {
+        "fieldType": 0,
+        "id": null,
+        "innerId": 12,
+        "nodeName": "remark",
+        "targetName": "remark",
+        "targetTable": "t2",
+        "value": null
+      }
+    ],
+    "parent": null,
+    "tableName": "t2",
+    "vId": "504"
+  },
+  {
+    "children": [],
+    "list": [
+      {
+        "fieldType": 0,
+        "id": "675",
+        "innerId": 19,
+        "nodeName": "batch_id",
+        "targetName": "id",
+        "targetTable": "t4",
+        "value": "675"
+      },
+      {
+        "fieldType": 0,
+        "id": null,
+        "innerId": 20,
+        "nodeName": "foreign_id",
+        "targetName": "foreign_id",
+        "targetTable": "t4",
+        "value": "504"
+      },
+      {
+        "fieldType": 0,
+        "id": null,
+        "innerId": 21,
+        "nodeName": "batchCode",
+        "targetName": "batchCode",
+        "targetTable": "t4",
+        "value": null
+      },
+      {
+        "fieldType": 0,
+        "id": null,
+        "innerId": 22,
+        "nodeName": "productDate",
+        "targetName": "productDate_text",
+        "targetTable": "t4",
+        "value": "生产"
+      },
+      {
+        "fieldType": 0,
+        "id": null,
+        "innerId": 23,
+        "nodeName": "productDate",
+        "targetName": "productDate_text2",
+        "targetTable": "t4",
+        "value": "日期"
+      }
+    ],
+    "parent": null,
+    "tableName": "t4",
+    "vId": "675"
+  },
+  {
+    "children": [],
+    "list": [
+      {
+        "fieldType": 0,
+        "id": "134",
+        "innerId": 19,
+        "nodeName": "batch_id",
+        "targetName": "id",
+        "targetTable": "t4",
+        "value": "134"
+      },
+      {
+        "fieldType": 0,
+        "id": null,
+        "innerId": 20,
+        "nodeName": "foreign_id",
+        "targetName": "foreign_id",
+        "targetTable": "t4",
+        "value": "504"
+      },
+      {
+        "fieldType": 0,
+        "id": null,
+        "innerId": 21,
+        "nodeName": "batchCode",
+        "targetName": "batchCode",
+        "targetTable": "t4",
+        "value": null
+      },
+      {
+        "fieldType": 0,
+        "id": null,
+        "innerId": 22,
+        "nodeName": "productDate",
+        "targetName": "productDate_text",
+        "targetTable": "t4",
+        "value": "生产"
+      },
+      {
+        "fieldType": 0,
+        "id": null,
+        "innerId": 23,
+        "nodeName": "productDate",
+        "targetName": "productDate_text2",
+        "targetTable": "t4",
+        "value": "日期"
+      }
+    ],
+    "parent": null,
+    "tableName": "t4",
+    "vId": "134"
+  },
+  {
+    "children": [],
+    "list": [
+      {
+        "fieldType": 0,
+        "id": "565",
+        "innerId": 9,
+        "nodeName": "line_id",
+        "targetName": "id",
+        "targetTable": "t2",
+        "value": "565"
+      },
+      {
+        "fieldType": 0,
+        "id": null,
+        "innerId": 10,
+        "nodeName": "foreign_id",
+        "targetName": "foreign_id",
+        "targetTable": "t2",
+        "value": "32"
+      },
+      {
+        "fieldType": 0,
+        "id": null,
+        "innerId": 11,
+        "nodeName": "outBizCode",
+        "targetName": "outBizCode",
+        "targetTable": "t2",
+        "value": null
+      },
+      {
+        "fieldType": 0,
+        "id": null,
+        "innerId": 12,
+        "nodeName": "remark",
+        "targetName": "remark",
+        "targetTable": "t2",
+        "value": null
+      }
+    ],
+    "parent": null,
+    "tableName": "t2",
+    "vId": "565"
+  },
+  {
+    "children": [],
+    "list": [
+      {
+        "fieldType": 0,
+        "id": "115",
+        "innerId": 19,
+        "nodeName": "batch_id",
+        "targetName": "id",
+        "targetTable": "t4",
+        "value": "115"
+      },
+      {
+        "fieldType": 0,
+        "id": null,
+        "innerId": 20,
+        "nodeName": "foreign_id",
+        "targetName": "foreign_id",
+        "targetTable": "t4",
+        "value": "565"
+      },
+      {
+        "fieldType": 0,
+        "id": null,
+        "innerId": 21,
+        "nodeName": "batchCode",
+        "targetName": "batchCode",
+        "targetTable": "t4",
+        "value": null
+      },
+      {
+        "fieldType": 0,
+        "id": null,
+        "innerId": 22,
+        "nodeName": "productDate",
+        "targetName": "productDate_text",
+        "targetTable": "t4",
+        "value": "生产"
+      },
+      {
+        "fieldType": 0,
+        "id": null,
+        "innerId": 23,
+        "nodeName": "productDate",
+        "targetName": "productDate_text2",
+        "targetTable": "t4",
+        "value": "日期"
+      }
+    ],
+    "parent": null,
+    "tableName": "t4",
+    "vId": "115"
+  },
+  {
+    "children": [],
+    "list": [
+      {
+        "fieldType": 0,
+        "id": "721",
+        "innerId": 19,
+        "nodeName": "batch_id",
+        "targetName": "id",
+        "targetTable": "t4",
+        "value": "721"
+      },
+      {
+        "fieldType": 0,
+        "id": null,
+        "innerId": 20,
+        "nodeName": "foreign_id",
+        "targetName": "foreign_id",
+        "targetTable": "t4",
+        "value": "565"
+      },
+      {
+        "fieldType": 0,
+        "id": null,
+        "innerId": 21,
+        "nodeName": "batchCode",
+        "targetName": "batchCode",
+        "targetTable": "t4",
+        "value": null
+      },
+      {
+        "fieldType": 0,
+        "id": null,
+        "innerId": 22,
+        "nodeName": "productDate",
+        "targetName": "productDate_text",
+        "targetTable": "t4",
+        "value": "生产"
+      },
+      {
+        "fieldType": 0,
+        "id": null,
+        "innerId": 23,
+        "nodeName": "productDate",
+        "targetName": "productDate_text2",
+        "targetTable": "t4",
+        "value": "日期"
+      }
+    ],
+    "parent": null,
+    "tableName": "t4",
+    "vId": "721"
   }
-}
+]

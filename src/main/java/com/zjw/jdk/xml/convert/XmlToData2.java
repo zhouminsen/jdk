@@ -193,32 +193,32 @@ public class XmlToData2 {
         sources.add(new IfmPlatformTemplateDetailDTO(5, 3, "entryOrderCode", 9, "t", "entryOrderCode", 0, 3, 0));
 
         //子集外键
-        sources.add(new IfmPlatformTemplateDetailDTO(100, 2, 3, "zjw2_id", 1, "t_t", "id", 0, 3, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(101, 100, 3, "foreign_id", 2, "t_t", "foreign_id", 0, 3, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(102, 100, 3, "outBizCode", 9, "t_t", "outBizCode", 0, 3, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(13, 100, 3, "confirmType", 9, "t_t", "confirmType", 0, 3, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(100, 2, 3, "zjw2_id", 1, "t_t", "id", 0, 3, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(101, 100, 3, "foreign_id", 2, "t_t", "foreign_id", 0, 3, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(102, 100, 3, "outBizCode", 9, "t_t", "outBizCode", 0, 3, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(13, 100, 3, "confirmType", 9, "t_t", "confirmType", 0, 3, 0));
 
 
         sources.add(new IfmPlatformTemplateDetailDTO(7, 1, "orderLines", 0, 0, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(8, 7, "orderLine", 0, 0, 1));
-        sources.add(new IfmPlatformTemplateDetailDTO(9, 8, "line_id", 1, "t2", "id", 0, 3, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(9, 8, 3,"line_id", 1, "t2", "id", 0, 3, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(10, 9, 3, "foreign_id", 3, "t2", "foreign_id", 0, 3, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(11, 9, "outBizCode", 9, "t2", "outBizCode", 0, 3, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(12, 9, "remark", 9, "t2", "remark", 0, 3, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(11, 9, 3,"outBizCode", 9, "t2", "outBizCode", 0, 3, 0));
+        sources.add(new IfmPlatformTemplateDetailDTO(12, 9, 3,"remark", 9, "t2", "remark", 0, 3, 0));
 
 //        sources.add(new IfmPlatformTemplateDetailDTO(13, 8, "snList", 0, 0, 2));
 //        sources.add(new IfmPlatformTemplateDetailDTO(14, 13, "sn_id", 1, "t3", "id", 0, 0, 0));
 //        sources.add(new IfmPlatformTemplateDetailDTO(15, 13, 9, "foreign_id", 2, "t3", "foreign_id", 0, 0, 0));
 //        sources.add(new IfmPlatformTemplateDetailDTO(16, 13, "sn", 9, "t3", "sn2", 0, 0, 0));
 ////
-        sources.add(new IfmPlatformTemplateDetailDTO(17, 8, "batchs", 0, 0, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(18, 17, "batch", 0, 0, 1));
-        sources.add(new IfmPlatformTemplateDetailDTO(19, 18, "batch_id", 1, "t4", "id", 0, 3, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(20, 19, 9, "foreign_id", 2, "t4", "foreign_id", 0, 3, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(21, 19, "batchCode", 9, "t4", "batchCode", 0, 3, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(17, 8, "batchs", 0, 0, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(18, 17, "batch", 0, 0, 1));
+//        sources.add(new IfmPlatformTemplateDetailDTO(19, 18, 9,"batch_id", 1, "t4", "id", 0, 3, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(20, 19, 9, "foreign_id", 2, "t4", "foreign_id", 0, 3, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(21, 19, 9,"batchCode", 9, "t4", "batchCode", 0, 3, 0));
 //            sources.add(new IfmPlatformTemplateDetailDTO9102, 13, "productDate", 9, "t4", "batchCode2", 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(22, 19, "productDate", 9, "t4", "productDate_text", 1, 0, "0", "2", 3, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(23, 19, "productDate", 9, "t4", "productDate_text2", 1, 0, "2", "4", 3, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(22, 19, "productDate", 9, "t4", "productDate_text", 1, 0, "0", "2", 3, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(23, 19, "productDate", 9, "t4", "productDate_text2", 1, 0, "2", "4", 3, 0));
 ////
 //////        //并集无外键
 //        sources.add(new IfmPlatformTemplateDetailDTO(25, 1, "id", 1, "t5", "id", 0, 0, 0));
@@ -242,12 +242,11 @@ public class XmlToData2 {
     public void cc2(TemplateNode nt, String str) throws DocumentException {
         org.dom4j.Document read = DocumentHelper.parseText(str);
         Element rootElement = read.getRootElement();
-        Map<String, Object> map = new LinkedHashMap<>();
         List<Table> all = new ArrayList<>();
         //ifm的params下的子节点
         List<FullTable> fullTableList = new ArrayList<>();
         this.convert(nt.getChildren(), all, fullTableList, null, rootElement);
-        System.out.println(JSON.toJSONString(map, SerializerFeature.WriteMapNullValue));
+        System.out.println(JSON.toJSONString(fullTableList, SerializerFeature.WriteMapNullValue));
 //        System.out.println(XML.toString(new JSONObject(map)));
     }
 
@@ -273,13 +272,23 @@ public class XmlToData2 {
             BeanUtils.copyProperties(item, table);
             //主键
             if (item.getDataType() == 1) {
+                v = UtilFuns.getRandomOfScope(1, 1000) + "";
                 o = Arrays.asList(node);
+                //如果是父父对象是空，说明他是根节点
+                 if (item.getForeignId() == null) {
+                    ft = null;
+                }
                 if (ft == null) {
                     ft = new FullTable();
-                }
-                Object id = UtilFuns.getRandomOfScope(1, 1000) + "";
-                if (Objects.equals(ft.getVId(), item.getForeignId().toString())) {
+                    fullTableList.add(ft);
+                    all.add(table);
+                    item.setValue(v);
+                    table.setValue(v);
+                    ft.setTableName(item.getTargetTable());
+                    ft.getList().add(table);
+                } else {
                     FullTable subFt = new FullTable();
+//                subFt.setParent(ft);
                     ft.getChildren().add(subFt);
                     ft = subFt;
                     all.add(table);
@@ -287,16 +296,6 @@ public class XmlToData2 {
                     table.setValue(v);
                     subFt.setTableName(item.getTargetTable());
                     subFt.getList().add(table);
-                } else {
-                    fullTableList.add(ft);
-                    all.add(table);
-                    table.setId(id.toString());
-                    item.setValue(id);
-                    table.setValue(id);
-                    ft.setVId(id.toString());
-                    ft.setTableName(item.getTargetTable());
-                    ft.setVId(id.toString());
-                    ft.getList().add(table);
                 }
             } else if (item.getDataType() == 2) {
                 //子集外键
@@ -310,6 +309,7 @@ public class XmlToData2 {
                 }
                 table.setValue(foreign.getValue());
                 ft.getList().add(table);
+                continue;
             } else if (item.getDataType() == 3) {
                 Table foreign = null;
                 for (int i1 = all.size() - 1; i1 >= 0; i1--) {
@@ -320,6 +320,7 @@ public class XmlToData2 {
                 }
                 table.setValue(foreign.getValue());
                 ft.getList().add(table);
+                continue;
             } else if (item.getDataType() == 9) {
                 Element e = (Element) o.get(0);
                 //普通节点
@@ -328,6 +329,7 @@ public class XmlToData2 {
                 }
                 table.setValue(v);
                 ft.getList().add(table);
+                continue;
             }
             List list = new ArrayList(o);
             for (int j = 0; j < list.size(); j++) {
