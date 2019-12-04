@@ -729,7 +729,7 @@ public class JsonToData {
         }
         @Override
         public String toString() {
-            return "TemplateNode{" +
+            return "PlatformTemplateNode{" +
                     "innerId=" + innerId +
                     ", parentId=" + parentId +
                     ", nodeName='" + this.getNodeName() + '\'' +

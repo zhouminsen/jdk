@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * @author zhoujiawei
- * @ClassName: TemplateNode
+ * @ClassName: PlatformTemplateNode
  * @Description: 模板树节点
  * @since 2019-06-24
  */

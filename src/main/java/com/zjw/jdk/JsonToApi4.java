@@ -24,11 +24,11 @@ import java.util.stream.Collectors;
 
 public class JsonToApi4 {
 
-    private List<TemplateNode> getTemplateNodes(List<IfmPlatformTemplateDetailDTO> sources) {
-        List<TemplateNode> sources2 = new ArrayList<>();
+    private List<PlatformTemplateNode> getTemplateNodes(List<IfmPlatformTemplateDetailDTO> sources) {
+        List<PlatformTemplateNode> sources2 = new ArrayList<>();
         for (int i = 0; i < sources.size(); i++) {
             IfmPlatformTemplateDetailDTO item = sources.get(i);
-            TemplateNode templateNode = new TemplateNode();
+            PlatformTemplateNode templateNode = new PlatformTemplateNode();
             BeanUtils.copyProperties(item, templateNode);
             sources2.add(templateNode);
         }
@@ -204,9 +204,9 @@ public class JsonToApi4 {
 //        sources.add(new IfmPlatformTemplateDetailDTO(24, 23, "id", 1, "t8", "id", 0, 0, 0));
 //        sources.add(new IfmPlatformTemplateDetailDTO(25, 24, "produceCode", 9, "t8", "produceCode", 0, 0, 0));
 
-        List<TemplateNode> sources2 = getTemplateNodes(sources);
-        List<TemplateNode> templateNodes = getNT(sources2, IfmApiParamsEnums.root_node.parentId);
-        TemplateNode templateNode = templateNodes.get(0);
+        List<PlatformTemplateNode> sources2 = getTemplateNodes(sources);
+        List<PlatformTemplateNode> templateNodes = getNT(sources2, IfmApiParamsEnums.root_node.parentId);
+        PlatformTemplateNode templateNode = templateNodes.get(0);
 //        System.out.println(JSON.toJSONString(templateNode));
         JSONArray jsonArray = new JSONArray();
         Object read = JSON.parse(jsonStr);
@@ -218,7 +218,7 @@ public class JsonToApi4 {
         cc(templateNode, jsonArray);
     }
 
-    private void cc(TemplateNode nt, JSONArray jsonArray) {
+    private void cc(PlatformTemplateNode nt, JSONArray jsonArray) {
         Map<String, Object> map = new HashMap<>();
         for (Object e : jsonArray) {
             JSONObject jsonObject = (JSONObject) e;
@@ -229,9 +229,9 @@ public class JsonToApi4 {
         System.out.println(JSON.toJSONString(map, SerializerFeature.WriteMapNullValue));
     }
 
-    private void jsonToData(List<TemplateNode> sources, Map<String, Object> map, JSONObject node, String nodeName) {
+    private void jsonToData(List<PlatformTemplateNode> sources, Map<String, Object> map, JSONObject node, String nodeName) {
         for (int i = 0; i < sources.size(); i++) {
-            TemplateNode item = sources.get(i);
+            PlatformTemplateNode item = sources.get(i);
             Object o = node.get(item.getNodeName());
             if (o == null) {
                 throw new RuntimeException(String.format("获取节点对象，当前节点%s的子节点%s查询不到节点%s，节点类型%s", nodeName,
@@ -338,7 +338,7 @@ public class JsonToApi4 {
 
     }
 
-    private void validate(TemplateNode nt, JSONObject node, String nodeName, Object o) {
+    private void validate(PlatformTemplateNode nt, JSONObject node, String nodeName, Object o) {
         //普通
         if (nt.getNodeType() == 0) {
             if (!(o instanceof JSONObject)) {
@@ -369,9 +369,9 @@ public class JsonToApi4 {
 
 */
 /*
-    private void getApi3(List<TemplateNode> sources, Map<String, Object> map, JSONObject node, String nodeName) {
+    private void getApi3(List<PlatformTemplateNode> sources, Map<String, Object> map, JSONObject node, String nodeName) {
         for (int i = 0; i < sources.size(); i++) {
-            TemplateNode item = sources.get(i);
+            PlatformTemplateNode item = sources.get(i);
             if (!CollectionUtils.isEmpty(item.getChildren2())) {
                 if (item.getParentNode().getNodeType() == null) {
                     //对象
@@ -449,14 +449,14 @@ public class JsonToApi4 {
     }*//*
 
 
-    public static List<TemplateNode> getNT(List<TemplateNode> sources, Integer innerId) {
-        List<TemplateNode> result = new ArrayList<>();
-        List<TemplateNode> target = sources.stream().filter
+    public static List<PlatformTemplateNode> getNT(List<PlatformTemplateNode> sources, Integer innerId) {
+        List<PlatformTemplateNode> result = new ArrayList<>();
+        List<PlatformTemplateNode> target = sources.stream().filter
                 (item -> Objects.equals(innerId, item.getParentId())).collect(Collectors.toList());
-        for (TemplateNode item : target) {
+        for (PlatformTemplateNode item : target) {
             boolean b = sources.stream().anyMatch(e -> Objects.equals(item.getInnerId(), e.getParentId()));
             if (innerId != IfmApiParamsEnums.root_node.parentId) {
-                TemplateNode templateNode = sources.stream().filter(e -> Objects.equals(item.getParentId(), e.getInnerId())).findFirst().get();
+                PlatformTemplateNode templateNode = sources.stream().filter(e -> Objects.equals(item.getParentId(), e.getInnerId())).findFirst().get();
                 item.setParentNode(templateNode);
             }
             if (b) {
@@ -659,18 +659,18 @@ public class JsonToApi4 {
 
 
     @Data
-    private static class TemplateNode extends IfmPlatformTemplateDetailDTO implements Serializable {
-        public TemplateNode() {
+    private static class PlatformTemplateNode extends IfmPlatformTemplateDetailDTO implements Serializable {
+        public PlatformTemplateNode() {
         }
 
         public String fullNodeName;
-        public TemplateNode parentNode;
+        public PlatformTemplateNode parentNode;
         public Object value;
-        public List<TemplateNode> children;
+        public List<PlatformTemplateNode> children;
 
         @Override
         public String toString() {
-            return "TemplateNode{" +
+            return "PlatformTemplateNode{" +
                     "innerId=" + innerId +
                     ", parentId=" + parentId +
                     ", nodeName='" + this.getNodeName() + '\'' +
