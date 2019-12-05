@@ -1,4 +1,4 @@
-package com.zjw.jdk.xml.convert;
+package com.zjw.jdk.xml.convert.response;
 
 import lombok.Data;
 
@@ -13,14 +13,14 @@ import java.util.List;
  * @since 2019-06-24
  */
 @Data
-public class TemplateNode extends IfmResponseTemplateDetailDTO implements Serializable {
+public class ResponseTemplateNode extends IfmResponseTemplateDetailDTO implements Serializable {
     private String fullNodeName;
     private String fullTargetName;
-    private TemplateNode parentNode;
+    private ResponseTemplateNode parentNode;
     private Object value;
-    private List<TemplateNode> children;
+    private List<ResponseTemplateNode> children;
 
-    public List<TemplateNode> getChildren() {
+    public List<ResponseTemplateNode> getChildren() {
         if (children == null) {
             children = new ArrayList<>();
         }

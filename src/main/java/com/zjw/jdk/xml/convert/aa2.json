@@ -2,6 +2,50 @@
   {
     "children": [
       {
+        "children": [],
+        "list": [
+          {
+            "fieldType": 0,
+            "id": null,
+            "innerId": 100,
+            "nodeName": "zjw2_id",
+            "targetName": "id",
+            "targetTable": "t_t",
+            "value": "35"
+          },
+          {
+            "fieldType": 0,
+            "id": null,
+            "innerId": 101,
+            "nodeName": "foreign_id",
+            "targetName": "foreign_id",
+            "targetTable": "t_t",
+            "value": "508"
+          },
+          {
+            "fieldType": 0,
+            "id": null,
+            "innerId": 102,
+            "nodeName": "outBizCode",
+            "targetName": "outBizCode",
+            "targetTable": "t_t",
+            "value": "x'z'X'zX"
+          },
+          {
+            "fieldType": 0,
+            "id": null,
+            "innerId": 103,
+            "nodeName": "confirmType",
+            "targetName": "confirmType",
+            "targetTable": "t_t",
+            "value": "大撒大撒大撒"
+          }
+        ],
+        "parent": null,
+        "tableName": "t_t",
+        "vId": 100
+      },
+      {
         "children": [
           {
             "children": [],
@@ -13,7 +57,7 @@
                 "nodeName": "sn",
                 "targetName": "sn2",
                 "targetTable": "t3",
-                "value": "283"
+                "value": "87"
               },
               {
                 "fieldType": 0,
@@ -22,21 +66,19 @@
                 "nodeName": "foreign_id",
                 "targetName": "foreign_id",
                 "targetTable": "t3",
-                "value": "30"
+                "value": "998"
               },
               {
                 "fieldType": 0,
                 "id": null,
                 "innerId": 17,
-                "nodeName": "sn",
+                "nodeName": "aa",
                 "targetName": "sn2",
                 "targetTable": "t3",
-                "value": "商品序列号, string(40)"
+                "value": "[商品序列号, string(40)]"
               }
             ],
-            "parent": {
-              "$ref": "$[0].children[0]"
-            },
+            "parent": null,
             "tableName": "t3",
             "vId": 15
           },
@@ -50,7 +92,7 @@
                 "nodeName": "sn",
                 "targetName": "sn2",
                 "targetTable": "t3",
-                "value": "511"
+                "value": "556"
               },
               {
                 "fieldType": 0,
@@ -59,21 +101,19 @@
                 "nodeName": "foreign_id",
                 "targetName": "foreign_id",
                 "targetTable": "t3",
-                "value": "30"
+                "value": "998"
               },
               {
                 "fieldType": 0,
                 "id": null,
                 "innerId": 17,
-                "nodeName": "sn",
+                "nodeName": "aa",
                 "targetName": "sn2",
                 "targetTable": "t3",
-                "value": "商品序列号, string(1000)"
+                "value": "[商品序列号, string(50)]"
               }
             ],
-            "parent": {
-              "$ref": "$[0].children[0]"
-            },
+            "parent": null,
             "tableName": "t3",
             "vId": 15
           },
@@ -89,7 +129,7 @@
                     "nodeName": "id",
                     "targetName": "id",
                     "targetTable": "t7",
-                    "value": "947"
+                    "value": "368"
                   },
                   {
                     "fieldType": 0,
@@ -98,7 +138,7 @@
                     "nodeName": "foreign_id",
                     "targetName": "order_id",
                     "targetTable": "t7",
-                    "value": "520"
+                    "value": "885"
                   },
                   {
                     "fieldType": 0,
@@ -107,12 +147,10 @@
                     "nodeName": "inventoryType",
                     "targetName": "confirmType",
                     "targetTable": "t7",
-                    "value": "库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)                    "
+                    "value": "的撒旦撒旦"
                   }
                 ],
-                "parent": {
-                  "$ref": "$[0].children[0].children[2]"
-                },
+                "parent": null,
                 "tableName": "t7",
                 "vId": 29
               }
@@ -125,7 +163,7 @@
                 "nodeName": "batch_id",
                 "targetName": "id",
                 "targetTable": "t4",
-                "value": "520"
+                "value": "885"
               },
               {
                 "fieldType": 0,
@@ -134,7 +172,7 @@
                 "nodeName": "foreign_id",
                 "targetName": "foreign_id",
                 "targetTable": "t4",
-                "value": "30"
+                "value": "998"
               },
               {
                 "fieldType": 0,
@@ -164,9 +202,7 @@
                 "value": "日期"
               }
             ],
-            "parent": {
-              "$ref": "$[0].children[0]"
-            },
+            "parent": null,
             "tableName": "t4",
             "vId": 19
           },
@@ -182,7 +218,7 @@
                     "nodeName": "id",
                     "targetName": "id",
                     "targetTable": "t7",
-                    "value": "582"
+                    "value": "511"
                   },
                   {
                     "fieldType": 0,
@@ -191,7 +227,7 @@
                     "nodeName": "foreign_id",
                     "targetName": "order_id",
                     "targetTable": "t7",
-                    "value": "940"
+                    "value": "986"
                   },
                   {
                     "fieldType": 0,
@@ -200,12 +236,10 @@
                     "nodeName": "inventoryType",
                     "targetName": "confirmType",
                     "targetTable": "t7",
-                    "value": "库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)                    "
+                    "value": "dsadasdsa"
                   }
                 ],
-                "parent": {
-                  "$ref": "$[0].children[0].children[3]"
-                },
+                "parent": null,
                 "tableName": "t7",
                 "vId": 29
               }
@@ -218,7 +252,7 @@
                 "nodeName": "batch_id",
                 "targetName": "id",
                 "targetTable": "t4",
-                "value": "940"
+                "value": "986"
               },
               {
                 "fieldType": 0,
@@ -227,7 +261,7 @@
                 "nodeName": "foreign_id",
                 "targetName": "foreign_id",
                 "targetTable": "t4",
-                "value": "30"
+                "value": "998"
               },
               {
                 "fieldType": 0,
@@ -236,7 +270,7 @@
                 "nodeName": "batchCode",
                 "targetName": "batchCode",
                 "targetTable": "t4",
-                "value": "批次编号，string(51)"
+                "value": "批次编号，string(50)"
               },
               {
                 "fieldType": 0,
@@ -257,9 +291,7 @@
                 "value": "日期"
               }
             ],
-            "parent": {
-              "$ref": "$[0].children[0]"
-            },
+            "parent": null,
             "tableName": "t4",
             "vId": 19
           }
@@ -272,7 +304,7 @@
             "nodeName": "line_id",
             "targetName": "id",
             "targetTable": "t2",
-            "value": "30"
+            "value": "998"
           },
           {
             "fieldType": 0,
@@ -281,7 +313,7 @@
             "nodeName": "foreign_id",
             "targetName": "foreign_id",
             "targetTable": "t2",
-            "value": "118"
+            "value": "508"
           },
           {
             "fieldType": 0,
@@ -290,7 +322,7 @@
             "nodeName": "outBizCode",
             "targetName": "outBizCode",
             "targetTable": "t2",
-            "value": "外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用11"
+            "value": "外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用"
           },
           {
             "fieldType": 0,
@@ -302,9 +334,7 @@
             "value": "备注, string (500)"
           }
         ],
-        "parent": {
-          "$ref": "$[0]"
-        },
+        "parent": null,
         "tableName": "t2",
         "vId": 9
       },
@@ -320,7 +350,7 @@
                 "nodeName": "sn",
                 "targetName": "sn2",
                 "targetTable": "t3",
-                "value": "137"
+                "value": "647"
               },
               {
                 "fieldType": 0,
@@ -329,58 +359,19 @@
                 "nodeName": "foreign_id",
                 "targetName": "foreign_id",
                 "targetTable": "t3",
-                "value": "106"
+                "value": "91"
               },
               {
                 "fieldType": 0,
                 "id": null,
                 "innerId": 17,
-                "nodeName": "sn",
+                "nodeName": "aa",
                 "targetName": "sn2",
                 "targetTable": "t3",
-                "value": "商品序列号, string(50)"
+                "value": "[商品序列号, string(200)]"
               }
             ],
-            "parent": {
-              "$ref": "$[0].children[1]"
-            },
-            "tableName": "t3",
-            "vId": 15
-          },
-          {
-            "children": [],
-            "list": [
-              {
-                "fieldType": 0,
-                "id": null,
-                "innerId": 15,
-                "nodeName": "sn",
-                "targetName": "sn2",
-                "targetTable": "t3",
-                "value": "585"
-              },
-              {
-                "fieldType": 0,
-                "id": null,
-                "innerId": 16,
-                "nodeName": "foreign_id",
-                "targetName": "foreign_id",
-                "targetTable": "t3",
-                "value": "106"
-              },
-              {
-                "fieldType": 0,
-                "id": null,
-                "innerId": 17,
-                "nodeName": "sn",
-                "targetName": "sn2",
-                "targetTable": "t3",
-                "value": "商品序列号, string(51)"
-              }
-            ],
-            "parent": {
-              "$ref": "$[0].children[1]"
-            },
+            "parent": null,
             "tableName": "t3",
             "vId": 15
           },
@@ -396,7 +387,7 @@
                     "nodeName": "id",
                     "targetName": "id",
                     "targetTable": "t7",
-                    "value": "161"
+                    "value": "539"
                   },
                   {
                     "fieldType": 0,
@@ -405,7 +396,7 @@
                     "nodeName": "foreign_id",
                     "targetName": "order_id",
                     "targetTable": "t7",
-                    "value": "650"
+                    "value": "196"
                   },
                   {
                     "fieldType": 0,
@@ -414,12 +405,10 @@
                     "nodeName": "inventoryType",
                     "targetName": "confirmType",
                     "targetTable": "t7",
-                    "value": "库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)                    "
+                    "value": "撒大苏打撒旦"
                   }
                 ],
-                "parent": {
-                  "$ref": "$[0].children[1].children[2]"
-                },
+                "parent": null,
                 "tableName": "t7",
                 "vId": 29
               }
@@ -432,7 +421,7 @@
                 "nodeName": "batch_id",
                 "targetName": "id",
                 "targetTable": "t4",
-                "value": "650"
+                "value": "196"
               },
               {
                 "fieldType": 0,
@@ -441,7 +430,7 @@
                 "nodeName": "foreign_id",
                 "targetName": "foreign_id",
                 "targetTable": "t4",
-                "value": "106"
+                "value": "91"
               },
               {
                 "fieldType": 0,
@@ -450,7 +439,7 @@
                 "nodeName": "batchCode",
                 "targetName": "batchCode",
                 "targetTable": "t4",
-                "value": "批次编号，string(47)"
+                "value": "批次编号，string(50)"
               },
               {
                 "fieldType": 0,
@@ -471,9 +460,7 @@
                 "value": "日期"
               }
             ],
-            "parent": {
-              "$ref": "$[0].children[1]"
-            },
+            "parent": null,
             "tableName": "t4",
             "vId": 19
           },
@@ -489,7 +476,7 @@
                     "nodeName": "id",
                     "targetName": "id",
                     "targetTable": "t7",
-                    "value": "139"
+                    "value": "921"
                   },
                   {
                     "fieldType": 0,
@@ -498,7 +485,7 @@
                     "nodeName": "foreign_id",
                     "targetName": "order_id",
                     "targetTable": "t7",
-                    "value": "851"
+                    "value": "970"
                   },
                   {
                     "fieldType": 0,
@@ -507,12 +494,10 @@
                     "nodeName": "inventoryType",
                     "targetName": "confirmType",
                     "targetTable": "t7",
-                    "value": "库存类型，string (50) , ZP=正品, CC=残次,JS=机损, XS= 箱损，默认为ZP, (收到商品总数=正品数+残品数+机损数+箱损数)                    "
+                    "value": "的撒大大撒旦撒旦"
                   }
                 ],
-                "parent": {
-                  "$ref": "$[0].children[1].children[3]"
-                },
+                "parent": null,
                 "tableName": "t7",
                 "vId": 29
               }
@@ -525,7 +510,7 @@
                 "nodeName": "batch_id",
                 "targetName": "id",
                 "targetTable": "t4",
-                "value": "851"
+                "value": "970"
               },
               {
                 "fieldType": 0,
@@ -534,7 +519,7 @@
                 "nodeName": "foreign_id",
                 "targetName": "foreign_id",
                 "targetTable": "t4",
-                "value": "106"
+                "value": "91"
               },
               {
                 "fieldType": 0,
@@ -543,7 +528,7 @@
                 "nodeName": "batchCode",
                 "targetName": "batchCode",
                 "targetTable": "t4",
-                "value": "批次编号，string(48)"
+                "value": "批次编号，string(50)"
               },
               {
                 "fieldType": 0,
@@ -564,9 +549,7 @@
                 "value": "日期"
               }
             ],
-            "parent": {
-              "$ref": "$[0].children[1]"
-            },
+            "parent": null,
             "tableName": "t4",
             "vId": 19
           }
@@ -579,7 +562,7 @@
             "nodeName": "line_id",
             "targetName": "id",
             "targetTable": "t2",
-            "value": "106"
+            "value": "91"
           },
           {
             "fieldType": 0,
@@ -588,7 +571,7 @@
             "nodeName": "foreign_id",
             "targetName": "foreign_id",
             "targetTable": "t2",
-            "value": "118"
+            "value": "508"
           },
           {
             "fieldType": 0,
@@ -597,7 +580,7 @@
             "nodeName": "outBizCode",
             "targetName": "outBizCode",
             "targetTable": "t2",
-            "value": "外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用22"
+            "value": "外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用"
           },
           {
             "fieldType": 0,
@@ -606,12 +589,10 @@
             "nodeName": "remark",
             "targetName": "remark",
             "targetTable": "t2",
-            "value": "备注, string (600)"
+            "value": "备注, string (500)"
           }
         ],
-        "parent": {
-          "$ref": "$[0]"
-        },
+        "parent": null,
         "tableName": "t2",
         "vId": 9
       }
@@ -624,7 +605,7 @@
         "nodeName": "zjw_id",
         "targetName": "id",
         "targetTable": "t",
-        "value": "118"
+        "value": "508"
       },
       {
         "fieldType": 0,
@@ -633,7 +614,7 @@
         "nodeName": "totalOrderLines",
         "targetName": "totalOrderLines",
         "targetTable": "t",
-        "value": "            单据总行数，int，当单据需要分多个请求发送时，发送方需要将totalOrderLines填入，接收方收到后，根据实际接收到的条数和totalOrderLines进行比对，如果小于，则继续等待接收请求。如果等于，则表示该单据的所有请求发送完成。        "
+        "value": "大撒大撒大撒、"
       },
       {
         "fieldType": 0,
@@ -659,7 +640,7 @@
         "nodeName": "id",
         "targetName": "id",
         "targetTable": "t5",
-        "value": "354"
+        "value": "399"
       },
       {
         "fieldType": 0,
@@ -668,7 +649,7 @@
         "nodeName": "confirmType",
         "targetName": "confirmType",
         "targetTable": "t5",
-        "value": "支持出入库单多次收货, int，            多次收货后确认时            0 表示入库单最终状态确认；            1 表示入库单中间状态确认；            每次入库传入的数量为增量，特殊情况，同一入库单，如果先收到0，后又收到1，允许修改收货的数量。        "
+        "value": "大撒大撒大撒"
       },
       {
         "fieldType": 0,
@@ -677,7 +658,7 @@
         "nodeName": "status",
         "targetName": "status",
         "targetTable": "t5",
-        "value": "入库单状态, string (50) , 必填 (NEW-未开始处理, ACCEPT-仓库接单 , PARTFULFILLED-部分收货完成, FULFILLED-收货完成, EXCEPTION-异常,            CANCELED-取消, CLOSED-关闭, REJECT-拒单, CANCELEDFAIL-取消失败) , (只传英文编码)        "
+        "value": "的撒旦撒旦"
       }
     ],
     "parent": null,

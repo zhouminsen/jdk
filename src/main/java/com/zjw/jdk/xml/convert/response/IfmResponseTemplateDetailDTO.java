@@ -1,4 +1,4 @@
-package com.zjw.jdk.xml.convert;
+package com.zjw.jdk.xml.convert.response;
 
 import lombok.Data;
 

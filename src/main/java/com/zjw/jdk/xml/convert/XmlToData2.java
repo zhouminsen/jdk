@@ -1,11 +1,12 @@
 package com.zjw.jdk.xml.convert;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.annotation.JSONField;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.zjw.jdk.util.UtilFuns;
-import lombok.Data;
-import lombok.Getter;
+import com.zjw.jdk.xml.convert.platform.FullTable;
+import com.zjw.jdk.xml.convert.platform.IfmPlatformTemplateDetailDTO;
+import com.zjw.jdk.xml.convert.platform.PlatformTemplateNode;
+import com.zjw.jdk.xml.convert.platform.Table;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.dom4j.DocumentException;
@@ -14,7 +15,6 @@ import org.dom4j.Element;
 import org.junit.Test;
 import org.springframework.beans.BeanUtils;
 
-import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -96,6 +96,34 @@ public class XmlToData2 {
             sources2.add(platformTemplateNode);
         }
         return sources2;
+    }
+
+    public List<PlatformTemplateNode> validate(List<IfmPlatformTemplateDetailDTO> list) {
+        List<PlatformTemplateNode> sources2 = this.getTemplateNodes(list);
+        List<PlatformTemplateNode> platformTemplateNodes = this.getNT(sources2, IfmApiParamsEnums.root_node.getParentId(), "", "");
+        this.validateRepeat(sources2);
+        return sources2;
+    }
+
+    public PlatformTemplateNode getTemplateNode(List<IfmPlatformTemplateDetailDTO> list) {
+        List<PlatformTemplateNode> sources2 = this.getTemplateNodes(list);
+        List<PlatformTemplateNode> templateNodes = this.getNT(sources2, IfmApiParamsEnums.root_node.getParentId(), "", "");
+        this.validateRepeat(sources2);
+//        this.removeParents(templateNodes.get(0));
+        return templateNodes.get(0);
+    }
+
+    private void removeParents(PlatformTemplateNode templateNode) {
+        if (templateNode.getParentNode() != null) {
+            PlatformTemplateNode parent = new PlatformTemplateNode();
+            BeanUtils.copyProperties(templateNode.getParentNode(), parent);
+            //设置为nul避免循环依赖
+            parent.setChildren(null);
+            templateNode.setParentNode(parent);
+        }
+        for (PlatformTemplateNode item : templateNode.getChildren()) {
+            this.removeParents(item);
+        }
     }
 
     String str = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
@@ -238,11 +266,11 @@ public class XmlToData2 {
         sources.add(new IfmPlatformTemplateDetailDTO(11, 9, "outBizCode", 9, "t2", "outBizCode", 0, 3, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(12, 9, "remark", 9, "t2", "remark", 0, 3, 0));
 
-        sources.add(new IfmPlatformTemplateDetailDTO(13, 8, "snList", 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(14, 13, "sn", 2));
-        sources.add(new IfmPlatformTemplateDetailDTO(15, 14, "sn", 1, "t3", "sn2", 0, 3, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(16, 15, 9, "foreign_id", 2, "t3", "foreign_id", 0, 3, 0));
-        sources.add(new IfmPlatformTemplateDetailDTO(17, 15, "sn", 9, "t3", "sn2", 0, 3, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(13, 8, "snList", 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(14, 13, "sn", 2));
+//        sources.add(new IfmPlatformTemplateDetailDTO(15, 14, "sn", 1, "t3", "sn2", 0, 3, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(16, 15, 9, "foreign_id", 2, "t3", "foreign_id", 0, 3, 0));
+//        sources.add(new IfmPlatformTemplateDetailDTO(17, 15, "sn", 9, "t3", "sn2", 0, 3, 0));
 
         sources.add(new IfmPlatformTemplateDetailDTO(200, 8, "batchs", 0));
         sources.add(new IfmPlatformTemplateDetailDTO(18, 200, "batch", 1));
@@ -262,13 +290,10 @@ public class XmlToData2 {
         sources.add(new IfmPlatformTemplateDetailDTO(30, 29, 19, "foreign_id", 2, "t7", "order_id", 0, 3, 0));
         sources.add(new IfmPlatformTemplateDetailDTO(31, 29, "inventoryType", 9, "t7", "confirmType", 0, 3, 0));
 
-        List<PlatformTemplateNode> sources2 = getTemplateNodes(sources);
-        List<PlatformTemplateNode> platformTemplateNodes = getNT(sources2, IfmApiParamsEnums.root_node.getParentId(), "", "");
-        validateRepeat(sources2);
-        PlatformTemplateNode platformTemplateNode = platformTemplateNodes.get(0);
-//        System.out.println(JSON.toJSONString(platformTemplateNode, SerializerFeature.WriteMapNullValue));
+        PlatformTemplateNode templateNode = getTemplateNode(sources);
+//        System.out.println(JSON.toJSONString(templateNode, SerializerFeature.WriteMapNullValue));
 
-        cc2(platformTemplateNode, str);
+        cc2(templateNode, str);
     }
 
     public void cc2(PlatformTemplateNode nt, String str) throws DocumentException {
@@ -279,7 +304,6 @@ public class XmlToData2 {
         List<FullTable> fullTableList = new ArrayList<>();
         this.convert(nt.getChildren(), all, fullTableList, rootElement);
         System.out.println(JSON.toJSONString(fullTableList, SerializerFeature.WriteMapNullValue));
-//        System.out.println(XML.toString(new JSONObject(map)));
     }
 
     private void convert(List<PlatformTemplateNode> sources, List<FullTable> all, List<FullTable> fullTableList, Element node) {
@@ -319,7 +343,7 @@ public class XmlToData2 {
                     } else {
                         //永远取最新的一条
                         FullTable foreign = getForeign(all, item);
-                        ft.setParent(foreign);
+//                        ft.setParent(foreign);
                         foreign.getChildren().add(ft);
                     }
                     all.add(ft);
@@ -690,241 +714,5 @@ public class XmlToData2 {
             }
         }
         return s;
-    }
-
-    public static PlatformTemplateNode getUp(PlatformTemplateNode platformTemplateNode, String tableName, String foreignField) {
-        if (Objects.equals(platformTemplateNode.getParentNode().getTargetTable(), tableName)) {
-            return getUp(platformTemplateNode.getParentNode(), tableName, foreignField);
-        } else if (!Objects.equals(platformTemplateNode.getParentNode().getTargetName(), foreignField)) {
-            return getUp(platformTemplateNode.getParentNode(), tableName, foreignField);
-        } else {
-            return platformTemplateNode.getParentNode();
-        }
-    }
-
-    @Data
-    public static class IfmPlatformTemplateDetailDTO implements Serializable {
-
-        public IfmPlatformTemplateDetailDTO() {
-        }
-
-        public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName, Integer nodeType) {
-            this.innerId = innerId;
-            this.parentId = parentId;
-            this.nodeName = nodeName;
-            this.nodeType = nodeType;
-
-        }
-
-        public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName, String targetName, Integer nodeType) {
-            this.innerId = innerId;
-            this.parentId = parentId;
-            this.nodeName = nodeName;
-            this.targetName = targetName;
-            this.nodeType = nodeType;
-
-        }
-
-        public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName, Integer dataType, String targetTable,
-                                            String targetName, Integer matchType, Integer nodeType, Integer fieldType) {
-            this.innerId = innerId;
-            this.parentId = parentId;
-            this.nodeName = nodeName;
-            this.dataType = dataType;
-            this.targetTable = targetTable;
-            this.targetName = targetName;
-            this.matchType = matchType;
-            this.nodeType = nodeType;
-            this.fieldType = fieldType;
-        }
-
-
-        public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, String nodeName, Integer dataType, String targetTable,
-                                            String targetName, Integer matchType, Integer selectType, String selectStart, String selectEnd,
-                                            Integer nodeType, Integer fieldType) {
-            this.innerId = innerId;
-            this.parentId = parentId;
-            this.nodeName = nodeName;
-            this.dataType = dataType;
-            this.targetTable = targetTable;
-            this.targetName = targetName;
-            this.matchType = matchType;
-            this.selectType = selectType;
-            this.selectStart = selectStart;
-            this.selectEnd = selectEnd;
-            this.nodeType = nodeType;
-            this.fieldType = fieldType;
-        }
-
-        public IfmPlatformTemplateDetailDTO(Integer innerId, Integer parentId, Integer foreignId, String nodeName, Integer dataType,
-                                            String targetTable, String targetName, Integer matchType, Integer nodeType,
-                                            Integer fieldType) {
-            this.innerId = innerId;
-            this.parentId = parentId;
-            this.nodeName = nodeName;
-            this.dataType = dataType;
-            this.targetTable = targetTable;
-            this.foreignId = foreignId;
-            this.matchType = matchType;
-            this.nodeType = nodeType;
-            this.fieldType = fieldType;
-            this.targetName = targetName;
-        }
-
-
-        public Integer innerId;
-
-        public Integer parentId;
-
-        private String targetTable;
-
-        private String targetId;
-
-        private String tempId;
-
-        private String nodeName;
-
-        private String targetName;
-
-        private String remark;
-
-        /**
-         * 参数匹配类型
-         */
-        private Integer matchType;
-
-        private String matchTypeStr;
-
-        /**
-         * 选择类型
-         */
-        private Integer selectType;
-        private String selectTypeStr;
-
-        /**
-         * 选择起始值
-         */
-        private String selectStart;
-
-
-        private String selectEnd;
-
-        /**
-         * 字段类型(1：主键，2：外键，3：外键（（非同父节点和唯一节点）并集外键），9：普通字段)
-         */
-        private Integer dataType;
-        private String dataTypeStr;
-        private Integer foreignId;
-        private String foreignField;
-
-        /**
-         * 节点类型 0:对象，1：对象数组，2：数组，3:最终节点
-         */
-        private Integer nodeType;
-
-        /**
-         * 节点类型 0:对象，1：对象数组，2：数组，3:最终节点
-         */
-        private String nodeTypeStr;
-        /**
-         * 字段类型(0：字符串 1：时间 2：数字)
-         */
-        private Integer fieldType;
-        private String fieldTypeStr;
-    }
-
-    @Data
-    public static class FullTable {
-        /**
-         * 虚id
-         */
-        Integer vId;
-        String tableName;
-        List<Table> list;
-        FullTable parent;
-        List<FullTable> children;
-
-        public List<Table> getList() {
-            if (list == null) {
-                list = new ArrayList<>();
-            }
-            return list;
-        }
-
-        public List<FullTable> getChildren() {
-            if (children == null) {
-                children = new ArrayList<>();
-            }
-            return children;
-        }
-
-        @JSONField(serialize = false)
-        public Table getPrimary() {
-            for (Table item : this.getList()) {
-                if (Objects.equals(item.getInnerId(), this.getVId())) {
-                    return item;
-                }
-            }
-            return null;
-        }
-    }
-
-    @Data
-    public static class Table {
-        public Table() {
-        }
-
-        public String id;
-        public Integer innerId;
-        public String targetTable;
-        public String targetName;
-        public String nodeName;
-        public Integer fieldType;
-        public Object value;
-
-    }
-
-    @Data
-    private static class PlatformTemplateNode extends IfmPlatformTemplateDetailDTO implements Serializable {
-        public PlatformTemplateNode() {
-        }
-
-        private String fullTargetName;
-        public String fullNodeName;
-        public PlatformTemplateNode parentNode;
-        public Object value;
-        public List<PlatformTemplateNode> children;
-    }
-
-
-    @Getter
-    public static enum IfmApiParamsEnums {
-
-
-        /**
-         * 根节点
-         */
-        root_node(-1, "params", -2);
-
-
-        /**
-         * api类型
-         */
-        private Integer innerId;
-
-        private Integer parentId;
-
-
-        /**
-         *
-         */
-        private String name;
-
-
-        IfmApiParamsEnums(Integer innerId, String name, Integer parentId) {
-            this.innerId = innerId;
-            this.name = name;
-            this.parentId = parentId;
-        }
     }
 }

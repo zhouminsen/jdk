@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.zjw.jdk.xml.convert.response.IfmResponseTemplateDetailDTO;
+import com.zjw.jdk.xml.convert.response.ResponseTemplateNode;
 import com.zjw.jdk.xml.convert.utils.XML;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
@@ -19,8 +21,8 @@ import java.util.stream.Collectors;
  */
 public class JsonToApi {
 
-    private List<TemplateNode> getTemplateNodes(List<IfmResponseTemplateDetailDTO> sources) {
-        List<TemplateNode> sources2 = new ArrayList<>();
+    private List<ResponseTemplateNode> getTemplateNodes(List<IfmResponseTemplateDetailDTO> sources) {
+        List<ResponseTemplateNode> sources2 = new ArrayList<>();
         for (int i = 0; i < sources.size(); i++) {
             IfmResponseTemplateDetailDTO item = sources.get(i);
             String str = "";
@@ -37,12 +39,14 @@ public class JsonToApi {
             if (StringUtils.isEmpty(item.getNodeName())) {
                 throw new RuntimeException(String.format("节点名词不能为空"));
             }
-            TemplateNode templateNode = new TemplateNode();
-            BeanUtils.copyProperties(item, templateNode);
-            sources2.add(templateNode);
+            ResponseTemplateNode responseTemplateNode = new ResponseTemplateNode();
+            BeanUtils.copyProperties(item, responseTemplateNode);
+            sources2.add(responseTemplateNode);
         }
         return sources2;
     }
+
+
 
     String str = "{\n" +
             "  \"entryOrder\": {\n" +
@@ -279,7 +283,7 @@ public class JsonToApi {
 //
         sources.add(new IfmResponseTemplateDetailDTO(8, 5, "snList", "snList", 0, 2, 0));
 ////
-        sources.add(new IfmResponseTemplateDetailDTO(14, 5, "batchs", "batchs", 0));
+        sources.add(new IfmResponseTemplateDetailDTO(14, 5, "batchs", "batchs", 1));
         sources.add(new IfmResponseTemplateDetailDTO(16, 14, "batchCode", "batchCode", 0, 3, 0));
         sources.add(new IfmResponseTemplateDetailDTO(16, 14, "produceCode", "produceCode", 0, 3, 0));
         sources.add(new IfmResponseTemplateDetailDTO(101, 14, "productDate", "productDate_text2", 1, 0, "0", "2", 3, 0));
@@ -299,28 +303,21 @@ public class JsonToApi {
         sources.add(new IfmResponseTemplateDetailDTO(212, 211, "zjw11", "zjw11", 0, 3, 0));
         sources.add(new IfmResponseTemplateDetailDTO(213, 211, "zjw12", "zjw12", 0, 3, 0));
 
-        List<TemplateNode> sources2 = getTemplateNodes(sources);
-        List<TemplateNode> templateNodes = getNT(sources2, IfmApiParamsEnums.root_node.getParentId(), "", "");
+        List<ResponseTemplateNode> sources2 = getTemplateNodes(sources);
+        List<ResponseTemplateNode> responseTemplateNodes = getNT(sources2, IfmApiParamsEnums.root_node.getParentId(), "", "");
         validateRepeat(sources2);
-        TemplateNode templateNode = templateNodes.get(0);
-//        System.out.println(JSON.toJSONString(templateNode));
-        JSONArray jsonArray = new JSONArray();
-        Object read = JSON.parse(str);
-        if (read instanceof JSONObject) {
-            jsonArray.add(read);
-        } else {
-            jsonArray.addAll((Collection<?>) read);
-        }
-        cc(templateNode, jsonArray);
+        ResponseTemplateNode responseTemplateNode = responseTemplateNodes.get(0);
+//        System.out.println(JSON.toJSONString(responseTemplateNode));
+        cc(responseTemplateNode, str);
     }
 
 
-    private void validateRepeat(List<TemplateNode> sources2) {
-        List<TemplateNode> splitList = new ArrayList<>();
-        List<TemplateNode> others = new ArrayList<>();
-        for (TemplateNode item : sources2) {
+    private void validateRepeat(List<ResponseTemplateNode> sources2) {
+        List<ResponseTemplateNode> splitList = new ArrayList<>();
+        List<ResponseTemplateNode> others = new ArrayList<>();
+        for (ResponseTemplateNode item : sources2) {
             if (item.getParentNode() != null) {
-                TemplateNode parent = new TemplateNode();
+                ResponseTemplateNode parent = new ResponseTemplateNode();
                 BeanUtils.copyProperties(item.getParentNode(), parent);
                 //设置为nul避免循环依赖
                 parent.setParentNode(null);
@@ -384,7 +381,7 @@ public class JsonToApi {
         }
         Set<String> nodeName = new HashSet<>();
         Set<String> targetName = new HashSet<>();
-        for (TemplateNode item : others) {
+        for (ResponseTemplateNode item : others) {
             if (!nodeName.add(item.getFullNodeName())) {
                 throw new RuntimeException(String.format("节点%s重复。", item.getFullNodeName()));
             }
@@ -395,13 +392,13 @@ public class JsonToApi {
                 }
             }
         }
-        Map<String, List<TemplateNode>> collect = splitList.stream().collect(Collectors.groupingBy(item -> item.getFullNodeName()));
-        for (Map.Entry<String, List<TemplateNode>> item : collect.entrySet()) {
+        Map<String, List<ResponseTemplateNode>> collect = splitList.stream().collect(Collectors.groupingBy(item -> item.getFullNodeName()));
+        for (Map.Entry<String, List<ResponseTemplateNode>> item : collect.entrySet()) {
             if (!nodeName.add(item.getKey())) {
                 throw new RuntimeException(String.format("节点%s重复。", item.getKey()));
             }
         }
-        for (TemplateNode item : splitList) {
+        for (ResponseTemplateNode item : splitList) {
             //目标字段只有节点类型=3时才判断重复
             if (item.getNodeType() == 3) {
                 if (!targetName.add(item.getFullTargetName())) {
@@ -412,22 +409,28 @@ public class JsonToApi {
     }
 
 
-    private void cc(TemplateNode nt, JSONArray jsonArray) {
+    private void cc(ResponseTemplateNode nt, String str) {
+        JSONArray jsonArray = new JSONArray();
+        Object read = JSON.parse(str);
+        if (read instanceof JSONObject) {
+            jsonArray.add(read);
+        } else {
+            jsonArray.addAll((Collection<?>) read);
+        }
         Map<String, Object> map = new LinkedHashMap<>();
         for (Object e : jsonArray) {
             JSONObject jsonObject = (JSONObject) e;
             //ifm的params下的子节点
             this.convert(nt.getChildren(), map, jsonObject);
-
         }
         System.out.println(JSON.toJSONString(map, SerializerFeature.WriteMapNullValue));
         System.out.println(XML.toString(new com.zjw.jdk.xml.convert.utils.JSONObject(map), "root"));
     }
 
 
-    private void convert(List<TemplateNode> sources, Map<String, Object> map, JSONObject node) {
+    private void convert(List<ResponseTemplateNode> sources, Map<String, Object> map, JSONObject node) {
         for (int i = 0; i < sources.size(); i++) {
-            TemplateNode item = sources.get(i);
+            ResponseTemplateNode item = sources.get(i);
             Object o = node.get(item.getNodeName());
             if (o == null) {
                 throw new RuntimeException(String.format("获取节点对象，在节点%s%s查询不到节点%s，节点类型%s", item.getParentNode().getFullNodeName(),
@@ -564,7 +567,7 @@ public class JsonToApi {
 
     }
 
-    private void validateValue(TemplateNode nt, JSONObject node, Object o) {
+    private void validateValue(ResponseTemplateNode nt, JSONObject node, Object o) {
         //数组，取得的节点一定是jsonArray，并且集合里的数据一定是基本数据类型
         if (nt.getNodeType() == 2) {
             if (!(o instanceof JSONArray)) {
@@ -594,7 +597,7 @@ public class JsonToApi {
     }
 
 
-    private void validateDateType(TemplateNode nt, JSONObject node, Object o) {
+    private void validateDateType(ResponseTemplateNode nt, JSONObject node, Object o) {
         // 对象
         if (nt.getNodeType() == 0) {
             if (!(o instanceof JSONObject)) {
@@ -631,15 +634,15 @@ public class JsonToApi {
      * @param nodeName
      * @return
      */
-    public  List<TemplateNode> getNT(List<TemplateNode> sources, Integer parentId, String nodeName, String targetName) {
-        List<TemplateNode> result = new ArrayList<>();
-        List<TemplateNode> target = sources.stream().filter
+    public List<ResponseTemplateNode> getNT(List<ResponseTemplateNode> sources, Integer parentId, String nodeName, String targetName) {
+        List<ResponseTemplateNode> result = new ArrayList<>();
+        List<ResponseTemplateNode> target = sources.stream().filter
                 (item -> Objects.equals(parentId, item.getParentId())).collect(Collectors.toList());
-        for (TemplateNode item : target) {
+        for (ResponseTemplateNode item : target) {
             boolean b = sources.stream().anyMatch(e -> Objects.equals(item.getInnerId(), e.getParentId()));
             if (parentId != IfmApiParamsEnums.root_node.getParentId()) {
-                TemplateNode templateNode = sources.stream().filter(e -> Objects.equals(item.getParentId(), e.getInnerId())).findFirst().get();
-                item.setParentNode(templateNode);
+                ResponseTemplateNode responseTemplateNode = sources.stream().filter(e -> Objects.equals(item.getParentId(), e.getInnerId())).findFirst().get();
+                item.setParentNode(responseTemplateNode);
             }
             if (b) {
                 String makeup = nodeName;
@@ -669,7 +672,7 @@ public class JsonToApi {
      * @param node
      * @return
      */
-    static TemplateNode getUpByNodeType(TemplateNode node) {
+    static ResponseTemplateNode getUpByNodeType(ResponseTemplateNode node) {
         if (node.getInnerId() != IfmApiParamsEnums.root_node.getParentId()) {
             if (node.getNodeType() == 0) {
                 if (node.getParentNode() == null) {
