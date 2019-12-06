@@ -47,7 +47,6 @@ public class JsonToApi {
     }
 
 
-
     String str = "{\n" +
             "  \"entryOrder\": {\n" +
             "    \"totalOrderLines\": \"\\n            单据总行数，int，当单据需要分多个请求发送时，发送方需要将totalOrderLines填入，接收方收到后，根据实际接收到的条数和totalOrderLines进行比对，如果小于，则继续等待接收请求。如果等于，则表示该单据的所有请求发送完成。\\n        \",\n" +
@@ -409,7 +408,7 @@ public class JsonToApi {
     }
 
 
-    private void cc(ResponseTemplateNode nt, String str) {
+    public Map<String, Object> cc(ResponseTemplateNode nt, String str) {
         JSONArray jsonArray = new JSONArray();
         Object read = JSON.parse(str);
         if (read instanceof JSONObject) {
@@ -425,6 +424,7 @@ public class JsonToApi {
         }
         System.out.println(JSON.toJSONString(map, SerializerFeature.WriteMapNullValue));
         System.out.println(XML.toString(new com.zjw.jdk.xml.convert.utils.JSONObject(map), "root"));
+        return map;
     }
 
 
