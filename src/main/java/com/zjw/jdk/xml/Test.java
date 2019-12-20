@@ -1,7 +1,7 @@
 package com.zjw.jdk.xml;
 
 import com.alibaba.fastjson.JSON;
-import com.zjw.jdk.util.XMLUtil;
+import com.zjw.jdk.util.XmlUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,11 +23,11 @@ public class Test {
         System.out.println(JSON.toJSONString(user));
         String path = "D:\\user.xml";
         System.out.println("---将对象转换成File类型的xml Start---");
-        XMLUtil.convertToXml(user, path);
+        XmlUtils.convertToXml(user, path);
         System.out.println("---将对象转换成File类型的xml End---");
         System.out.println();
         System.out.println("---将File类型的xml转换成对象 Start---");
-        User user2 = XMLUtil.convertXmlFileToObject(User.class, path);
+        User user2 = XmlUtils.convertXmlFileToObject(User.class, path);
         System.out.println(user2);
         System.out.println("---将File类型的xml转换成对象 End---");
     }

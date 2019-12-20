@@ -49,203 +49,416 @@ public class XmlToApi {
 
 
     String str = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
-            "<request>\n" +
-            "    <entryOrder>\n" +
-            "        <totalOrderLines>大撒大撒大撒、</totalOrderLines>\n" +
-            "        <entryOrderCode>入库单编码, string (50) , 必填</entryOrderCode>\n" +
-            "        <ownerCode>货主编码, string (50)</ownerCode>\n" +
-            "        <warehouseCode>仓库编码, string (50)，必填</warehouseCode>\n" +
-            "        <entryOrderId>仓储系统入库单ID, string (50) , 条件必填</entryOrderId>\n" +
-            "        <entryOrderType>大苏打撒旦</entryOrderType>\n" +
-            "        <outBizCode>x'z'X'zX</outBizCode>\n" +
-            "        <confirmType>大撒大撒大撒</confirmType>\n" +
-            "        <status>的撒旦撒旦</status>\n" +
-            "        <freight>快递费用 (元) , double (18, 2)</freight>\n" +
-            "        <operateTime>操作时间, string (19) , YYYY-MM-DD HH:MM:SS，(当status=FULFILLED, operateTime为入库时间)</operateTime>\n" +
-            "        <remark>备注, string (500)</remark>\n" +
-            "    </entryOrder>\n" +
-            "    <entryOrder2>\n" +
-            "        <totalOrderLines2>dsadsads</totalOrderLines2>\n" +
-            "        <entryOrderCode2>入库单编码, string (50) , 必填</entryOrderCode2>\n" +
-            "        <ownerCode2>货主编码, string (50)</ownerCode2>\n" +
-            "        <warehouseCode>仓库编码, string (50)，必填</warehouseCode>\n" +
-            "        <entryOrderId>仓储系统入库单ID, string (50) , 条件必填</entryOrderId>\n" +
-            "        <entryOrderType>撒大大撒旦</entryOrderType>\n" +
-            "        <outBizCode>的撒旦撒旦</outBizCode>\n" +
-            "        <confirmType>支持出入库单多次收货, int，</confirmType>\n" +
-            "        <status>入库单状态, string (50) , 必填 (NEW-未开始处理, ACCEPT-仓库接单</status>\n" +
-            "        <freight>快递费用 (元) , double (18, 2)</freight>\n" +
-            "        <operateTime>操作时间, string (19) , YYYY-MM-DD HH:MM:SS，(当status=FULFILLED, operateTime为入库时间)</operateTime>\n" +
-            "        <remark>备注, string (500)</remark>\n" +
-            "        <haha>\n" +
-            "            <haha1>111</haha1>\n" +
-            "            <haha2>111</haha2>\n" +
-            "            <haha3>111</haha3>\n" +
-            "        </haha>\n" +
-            "    </entryOrder2>\n" +
-            "    <orderLines>\n" +
-            "        <outBizCode>外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用</outBizCode>\n" +
-            "        <orderLineNo>单据行号，string（50）</orderLineNo>\n" +
-            "        <ownerCode>货主编码, string (50)</ownerCode>\n" +
-            "        <itemCode>商品编码, string (50) , 必填</itemCode>\n" +
-            "        <itemId>仓储系统商品ID, string (50) , 条件必填</itemId>\n" +
-            "        <snList>\n" +
-            "            <sn>商品序列号, string(50)</sn>\n" +
-            "            <sn>商品序列号, string(50)</sn>\n" +
-            "        </snList>\n" +
-            "        <itemName>商品名称, string (200)</itemName>\n" +
-            "        <inventoryType>dasdsa</inventoryType>\n" +
-            "        <planQty>应收数量, int</planQty>\n" +
-            "        <actualQty>实收数量, int，必填</actualQty>\n" +
-            "        <batchCode>批次编码, string (50)</batchCode>\n" +
-            "        <productDate>商品生产日期，string（10）， YYYY-MM-DD</productDate>\n" +
-            "        <expireDate>商品过期日期，string（10），YYYY-MM-DD</expireDate>\n" +
-            "        <produceCode>生产批号, string (50)</produceCode>\n" +
-            "        <cc>\n" +
-            "            <zjw>\n" +
-            "                <zjw2>周家伟</zjw2>\n" +
-            "            </zjw>\n" +
-            "            <zjws>\n" +
-            "                <zjw4>周家伟</zjw4>\n" +
-            "                <zjw5>dsadas</zjw5>\n" +
-            "                <zjw6>\n" +
-            "                    <zjw6_6>1</zjw6_6>\n" +
-            "                    <zjw6_6>2</zjw6_6>\n" +
-            "                    <zjw6_6>3</zjw6_6>\n" +
-            "                    <zjw6_6>4</zjw6_6>\n" +
-            "                    <zjw6_6>5</zjw6_6>\n" +
-            "                </zjw6>\n" +
-            "                <zjw7>\n" +
-            "                    <zjw8>周家伟1</zjw8>\n" +
-            "                    <zjw9>周家伟2</zjw9>\n" +
-            "                    <zjw10>\n" +
-            "                        <zjw11>周家伟3</zjw11>\n" +
-            "                        <zjw12>周家伟4</zjw12>\n" +
-            "                    </zjw10>\n" +
-            "                </zjw7>\n" +
-            "            </zjws>\n" +
-            "            <zjws>\n" +
-            "                <zjw4>周家伟</zjw4>\n" +
-            "                <zjw5>dsadas</zjw5>\n" +
-            "                <zjw6>\n" +
-            "                    <zjw6_7>1</zjw6_7>\n" +
-            "                    <zjw6_6>2</zjw6_6>\n" +
-            "                    <zjw6_6>3</zjw6_6>\n" +
-            "                    <zjw6_6>4</zjw6_6>\n" +
-            "                    <zjw6_6>5</zjw6_6>\n" +
-            "                </zjw6>\n" +
-            "                <zjw7>\n" +
-            "                    <zjw8>周家伟1</zjw8>\n" +
-            "                    <zjw9>周家伟2</zjw9>\n" +
-            "                    <zjw10>\n" +
-            "                        <zjw11>周家伟3</zjw11>\n" +
-            "                        <zjw12>周家伟4</zjw12>\n" +
-            "                    </zjw10>\n" +
-            "                </zjw7>\n" +
-            "            </zjws>\n" +
-            "        </cc>\n" +
-            "        <batchs><!-- 同一行号下多批次支持-->\n" +
-            "            <batch>\n" +
-            "                <batchCode>批次编号，string(50)</batchCode>\n" +
-            "                <productDate>生产日期，string(10)，YYYY-MM-DD</productDate>\n" +
-            "                <expireDate>过期日期，string(10)，YYYY-MM-DD</expireDate>\n" +
-            "                <produceCode>生产批号，string(50)，</produceCode>\n" +
-            "                <inventoryType>撒大苏打撒旦</inventoryType>\n" +
-            "                <actualQty>实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量</actualQty>\n" +
-            "            </batch>\n" +
-            "            <batch>\n" +
-            "                <batchCode>批次编号，string(50)</batchCode>\n" +
-            "                <productDate>生产日期，string(10)，YYYY-MM-DD</productDate>\n" +
-            "                <expireDate>过期日期，string(10)，YYYY-MM-DD</expireDate>\n" +
-            "                <produceCode>生产批号，string(50)，</produceCode>\n" +
-            "                <inventoryType>的撒大大撒旦撒旦</inventoryType>\n" +
-            "                <actualQty>实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量</actualQty>\n" +
-            "            </batch>\n" +
-            "        </batchs>\n" +
-            "        <remark>备注, string (500)</remark>\n" +
-            "    </orderLines>\n" +
-            "    <orderLines>\n" +
-            "        <outBizCode>外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用</outBizCode>\n" +
-            "        <orderLineNo>单据行号，string（50）</orderLineNo>\n" +
-            "        <ownerCode>货主编码, string (50)</ownerCode>\n" +
-            "        <itemCode>商品编码, string (50) , 必填</itemCode>\n" +
-            "        <itemId>仓储系统商品ID, string (50) , 条件必填</itemId>\n" +
-            "        <snList>\n" +
-            "            <sn>商品序列号, string(50)</sn>\n" +
-            "            <sn>商品序列号, string(50)</sn>\n" +
-            "        </snList>\n" +
-            "        <itemName>商品名称, string (200)</itemName>\n" +
-            "        <inventoryType>dasdsa</inventoryType>\n" +
-            "        <planQty>应收数量, int</planQty>\n" +
-            "        <actualQty>实收数量, int，必填</actualQty>\n" +
-            "        <batchCode>批次编码, string (50)</batchCode>\n" +
-            "        <productDate>商品生产日期，string（10）， YYYY-MM-DD</productDate>\n" +
-            "        <expireDate>商品过期日期，string（10），YYYY-MM-DD</expireDate>\n" +
-            "        <produceCode>生产批号, string (50)</produceCode>\n" +
-            "        <cc>\n" +
-            "            <zjw>\n" +
-            "                <zjw2>周家伟</zjw2>\n" +
-            "            </zjw>\n" +
-            "            <zjws>\n" +
-            "                <zjw4>周家伟</zjw4>\n" +
-            "                <zjw5>dsadas</zjw5>\n" +
-            "                <zjw6>\n" +
-            "                    <zjw6_6>1</zjw6_6>\n" +
-            "                    <zjw6_6>2</zjw6_6>\n" +
-            "                    <zjw6_6>3</zjw6_6>\n" +
-            "                    <zjw6_6>4</zjw6_6>\n" +
-            "                    <zjw6_6>5</zjw6_6>\n" +
-            "                </zjw6>\n" +
-            "                <zjw7>\n" +
-            "                    <zjw8>周家伟1</zjw8>\n" +
-            "                    <zjw9>周家伟2</zjw9>\n" +
-            "                    <zjw10>\n" +
-            "                        <zjw11>周家伟3</zjw11>\n" +
-            "                        <zjw12>周家伟4</zjw12>\n" +
-            "                    </zjw10>\n" +
-            "                </zjw7>\n" +
-            "            </zjws>\n" +
-            "            <zjws>\n" +
-            "                <zjw4>周家伟</zjw4>\n" +
-            "                <zjw5>dsadas</zjw5>\n" +
-            "                <zjw6>\n" +
-            "                    <zjw6_7>1</zjw6_7>\n" +
-            "                    <zjw6_6>2</zjw6_6>\n" +
-            "                    <zjw6_6>3</zjw6_6>\n" +
-            "                    <zjw6_6>4</zjw6_6>\n" +
-            "                    <zjw6_6>5</zjw6_6>\n" +
-            "                </zjw6>\n" +
-            "                <zjw7>\n" +
-            "                    <zjw8>周家伟1</zjw8>\n" +
-            "                    <zjw9>周家伟2</zjw9>\n" +
-            "                    <zjw10>\n" +
-            "                        <zjw11>周家伟3</zjw11>\n" +
-            "                        <zjw12>周家伟4</zjw12>\n" +
-            "                    </zjw10>\n" +
-            "                </zjw7>\n" +
-            "            </zjws>\n" +
-            "        </cc>\n" +
-            "        <batchs><!-- 同一行号下多批次支持-->\n" +
-            "            <batch>\n" +
-            "                <batchCode>批次编号，string(50)</batchCode>\n" +
-            "                <productDate>生产日期，string(10)，YYYY-MM-DD</productDate>\n" +
-            "                <expireDate>过期日期，string(10)，YYYY-MM-DD</expireDate>\n" +
-            "                <produceCode>生产批号，string(50)，</produceCode>\n" +
-            "                <inventoryType>撒大苏打撒旦</inventoryType>\n" +
-            "                <actualQty>实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量</actualQty>\n" +
-            "            </batch>\n" +
-            "            <batch>\n" +
-            "                <batchCode>批次编号，string(50)</batchCode>\n" +
-            "                <productDate>生产日期，string(10)，YYYY-MM-DD</productDate>\n" +
-            "                <expireDate>过期日期，string(10)，YYYY-MM-DD</expireDate>\n" +
-            "                <produceCode>生产批号，string(50)，</produceCode>\n" +
-            "                <inventoryType>的撒大大撒旦撒旦</inventoryType>\n" +
-            "                <actualQty>实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量</actualQty>\n" +
-            "            </batch>\n" +
-            "        </batchs>\n" +
-            "        <remark>备注, string (500)</remark>\n" +
-            "    </orderLines>\n" +
-            "</request>";
+            "<root>\n" +
+            "    <request>\n" +
+            "        <ccccc>11111</ccccc>\n" +
+            "        <entryOrder>\n" +
+            "            <totalOrderLines>大撒大撒大撒、</totalOrderLines>\n" +
+            "            <entryOrderCode>入库单编码, string (50) , 必填</entryOrderCode>\n" +
+            "            <ownerCode>货主编码, string (50)</ownerCode>\n" +
+            "            <warehouseCode>仓库编码, string (50)，必填</warehouseCode>\n" +
+            "            <entryOrderId>仓储系统入库单ID, string (50) , 条件必填</entryOrderId>\n" +
+            "            <entryOrderType>大苏打撒旦</entryOrderType>\n" +
+            "            <outBizCode>x'z'X'zX</outBizCode>\n" +
+            "            <confirmType>大撒大撒大撒</confirmType>\n" +
+            "            <status>的撒旦撒旦</status>\n" +
+            "            <freight>快递费用 (元) , double (18, 2)</freight>\n" +
+            "            <operateTime>操作时间, string (19) , YYYY-MM-DD HH:MM:SS，(当status=FULFILLED, operateTime为入库时间)</operateTime>\n" +
+            "            <remark>备注, string (500)</remark>\n" +
+            "        </entryOrder>\n" +
+            "        <entryOrder2>\n" +
+            "            <totalOrderLines2>dsadsads</totalOrderLines2>\n" +
+            "            <entryOrderCode2>入库单编码, string (50) , 必填</entryOrderCode2>\n" +
+            "            <ownerCode2>货主编码, string (50)</ownerCode2>\n" +
+            "            <warehouseCode>仓库编码, string (50)，必填</warehouseCode>\n" +
+            "            <entryOrderId>仓储系统入库单ID, string (50) , 条件必填</entryOrderId>\n" +
+            "            <entryOrderType>撒大大撒旦</entryOrderType>\n" +
+            "            <outBizCode>的撒旦撒旦</outBizCode>\n" +
+            "            <confirmType>支持出入库单多次收货, int，</confirmType>\n" +
+            "            <status>入库单状态, string (50) , 必填 (NEW-未开始处理, ACCEPT-仓库接单</status>\n" +
+            "            <freight>快递费用 (元) , double (18, 2)</freight>\n" +
+            "            <operateTime>操作时间, string (19) , YYYY-MM-DD HH:MM:SS，(当status=FULFILLED, operateTime为入库时间)</operateTime>\n" +
+            "            <remark>备注, string (500)</remark>\n" +
+            "            <haha>\n" +
+            "                <haha1>111</haha1>\n" +
+            "                <haha2>111</haha2>\n" +
+            "                <haha3>111</haha3>\n" +
+            "            </haha>\n" +
+            "        </entryOrder2>\n" +
+            "        <orderLines>\n" +
+            "            <orderLine>\n" +
+            "                <outBizCode>外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用</outBizCode>\n" +
+            "                <orderLineNo>单据行号，string（50）</orderLineNo>\n" +
+            "                <ownerCode>货主编码, string (50)</ownerCode>\n" +
+            "                <itemCode>商品编码, string (50) , 必填</itemCode>\n" +
+            "                <itemId>仓储系统商品ID, string (50) , 条件必填</itemId>\n" +
+            "                <foreignId>1111</foreignId>\n" +
+            "                <snList>\n" +
+            "                    <sn>商品序列号, string(50)</sn>\n" +
+            "                    <sn>商品序列号, string(50)</sn>\n" +
+            "                </snList>\n" +
+            "                <itemName>商品名称, string (200)</itemName>\n" +
+            "                <inventoryType>大撒大撒大撒</inventoryType>\n" +
+            "                <planQty>应收数量, int</planQty>\n" +
+            "                <actualQty>实收数量, int，必填</actualQty>\n" +
+            "                <batchCode>批次编码, string (50)</batchCode>\n" +
+            "                <productDate>商品生产日期，string（10）， YYYY-MM-DD</productDate>\n" +
+            "                <expireDate>商品过期日期，string（10），YYYY-MM-DD</expireDate>\n" +
+            "                <produceCode>生产批号, string (50)</produceCode>\n" +
+            "                <cc>\n" +
+            "                    <zjw>\n" +
+            "                        <zjw2>周家伟</zjw2>\n" +
+            "                    </zjw>\n" +
+            "                    <zjw3_s>\n" +
+            "                        <zjw3>\n" +
+            "                            <zjw4>周家伟</zjw4>\n" +
+            "                            <zjw5>dsadas</zjw5>\n" +
+            "                            <zjw6>\n" +
+            "                                <zjw6_6>1</zjw6_6>\n" +
+            "                                <zjw6_6>2</zjw6_6>\n" +
+            "                                <zjw6_6>3</zjw6_6>\n" +
+            "                                <zjw6_6>4</zjw6_6>\n" +
+            "                                <zjw6_6>5</zjw6_6>\n" +
+            "                            </zjw6>\n" +
+            "                            <zjw7>\n" +
+            "                                <zjw8>周家伟1</zjw8>\n" +
+            "                                <zjw9>周家伟2</zjw9>\n" +
+            "                                <zjw10>\n" +
+            "                                    <zjw11>周家伟3</zjw11>\n" +
+            "                                    <zjw12>周家伟4</zjw12>\n" +
+            "                                </zjw10>\n" +
+            "                            </zjw7>\n" +
+            "                        </zjw3>\n" +
+            "                        <zjw3>\n" +
+            "                            <zjw4>周家伟</zjw4>\n" +
+            "                            <zjw5>dsadas</zjw5>\n" +
+            "                            <zjw6>\n" +
+            "                                <zjw6_6>1</zjw6_6>\n" +
+            "                                <zjw6_6>2</zjw6_6>\n" +
+            "                                <zjw6_6>3</zjw6_6>\n" +
+            "                                <zjw6_6>4</zjw6_6>\n" +
+            "                                <zjw6_6>5</zjw6_6>\n" +
+            "                            </zjw6>\n" +
+            "                            <zjw7>\n" +
+            "                                <zjw8>周家伟1</zjw8>\n" +
+            "                                <zjw9>周家伟2</zjw9>\n" +
+            "                                <zjw10>\n" +
+            "                                    <zjw11>周家伟3</zjw11>\n" +
+            "                                    <zjw12>周家伟4</zjw12>\n" +
+            "                                </zjw10>\n" +
+            "                            </zjw7>\n" +
+            "                        </zjw3>\n" +
+            "                    </zjw3_s>\n" +
+            "                </cc>\n" +
+            "                <batchs><!-- 同一行号下多批次支持-->\n" +
+            "                    <batch>\n" +
+            "                        <batchCode>批次编号，string(50)</batchCode>\n" +
+            "                        <productDate>生产日期，string(10)，YYYY-MM-DD</productDate>\n" +
+            "                        <expireDate>过期日期，string(10)，YYYY-MM-DD</expireDate>\n" +
+            "                        <produceCode>生产批号，string(50)，</produceCode>\n" +
+            "                        <inventoryType>的撒旦撒旦</inventoryType>\n" +
+            "                        <actualQty>实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量</actualQty>\n" +
+            "                    </batch>\n" +
+            "                    <batch>\n" +
+            "                        <batchCode>批次编号，string(50)</batchCode>\n" +
+            "                        <productDate>生产日期，string(10)，YYYY-MM-DD</productDate>\n" +
+            "                        <expireDate>过期日期，string(10)，YYYY-MM-DD</expireDate>\n" +
+            "                        <produceCode>生产批号，string(50)，</produceCode>\n" +
+            "                        <inventoryType>dsadasdsa</inventoryType>\n" +
+            "                        <actualQty>实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量</actualQty>\n" +
+            "                    </batch>\n" +
+            "                </batchs>\n" +
+            "                <remark>备注, string (500)</remark>\n" +
+            "            </orderLine>\n" +
+            "            <orderLine>\n" +
+            "                <outBizCode>外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用</outBizCode>\n" +
+            "                <orderLineNo>单据行号，string（50）</orderLineNo>\n" +
+            "                <ownerCode>货主编码, string (50)</ownerCode>\n" +
+            "                <itemCode>商品编码, string (50) , 必填</itemCode>\n" +
+            "                <itemId>仓储系统商品ID, string (50) , 条件必填</itemId>\n" +
+            "                <snList>\n" +
+            "                    <sn>商品序列号, string(50)</sn>\n" +
+            "                </snList>\n" +
+            "                <itemName>商品名称, string (200)</itemName>\n" +
+            "                <inventoryType>dasdsa</inventoryType>\n" +
+            "                <planQty>应收数量, int</planQty>\n" +
+            "                <actualQty>实收数量, int，必填</actualQty>\n" +
+            "                <batchCode>批次编码, string (50)</batchCode>\n" +
+            "                <productDate>商品生产日期，string（10）， YYYY-MM-DD</productDate>\n" +
+            "                <expireDate>商品过期日期，string（10），YYYY-MM-DD</expireDate>\n" +
+            "                <produceCode>生产批号, string (50)</produceCode>\n" +
+            "                <cc>\n" +
+            "                    <zjw>\n" +
+            "                        <zjw2>周家伟</zjw2>\n" +
+            "                    </zjw>\n" +
+            "                    <zjw3_s>\n" +
+            "                        <zjw3>\n" +
+            "                            <zjw4>周家伟</zjw4>\n" +
+            "                            <zjw5>dsadas</zjw5>\n" +
+            "                            <zjw6>\n" +
+            "                                <zjw6_6>1</zjw6_6>\n" +
+            "                                <zjw6_6>2</zjw6_6>\n" +
+            "                                <zjw6_6>3</zjw6_6>\n" +
+            "                                <zjw6_6>4</zjw6_6>\n" +
+            "                                <zjw6_6>5</zjw6_6>\n" +
+            "                            </zjw6>\n" +
+            "                            <zjw7>\n" +
+            "                                <zjw8>周家伟1</zjw8>\n" +
+            "                                <zjw9>周家伟2</zjw9>\n" +
+            "                                <zjw10>\n" +
+            "                                    <zjw11>周家伟3</zjw11>\n" +
+            "                                    <zjw12>周家伟4</zjw12>\n" +
+            "                                </zjw10>\n" +
+            "                            </zjw7>\n" +
+            "                        </zjw3>\n" +
+            "                        <zjw3>\n" +
+            "                            <zjw4>周家伟</zjw4>\n" +
+            "                            <zjw5>dsadas</zjw5>\n" +
+            "                            <zjw6>\n" +
+            "                                <zjw6_7>1</zjw6_7>\n" +
+            "                                <zjw6_6>2</zjw6_6>\n" +
+            "                                <zjw6_6>3</zjw6_6>\n" +
+            "                                <zjw6_6>4</zjw6_6>\n" +
+            "                                <zjw6_6>5</zjw6_6>\n" +
+            "                            </zjw6>\n" +
+            "                            <zjw7>\n" +
+            "                                <zjw8>周家伟1</zjw8>\n" +
+            "                                <zjw9>周家伟2</zjw9>\n" +
+            "                                <zjw10>\n" +
+            "                                    <zjw11>周家伟3</zjw11>\n" +
+            "                                    <zjw12>周家伟4</zjw12>\n" +
+            "                                </zjw10>\n" +
+            "                            </zjw7>\n" +
+            "                        </zjw3>\n" +
+            "                    </zjw3_s>\n" +
+            "                </cc>\n" +
+            "                <batchs><!-- 同一行号下多批次支持-->\n" +
+            "                    <batch>\n" +
+            "                        <batchCode>批次编号，string(50)</batchCode>\n" +
+            "                        <productDate>生产日期，string(10)，YYYY-MM-DD</productDate>\n" +
+            "                        <expireDate>过期日期，string(10)，YYYY-MM-DD</expireDate>\n" +
+            "                        <produceCode>生产批号，string(50)，</produceCode>\n" +
+            "                        <inventoryType>撒大苏打撒旦</inventoryType>\n" +
+            "                        <actualQty>实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量</actualQty>\n" +
+            "                    </batch>\n" +
+            "                    <batch>\n" +
+            "                        <batchCode>批次编号，string(50)</batchCode>\n" +
+            "                        <productDate>生产日期，string(10)，YYYY-MM-DD</productDate>\n" +
+            "                        <expireDate>过期日期，string(10)，YYYY-MM-DD</expireDate>\n" +
+            "                        <produceCode>生产批号，string(50)，</produceCode>\n" +
+            "                        <inventoryType>的撒大大撒旦撒旦</inventoryType>\n" +
+            "                        <actualQty>实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量</actualQty>\n" +
+            "                    </batch>\n" +
+            "                </batchs>\n" +
+            "                <remark>备注, string (500)</remark>\n" +
+            "            </orderLine>\n" +
+            "        </orderLines>\n" +
+            "    </request>\n" +
+            "    <request>\n" +
+            "        <ccccc>11111</ccccc>\n" +
+            "        <entryOrder>\n" +
+            "            <totalOrderLines>大撒大撒大撒、</totalOrderLines>\n" +
+            "            <entryOrderCode>入库单编码, string (50) , 必填</entryOrderCode>\n" +
+            "            <ownerCode>货主编码, string (50)</ownerCode>\n" +
+            "            <warehouseCode>仓库编码, string (50)，必填</warehouseCode>\n" +
+            "            <entryOrderId>仓储系统入库单ID, string (50) , 条件必填</entryOrderId>\n" +
+            "            <entryOrderType>大苏打撒旦</entryOrderType>\n" +
+            "            <outBizCode>x'z'X'zX</outBizCode>\n" +
+            "            <confirmType>大撒大撒大撒</confirmType>\n" +
+            "            <status>的撒旦撒旦</status>\n" +
+            "            <freight>快递费用 (元) , double (18, 2)</freight>\n" +
+            "            <operateTime>操作时间, string (19) , YYYY-MM-DD HH:MM:SS，(当status=FULFILLED, operateTime为入库时间)</operateTime>\n" +
+            "            <remark>备注, string (500)</remark>\n" +
+            "        </entryOrder>\n" +
+            "        <entryOrder2>\n" +
+            "            <totalOrderLines2>dsadsads</totalOrderLines2>\n" +
+            "            <entryOrderCode2>入库单编码, string (50) , 必填</entryOrderCode2>\n" +
+            "            <ownerCode2>货主编码, string (50)</ownerCode2>\n" +
+            "            <warehouseCode>仓库编码, string (50)，必填</warehouseCode>\n" +
+            "            <entryOrderId>仓储系统入库单ID, string (50) , 条件必填</entryOrderId>\n" +
+            "            <entryOrderType>撒大大撒旦</entryOrderType>\n" +
+            "            <outBizCode>的撒旦撒旦</outBizCode>\n" +
+            "            <confirmType>支持出入库单多次收货, int，</confirmType>\n" +
+            "            <status>入库单状态, string (50) , 必填 (NEW-未开始处理, ACCEPT-仓库接单</status>\n" +
+            "            <freight>快递费用 (元) , double (18, 2)</freight>\n" +
+            "            <operateTime>操作时间, string (19) , YYYY-MM-DD HH:MM:SS，(当status=FULFILLED, operateTime为入库时间)</operateTime>\n" +
+            "            <remark>备注, string (500)</remark>\n" +
+            "            <haha>\n" +
+            "                <haha1>111</haha1>\n" +
+            "                <haha2>111</haha2>\n" +
+            "                <haha3>111</haha3>\n" +
+            "            </haha>\n" +
+            "        </entryOrder2>\n" +
+            "        <orderLines>\n" +
+            "            <orderLine>\n" +
+            "                <outBizCode>外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用</outBizCode>\n" +
+            "                <orderLineNo>单据行号，string（50）</orderLineNo>\n" +
+            "                <ownerCode>货主编码, string (50)</ownerCode>\n" +
+            "                <itemCode>商品编码, string (50) , 必填</itemCode>\n" +
+            "                <itemId>仓储系统商品ID, string (50) , 条件必填</itemId>\n" +
+            "                <foreignId>1111</foreignId>\n" +
+            "                <snList>\n" +
+            "                    <sn>商品序列号, string(50)</sn>\n" +
+            "                    <sn>商品序列号, string(50)</sn>\n" +
+            "                </snList>\n" +
+            "                <itemName>商品名称, string (200)</itemName>\n" +
+            "                <inventoryType>大撒大撒大撒</inventoryType>\n" +
+            "                <planQty>应收数量, int</planQty>\n" +
+            "                <actualQty>实收数量, int，必填</actualQty>\n" +
+            "                <batchCode>批次编码, string (50)</batchCode>\n" +
+            "                <productDate>商品生产日期，string（10）， YYYY-MM-DD</productDate>\n" +
+            "                <expireDate>商品过期日期，string（10），YYYY-MM-DD</expireDate>\n" +
+            "                <produceCode>生产批号, string (50)</produceCode>\n" +
+            "                <cc>\n" +
+            "                    <zjw>\n" +
+            "                        <zjw2>周家伟</zjw2>\n" +
+            "                    </zjw>\n" +
+            "                    <zjw3_s>\n" +
+            "                        <zjw3>\n" +
+            "                            <zjw4>周家伟</zjw4>\n" +
+            "                            <zjw5>dsadas</zjw5>\n" +
+            "                            <zjw6>\n" +
+            "                                <zjw6_6>1</zjw6_6>\n" +
+            "                                <zjw6_6>2</zjw6_6>\n" +
+            "                                <zjw6_6>3</zjw6_6>\n" +
+            "                                <zjw6_6>4</zjw6_6>\n" +
+            "                                <zjw6_6>5</zjw6_6>\n" +
+            "                            </zjw6>\n" +
+            "                            <zjw7>\n" +
+            "                                <zjw8>周家伟1</zjw8>\n" +
+            "                                <zjw9>周家伟2</zjw9>\n" +
+            "                                <zjw10>\n" +
+            "                                    <zjw11>周家伟3</zjw11>\n" +
+            "                                    <zjw12>周家伟4</zjw12>\n" +
+            "                                </zjw10>\n" +
+            "                            </zjw7>\n" +
+            "                        </zjw3>\n" +
+            "                        <zjw3>\n" +
+            "                            <zjw4>周家伟</zjw4>\n" +
+            "                            <zjw5>dsadas</zjw5>\n" +
+            "                            <zjw6>\n" +
+            "                                <zjw6_6>1</zjw6_6>\n" +
+            "                                <zjw6_6>2</zjw6_6>\n" +
+            "                                <zjw6_6>3</zjw6_6>\n" +
+            "                                <zjw6_6>4</zjw6_6>\n" +
+            "                                <zjw6_6>5</zjw6_6>\n" +
+            "                            </zjw6>\n" +
+            "                            <zjw7>\n" +
+            "                                <zjw8>周家伟1</zjw8>\n" +
+            "                                <zjw9>周家伟2</zjw9>\n" +
+            "                                <zjw10>\n" +
+            "                                    <zjw11>周家伟3</zjw11>\n" +
+            "                                    <zjw12>周家伟4</zjw12>\n" +
+            "                                </zjw10>\n" +
+            "                            </zjw7>\n" +
+            "                        </zjw3>\n" +
+            "                    </zjw3_s>\n" +
+            "                </cc>\n" +
+            "                <batchs><!-- 同一行号下多批次支持-->\n" +
+            "                    <batch>\n" +
+            "                        <batchCode>批次编号，string(50)</batchCode>\n" +
+            "                        <productDate>生产日期，string(10)，YYYY-MM-DD</productDate>\n" +
+            "                        <expireDate>过期日期，string(10)，YYYY-MM-DD</expireDate>\n" +
+            "                        <produceCode>生产批号，string(50)，</produceCode>\n" +
+            "                        <inventoryType>的撒旦撒旦</inventoryType>\n" +
+            "                        <actualQty>实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量</actualQty>\n" +
+            "                    </batch>\n" +
+            "                    <batch>\n" +
+            "                        <batchCode>批次编号，string(50)</batchCode>\n" +
+            "                        <productDate>生产日期，string(10)，YYYY-MM-DD</productDate>\n" +
+            "                        <expireDate>过期日期，string(10)，YYYY-MM-DD</expireDate>\n" +
+            "                        <produceCode>生产批号，string(50)，</produceCode>\n" +
+            "                        <inventoryType>dsadasdsa</inventoryType>\n" +
+            "                        <actualQty>实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量</actualQty>\n" +
+            "                    </batch>\n" +
+            "                </batchs>\n" +
+            "                <remark>备注, string (500)</remark>\n" +
+            "            </orderLine>\n" +
+            "            <orderLine>\n" +
+            "                <outBizCode>外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用</outBizCode>\n" +
+            "                <orderLineNo>单据行号，string（50）</orderLineNo>\n" +
+            "                <ownerCode>货主编码, string (50)</ownerCode>\n" +
+            "                <itemCode>商品编码, string (50) , 必填</itemCode>\n" +
+            "                <itemId>仓储系统商品ID, string (50) , 条件必填</itemId>\n" +
+            "                <snList>\n" +
+            "                    <sn>商品序列号, string(50)</sn>\n" +
+            "                </snList>\n" +
+            "                <itemName>商品名称, string (200)</itemName>\n" +
+            "                <inventoryType>dasdsa</inventoryType>\n" +
+            "                <planQty>应收数量, int</planQty>\n" +
+            "                <actualQty>实收数量, int，必填</actualQty>\n" +
+            "                <batchCode>批次编码, string (50)</batchCode>\n" +
+            "                <productDate>商品生产日期，string（10）， YYYY-MM-DD</productDate>\n" +
+            "                <expireDate>商品过期日期，string（10），YYYY-MM-DD</expireDate>\n" +
+            "                <produceCode>生产批号, string (50)</produceCode>\n" +
+            "                <cc>\n" +
+            "                    <zjw>\n" +
+            "                        <zjw2>周家伟</zjw2>\n" +
+            "                    </zjw>\n" +
+            "                    <zjw3_s>\n" +
+            "                        <zjw3>\n" +
+            "                            <zjw4>周家伟</zjw4>\n" +
+            "                            <zjw5>dsadas</zjw5>\n" +
+            "                            <zjw6>\n" +
+            "                                <zjw6_6>1</zjw6_6>\n" +
+            "                                <zjw6_6>2</zjw6_6>\n" +
+            "                                <zjw6_6>3</zjw6_6>\n" +
+            "                                <zjw6_6>4</zjw6_6>\n" +
+            "                                <zjw6_6>5</zjw6_6>\n" +
+            "                            </zjw6>\n" +
+            "                            <zjw7>\n" +
+            "                                <zjw8>周家伟1</zjw8>\n" +
+            "                                <zjw9>周家伟2</zjw9>\n" +
+            "                                <zjw10>\n" +
+            "                                    <zjw11>周家伟3</zjw11>\n" +
+            "                                    <zjw12>周家伟4</zjw12>\n" +
+            "                                </zjw10>\n" +
+            "                            </zjw7>\n" +
+            "                        </zjw3>\n" +
+            "                        <zjw3>\n" +
+            "                            <zjw4>周家伟</zjw4>\n" +
+            "                            <zjw5>dsadas</zjw5>\n" +
+            "                            <zjw6>\n" +
+            "                                <zjw6_7>1</zjw6_7>\n" +
+            "                                <zjw6_6>2</zjw6_6>\n" +
+            "                                <zjw6_6>3</zjw6_6>\n" +
+            "                                <zjw6_6>4</zjw6_6>\n" +
+            "                                <zjw6_6>5</zjw6_6>\n" +
+            "                            </zjw6>\n" +
+            "                            <zjw7>\n" +
+            "                                <zjw8>周家伟1</zjw8>\n" +
+            "                                <zjw9>周家伟2</zjw9>\n" +
+            "                                <zjw10>\n" +
+            "                                    <zjw11>周家伟3</zjw11>\n" +
+            "                                    <zjw12>周家伟4</zjw12>\n" +
+            "                                </zjw10>\n" +
+            "                            </zjw7>\n" +
+            "                        </zjw3>\n" +
+            "                    </zjw3_s>\n" +
+            "                </cc>\n" +
+            "                <batchs><!-- 同一行号下多批次支持-->\n" +
+            "                    <batch>\n" +
+            "                        <batchCode>批次编号，string(50)</batchCode>\n" +
+            "                        <productDate>生产日期，string(10)，YYYY-MM-DD</productDate>\n" +
+            "                        <expireDate>过期日期，string(10)，YYYY-MM-DD</expireDate>\n" +
+            "                        <produceCode>生产批号，string(50)，</produceCode>\n" +
+            "                        <inventoryType>撒大苏打撒旦</inventoryType>\n" +
+            "                        <actualQty>实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量</actualQty>\n" +
+            "                    </batch>\n" +
+            "                    <batch>\n" +
+            "                        <batchCode>批次编号，string(50)</batchCode>\n" +
+            "                        <productDate>生产日期，string(10)，YYYY-MM-DD</productDate>\n" +
+            "                        <expireDate>过期日期，string(10)，YYYY-MM-DD</expireDate>\n" +
+            "                        <produceCode>生产批号，string(50)，</produceCode>\n" +
+            "                        <inventoryType>的撒大大撒旦撒旦</inventoryType>\n" +
+            "                        <actualQty>实收数量, int，要求batchs节点下所有的实收数量之和等于orderline中的实收数量</actualQty>\n" +
+            "                    </batch>\n" +
+            "                </batchs>\n" +
+            "                <remark>备注, string (500)</remark>\n" +
+            "            </orderLine>\n" +
+            "        </orderLines>\n" +
+            "    </request>\n" +
+            "</root>";
 
     @Test
     public void xml() throws DocumentException {
@@ -254,8 +467,9 @@ public class XmlToApi {
         headerList.add(new IfmResponseTemplateDetailDTO("sessionId", "sessionId", 3, 0));
 
         List<IfmResponseTemplateDetailDTO> bodyList = new ArrayList<>();
-        bodyList.add(new IfmResponseTemplateDetailDTO(-1, -2, "params", "params", 0));
-        bodyList.add(new IfmResponseTemplateDetailDTO(1, -1, "request", "request", 0));
+        bodyList.add(new IfmResponseTemplateDetailDTO(-1, -2, "params", "params", 1));
+        bodyList.add(new IfmResponseTemplateDetailDTO(0, -1, "root", "", 0));
+        bodyList.add(new IfmResponseTemplateDetailDTO(1, 0, "request", "request", 1));
         bodyList.add(new IfmResponseTemplateDetailDTO(2, 1, "entryOrder", "entryOrder", 0));
         bodyList.add(new IfmResponseTemplateDetailDTO(3, 2, "totalOrderLines", "totalOrderLines", 0, 3, 0));
         bodyList.add(new IfmResponseTemplateDetailDTO(4, 2, "entryOrderCode", "entryOrderCode", 0, 3, 0));

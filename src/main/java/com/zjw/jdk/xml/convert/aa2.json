@@ -1,668 +1,328 @@
 [
   {
-    "children": [
-      {
-        "children": [],
-        "list": [
-          {
-            "fieldType": 0,
-            "id": null,
-            "innerId": 100,
-            "nodeName": "zjw2_id",
-            "targetName": "id",
-            "targetTable": "t_t",
-            "value": "35"
+    "params": {
+      "0": [
+        {
+          "c": "11111",
+          "entryOrder": {
+            "totalOrderLines": "大撒大撒大撒、",
+            "entryOrderCode": "入库单编码,string(50),必填",
+            "ownerCode": "货主编码,string(50)"
           },
-          {
-            "fieldType": 0,
-            "id": null,
-            "innerId": 101,
-            "nodeName": "foreign_id",
-            "targetName": "foreign_id",
-            "targetTable": "t_t",
-            "value": "508"
+          "entryOrder2": {
+            "totalOrderLines2": "dsadsads",
+            "entryOrderCode2": "入库单编码,string(50),必填",
+            "ownerCode2": "货主编码,string(50)",
+            "haha1": "111",
+            "haha2": "111",
+            "haha3": "111"
           },
-          {
-            "fieldType": 0,
-            "id": null,
-            "innerId": 102,
-            "nodeName": "outBizCode",
-            "targetName": "outBizCode",
-            "targetTable": "t_t",
-            "value": "x'z'X'zX"
-          },
-          {
-            "fieldType": 0,
-            "id": null,
-            "innerId": 103,
-            "nodeName": "confirmType",
-            "targetName": "confirmType",
-            "targetTable": "t_t",
-            "value": "大撒大撒大撒"
-          }
-        ],
-        "parent": null,
-        "tableName": "t_t",
-        "vId": 100
-      },
-      {
-        "children": [
-          {
-            "children": [],
-            "list": [
-              {
-                "fieldType": 0,
-                "id": null,
-                "innerId": 15,
-                "nodeName": "sn",
-                "targetName": "sn2",
-                "targetTable": "t3",
-                "value": "87"
-              },
-              {
-                "fieldType": 0,
-                "id": null,
-                "innerId": 16,
-                "nodeName": "foreign_id",
-                "targetName": "foreign_id",
-                "targetTable": "t3",
-                "value": "998"
-              },
-              {
-                "fieldType": 0,
-                "id": null,
-                "innerId": 17,
-                "nodeName": "aa",
-                "targetName": "sn2",
-                "targetTable": "t3",
-                "value": "[商品序列号, string(40)]"
-              }
-            ],
-            "parent": null,
-            "tableName": "t3",
-            "vId": 15
-          },
-          {
-            "children": [],
-            "list": [
-              {
-                "fieldType": 0,
-                "id": null,
-                "innerId": 15,
-                "nodeName": "sn",
-                "targetName": "sn2",
-                "targetTable": "t3",
-                "value": "556"
-              },
-              {
-                "fieldType": 0,
-                "id": null,
-                "innerId": 16,
-                "nodeName": "foreign_id",
-                "targetName": "foreign_id",
-                "targetTable": "t3",
-                "value": "998"
-              },
-              {
-                "fieldType": 0,
-                "id": null,
-                "innerId": 17,
-                "nodeName": "aa",
-                "targetName": "sn2",
-                "targetTable": "t3",
-                "value": "[商品序列号, string(50)]"
-              }
-            ],
-            "parent": null,
-            "tableName": "t3",
-            "vId": 15
-          },
-          {
-            "children": [
-              {
-                "children": [],
-                "list": [
+          "orderLines": [
+            {
+              "outBizCode2": "外部业务编码,消息ID,用于去重，当单据需要分批次发送时使用",
+              "remark2": "备注,string(500)",
+              "itemId2": "仓储系统商品ID,string(50),条件必填",
+              "sn": [
+                "商品序列号,string(50)",
+                "商品序列号,string(50)"
+              ],
+              "batch": [
+                {
+                  "batchCode": "批次编号，string(50)",
+                  "produceCode": "生产批号，string(50)，",
+                  "productDate_text2": "生产",
+                  "productDate_text3": "日期"
+                },
+                {
+                  "batchCode": "批次编号，string(50)",
+                  "produceCode": "生产批号，string(50)，",
+                  "productDate_text2": "生产",
+                  "productDate_text3": "日期"
+                }
+              ],
+              "cc": {
+                "zjw": {
+                  "zjw2": "周家伟"
+                },
+                "zjws": [
                   {
-                    "fieldType": 0,
-                    "id": null,
-                    "innerId": 29,
-                    "nodeName": "id",
-                    "targetName": "id",
-                    "targetTable": "t7",
-                    "value": "368"
+                    "zjw4": "周家伟",
+                    "zjw5": "dsadas",
+                    "zjw6": {
+                      "zjw6_6": [
+                        "1",
+                        "2",
+                        "3",
+                        "4",
+                        "5"
+                      ]
+                    },
+                    "zjw7": {
+                      "zjw8": "周家伟1",
+                      "zjw9": "周家伟2",
+                      "zjw10": {
+                        "zjw11": "周家伟3",
+                        "zjw12": "周家伟4"
+                      }
+                    }
                   },
                   {
-                    "fieldType": 0,
-                    "id": null,
-                    "innerId": 30,
-                    "nodeName": "foreign_id",
-                    "targetName": "order_id",
-                    "targetTable": "t7",
-                    "value": "885"
-                  },
-                  {
-                    "fieldType": 0,
-                    "id": null,
-                    "innerId": 31,
-                    "nodeName": "inventoryType",
-                    "targetName": "confirmType",
-                    "targetTable": "t7",
-                    "value": "的撒旦撒旦"
+                    "zjw4": "周家伟",
+                    "zjw5": "dsadas",
+                    "zjw6": {
+                      "zjw6_6": [
+                        "2",
+                        "3",
+                        "4",
+                        "5"
+                      ]
+                    },
+                    "zjw7": {
+                      "zjw8": "周家伟1",
+                      "zjw9": "周家伟2",
+                      "zjw10": {
+                        "zjw11": "周家伟3",
+                        "zjw12": "周家伟4"
+                      }
+                    }
                   }
-                ],
-                "parent": null,
-                "tableName": "t7",
-                "vId": 29
+                ]
               }
-            ],
-            "list": [
-              {
-                "fieldType": 0,
-                "id": null,
-                "innerId": 19,
-                "nodeName": "batch_id",
-                "targetName": "id",
-                "targetTable": "t4",
-                "value": "885"
-              },
-              {
-                "fieldType": 0,
-                "id": null,
-                "innerId": 20,
-                "nodeName": "foreign_id",
-                "targetName": "foreign_id",
-                "targetTable": "t4",
-                "value": "998"
-              },
-              {
-                "fieldType": 0,
-                "id": null,
-                "innerId": 21,
-                "nodeName": "batchCode",
-                "targetName": "batchCode",
-                "targetTable": "t4",
-                "value": "批次编号，string(50)"
-              },
-              {
-                "fieldType": 0,
-                "id": null,
-                "innerId": 22,
-                "nodeName": "productDate",
-                "targetName": "productDate_text",
-                "targetTable": "t4",
-                "value": "生产"
-              },
-              {
-                "fieldType": 0,
-                "id": null,
-                "innerId": 23,
-                "nodeName": "productDate",
-                "targetName": "productDate_text2",
-                "targetTable": "t4",
-                "value": "日期"
-              }
-            ],
-            "parent": null,
-            "tableName": "t4",
-            "vId": 19
-          },
-          {
-            "children": [
-              {
-                "children": [],
-                "list": [
+            },
+            {
+              "outBizCode2": "外部业务编码,消息ID,用于去重，当单据需要分批次发送时使用",
+              "remark2": "备注,string(500)",
+              "itemId2": "仓储系统商品ID,string(50),条件必填",
+              "sn": [
+                "商品序列号,string(50)",
+                "商品序列号,string(50)"
+              ],
+              "batch": [
+                {
+                  "batchCode": "批次编号，string(50)",
+                  "produceCode": "生产批号，string(50)，",
+                  "productDate_text2": "生产",
+                  "productDate_text3": "日期"
+                },
+                {
+                  "batchCode": "批次编号，string(50)",
+                  "produceCode": "生产批号，string(50)，",
+                  "productDate_text2": "生产",
+                  "productDate_text3": "日期"
+                }
+              ],
+              "cc": {
+                "zjw": {
+                  "zjw2": "周家伟"
+                },
+                "zjws": [
                   {
-                    "fieldType": 0,
-                    "id": null,
-                    "innerId": 29,
-                    "nodeName": "id",
-                    "targetName": "id",
-                    "targetTable": "t7",
-                    "value": "511"
+                    "zjw4": "周家伟",
+                    "zjw5": "dsadas",
+                    "zjw6": {
+                      "zjw6_6": [
+                        "1",
+                        "2",
+                        "3",
+                        "4",
+                        "5"
+                      ]
+                    },
+                    "zjw7": {
+                      "zjw8": "周家伟1",
+                      "zjw9": "周家伟2",
+                      "zjw10": {
+                        "zjw11": "周家伟3",
+                        "zjw12": "周家伟4"
+                      }
+                    }
                   },
                   {
-                    "fieldType": 0,
-                    "id": null,
-                    "innerId": 30,
-                    "nodeName": "foreign_id",
-                    "targetName": "order_id",
-                    "targetTable": "t7",
-                    "value": "986"
-                  },
-                  {
-                    "fieldType": 0,
-                    "id": null,
-                    "innerId": 31,
-                    "nodeName": "inventoryType",
-                    "targetName": "confirmType",
-                    "targetTable": "t7",
-                    "value": "dsadasdsa"
+                    "zjw4": "周家伟",
+                    "zjw5": "dsadas",
+                    "zjw6": {
+                      "zjw6_6": [
+                        "2",
+                        "3",
+                        "4",
+                        "5"
+                      ]
+                    },
+                    "zjw7": {
+                      "zjw8": "周家伟1",
+                      "zjw9": "周家伟2",
+                      "zjw10": {
+                        "zjw11": "周家伟3",
+                        "zjw12": "周家伟4"
+                      }
+                    }
                   }
-                ],
-                "parent": null,
-                "tableName": "t7",
-                "vId": 29
+                ]
               }
-            ],
-            "list": [
-              {
-                "fieldType": 0,
-                "id": null,
-                "innerId": 19,
-                "nodeName": "batch_id",
-                "targetName": "id",
-                "targetTable": "t4",
-                "value": "986"
-              },
-              {
-                "fieldType": 0,
-                "id": null,
-                "innerId": 20,
-                "nodeName": "foreign_id",
-                "targetName": "foreign_id",
-                "targetTable": "t4",
-                "value": "998"
-              },
-              {
-                "fieldType": 0,
-                "id": null,
-                "innerId": 21,
-                "nodeName": "batchCode",
-                "targetName": "batchCode",
-                "targetTable": "t4",
-                "value": "批次编号，string(50)"
-              },
-              {
-                "fieldType": 0,
-                "id": null,
-                "innerId": 22,
-                "nodeName": "productDate",
-                "targetName": "productDate_text",
-                "targetTable": "t4",
-                "value": "生产"
-              },
-              {
-                "fieldType": 0,
-                "id": null,
-                "innerId": 23,
-                "nodeName": "productDate",
-                "targetName": "productDate_text2",
-                "targetTable": "t4",
-                "value": "日期"
-              }
-            ],
-            "parent": null,
-            "tableName": "t4",
-            "vId": 19
-          }
-        ],
-        "list": [
-          {
-            "fieldType": 0,
-            "id": null,
-            "innerId": 9,
-            "nodeName": "line_id",
-            "targetName": "id",
-            "targetTable": "t2",
-            "value": "998"
+            }
+          ]
+        },
+        {
+          "c": "11111",
+          "entryOrder": {
+            "totalOrderLines": "大撒大撒大撒、",
+            "entryOrderCode": "入库单编码,string(50),必填",
+            "ownerCode": "货主编码,string(50)"
           },
-          {
-            "fieldType": 0,
-            "id": null,
-            "innerId": 10,
-            "nodeName": "foreign_id",
-            "targetName": "foreign_id",
-            "targetTable": "t2",
-            "value": "508"
+          "entryOrder2": {
+            "totalOrderLines2": "dsadsads",
+            "entryOrderCode2": "入库单编码,string(50),必填",
+            "ownerCode2": "货主编码,string(50)",
+            "haha1": "111",
+            "haha2": "111",
+            "haha3": "111"
           },
-          {
-            "fieldType": 0,
-            "id": null,
-            "innerId": 11,
-            "nodeName": "outBizCode",
-            "targetName": "outBizCode",
-            "targetTable": "t2",
-            "value": "外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用"
-          },
-          {
-            "fieldType": 0,
-            "id": null,
-            "innerId": 12,
-            "nodeName": "remark",
-            "targetName": "remark",
-            "targetTable": "t2",
-            "value": "备注, string (500)"
-          }
-        ],
-        "parent": null,
-        "tableName": "t2",
-        "vId": 9
-      },
-      {
-        "children": [
-          {
-            "children": [],
-            "list": [
-              {
-                "fieldType": 0,
-                "id": null,
-                "innerId": 15,
-                "nodeName": "sn",
-                "targetName": "sn2",
-                "targetTable": "t3",
-                "value": "647"
-              },
-              {
-                "fieldType": 0,
-                "id": null,
-                "innerId": 16,
-                "nodeName": "foreign_id",
-                "targetName": "foreign_id",
-                "targetTable": "t3",
-                "value": "91"
-              },
-              {
-                "fieldType": 0,
-                "id": null,
-                "innerId": 17,
-                "nodeName": "aa",
-                "targetName": "sn2",
-                "targetTable": "t3",
-                "value": "[商品序列号, string(200)]"
-              }
-            ],
-            "parent": null,
-            "tableName": "t3",
-            "vId": 15
-          },
-          {
-            "children": [
-              {
-                "children": [],
-                "list": [
+          "orderLines": [
+            {
+              "outBizCode2": "外部业务编码,消息ID,用于去重，当单据需要分批次发送时使用",
+              "remark2": "备注,string(500)",
+              "itemId2": "仓储系统商品ID,string(50),条件必填",
+              "sn": [
+                "商品序列号,string(50)",
+                "商品序列号,string(50)"
+              ],
+              "batch": [
+                {
+                  "batchCode": "批次编号，string(50)",
+                  "produceCode": "生产批号，string(50)，",
+                  "productDate_text2": "生产",
+                  "productDate_text3": "日期"
+                },
+                {
+                  "batchCode": "批次编号，string(50)",
+                  "produceCode": "生产批号，string(50)，",
+                  "productDate_text2": "生产",
+                  "productDate_text3": "日期"
+                }
+              ],
+              "cc": {
+                "zjw": {
+                  "zjw2": "周家伟"
+                },
+                "zjws": [
                   {
-                    "fieldType": 0,
-                    "id": null,
-                    "innerId": 29,
-                    "nodeName": "id",
-                    "targetName": "id",
-                    "targetTable": "t7",
-                    "value": "539"
+                    "zjw4": "周家伟",
+                    "zjw5": "dsadas",
+                    "zjw6": {
+                      "zjw6_6": [
+                        "1",
+                        "2",
+                        "3",
+                        "4",
+                        "5"
+                      ]
+                    },
+                    "zjw7": {
+                      "zjw8": "周家伟1",
+                      "zjw9": "周家伟2",
+                      "zjw10": {
+                        "zjw11": "周家伟3",
+                        "zjw12": "周家伟4"
+                      }
+                    }
                   },
                   {
-                    "fieldType": 0,
-                    "id": null,
-                    "innerId": 30,
-                    "nodeName": "foreign_id",
-                    "targetName": "order_id",
-                    "targetTable": "t7",
-                    "value": "196"
-                  },
-                  {
-                    "fieldType": 0,
-                    "id": null,
-                    "innerId": 31,
-                    "nodeName": "inventoryType",
-                    "targetName": "confirmType",
-                    "targetTable": "t7",
-                    "value": "撒大苏打撒旦"
+                    "zjw4": "周家伟",
+                    "zjw5": "dsadas",
+                    "zjw6": {
+                      "zjw6_6": [
+                        "2",
+                        "3",
+                        "4",
+                        "5"
+                      ]
+                    },
+                    "zjw7": {
+                      "zjw8": "周家伟1",
+                      "zjw9": "周家伟2",
+                      "zjw10": {
+                        "zjw11": "周家伟3",
+                        "zjw12": "周家伟4"
+                      }
+                    }
                   }
-                ],
-                "parent": null,
-                "tableName": "t7",
-                "vId": 29
+                ]
               }
-            ],
-            "list": [
-              {
-                "fieldType": 0,
-                "id": null,
-                "innerId": 19,
-                "nodeName": "batch_id",
-                "targetName": "id",
-                "targetTable": "t4",
-                "value": "196"
-              },
-              {
-                "fieldType": 0,
-                "id": null,
-                "innerId": 20,
-                "nodeName": "foreign_id",
-                "targetName": "foreign_id",
-                "targetTable": "t4",
-                "value": "91"
-              },
-              {
-                "fieldType": 0,
-                "id": null,
-                "innerId": 21,
-                "nodeName": "batchCode",
-                "targetName": "batchCode",
-                "targetTable": "t4",
-                "value": "批次编号，string(50)"
-              },
-              {
-                "fieldType": 0,
-                "id": null,
-                "innerId": 22,
-                "nodeName": "productDate",
-                "targetName": "productDate_text",
-                "targetTable": "t4",
-                "value": "生产"
-              },
-              {
-                "fieldType": 0,
-                "id": null,
-                "innerId": 23,
-                "nodeName": "productDate",
-                "targetName": "productDate_text2",
-                "targetTable": "t4",
-                "value": "日期"
-              }
-            ],
-            "parent": null,
-            "tableName": "t4",
-            "vId": 19
-          },
-          {
-            "children": [
-              {
-                "children": [],
-                "list": [
+            },
+            {
+              "outBizCode2": "外部业务编码,消息ID,用于去重，当单据需要分批次发送时使用",
+              "remark2": "备注,string(500)",
+              "itemId2": "仓储系统商品ID,string(50),条件必填",
+              "sn": [
+                "商品序列号,string(50)",
+                "商品序列号,string(50)"
+              ],
+              "batch": [
+                {
+                  "batchCode": "批次编号，string(50)",
+                  "produceCode": "生产批号，string(50)，",
+                  "productDate_text2": "生产",
+                  "productDate_text3": "日期"
+                },
+                {
+                  "batchCode": "批次编号，string(50)",
+                  "produceCode": "生产批号，string(50)，",
+                  "productDate_text2": "生产",
+                  "productDate_text3": "日期"
+                }
+              ],
+              "cc": {
+                "zjw": {
+                  "zjw2": "周家伟"
+                },
+                "zjws": [
                   {
-                    "fieldType": 0,
-                    "id": null,
-                    "innerId": 29,
-                    "nodeName": "id",
-                    "targetName": "id",
-                    "targetTable": "t7",
-                    "value": "921"
+                    "zjw4": "周家伟",
+                    "zjw5": "dsadas",
+                    "zjw6": {
+                      "zjw6_6": [
+                        "1",
+                        "2",
+                        "3",
+                        "4",
+                        "5"
+                      ]
+                    },
+                    "zjw7": {
+                      "zjw8": "周家伟1",
+                      "zjw9": "周家伟2",
+                      "zjw10": {
+                        "zjw11": "周家伟3",
+                        "zjw12": "周家伟4"
+                      }
+                    }
                   },
                   {
-                    "fieldType": 0,
-                    "id": null,
-                    "innerId": 30,
-                    "nodeName": "foreign_id",
-                    "targetName": "order_id",
-                    "targetTable": "t7",
-                    "value": "970"
-                  },
-                  {
-                    "fieldType": 0,
-                    "id": null,
-                    "innerId": 31,
-                    "nodeName": "inventoryType",
-                    "targetName": "confirmType",
-                    "targetTable": "t7",
-                    "value": "的撒大大撒旦撒旦"
+                    "zjw4": "周家伟",
+                    "zjw5": "dsadas",
+                    "zjw6": {
+                      "zjw6_6": [
+                        "2",
+                        "3",
+                        "4",
+                        "5"
+                      ]
+                    },
+                    "zjw7": {
+                      "zjw8": "周家伟1",
+                      "zjw9": "周家伟2",
+                      "zjw10": {
+                        "zjw11": "周家伟3",
+                        "zjw12": "周家伟4"
+                      }
+                    }
                   }
-                ],
-                "parent": null,
-                "tableName": "t7",
-                "vId": 29
+                ]
               }
-            ],
-            "list": [
-              {
-                "fieldType": 0,
-                "id": null,
-                "innerId": 19,
-                "nodeName": "batch_id",
-                "targetName": "id",
-                "targetTable": "t4",
-                "value": "970"
-              },
-              {
-                "fieldType": 0,
-                "id": null,
-                "innerId": 20,
-                "nodeName": "foreign_id",
-                "targetName": "foreign_id",
-                "targetTable": "t4",
-                "value": "91"
-              },
-              {
-                "fieldType": 0,
-                "id": null,
-                "innerId": 21,
-                "nodeName": "batchCode",
-                "targetName": "batchCode",
-                "targetTable": "t4",
-                "value": "批次编号，string(50)"
-              },
-              {
-                "fieldType": 0,
-                "id": null,
-                "innerId": 22,
-                "nodeName": "productDate",
-                "targetName": "productDate_text",
-                "targetTable": "t4",
-                "value": "生产"
-              },
-              {
-                "fieldType": 0,
-                "id": null,
-                "innerId": 23,
-                "nodeName": "productDate",
-                "targetName": "productDate_text2",
-                "targetTable": "t4",
-                "value": "日期"
-              }
-            ],
-            "parent": null,
-            "tableName": "t4",
-            "vId": 19
-          }
-        ],
-        "list": [
-          {
-            "fieldType": 0,
-            "id": null,
-            "innerId": 9,
-            "nodeName": "line_id",
-            "targetName": "id",
-            "targetTable": "t2",
-            "value": "91"
-          },
-          {
-            "fieldType": 0,
-            "id": null,
-            "innerId": 10,
-            "nodeName": "foreign_id",
-            "targetName": "foreign_id",
-            "targetTable": "t2",
-            "value": "508"
-          },
-          {
-            "fieldType": 0,
-            "id": null,
-            "innerId": 11,
-            "nodeName": "outBizCode",
-            "targetName": "outBizCode",
-            "targetTable": "t2",
-            "value": "外部业务编码, 消息ID, 用于去重，当单据需要分批次发送时使用"
-          },
-          {
-            "fieldType": 0,
-            "id": null,
-            "innerId": 12,
-            "nodeName": "remark",
-            "targetName": "remark",
-            "targetTable": "t2",
-            "value": "备注, string (500)"
-          }
-        ],
-        "parent": null,
-        "tableName": "t2",
-        "vId": 9
-      }
-    ],
-    "list": [
-      {
-        "fieldType": 0,
-        "id": null,
-        "innerId": 3,
-        "nodeName": "zjw_id",
-        "targetName": "id",
-        "targetTable": "t",
-        "value": "508"
-      },
-      {
-        "fieldType": 0,
-        "id": null,
-        "innerId": 4,
-        "nodeName": "totalOrderLines",
-        "targetName": "totalOrderLines",
-        "targetTable": "t",
-        "value": "大撒大撒大撒、"
-      },
-      {
-        "fieldType": 0,
-        "id": null,
-        "innerId": 5,
-        "nodeName": "entryOrderCode",
-        "targetName": "entryOrderCode",
-        "targetTable": "t",
-        "value": "入库单编码, string (50) , 必填"
-      }
-    ],
-    "parent": null,
-    "tableName": "t",
-    "vId": 3
-  },
-  {
-    "children": [],
-    "list": [
-      {
-        "fieldType": 0,
-        "id": null,
-        "innerId": 25,
-        "nodeName": "id",
-        "targetName": "id",
-        "targetTable": "t5",
-        "value": "399"
-      },
-      {
-        "fieldType": 0,
-        "id": null,
-        "innerId": 26,
-        "nodeName": "confirmType",
-        "targetName": "confirmType",
-        "targetTable": "t5",
-        "value": "大撒大撒大撒"
-      },
-      {
-        "fieldType": 0,
-        "id": null,
-        "innerId": 27,
-        "nodeName": "status",
-        "targetName": "status",
-        "targetTable": "t5",
-        "value": "的撒旦撒旦"
-      }
-    ],
-    "parent": null,
-    "tableName": "t5",
-    "vId": 25
+            }
+          ]
+        }
+      ]
+    }
   }
 ]

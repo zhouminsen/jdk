@@ -20,7 +20,7 @@ import java.util.*;
  *
  * @author Steven
  */
-public class XMLUtil {
+public class XmlUtils {
     /**
      * 将对象直接转换成String类型的 XML输出
      *
