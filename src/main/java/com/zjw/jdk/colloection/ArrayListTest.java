@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by zhoum on 2018/7/9.
@@ -15,8 +16,10 @@ public class ArrayListTest {
     public void test() {
         ArrayList list = new ArrayList();
         for (int i = 0; i < 15; i++) {
-            list.add(i);
+            list.add(i+"");
         }
+        Object collect = list.stream().collect(Collectors.joining(","));
+        System.out.println(collect);
 
     }
 

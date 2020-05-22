@@ -4,6 +4,7 @@ import com.zjw.jdk.annotation.Student;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by zhoum on 2018/6/27.
@@ -238,6 +239,24 @@ public class OtherTest {
         }
 
         System.out.println(list);
+    }
+
+    @Test
+    public void append() {
+        Map<String, Object> map = new ConcurrentHashMap<>();
+        System.out.println(map.putIfAbsent("1", "2"));
+        System.out.println(map.putIfAbsent("1", "3"));
+        System.out.println(map.putIfAbsent("1", "4"));
+
+    }
+
+    @Test
+    public void test7() {
+        String str = "start";
+        for (int i = 0; i < 100; i++) {
+            str = str + "hello";
+        }
+        System.out.println(str);
 
     }
 

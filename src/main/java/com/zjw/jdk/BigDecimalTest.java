@@ -54,11 +54,16 @@ public class BigDecimalTest {
 
     @Test
     public void test4() {
-        BigDecimal amount=new BigDecimal("13");
+        BigDecimal amount = new BigDecimal("13");
         BigDecimal pre = amount;
         amount = new BigDecimal("14");
         System.out.println(pre);
     }
 
+    @Test
+    public void test5() {
+        double l = Double.valueOf(1000 / 309);
+        System.out.println(l);
+    }
 
 }

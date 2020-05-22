@@ -1,6 +1,6 @@
 package com.zjw.jdk.xml;
 
-import com.zjw.jdk.XmlUtils;
+import com.zjw.jdk.xml.convert.utils.XML;
 import org.dom4j.DocumentException;
 
 /**
@@ -8,7 +8,7 @@ import org.dom4j.DocumentException;
  */
 public class Main {
     public static void main(String[] args) throws DocumentException {
-        String s = XmlUtils.jsonToXml("{\n" +
+        String s = "{\n" +
                 "  \"orderLines\": [\n" +
                 "    {\n" +
                 "      \"orderLine\": {\n" +
@@ -121,7 +121,29 @@ public class Main {
                 "      }\n" +
                 "    }\n" +
                 "  ]\n" +
-                "}\n");
+                "}\n";
+
         System.out.println(s);
+
+        s = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
+                "<request>\n" +
+                "    <entryOrder>\n" +
+                "        <name>伟哥</name>\n" +
+                "        <age>16</age>\n" +
+                "    </entryOrder>\n" +
+                "    <entryOrder2>\n" +
+                "        <name>伟哥</name>\n" +
+                "        <age>16</age>\n" +
+                "        <haha>\n" +
+                "            <haha1>111</haha1>\n" +
+                "            <haha2>111</haha2>\n" +
+                "            <haha3>111</haha3>\n" +
+                "        </haha>\n" +
+                "    </entryOrder2>\n" +
+                "    <sn>商品序列号,string(50)</sn>\n" +
+                "    <sn>商品序列号,string(50)</sn>\n" +
+                "    <zjw>周家伟</zjw>\n" +
+                "</request>";
+        System.out.println(XML.toJSONObject(s));
     }
 }

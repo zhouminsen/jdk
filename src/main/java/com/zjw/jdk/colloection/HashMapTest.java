@@ -1,8 +1,10 @@
 package com.zjw.jdk.colloection;
 
+import javafx.util.Pair;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by zhoum on 2018/5/3.
@@ -83,5 +85,21 @@ public class HashMapTest {
         map2.put("3", "3");
         System.out.println(map2.keySet());
         System.out.println(map2.values());
+    }
+
+
+    /**
+     *
+     */
+    @Test
+    public void test6() {
+        List<Pair<String, Double>> pairArrayList = new ArrayList<>(3);
+        pairArrayList.add(new Pair<>("version", 6.19));
+        pairArrayList.add(new Pair<>("version", 10.24));
+        pairArrayList.add(new Pair<>("version", 13.14));
+        Map<String, Double> map = pairArrayList.stream().collect(
+// 生成的 map 集合中只有一个键值对：{version=13.14}
+                Collectors.toMap(Pair::getKey, Pair::getValue, (v1, v2) -> v2));
+        System.out.println(map);
     }
 }
